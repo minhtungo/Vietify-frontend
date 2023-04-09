@@ -6,7 +6,7 @@ import DesktopHit from '@modules/search/components/desktop-hit';
 import DesktopHits from '@modules/search/components/desktop-hits';
 import SearchBox from '@modules/search/components/search-box';
 import { InstantSearch } from 'react-instantsearch-hooks-web';
-import { BiSearch } from 'react-icons/bi';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 const DesktopSearchModal = () => {
   const { state, close, open } = useToggleState();
@@ -17,7 +17,7 @@ const DesktopSearchModal = () => {
         <Search />
         Search
       </button> */}
-      <div
+      {/* <div
         onClick={open}
         className="w-full cursor-pointer rounded-full border border-gray-900/50 py-2 shadow-sm transition hover:shadow-md md:max-w-[600px] px-4"
       >
@@ -28,6 +28,13 @@ const DesktopSearchModal = () => {
           />
           <BiSearch size={20} className="text-gray-900" />
         </div>
+      </div> */}
+      <div
+        className="text-gray-400 hover:text-gray-500 cursor-pointer"
+        onClick={open}
+      >
+        <span className="sr-only">Search</span>
+        <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
       </div>
 
       <Modal isOpen={state} close={close} size="large">
