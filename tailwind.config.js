@@ -8,6 +8,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          DEFAULT: '#02b290',
+          dark: '#000000',
+          light: '#ffffff',
+        },
+      },
       transitionProperty: {
         width: 'width',
         spacing: 'margin, padding',

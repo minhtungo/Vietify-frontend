@@ -1,6 +1,6 @@
 import Head from "@modules/common/components/head"
 import FeaturedProducts from "@modules/home/components/featured-products"
-import Hero from "@modules/home/components/hero"
+import Hero from "@modules/home/components/hero/templates"
 import Layout from "@modules/layout/templates"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "types/global"

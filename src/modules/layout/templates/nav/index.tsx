@@ -350,7 +350,7 @@ export default function Nav() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <Link href="#">
+                <Link href="/">
                   <span className="sr-only">Vietify</span>
                   <span className="text-xl font-semibold">Vietify</span>
                   {/* <Image
