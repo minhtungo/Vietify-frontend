@@ -37,9 +37,11 @@
     "react-country-flag": "^3.1.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
+    "react-icons": "^4.8.0",
     "react-instantsearch-hooks-web": "^6.42.1",
     "react-intersection-observer": "^9.4.3",
     "sharp": "^0.32.0",
+    "tailwind-merge": "^1.12.0",
     "webpack": "^5.78.0"
   },
   "devDependencies": {

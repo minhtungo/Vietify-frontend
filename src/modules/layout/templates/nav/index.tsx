@@ -1,95 +1,123 @@
-import { useMobileMenu } from "@lib/context/mobile-menu-context"
-import Hamburger from "@modules/common/components/hamburger"
-import CartDropdown from "@modules/layout/components/cart-dropdown"
-import DropdownMenu from "@modules/layout/components/dropdown-menu"
-import MobileMenu from "@modules/mobile-menu/templates"
-import DesktopSearchModal from "@modules/search/templates/desktop-search-modal"
-import clsx from "clsx"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import clsxm from '@lib/clsxm';
+import { useMobileMenu } from '@lib/context/mobile-menu-context';
+import Hamburger from '@modules/common/components/hamburger';
+import Logo from '@modules/common/components/logo';
+import CartDropdown from '@modules/layout/components/cart-dropdown';
+import DropdownMenu from '@modules/layout/components/dropdown-menu';
+import MobileMenu from '@modules/mobile-menu/templates';
+import SearchBox from '@modules/search/components/search-box';
+import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { BiCart, BiHeart, BiUser } from 'react-icons/bi';
 
 const Nav = () => {
-  const { pathname } = useRouter()
-  const [isHome, setIsHome] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const { pathname } = useRouter();
+  const [isHome, setIsHome] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   //useEffect that detects if window is scrolled > 5px on the Y axis
   useEffect(() => {
     if (isHome) {
       const detectScrollY = () => {
         if (window.scrollY > 5) {
-          setIsScrolled(true)
+          setIsScrolled(true);
         } else {
-          setIsScrolled(false)
+          setIsScrolled(false);
         }
-      }
+      };
 
-      window.addEventListener("scroll", detectScrollY)
+      window.addEventListener('scroll', detectScrollY);
 
       return () => {
-        window.removeEventListener("scroll", detectScrollY)
-      }
+        window.removeEventListener('scroll', detectScrollY);
+      };
     }
-  }, [isHome])
+  }, [isHome]);
 
   useEffect(() => {
-    pathname === "/" ? setIsHome(true) : setIsHome(false)
-  }, [pathname])
+    pathname === '/' ? setIsHome(true) : setIsHome(false);
+  }, [pathname]);
 
-  const { toggle } = useMobileMenu()
+  const { toggle } = useMobileMenu();
 
   return (
     <div
-      className={clsx("sticky top-0 inset-x-0 z-50 group", {
-        "!fixed": isHome,
-      })}
+      className={clsxm(
+        'fixed z-50 h-16 w-full backdrop-filter',
+        isScrolled && 'shadow backdrop-blur-xl border-b border-gray-800/40'
+      )}
     >
-      <header
-        className={clsx(
-          "relative h-16 px-8 mx-auto transition-colors bg-transparent border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200",
-          {
-            "!bg-white !border-gray-200": !isHome || isScrolled,
-          }
-        )}
-      >
-        <nav
-          className={clsx(
-            "text-gray-900 flex items-center justify-between w-full h-full text-small-regular transition-colors duration-200",
-            {
-              "text-white group-hover:text-gray-900": isHome && !isScrolled,
-            }
-          )}
-        >
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="block small:hidden">
-              <Hamburger setOpen={toggle} />
-            </div>
-            <div className="hidden small:block h-full">
-              <DropdownMenu />
-            </div>
+      <header className="flex items-center justify-between  shadow-sm h-full px-12">
+        <Logo />
+        <DesktopSearchModal />
+        <div className="flex items-center shrink-0">
+          <div className="px-3">
+            <BiUser size={20} className="text-gray-900" />
           </div>
-
-          <div className="flex items-center h-full">
-            <Link href="/" className="text-xl-semi uppercase">
-              Acme
-            </Link>
+          <div className="px-3">
+            <BiCart size={20} className="text-gray-900" />
           </div>
-
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
-              <Link href="/account">
-                Account
-              </Link>
-            </div>
-            <CartDropdown />
+          <div className="px-3">
+            <BiHeart size={20} className="text-gray-900" />
           </div>
-        </nav>
-        <MobileMenu />
+        </div>
       </header>
     </div>
   );
-}
+  // return (
+  //   <div
+  //     className={clsx("sticky top-0 inset-x-0 z-50 group", {
+  //       "!fixed": isHome,
+  //     })}
+  //   >
+  //     <header
+  //       className={clsx(
+  //         "relative h-16 px-8 mx-auto transition-colors bg-transparent border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200",
+  //         {
+  //           "!bg-white !border-gray-200": !isHome || isScrolled,
+  //         }
+  //       )}
+  //     >
+  //       <nav
+  //         className={clsx(
+  //           "text-gray-900 flex items-center justify-between w-full h-full text-small-regular transition-colors duration-200",
+  //           {
+  //             "text-white group-hover:text-gray-900": isHome && !isScrolled,
+  //           }
+  //         )}
+  //       >
+  //         <div className="flex-1 basis-0 h-full flex items-center">
+  //           <div className="block small:hidden">
+  //             <Hamburger setOpen={toggle} />
+  //           </div>
+  //           <div className="hidden small:block h-full">
+  //             <DropdownMenu />
+  //           </div>
+  //         </div>
 
-export default Nav
+  //         <div className="flex items-center h-full">
+  //           <Link href="/" className="text-xl-semi uppercase">
+  //             Acme
+  //           </Link>
+  //         </div>
+
+  //         <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+  //           <div className="hidden small:flex items-center gap-x-6 h-full">
+  //             {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
+  //             <Link href="/account">
+  //               Account
+  //             </Link>
+  //           </div>
+  //           <CartDropdown />
+  //         </div>
+  //       </nav>
+  //       <MobileMenu />
+  //     </header>
+  //   </div>
+  // );
+};
+
+export default Nav;
