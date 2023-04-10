@@ -1,7 +1,7 @@
-import clsx from "clsx"
-import Link from "next/link"
-import { ProductPreviewType } from "types/global"
-import Thumbnail from "../thumbnail"
+import clsx from 'clsx';
+import Link from 'next/link';
+import { ProductPreviewType } from 'types/global';
+import Thumbnail from '../thumbnail';
 
 const ProductPreview = ({
   title,
@@ -10,8 +10,7 @@ const ProductPreview = ({
   price,
 }: ProductPreviewType) => {
   return (
-    (<Link href={`/products/${handle}`}>
-
+    <Link href={`/products/${handle}`}>
       <div>
         <Thumbnail thumbnail={thumbnail} size="full" />
         <div className="text-base-regular mt-2">
@@ -19,14 +18,14 @@ const ProductPreview = ({
           <div className="flex items-center gap-x-2 mt-1">
             {price ? (
               <>
-                {price.price_type === "sale" && (
+                {price.price_type === 'sale' && (
                   <span className="line-through text-gray-500">
                     {price.original_price}
                   </span>
                 )}
                 <span
-                  className={clsx("font-semibold", {
-                    "text-rose-500": price.price_type === "sale",
+                  className={clsx('font-semibold', {
+                    'text-rose-500': price.price_type === 'sale',
                   })}
                 >
                   {price.calculated_price}
@@ -38,9 +37,8 @@ const ProductPreview = ({
           </div>
         </div>
       </div>
-
-    </Link>)
+    </Link>
   );
-}
+};
 
-export default ProductPreview
+export default ProductPreview;

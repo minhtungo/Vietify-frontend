@@ -10,6 +10,7 @@ module.exports = withStoreConfig({
       'localhost',
       'tailwindui.com',
       'images.unsplash.com',
+      'i.ibb.co',
     ],
   },
 });

@@ -16,7 +16,6 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
       className={clsxm(
         'w-full bg-no-repeat bg-cover bg-center flex items-center',
         'min-h-[420px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[550px]',
-        'bg-fill-thumbnail',
         className
       )}
       style={{
