@@ -19,6 +19,7 @@ import MobileMenu from '@modules/mobile-menu/templates';
 import SearchBox from '@modules/search/components/search-box';
 import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
 import { useRouter } from 'next/router';
+import DropdownMenuDemo from '@modules/layout/components/dropdown';
 
 const navigation = {
   categories: [
@@ -370,6 +371,9 @@ export default function Nav() {
                         <>
                           <div className="relative flex">
                             <Popover.Button
+                              onMouseEnter={({ target }) =>
+                                open ? '' : target.click()
+                              }
                               className={clsxm(
                                 open
                                   ? 'border-indigo-600 text-indigo-600'
@@ -487,6 +491,8 @@ export default function Nav() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
+                <DropdownMenuDemo />
+
                 {/* Currency */}
                 {/* <div className="hidden lg:ml-8 lg:flex">
                   <a

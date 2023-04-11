@@ -1,24 +1,24 @@
-import { Popover, Transition } from "@headlessui/react"
+import { Popover, Transition } from '@headlessui/react';
 import {
   useFeaturedProductsQuery,
   useNavigationCollections,
-} from "@lib/hooks/use-layout-data"
-import repeat from "@lib/util/repeat"
-import ProductPreview from "@modules/products/components/product-preview"
-import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
-import clsx from "clsx"
-import { chunk } from "lodash"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import React, { useState } from "react"
+} from '@lib/hooks/use-layout-data';
+import repeat from '@lib/util/repeat';
+import ProductPreview from '@modules/products/components/product-preview';
+import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import clsx from 'clsx';
+import { chunk } from 'lodash';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 
 const DropdownMenu = () => {
-  const [open, setOpen] = useState(false)
-  const { push } = useRouter()
+  const [open, setOpen] = useState(false);
+  const { push } = useRouter();
   const { data: collections, isLoading: loadingCollections } =
-    useNavigationCollections()
+    useNavigationCollections();
   const { data: products, isLoading: loadingProducts } =
-    useFeaturedProductsQuery()
+    useFeaturedProductsQuery();
 
   return (
     <div
@@ -30,16 +30,14 @@ const DropdownMenu = () => {
         <Popover className="h-full flex">
           <>
             <Link href="/shop" passHref className="relative flex h-full">
-
               <Popover.Button
                 className={clsx(
-                  "relative h-full flex items-center transition-all ease-out duration-200"
+                  'relative h-full flex items-center transition-all ease-out duration-200'
                 )}
-                onClick={() => push("/store")}
+                onClick={() => push('/store')}
               >
                 Store
               </Popover.Button>
-
             </Link>
 
             <Transition
@@ -73,10 +71,11 @@ const DropdownMenu = () => {
                                 {chunk.map((collection) => {
                                   return (
                                     <div key={collection.id} className="pb-3">
-                                      <Link href={`/collections/${collection.id}`} onClick={() => setOpen(false)}>
-
+                                      <Link
+                                        href={`/collections/${collection.id}`}
+                                        onClick={() => setOpen(false)}
+                                      >
                                         {collection.title}
-
                                       </Link>
                                     </div>
                                   );
@@ -113,6 +112,6 @@ const DropdownMenu = () => {
       </div>
     </div>
   );
-}
+};
 
-export default DropdownMenu
+export default DropdownMenu;
