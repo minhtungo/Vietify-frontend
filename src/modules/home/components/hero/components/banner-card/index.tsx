@@ -1,4 +1,4 @@
-import clsxm from '@lib/clsxm';
+import cn from '@lib/util/cn';
 import Link from '@modules/common/components/link';
 import { FC } from 'react';
 import { Banner } from 'types/global';
@@ -13,7 +13,7 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
 
   return (
     <div
-      className={clsxm(
+      className={cn(
         'w-full bg-no-repeat bg-cover bg-center flex items-center',
         'min-h-[420px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[550px]',
         className
@@ -23,7 +23,7 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
       }}
     >
       <div
-        className={clsxm(
+        className={cn(
           'mx-auto flex flex-col h-full text-center px-6 max-w-[480px] md:max-w-[550px] xl:max-w-[750px] 2xl:max-w-[850px]'
         )}
       >

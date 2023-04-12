@@ -1,4 +1,4 @@
-import clsxm from '@lib/clsxm';
+import cn from '@lib/util/cn';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -14,7 +14,7 @@ const Link: FC<LinkProps> = ({ href, children, className }) => {
 
   if (isInternalLink) {
     return (
-      <NextLink href={href} className={clsxm(className)}>
+      <NextLink href={href} className={cn(className)}>
         {children}
       </NextLink>
     );
@@ -22,7 +22,7 @@ const Link: FC<LinkProps> = ({ href, children, className }) => {
 
   if (isAnchorLink) {
     return (
-      <a href={href} className={clsxm(className)}>
+      <a href={href} className={cn(className)}>
         {children}
       </a>
     );
@@ -33,7 +33,7 @@ const Link: FC<LinkProps> = ({ href, children, className }) => {
       target="_blank"
       rel="noopener noreferrer"
       href={href}
-      className={clsxm(className)}
+      className={cn(className)}
     >
       {children}
     </a>

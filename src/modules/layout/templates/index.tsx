@@ -3,7 +3,7 @@ import Nav from '@modules/layout/templates/nav';
 import React from 'react';
 
 import { Inter } from 'next/font/google';
-import clsxm from '@lib/clsxm';
+import cn from '@lib/util/cn';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div>
       <Nav />
-      <main className={clsxm(inter.variable, 'relative font-sans')}>
+      <main className={cn(inter.variable, 'relative font-sans')}>
         {children}
       </main>
       <Footer />

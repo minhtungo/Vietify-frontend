@@ -1,4 +1,4 @@
-import clsxm from '@lib/clsxm';
+import cn from '@lib/util/cn';
 import Carousel from '@modules/carousels/templates';
 import { FC } from 'react';
 import { Banner } from 'types/global';
@@ -17,7 +17,7 @@ const Sliders: FC<SliderProps> = ({
   contentClassName,
 }) => {
   return (
-    <div className={clsxm(className)}>
+    <div className={cn(className)}>
       <Carousel
         autoplay={true}
         pagination={{

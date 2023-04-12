@@ -2,7 +2,7 @@ import 'swiper/css/autoplay';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
-import clsxm from '@lib/clsxm';
+import cn from '@lib/util/cn';
 import {
   Autoplay,
   Grid,
@@ -30,7 +30,7 @@ const Carousel: FC<CarouselProps> = ({
   ...props
 }) => {
   return (
-    <div className={clsxm('relative', className)}>
+    <div className={cn('relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
         autoplay={autoplay}

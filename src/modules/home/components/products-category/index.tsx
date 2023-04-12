@@ -1,4 +1,4 @@
-import clsxm from '@lib/clsxm';
+import cn from '@lib/util/cn';
 import Image from 'next/image';
 
 const CATEGORY = [
@@ -61,7 +61,7 @@ export default function ProductsCategory() {
           {CATEGORY.map(
             ({ id, imgSrc, altImg, name, expanded, mdExpanded }) => (
               <div
-                className={clsxm(
+                className={cn(
                   'relative group flex justify-center items-center h-full max-h-[300px] w-full ',
                   expanded
                     ? 'lg:col-span-3 md:col-span-2'

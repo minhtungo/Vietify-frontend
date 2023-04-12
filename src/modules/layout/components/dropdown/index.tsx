@@ -65,10 +65,10 @@ export default function DropdownMenuDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button>
-          <BiCategoryAlt className="mr-1" size={18} />
-          <span>All categories</span>
-        </Button>
+        <button>
+          <BiCategoryAlt className="text-gray-700" size={26} />
+        </button>
+        {/* <span>All categories</span> */}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         {CATEGORY.map(({ id, name }) => (

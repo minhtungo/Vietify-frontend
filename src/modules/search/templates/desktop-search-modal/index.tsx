@@ -7,35 +7,29 @@ import DesktopHits from '@modules/search/components/desktop-hits';
 import SearchBox from '@modules/search/components/search-box';
 import { InstantSearch } from 'react-instantsearch-hooks-web';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { BiSearch } from 'react-icons/bi';
 
 const DesktopSearchModal = () => {
   const { state, close, open } = useToggleState();
 
   return (
     <>
-      {/* <button onClick={open} className="flex items-center gap-x-2 h-full">
-        <Search />
-        Search
-      </button> */}
-      {/* <div
-        onClick={open}
-        className="w-full cursor-pointer rounded-full border border-gray-900/50 py-2 shadow-sm transition hover:shadow-md md:max-w-[600px] px-4"
-      >
-        <div className="flex flex-row items-center justify-between">
+      <div className="w-full cursor-pointer rounded-xl border border-gray-900/50 py-2 transition md:max-w-[550px] px-4">
+        <div className=" flex flex-row items-center justify-between">
           <input
-            className="w-full px-4 text-sm focus:outline-none bg-transparent placeholder:text-gray-900"
+            className="w-full pr-3 text-sm focus:outline-none bg-transparent placeholder:text-gray-900"
             placeholder="Search..."
           />
-          <BiSearch size={20} className="text-gray-900" />
+          <BiSearch size={20} className="text-gray-700" />
         </div>
-      </div> */}
-      <div
+      </div>
+      {/* <div
         className="text-gray-400 hover:text-gray-500 cursor-pointer"
         onClick={open}
       >
         <span className="sr-only">Search</span>
         <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
-      </div>
+      </div> */}
 
       <Modal isOpen={state} close={close} size="large">
         <Modal.Body>

@@ -1,4 +1,4 @@
-import clsxm from '@lib/clsxm';
+import cn from '@lib/util/cn';
 import Spinner from '@modules/common/icons/spinner';
 import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
@@ -45,7 +45,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     return (
       <button
-        className={clsxm(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       >
