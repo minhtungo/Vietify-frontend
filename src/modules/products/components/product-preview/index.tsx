@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
 import Thumbnail from '../thumbnail';
+import { HiOutlineStar } from 'react-icons/hi2';
 
 const ProductPreview = ({
   title,
@@ -15,10 +16,21 @@ const ProductPreview = ({
         <Thumbnail thumbnail={thumbnail} size="full" rounded="lg" />
         <div className="text-base-regular mt-2">
           <div className="font-semibold text-[15px]">{title}</div>
-          <span className="font-light text-gray-700 text-xs small:text-sm">
+          <div className="flex items-center mt-2">
+            <HiOutlineStar className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+            <HiOutlineStar className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+            <HiOutlineStar className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+            <HiOutlineStar className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+            <HiOutlineStar className="w-4 h-4 text-yellow-500 " />
+
+            <p className="ml-2 text-xs font-medium text-gray-800 dark:text-gray-400">
+              10
+            </p>
+          </div>
+          <div className="font-light text-gray-700 text-xs small:text-[13px] mt-2">
             Author
-          </span>
-          <div className="flex items-center gap-x-2 mt-1 text-base">
+          </div>
+          <div className="flex items-center gap-x-2 mt-2 text-base">
             {price ? (
               <>
                 {price.price_type === 'sale' && (
