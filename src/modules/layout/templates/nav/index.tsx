@@ -15,8 +15,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { HiOutlineUser } from 'react-icons/hi';
-
-import { ListItem } from './new';
+import ListItem from './list-item';
 
 const navigation = {
   categories: [

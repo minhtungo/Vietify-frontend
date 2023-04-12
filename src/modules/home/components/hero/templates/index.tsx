@@ -1,36 +1,24 @@
-import UnderlineLink from '@modules/common/components/underline-link';
-import Image from 'next/legacy/image';
-import { banner } from '@modules/home/components/hero/content';
-import Sliders from '@modules/home/components/hero/components/sliders';
+import { SwiperSlide } from '@modules/carousels/components/slider';
+import Carousel from '@modules/carousels/templates';
+import BannerCard from '@modules/home/components/hero/components/banner-card';
+import { banners } from '@modules/home/components/hero/content';
 
 const Hero = () => {
   return (
     <>
-      <Sliders heroBanner={banner} />
+      <Carousel
+        autoplay={true}
+        pagination={{
+          clickable: true,
+        }}
+      >
+        {banners.map((banner) => (
+          <SwiperSlide key={`banner--key${banner.id}`}>
+            <BannerCard banner={banner} />
+          </SwiperSlide>
+        ))}
+      </Carousel>
     </>
-    // <div className="h-[90vh] w-full relative">
-    //   <div className="text-white absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:text-left small:justify-end small:items-start small:p-32">
-    //     <h1 className="text-2xl-semi mb-4 drop-shadow-md shadow-black">
-    //       Summer styles are finally here
-    //     </h1>
-    //     <p className="text-base-regular max-w-[32rem] mb-6 drop-shadow-md shadow-black">
-    //       This year, our new summer collection will shelter you from the harsh
-    //       elements of a world that doesn&apos;t care if you live or die.
-    //     </p>
-    //     <UnderlineLink href="/store">Explore products</UnderlineLink>
-    //   </div>
-    //   <Image
-    //     src="/hero.jpg"
-    //     layout="fill"
-    //     loading="eager"
-    //     priority={true}
-    //     quality={90}
-    //     objectFit="cover"
-    //     alt="Photo by @thevoncomplex https://unsplash.com/@thevoncomplex"
-    //     className="absolute inset-0"
-    //     draggable="false"
-    //   />
-    // </div>
   );
 };
 

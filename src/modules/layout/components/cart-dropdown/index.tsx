@@ -137,7 +137,9 @@ const CartDropdown = () => {
                   <div>
                     <Link href="/store">
                       <span className="sr-only">Go to all products page</span>
-                      <Button onClick={close}>Explore products</Button>
+                      <Button variant="secondary" onClick={close}>
+                        Explore products
+                      </Button>
                     </Link>
                   </div>
                 </div>

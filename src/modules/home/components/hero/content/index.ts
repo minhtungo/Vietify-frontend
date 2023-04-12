@@ -1,6 +1,6 @@
 import { Banner } from 'types/global';
 
-export const banner: Banner[] = [
+export const banners: Banner[] = [
   {
     id: 1,
     title: 'Discover your next favorite book',
