@@ -1,35 +1,22 @@
-import { Fragment, useState, useEffect } from 'react';
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
-import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-  XMarkIcon,
-  UserIcon,
-} from '@heroicons/react/24/outline';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import Hamburger from '@modules/common/components/hamburger';
-import Logo from '@modules/common/components/logo';
-import CartDropdown from '@modules/layout/components/cart-dropdown';
-import DropdownMenu from '@modules/layout/components/dropdown-menu';
-import MobileMenu from '@modules/mobile-menu/templates';
-import SearchBox from '@modules/search/components/search-box';
-import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
-import { useRouter } from 'next/router';
-import DropdownMenuDemo from '@modules/layout/components/dropdown';
-import cn from '@lib/util/cn';
-import { HiOutlineShoppingBag, HiOutlineUser } from 'react-icons/hi';
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@modules/common/components/navigation-menu';
-import { ListItem } from './new';
+import CartDropdown from '@modules/layout/components/cart-dropdown';
+import MobileMenu from '@modules/mobile-menu/templates';
+import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { BiCategoryAlt } from 'react-icons/bi';
+import { HiOutlineUser } from 'react-icons/hi';
+
+import { ListItem } from './new';
 
 const navigation = {
   categories: [

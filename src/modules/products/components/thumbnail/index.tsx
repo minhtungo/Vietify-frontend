@@ -1,55 +1,76 @@
-import { Image as MedusaImage } from "@medusajs/medusa"
-import PlaceholderImage from "@modules/common/icons/placeholder-image"
-import clsx from "clsx"
-import Image from "next/legacy/image";
-import React from "react"
+import { Image as MedusaImage } from '@medusajs/medusa';
+import PlaceholderImage from '@modules/common/icons/placeholder-image';
+import clsx from 'clsx';
+import Image, { ImageProps } from 'next/image';
+import React from 'react';
 
-type ThumbnailProps = {
-  thumbnail?: string | null
-  images?: MedusaImage[] | null
-  size?: "small" | "medium" | "large" | "full"
+import { cva, VariantProps } from 'class-variance-authority';
+import cn from '@lib/util/cn';
+
+const thumbnailVariants = cva('', {
+  variants: {
+    size: {
+      sm: 'w-[180px]',
+      md: 'w-[290px]',
+      lg: 'w-[440px]',
+      full: 'w-full',
+    },
+    rounded: {
+      default: '',
+      sm: 'rounded-md',
+      md: 'rounded-lg',
+      lg: 'rounded-2xl',
+    },
+  },
+  defaultVariants: {
+    size: 'sm',
+    rounded: 'default',
+  },
+});
+
+export interface ThumbnailProps extends VariantProps<typeof thumbnailVariants> {
+  thumbnail?: string | null;
+  images?: MedusaImage[] | null;
+  className?: string;
 }
 
 const Thumbnail: React.FC<ThumbnailProps> = ({
   thumbnail,
   images,
-  size = "small",
+  size,
+  rounded,
+  className,
 }) => {
-  const initialImage = thumbnail || images?.[0]?.url
+  const initialImage = thumbnail || images?.[0]?.url;
 
   return (
-    <div
-      className={clsx("relative aspect-[29/34]", {
-        "w-[180px]": size === "small",
-        "w-[290px]": size === "medium",
-        "w-[440px]": size === "large",
-        "w-full": size === "full",
-      })}
-    >
-      <ImageOrPlaceholder image={initialImage} size={size} />
+    <div className={cn('relative aspect-[5/7]', thumbnailVariants({ size }))}>
+      <ImageOrPlaceholder image={initialImage} size={size} rounded={rounded} />
     </div>
-  )
-}
+  );
+};
 
 const ImageOrPlaceholder = ({
   image,
   size,
-}: Pick<ThumbnailProps, "size"> & { image?: string }) => {
+  rounded,
+}: ThumbnailProps & { image?: string }) => {
   return image ? (
     <Image
       src={image}
       alt="Thumbnail"
-      layout="fill"
-      objectFit="cover"
-      objectPosition="center"
-      className="absolute inset-0"
+      fill
+      className={cn(
+        'absolute inset-0 object-cover object-center',
+        thumbnailVariants({ rounded })
+      )}
       draggable={false}
     />
   ) : (
     <div className="w-full h-full absolute inset-0 bg-gray-100 flex items-center justify-center">
-      <PlaceholderImage size={size === "small" ? 16 : 24} />
+      <PlaceholderImage size={size === 'sm' ? 16 : 24} />
     </div>
-  )
-}
+  );
+};
 
-export default Thumbnail
+export default Thumbnail;

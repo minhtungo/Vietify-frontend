@@ -20,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div>
       <Nav />
-      <main className={cn(inter.variable, 'relative font-sans')}>
+      <main className={cn(inter.variable, 'relative font-sans pt-16')}>
         {children}
       </main>
       <Footer />
