@@ -185,134 +185,56 @@ export default function Nav() {
   }, [pathname]);
 
   const { toggle } = useMobileMenu();
-  const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white z-50 mx-auto max-w-8xl px-4 sm:px-6 fixed w-full h-14 flex items-center justify-between">
-      <div className="flex">
+    <div className="bg-white z-50 mx-auto max-w-8xl px-4 small:px-6 fixed w-full h-14 flex items-center justify-between">
+      <div className="flex items-center">
         <Link href="/">
           <span className="sr-only">Vietify</span>
           <span className="text-xl font-semibold">Vietify</span>
         </Link>
       </div>
-      <div className="flex items-center lg:ml-6 gap-4">
-        {/* <DropdownMenuDemo /> */}
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                <BiCategoryAlt className="text-gray-700" size={26} />
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="flex flex-col gap-3 p-4 min-w-[180px]">
-                  {links.map((component) => (
-                    <ListItem key={component.title} href={component.href}>
-                      {component.title}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <DesktopSearchModal />
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="flow-root">
-          <a href="#" className="group flex items-center">
-            <HiOutlineShoppingBag
-              className="flex-shrink-0 text-gray-600 group-hover:text-gray-800"
-              size={20}
-              aria-hidden="true"
-            />
-            <span className="ml-2 text-sm font-medium text-gray-600 group-hover:text-gray-800">
-              0
-            </span>
-            <span className="sr-only">items in cart, view bag</span>
-          </a>
+
+      {/* <DropdownMenuDemo /> */}
+
+      <div className="flex w-2/3 items-center">
+        <div className="w-full flex items-center">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>
+                  <BiCategoryAlt className="text-gray-700" size={26} />
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="flex flex-col gap-3 p-4 min-w-[180px]">
+                    {links.map((component) => (
+                      <ListItem key={component.title} href={component.href}>
+                        {component.title}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+            <DesktopSearchModal />
+          </NavigationMenu>
         </div>
-        <a href="#" className=" text-gray-600 group-hover:text-gray-800">
+      </div>
+
+      <div className="flex items-center gap-2">
+        <CartDropdown />
+        <Link
+          href="/account"
+          className=" text-gray-600 group-hover:text-gray-800"
+        >
           <span className="sr-only">User</span>
           <HiOutlineUser size={20} aria-hidden="true" />
-        </a>
+        </Link>
       </div>
+      <div className="small:hidden basis-0 h-full flex items-center">
+        <Hamburger setOpen={toggle} />
+      </div>
+      <MobileMenu />
     </div>
   );
 }
-
-//   return (
-//     <div
-//       className={cn(
-//         'fixed z-50 h-16 w-full backdrop-filter',
-//         isScrolled && 'shadow backdrop-blur-xl border-b border-gray-800/40'
-//       )}
-//     >
-//       <header className="flex items-center justify-between  shadow-sm h-full px-12">
-//         <Logo />
-//         <DesktopSearchModal />
-//         <div className="flex items-center shrink-0">
-//           <div className="px-3">
-//             <BiUser size={20} className="text-gray-900" />
-//           </div>
-//           <div className="px-3">
-//             <BiCart size={20} className="text-gray-900" />
-//           </div>
-//           <div className="px-3">
-//             <BiHeart size={20} className="text-gray-900" />
-//           </div>
-//         </div>
-//       </header>
-//     </div>
-//   );
-// return (
-//   <div
-//     className={clsx("sticky top-0 inset-x-0 z-50 group", {
-//       "!fixed": isHome,
-//     })}
-//   >
-//     <header
-//       className={clsx(
-//         "relative h-16 px-8 mx-auto transition-colors bg-transparent border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200",
-//         {
-//           "!bg-white !border-gray-200": !isHome || isScrolled,
-//         }
-//       )}
-//     >
-//       <nav
-//         className={clsx(
-//           "text-gray-900 flex items-center justify-between w-full h-full text-small-regular transition-colors duration-200",
-//           {
-//             "text-white group-hover:text-gray-900": isHome && !isScrolled,
-//           }
-//         )}
-//       >
-//         <div className="flex-1 basis-0 h-full flex items-center">
-//           <div className="block small:hidden">
-//             <Hamburger setOpen={toggle} />
-//           </div>
-//           <div className="hidden small:block h-full">
-//             <DropdownMenu />
-//           </div>
-//         </div>
-
-//         <div className="flex items-center h-full">
-//           <Link href="/" className="text-xl-semi uppercase">
-//             Acme
-//           </Link>
-//         </div>
-
-//         <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-//           <div className="hidden small:flex items-center gap-x-6 h-full">
-//             {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
-//             <Link href="/account">
-//               Account
-//             </Link>
-//           </div>
-//           <CartDropdown />
-//         </div>
-//       </nav>
-//       <MobileMenu />
-//     </header>
-//   </div>
-// );
-// };

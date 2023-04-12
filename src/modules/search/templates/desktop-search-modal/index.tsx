@@ -6,7 +6,6 @@ import DesktopHit from '@modules/search/components/desktop-hit';
 import DesktopHits from '@modules/search/components/desktop-hits';
 import SearchBox from '@modules/search/components/search-box';
 import { InstantSearch } from 'react-instantsearch-hooks-web';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { BiSearch } from 'react-icons/bi';
 
 const DesktopSearchModal = () => {
@@ -23,14 +22,6 @@ const DesktopSearchModal = () => {
           <BiSearch size={20} className="text-gray-700" />
         </div>
       </div>
-      {/* <div
-        className="text-gray-400 hover:text-gray-500 cursor-pointer"
-        onClick={open}
-      >
-        <span className="sr-only">Search</span>
-        <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
-      </div> */}
-
       <Modal isOpen={state} close={close} size="large">
         <Modal.Body>
           <InstantSearch

@@ -1,27 +1,42 @@
-import { Popover, Transition } from "@headlessui/react"
-import { useCartDropdown } from "@lib/context/cart-dropdown-context"
-import { useStore } from "@lib/context/store-context"
-import useEnrichedLineItems from "@lib/hooks/use-enrich-line-items"
-import Button from "@modules/common/components/button"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
-import Trash from "@modules/common/icons/trash"
-import Thumbnail from "@modules/products/components/thumbnail"
-import { formatAmount, useCart } from "medusa-react"
-import Link from "next/link"
-import { Fragment } from "react"
+import { Popover, Transition } from '@headlessui/react';
+import { useCartDropdown } from '@lib/context/cart-dropdown-context';
+import { useStore } from '@lib/context/store-context';
+import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
+import { Button } from '@modules/common/components/button';
+import LineItemOptions from '@modules/common/components/line-item-options';
+import LineItemPrice from '@modules/common/components/line-item-price';
+import Trash from '@modules/common/icons/trash';
+import Thumbnail from '@modules/products/components/thumbnail';
+import { formatAmount, useCart } from 'medusa-react';
+import Link from 'next/link';
+import { Fragment } from 'react';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
 
 const CartDropdown = () => {
-  const { cart, totalItems } = useCart()
-  const items = useEnrichedLineItems()
-  const { deleteItem } = useStore()
-  const { state, open, close } = useCartDropdown()
+  const { cart, totalItems } = useCart();
+  const items = useEnrichedLineItems();
+  const { deleteItem } = useStore();
+  const { state, open, close } = useCartDropdown();
 
   return (
     <div className="h-full z-50" onMouseEnter={open} onMouseLeave={close}>
-      <Popover className="relative h-full">
-        <Link href="/cart" passHref legacyBehavior>
-          <Popover.Button className="h-full">{`My Bag (${totalItems})`}</Popover.Button>
+      <Popover className="relative">
+        <Link href="/cart" passHref>
+          <Popover.Button className="h-full flex items-center">
+            <span className="group relative inline-block">
+              <HiOutlineShoppingBag
+                className="text-gray-600 group-hover:text-gray-800"
+                size={20}
+                aria-hidden="true"
+              />
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-[2px] text-xs font-medium leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                {totalItems}
+              </span>
+              <span className="sr-only">
+                {`${totalItems} items in cart, view bag`}
+              </span>
+            </span>
+          </Popover.Button>
         </Link>
         <Transition
           show={state}
@@ -45,7 +60,7 @@ const CartDropdown = () => {
                 <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar">
                   {items
                     .sort((a, b) => {
-                      return a.created_at > b.created_at ? -1 : 1
+                      return a.created_at > b.created_at ? -1 : 1;
                     })
                     .map((item) => (
                       <div
@@ -96,7 +111,7 @@ const CartDropdown = () => {
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
                     <span className="text-gray-700 font-semibold">
-                      Subtotal{" "}
+                      Subtotal{' '}
                       <span className="font-normal">(incl. taxes)</span>
                     </span>
                     <span className="text-large-semi">
@@ -108,9 +123,7 @@ const CartDropdown = () => {
                     </span>
                   </div>
                   <Link href="/cart" passHref>
-
                     <Button>Go to bag</Button>
-
                   </Link>
                 </div>
               </>
@@ -123,10 +136,8 @@ const CartDropdown = () => {
                   <span>Your shopping bag is empty.</span>
                   <div>
                     <Link href="/store">
-
                       <span className="sr-only">Go to all products page</span>
                       <Button onClick={close}>Explore products</Button>
-
                     </Link>
                   </div>
                 </div>
@@ -137,6 +148,6 @@ const CartDropdown = () => {
       </Popover>
     </div>
   );
-}
+};
 
-export default CartDropdown
+export default CartDropdown;
