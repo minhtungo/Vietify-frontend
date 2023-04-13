@@ -11,6 +11,10 @@ const Hero = () => {
         pagination={{
           clickable: true,
         }}
+        prevActivateId="bundle-combo-carousel-button-prev"
+        nextActivateId="bundle-combo-carousel-button-next"
+        prevButtonClassName="left-2 lg:left-2.5"
+        nextButtonClassName="right-2 lg:right-2.5"
       >
         {banners.map((banner) => (
           <SwiperSlide key={`banner--key${banner.id}`}>
