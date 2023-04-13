@@ -1,8 +1,9 @@
-import X from "@modules/common/icons/x"
-import { FormEvent } from "react"
+import X from '@modules/common/icons/x';
+import { FormEvent } from 'react';
 import SearchBoxWrapper, {
   ControlledSearchBoxProps,
-} from "../search-box-wrapper"
+} from '../search-box-wrapper';
+import Search from '@modules/common/icons/search';
 
 const ControlledSearchBox = ({
   inputRef,
@@ -15,59 +16,62 @@ const ControlledSearchBox = ({
   ...props
 }: ControlledSearchBoxProps) => {
   const handleSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
 
     if (onSubmit) {
-      onSubmit(event)
+      onSubmit(event);
     }
 
     if (inputRef.current) {
-      inputRef.current.blur()
+      inputRef.current.blur();
     }
-  }
+  };
 
   const handleReset = (event: FormEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
 
-    onReset(event)
+    onReset(event);
 
     if (inputRef.current) {
-      inputRef.current.focus()
+      inputRef.current.focus();
     }
-  }
+  };
 
   return (
     <div {...props} className="w-full">
       <form action="" noValidate onSubmit={handleSubmit} onReset={handleReset}>
-        <div className="flex items-center justify-between">
-          <input
-            ref={inputRef}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            placeholder={placeholder}
-            spellCheck={false}
-            type="search"
-            value={value}
-            onChange={onChange}
-            className="text-base-regular placeholder:transition-colors placeholder:text-gray-500 focus:placeholder:text-gray-900 focus:outline-none flex-1 bg-transparent"
-          />
-          {value && (
-            <button
-              onClick={handleReset}
-              type="button"
-              className="h-5 w-5 rounded-full flex items-center justify-center text-gray-900 bg-gray-200"
-            >
-              <X size={12} />
-            </button>
-          )}
+        <div className="flex items-center justify-between w-full">
+          <div className="w-full cursor-pointer rounded-xl border border-gray-900/50 py-2 transition md:max-w-[550px] px-4 flex flex-row items-center">
+            <input
+              ref={inputRef}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              placeholder={placeholder}
+              spellCheck={false}
+              type="search"
+              value={value}
+              onChange={onChange}
+              className="w-full pr-3 text-sm focus:outline-none bg-transparent placeholder:text-gray-900"
+            />
+            {value && (
+              <button
+                onClick={handleReset}
+                type="button"
+                className="h-4 w-4 rounded-full flex items-center justify-center text-gray-900 bg-gray-200 mr-[6px]"
+              >
+                <X size={12} />
+              </button>
+            )}
+            <Search size={16} className="text-gray-600" />
+          </div>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
 const SearchBox = () => {
   return (
@@ -77,10 +81,10 @@ const SearchBox = () => {
           <>
             <ControlledSearchBox {...props} />
           </>
-        )
+        );
       }}
     </SearchBoxWrapper>
-  )
-}
+  );
+};
 
-export default SearchBox
+export default SearchBox;

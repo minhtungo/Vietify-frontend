@@ -1,21 +1,21 @@
-import { ProductVariant } from "@medusajs/medusa"
-import Thumbnail from "@modules/products/components/thumbnail"
-import Link from "next/link"
+import { ProductVariant } from '@medusajs/medusa';
+import Thumbnail from '@modules/products/components/thumbnail';
+import Link from 'next/link';
 
 export type ProductHit = {
-  id: string
-  title: string
-  handle: string
-  description: string | null
-  thumbnail: string | null
-  variants: ProductVariant[]
-  collection_handle: string | null
-  collection_id: string | null
-}
+  id: string;
+  title: string;
+  handle: string;
+  description: string | null;
+  thumbnail: string | null;
+  variants: ProductVariant[];
+  collection_handle: string | null;
+  collection_id: string | null;
+};
 
 export type HitProps = {
-  hit: ProductHit
-}
+  hit: ProductHit;
+};
 
 const Hit = ({ hit }: HitProps) => {
   return (
@@ -24,13 +24,12 @@ const Hit = ({ hit }: HitProps) => {
       <div className="flex flex-col justify-between">
         <div className="flex flex-col">
           {hit.collection_id && (
-            (<Link
+            <Link
               href={`/collections/${hit.collection_id}`}
-              className="text-small-regular text-gray-500">
-
+              className="text-small-regular text-gray-500"
+            >
               {hit.collection_handle}
-
-            </Link>)
+            </Link>
           )}
           <span className="text-base-regular">{hit.title}</span>
           <span className="text-small-regular text-gray-700">
@@ -40,6 +39,6 @@ const Hit = ({ hit }: HitProps) => {
       </div>
     </div>
   );
-}
+};
 
-export default Hit
+export default Hit;
