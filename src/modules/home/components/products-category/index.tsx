@@ -1,7 +1,6 @@
-import cn from '@lib/util/cn';
-import Image from 'next/image';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
+import Image from 'next/image';
 
 const CATEGORY = [
   {
@@ -61,13 +60,13 @@ export default function ProductsCategory() {
       <Carousel
         spaceBetween={10}
         slidesPerView={3}
-        prevActivateId="prev-category"
-        nextActivateId="next-category"
+        prevActivateId="prev-category-carousel-button"
+        nextActivateId="next-category-carousel-button"
         prevButtonClassName="left-2 lg:left-2.5"
         nextButtonClassName="right-2 lg:right-2.5"
       >
         {CATEGORY.map(({ id, imgSrc, altImg, name }) => (
-          <SwiperSlide key={`banner--key${id}`}>
+          <SwiperSlide key={`category--key${id}`}>
             <div className="relative">
               <Image
                 className="object-center object-cover rounded-lg max-h-[300px]"
