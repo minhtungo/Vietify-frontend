@@ -9,44 +9,32 @@ import {
   Navigation,
   Pagination,
   Swiper,
+  SwiperOptions,
 } from '@modules/carousels/components/slider';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import React, { FC, useRef } from 'react';
-import { useRouter } from 'next/router';
-import { getDirection } from '@lib/util/get-direction';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-interface CarouselProps {
+export interface CarouselProps extends SwiperOptions {
   className?: string;
   children: React.ReactNode;
-  prevActivateId?: string;
-  nextActivateId?: string;
+  buttonGroupClassName?: string;
   prevButtonClassName?: string;
   nextButtonClassName?: string;
-  buttonGroupClassName?: string;
-  breakpoints?: {} | any;
-  autoplay?: {} | any;
-  navigation?: {} | any;
-  pagination?: {} | any;
-  slidesPerView?: number;
+  prevActivateId?: string;
+  nextActivateId?: string;
 }
 
 const Carousel: FC<CarouselProps> = ({
   className,
   children,
-  autoplay,
-  navigation = true,
-  breakpoints,
   buttonGroupClassName,
-  pagination,
-  slidesPerView,
+  navigation = true,
   prevActivateId = '',
   nextActivateId = '',
-  prevButtonClassName = 'ltr:-left-3.5 rtl:-right-3.5 lg:ltr:-left-4 lg:rtl:-right-4 xl:ltr:-left-5 xl:rtl:-right-5',
-  nextButtonClassName = 'ltr:-right-3.5 rtl:-left-3.5 lg:ltr:-right-4 lg:rtl:-left-4 xl:ltr:-right-5 xl:rtl:-left-5',
+  prevButtonClassName = 'left-2 lg:left-2.5',
+  nextButtonClassName = 'right-2 lg:right-2.5',
   ...props
 }) => {
-  const { locale } = useRouter();
-  const dir = getDirection(locale);
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
   let nextButtonClasses = cn(
@@ -62,9 +50,6 @@ const Carousel: FC<CarouselProps> = ({
     <div className={cn('relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
-        autoplay={autoplay}
-        breakpoints={breakpoints}
-        dir={dir}
         navigation={
           navigation
             ? {
@@ -78,8 +63,6 @@ const Carousel: FC<CarouselProps> = ({
               }
             : {}
         }
-        pagination={pagination}
-        slidesPerView={slidesPerView}
         {...props}
       >
         {children}
@@ -88,25 +71,12 @@ const Carousel: FC<CarouselProps> = ({
         <div
           className={`flex items-center w-full absolute top-2/4 z-10 ${buttonGroupClassName}`}
         >
-          {prevActivateId.length > 0 ? (
-            <div className={prevButtonClasses} id={prevActivateId}>
-              {dir === 'rtl' ? <IoIosArrowForward /> : <IoIosArrowBack />}
-            </div>
-          ) : (
-            <div ref={prevRef} className={prevButtonClasses}>
-              {dir === 'rtl' ? <IoIosArrowForward /> : <IoIosArrowBack />}
-            </div>
-          )}
-
-          {nextActivateId.length > 0 ? (
-            <div className={nextButtonClasses} id={nextActivateId}>
-              {dir === 'rtl' ? <IoIosArrowBack /> : <IoIosArrowForward />}
-            </div>
-          ) : (
-            <div ref={nextRef} className={nextButtonClasses}>
-              {dir === 'rtl' ? <IoIosArrowBack /> : <IoIosArrowForward />}
-            </div>
-          )}
+          <div className={prevButtonClasses} id={prevActivateId}>
+            <IoIosArrowBack />
+          </div>
+          <div className={nextButtonClasses} id={nextActivateId}>
+            <IoIosArrowForward />
+          </div>
         </div>
       )}
     </div>

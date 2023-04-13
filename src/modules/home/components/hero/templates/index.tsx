@@ -11,8 +11,8 @@ const Hero = () => {
         pagination={{
           clickable: true,
         }}
-        prevActivateId="bundle-combo-carousel-button-prev"
-        nextActivateId="bundle-combo-carousel-button-next"
+        prevActivateId="prev-banner-carousel-button"
+        nextActivateId="next-banner-carousel-button"
         prevButtonClassName="left-2 lg:left-2.5"
         nextButtonClassName="right-2 lg:right-2.5"
       >

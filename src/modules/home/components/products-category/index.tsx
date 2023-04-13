@@ -59,10 +59,10 @@ export default function ProductsCategory() {
   return (
     <div className="py-12 content-container">
       <Carousel
+        spaceBetween={10}
         slidesPerView={3}
-        spaceBetween={15}
-        prevActivateId="bundle-combo-carousel-button-prev"
-        nextActivateId="bundle-combo-carousel-button-next"
+        prevActivateId="prev-category"
+        nextActivateId="next-category"
         prevButtonClassName="left-2 lg:left-2.5"
         nextButtonClassName="right-2 lg:right-2.5"
       >
