@@ -1,4 +1,5 @@
 import Head from '@modules/common/components/head';
+import Deals from '@modules/home/components/deals';
 import FeaturedBooks from '@modules/home/components/featured-books';
 import FeaturedProducts from '@modules/home/components/featured-products';
 import Hero from '@modules/home/components/hero/templates';
@@ -15,6 +16,7 @@ const Home: NextPageWithLayout = () => {
         description="Shop all available models only at the ACME. Worldwide Shipping. Secure Payment."
       />
       <Hero />
+      <Deals />
       <FeaturedBooks />
       <ProductsCategory />
       <FeaturedProducts />

@@ -1,5 +1,7 @@
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
+import Heading from '@modules/common/components/heading';
+import CategoryIcon from '@modules/common/icons/category';
 import Image from 'next/image';
 
 const CATEGORY = [
@@ -57,9 +59,13 @@ const CATEGORY = [
 export default function ProductsCategory() {
   return (
     <div className="py-12 content-container">
+      <div className="flex items-center mb-8">
+        <CategoryIcon size={32} className="text-blue-500 mr-2" />
+        <Heading className="text-left">Categories</Heading>
+      </div>
       <Carousel
         spaceBetween={10}
-        slidesPerView={3}
+        slidesPerView={4}
         prevActivateId="prev-category-carousel-button"
         nextActivateId="next-category-carousel-button"
         prevButtonClassName="left-2 lg:left-2.5"
@@ -69,7 +75,7 @@ export default function ProductsCategory() {
           <SwiperSlide key={`category--key${id}`}>
             <div className="relative">
               <Image
-                className="object-center object-cover rounded-lg max-h-[300px]"
+                className="object-center object-cover rounded-lg max-h-[220px]"
                 src={imgSrc}
                 alt={altImg}
                 width="500"

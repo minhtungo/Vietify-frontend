@@ -4,39 +4,51 @@ import SkeletonProductPreview from '@modules/skeletons/components/skeleton-produ
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
 import Heading from '@modules/common/components/heading';
+import { SlBadge } from 'react-icons/sl';
 
 const FeaturedBooks = () => {
   const { data } = useFeaturedProductsQuery();
 
   return (
-    <div className="py-12 content-container">
-      <Heading className="text-center mb-6">Featured Books</Heading>
-      <Carousel
-        spaceBetween={10}
-        slidesPerView={4}
-        prevActivateId="prev-featured-carousel-button"
-        nextActivateId="next-featured-carousel-button"
-        centeredSlides={true}
-        centeredSlidesBounds={true}
-        prevButtonClassName="left-2 lg:left-2.5"
-        nextButtonClassName="right-2 lg:right-2.5"
-      >
-        {data ? (
-          data.map((product) => (
-            <SwiperSlide key={`featured--key${product.id}`}>
-              <ProductPreview {...product} />
-            </SwiperSlide>
-          ))
-        ) : (
-          <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-2">
-            {Array.from(Array(4).keys()).map((i) => (
-              <div key={i}>
-                <SkeletonProductPreview />
-              </div>
-            ))}
-          </ul>
-        )}
-      </Carousel>
+    <div className=" bg-blue-100/20">
+      <div className="py-16 content-container ">
+        <div className="flex items-center mb-8">
+          <SlBadge size={32} className="text-blue-500 mr-2" />
+          <Heading className="text-left">Featured Books</Heading>
+        </div>
+
+        <Carousel
+          spaceBetween={10}
+          slidesPerView={5}
+          prevActivateId="prev-featured-carousel-button"
+          nextActivateId="next-featured-carousel-button"
+          centeredSlides={true}
+          centeredSlidesBounds={true}
+          prevButtonClassName="left-2 lg:left-2.5"
+          nextButtonClassName="right-2 lg:right-2.5"
+        >
+          {data ? (
+            data.map((product) => (
+              <>
+                <SwiperSlide key={`featured--key${product.id}`}>
+                  <ProductPreview {...product} />
+                </SwiperSlide>
+                <SwiperSlide key={`featured--key${product.id}`}>
+                  <ProductPreview {...product} />
+                </SwiperSlide>
+              </>
+            ))
+          ) : (
+            <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-2">
+              {Array.from(Array(4).keys()).map((i) => (
+                <div key={i}>
+                  <SkeletonProductPreview />
+                </div>
+              ))}
+            </ul>
+          )}
+        </Carousel>
+      </div>
     </div>
   );
 };
