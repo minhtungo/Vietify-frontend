@@ -1,7 +1,4 @@
-import useToggleState from '@lib/hooks/use-toggle-state';
 import { searchClient, SEARCH_INDEX_NAME } from '@lib/search-client';
-import Modal from '@modules/common/components/modal';
-import Search from '@modules/common/icons/search';
 import DesktopHit from '@modules/search/components/desktop-hit';
 import DesktopHits from '@modules/search/components/desktop-hits';
 import SearchBox from '@modules/search/components/search-box';

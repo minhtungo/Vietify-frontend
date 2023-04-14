@@ -26,7 +26,7 @@ const DesktopHits = ({
         }
       )}
     >
-      {results.query && (
+      {results?.query && (
         <div className="grid grid-cols-1">
           {hits.map((hit, index) => (
             <li key={index} className="list-none mt-1">

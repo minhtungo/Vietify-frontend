@@ -1,21 +1,12 @@
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import Hamburger from '@modules/common/components/hamburger';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@modules/common/components/navigation-menu';
 import CartDropdown from '@modules/layout/components/cart-dropdown';
+import Categories from '@modules/layout/templates/nav/categories';
 import MobileMenu from '@modules/mobile-menu/templates';
-import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { BiCategoryAlt } from 'react-icons/bi';
 import { HiOutlineUser } from 'react-icons/hi';
-import ListItem from './list-item';
 
 const navigation = {
   categories: [
@@ -115,33 +106,6 @@ const navigation = {
   ],
 };
 
-const links: { title: string; href: string }[] = [
-  {
-    title: 'Alert Dialog',
-    href: '/docs/primitives/alert-dialog',
-  },
-  {
-    title: 'Hover Card',
-    href: '/docs/primitives/hover-card',
-  },
-  {
-    title: 'Progress',
-    href: '/docs/primitives/progress',
-  },
-  {
-    title: 'Scroll-area',
-    href: '/docs/primitives/scroll-area',
-  },
-  {
-    title: 'Tabs',
-    href: '/docs/primitives/tabs',
-  },
-  {
-    title: 'Tooltip',
-    href: '/docs/primitives/tooltip',
-  },
-];
-
 export default function Nav() {
   const { pathname } = useRouter();
   const [isHome, setIsHome] = useState(false);
@@ -181,33 +145,9 @@ export default function Nav() {
         </Link>
       </div>
 
-      {/* <DropdownMenuDemo /> */}
+      <Categories />
 
-      <div className="flex w-2/3 items-center">
-        <div className="w-full flex items-center">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>
-                  <BiCategoryAlt className="text-gray-700" size={26} />
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="flex flex-col gap-3 p-4 min-w-[180px]">
-                    {links.map((component) => (
-                      <ListItem key={component.title} href={component.href}>
-                        {component.title}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-            <DesktopSearchModal />
-          </NavigationMenu>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <CartDropdown />
         <Link
           href="/account"
