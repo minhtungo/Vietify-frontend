@@ -1,10 +1,10 @@
-import clsx from "clsx"
-import { useCollections } from "medusa-react"
-import Link from "next/link"
-import CountrySelect from "../country-select"
+import clsx from 'clsx';
+import { useCollections } from 'medusa-react';
+import Link from 'next/link';
+import CountrySelect from '../country-select';
 
 const FooterNav = () => {
-  const { collections } = useCollections()
+  const { collections } = useCollections();
 
   return (
     <div className="content-container flex flex-col gap-y-8 pt-16 pb-8">
@@ -18,15 +18,13 @@ const FooterNav = () => {
           <div className="flex flex-col gap-y-2">
             <span className="text-base-semi">Collections</span>
             <ul
-              className={clsx("grid grid-cols-1 gap-y-2", {
-                "grid-cols-2": (collections?.length || 0) > 4,
+              className={clsx('grid grid-cols-1 gap-y-2', {
+                'grid-cols-2': (collections?.length || 0) > 4,
               })}
             >
               {collections?.map((c) => (
                 <li key={c.id}>
-                  <Link href={`/collections/${c.id}`}>
-                    {c.title}
-                  </Link>
+                  <Link href={`/collections/${c.id}`}>{c.title}</Link>
                 </li>
               ))}
             </ul>
@@ -75,6 +73,6 @@ const FooterNav = () => {
       </div>
     </div>
   );
-}
+};
 
-export default FooterNav
+export default FooterNav;

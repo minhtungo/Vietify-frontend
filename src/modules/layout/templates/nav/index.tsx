@@ -1,4 +1,6 @@
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
+import useScrollDirection from '@lib/hooks/use-scroll-direction';
+import cn from '@lib/util/cn';
 import Hamburger from '@modules/common/components/hamburger';
 import CartDropdown from '@modules/layout/components/cart-dropdown';
 import Categories from '@modules/layout/templates/nav/categories';
@@ -111,6 +113,8 @@ export default function Nav() {
   const [isHome, setIsHome] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const scrollDirection = useScrollDirection();
+
   //useEffect that detects if window is scrolled > 5px on the Y axis
   useEffect(() => {
     if (isHome) {
@@ -137,7 +141,12 @@ export default function Nav() {
   const { toggle } = useMobileMenu();
 
   return (
-    <div className="bg-white z-50 mx-auto max-w-8xl px-4 small:px-6 fixed w-full h-14 flex items-center justify-between">
+    <div
+      className={cn(
+        'bg-white z-50 max-w-8xl px-4 small:px-6 sticky w-full h-14 flex items-center justify-between transition-all duration-300 shadow-md',
+        scrollDirection === 'down' ? '-top-14' : 'top-0'
+      )}
+    >
       <div className="flex items-center">
         <Link href="/">
           <span className="sr-only">Vietify</span>
