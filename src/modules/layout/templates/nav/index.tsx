@@ -214,7 +214,7 @@ export default function Nav() {
           className=" text-gray-600 group-hover:text-gray-800"
         >
           <span className="sr-only">User</span>
-          <HiOutlineUser size={20} aria-hidden="true" />
+          <HiOutlineUser size={22} aria-hidden="true" />
         </Link>
       </div>
       <div className="small:hidden basis-0 h-full flex items-center">

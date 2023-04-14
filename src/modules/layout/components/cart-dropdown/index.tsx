@@ -26,7 +26,7 @@ const CartDropdown = () => {
             <span className="group relative inline-block">
               <HiOutlineShoppingBag
                 className="text-gray-600 group-hover:text-gray-800"
-                size={20}
+                size={22}
                 aria-hidden="true"
               />
               <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-[2px] text-xs font-medium leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
