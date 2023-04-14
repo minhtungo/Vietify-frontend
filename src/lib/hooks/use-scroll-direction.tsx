@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 
 const useScrollDirection = () => {
@@ -8,7 +9,7 @@ const useScrollDirection = () => {
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
 
-    const updateScrollDirection = () => {
+    const updateScrollDirection = debounce(() => {
       const scrollY = window.pageYOffset;
       const direction = scrollY > lastScrollY ? 'down' : 'up';
       if (
@@ -18,7 +19,7 @@ const useScrollDirection = () => {
         setScrollDirection(direction);
       }
       lastScrollY = scrollY > 0 ? scrollY : 0;
-    };
+    }, 100);
     window.addEventListener('scroll', updateScrollDirection);
     return () => {
       window.removeEventListener('scroll', updateScrollDirection);
