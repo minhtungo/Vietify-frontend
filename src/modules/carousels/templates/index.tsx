@@ -13,24 +13,7 @@ import {
 } from '@modules/carousels/components/slider';
 import React, { FC, useRef } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-
-const points = {
-  '1024': {
-    slidesPerView: 5,
-    spaceBetween: 10,
-  },
-  '768': {
-    slidesPerView: 4,
-    spaceBetween: 10,
-  },
-  '680': {
-    slidesPerView: 3,
-    spaceBetween: 8,
-  },
-  '0': {
-    slidesPerView: 1,
-  },
-};
+import BREAKPOINTS from '../breakpoints';
 
 export interface CarouselProps extends SwiperOptions {
   className?: string;
@@ -40,7 +23,7 @@ export interface CarouselProps extends SwiperOptions {
   nextButtonClassName?: string;
   prevActivateId?: string;
   nextActivateId?: string;
-  breakpoints?: {};
+  banner?: boolean;
 }
 
 const Carousel: FC<CarouselProps> = ({
@@ -48,11 +31,11 @@ const Carousel: FC<CarouselProps> = ({
   children,
   buttonGroupClassName,
   navigation = true,
-  breakpoints = points,
   prevActivateId = '',
   nextActivateId = '',
   prevButtonClassName = 'left-2 lg:left-2.5',
   nextButtonClassName = 'right-2 lg:right-2.5',
+  banner,
   ...props
 }) => {
   const prevRef = useRef<HTMLDivElement>(null);
@@ -70,7 +53,7 @@ const Carousel: FC<CarouselProps> = ({
     <div className={cn('relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
-        breakpoints={breakpoints}
+        breakpoints={banner ? BREAKPOINTS : undefined}
         navigation={
           navigation
             ? {
@@ -80,7 +63,7 @@ const Carousel: FC<CarouselProps> = ({
                 nextEl: nextActivateId.length
                   ? `#${nextActivateId}`
                   : nextRef.current!,
-                disabledClass: 'hidden',
+                disabledClass: 'opacity-50',
               }
             : {}
         }

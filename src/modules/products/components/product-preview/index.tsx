@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
 import Thumbnail from '../thumbnail';
-import { HiOutlineStar } from 'react-icons/hi2';
+import { HiOutlineStar, HiOutlineHeart, HiOutlineEye } from 'react-icons/hi2';
 
 const ProductPreview = ({
   title,
@@ -13,7 +13,17 @@ const ProductPreview = ({
   return (
     <Link href={`/products/${handle}`}>
       <div>
-        <Thumbnail thumbnail={thumbnail} size="full" rounded="lg" />
+        <div className="relative group">
+          <Thumbnail thumbnail={thumbnail} size="full" rounded="lg" />
+          <div className="absolute bottom-3 right-2 opacity-0 transition-all group-hover:opacity-100 duration-200 flex flex-col gap-1">
+            <span className=" bg-white text-gray-800 p-2 rounded-full flex items-center shadow transition-all  duration-100 hover:bg-blue-500 hover:text-white">
+              <HiOutlineHeart />
+            </span>
+            <span className="bg-white text-gray-800 p-2 rounded-full flex items-center hover:bg-blue-500 hover:text-white">
+              <HiOutlineEye />
+            </span>
+          </div>
+        </div>
         <div className="text-base-regular mt-2">
           <div className="font-semibold text-[15px]">{title}</div>
           <div className="flex items-center mt-2">

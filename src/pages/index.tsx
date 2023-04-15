@@ -1,9 +1,9 @@
 import Head from '@modules/common/components/head';
 import Deals from '@modules/home/components/deals';
 import FeaturedBooks from '@modules/home/components/featured-books';
-import FeaturedProducts from '@modules/home/components/featured-products';
 import Hero from '@modules/home/components/hero/templates';
 import ProductsCategory from '@modules/home/components/products-category';
+import Trending from '@modules/home/components/trending';
 import Layout from '@modules/layout/templates';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'types/global';
@@ -17,9 +17,9 @@ const Home: NextPageWithLayout = () => {
       />
       <Hero />
       <Deals />
+      <Trending />
       <FeaturedBooks />
       <ProductsCategory />
-      <FeaturedProducts />
     </>
   );
 };
