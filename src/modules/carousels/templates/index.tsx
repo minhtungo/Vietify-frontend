@@ -14,6 +14,24 @@ import {
 import React, { FC, useRef } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
+const points = {
+  '1024': {
+    slidesPerView: 5,
+    spaceBetween: 10,
+  },
+  '768': {
+    slidesPerView: 4,
+    spaceBetween: 10,
+  },
+  '680': {
+    slidesPerView: 3,
+    spaceBetween: 8,
+  },
+  '0': {
+    slidesPerView: 1,
+  },
+};
+
 export interface CarouselProps extends SwiperOptions {
   className?: string;
   children: React.ReactNode;
@@ -22,6 +40,7 @@ export interface CarouselProps extends SwiperOptions {
   nextButtonClassName?: string;
   prevActivateId?: string;
   nextActivateId?: string;
+  breakpoints?: {};
 }
 
 const Carousel: FC<CarouselProps> = ({
@@ -29,6 +48,7 @@ const Carousel: FC<CarouselProps> = ({
   children,
   buttonGroupClassName,
   navigation = true,
+  breakpoints = points,
   prevActivateId = '',
   nextActivateId = '',
   prevButtonClassName = 'left-2 lg:left-2.5',
@@ -50,6 +70,7 @@ const Carousel: FC<CarouselProps> = ({
     <div className={cn('relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
+        breakpoints={breakpoints}
         navigation={
           navigation
             ? {

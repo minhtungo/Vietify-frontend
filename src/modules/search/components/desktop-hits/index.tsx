@@ -13,7 +13,7 @@ const DesktopHits = ({
   className,
   ...props
 }: HitsProps<ProductHit>) => {
-  const { hits, results } = useHits(props);
+  const { hits } = useHits(props);
 
   return (
     <div
@@ -26,15 +26,13 @@ const DesktopHits = ({
         }
       )}
     >
-      {results?.query && (
-        <div className="grid grid-cols-1">
-          {hits.map((hit, index) => (
-            <li key={index} className="list-none mt-1">
-              <Hit hit={hit as unknown as ProductHit} />
-            </li>
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-1">
+        {hits.map((hit, index) => (
+          <li key={index} className="list-none mt-1">
+            <Hit hit={hit as unknown as ProductHit} />
+          </li>
+        ))}
+      </div>
     </div>
   );
 };
