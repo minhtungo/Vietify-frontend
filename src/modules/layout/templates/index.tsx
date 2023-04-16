@@ -4,6 +4,7 @@ import React from 'react';
 
 import { Inter } from 'next/font/google';
 import cn from '@lib/util/cn';
+import HighlightedBar from '@modules/common/components/highlighted-bar';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const inter = Inter({
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div>
+      <HighlightedBar>Get free delivery on orders over $100</HighlightedBar>
       <Nav />
       <main className={cn(inter.variable, 'relative font-sans')}>
         {children}

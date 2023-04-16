@@ -141,42 +141,37 @@ export default function Nav() {
   const { toggle } = useMobileMenu();
 
   return (
-    <>
-      <p className="flex h-10 items-center justify-center bg-blue-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-        Get free delivery on orders over $100
-      </p>
-      <header
-        className={cn(
-          'bg-white z-50 sticky w-full transition-all duration-300 shadow-md',
-          scrollDirection === 'down' ? '-top-14' : 'top-0'
-        )}
-      >
-        <div className="max-w-8xl px-4 small:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center">
-            <Link href="/">
-              <span className="sr-only">Vietify</span>
-              <span className="text-xl font-semibold">Vietify</span>
-            </Link>
-          </div>
-
-          <Categories />
-
-          <div className="flex items-center gap-3">
-            <CartDropdown />
-            <Link
-              href="/account"
-              className=" text-gray-600 group-hover:text-gray-800"
-            >
-              <span className="sr-only">User</span>
-              <HiOutlineUser size={22} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="small:hidden basis-0 h-full flex items-center">
-            <Hamburger setOpen={toggle} />
-          </div>
+    <header
+      className={cn(
+        'bg-white z-50 sticky w-full transition-all duration-300 shadow-md',
+        scrollDirection === 'down' ? '-top-14' : 'top-0'
+      )}
+    >
+      <div className="max-w-8xl px-4 small:px-6 h-14 flex items-center justify-between">
+        <div className="flex items-center">
+          <Link href="/">
+            <span className="sr-only">Vietify</span>
+            <span className="text-xl font-semibold">Vietify</span>
+          </Link>
         </div>
-        <MobileMenu />
-      </header>
-    </>
+
+        <Categories />
+
+        <div className="flex items-center gap-3">
+          <CartDropdown />
+          <Link
+            href="/account"
+            className=" text-gray-600 group-hover:text-gray-800"
+          >
+            <span className="sr-only">User</span>
+            <HiOutlineUser size={22} aria-hidden="true" />
+          </Link>
+        </div>
+        <div className="small:hidden basis-0 h-full flex items-center">
+          <Hamburger setOpen={toggle} />
+        </div>
+      </div>
+      <MobileMenu />
+    </header>
   );
 }
