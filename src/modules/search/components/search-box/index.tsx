@@ -42,31 +42,29 @@ const ControlledSearchBox = ({
   return (
     <div {...props} className="w-full">
       <form action="" noValidate onSubmit={handleSubmit} onReset={handleReset}>
-        <div className="flex items-center justify-between w-full">
-          <div className="w-full cursor-pointer rounded-xl border border-gray-900/50 py-2 transition md:max-w-[550px] px-4 flex flex-row items-center">
-            <input
-              ref={inputRef}
-              autoComplete="off"
-              autoCorrect="off"
-              autoCapitalize="off"
-              placeholder={placeholder}
-              spellCheck={false}
-              type="search"
-              value={value}
-              onChange={onChange}
-              className="w-full pr-3 text-sm focus:outline-none bg-transparent placeholder:text-gray-900"
-            />
-            {value && (
-              <button
-                onClick={handleReset}
-                type="button"
-                className="h-4 w-4 rounded-full flex items-center justify-center text-gray-900 bg-gray-200 mr-[6px]"
-              >
-                <X size={12} />
-              </button>
-            )}
-            <Search size={16} className="text-gray-600" />
-          </div>
+        <div className="w-full cursor-pointer rounded border border-gray-900/50 py-2 transition md:max-w-[550px] px-4 flex flex-row items-center">
+          <input
+            ref={inputRef}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            placeholder={placeholder}
+            spellCheck={false}
+            type="search"
+            value={value}
+            onChange={onChange}
+            className="w-full pr-3 text-sm focus:outline-none bg-transparent placeholder:text-gray-900"
+          />
+          {value && (
+            <button
+              onClick={handleReset}
+              type="button"
+              className="h-4 w-4 rounded-full flex items-center justify-center text-gray-900 bg-gray-200 mr-[6px]"
+            >
+              <X size={12} />
+            </button>
+          )}
+          <Search size={16} className="text-gray-600" />
         </div>
       </form>
     </div>

@@ -12,7 +12,9 @@ module.exports = {
         brand: {
           DEFAULT: 'rgb(59, 130, 246)',
           dark: '#000000',
+          muted: ' #595959',
           light: '#ffffff',
+          danger: '#dc2626',
         },
       },
       transitionProperty: {

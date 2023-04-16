@@ -1,27 +1,27 @@
-import { useMobileMenu } from "@lib/context/mobile-menu-context"
-import { useStore } from "@lib/context/store-context"
-import useCountryOptions from "@lib/hooks/use-country-options"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import Search from "@modules/common/icons/search"
-import X from "@modules/common/icons/x"
-import { useCollections, useMeCustomer } from "medusa-react"
-import Link from "next/link"
-import ReactCountryFlag from "react-country-flag"
+import { useMobileMenu } from '@lib/context/mobile-menu-context';
+import { useStore } from '@lib/context/store-context';
+import useCountryOptions from '@lib/hooks/use-country-options';
+import ChevronDown from '@modules/common/icons/chevron-down';
+import Search from '@modules/common/icons/search';
+import X from '@modules/common/icons/x';
+import { useCollections, useMeCustomer } from 'medusa-react';
+import Link from 'next/link';
+import ReactCountryFlag from 'react-country-flag';
 
 const MainMenu = () => {
-  const { collections } = useCollections()
-  const { customer } = useMeCustomer()
-  const { countryCode } = useStore()
+  const { collections } = useCollections();
+  const { customer } = useMeCustomer();
+  const { countryCode } = useStore();
 
-  const countries = useCountryOptions()
+  const countries = useCountryOptions();
 
   const {
     close,
     screen: [_, setScreen],
-  } = useMobileMenu()
+  } = useMobileMenu();
 
-  const setScreenCountry = () => setScreen("country")
-  const setScreenSearch = () => setScreen("search")
+  const setScreenCountry = () => setScreen('country');
+  const setScreenSearch = () => setScreen('search');
 
   return (
     <div className="flex flex-col flex-1">
@@ -31,7 +31,7 @@ const MainMenu = () => {
             className="flex items-center gap-x-2"
             onClick={setScreenCountry}
           >
-            <ReactCountryFlag countryCode={countryCode || "us"} svg />
+            <ReactCountryFlag countryCode={countryCode || 'us'} svg />
             <ChevronDown />
           </button>
         </div>
@@ -62,7 +62,6 @@ const MainMenu = () => {
           <ul className="flex flex-col gap-y-2">
             <li className="bg-gray-50 p-4">
               <Link href="/store">
-
                 <button
                   className="flex items-center justify-between w-full"
                   onClick={close}
@@ -71,7 +70,6 @@ const MainMenu = () => {
                   <span>Store</span>
                   <ChevronDown className="-rotate-90" />
                 </button>
-
               </Link>
             </li>
             {collections ? (
@@ -79,7 +77,6 @@ const MainMenu = () => {
                 {collections.map((collection) => (
                   <li key={collection.id} className="bg-gray-50 p-4">
                     <Link href={`/collections/${collection.id}`}>
-
                       <button
                         className="flex items-center justify-between w-full"
                         onClick={close}
@@ -90,7 +87,6 @@ const MainMenu = () => {
                         <span>{collection.title}</span>
                         <ChevronDown className="-rotate-90" />
                       </button>
-
                     </Link>
                   </li>
                 ))}
@@ -105,7 +101,6 @@ const MainMenu = () => {
               <div className="flex flex-col gap-y-4">
                 <span className="text-gray-700 uppercase">Account</span>
                 <Link href={`/account/login`} passHref>
-
                   <button
                     className="flex items-center justify-between border-b border-gray-200 py-2 w-full"
                     onClick={close}
@@ -114,14 +109,12 @@ const MainMenu = () => {
                     <span className="normal-case">Sign in</span>
                     <ChevronDown className="-rotate-90" />
                   </button>
-
                 </Link>
               </div>
             ) : (
               <div className="flex flex-col gap-y-4">
                 <span className="text-gray-700 uppercase">Signed in as</span>
                 <Link href={`/account`} passHref>
-
                   <button
                     className="flex items-center justify-between border-b border-gray-200 py-2 w-full"
                     onClick={close}
@@ -130,7 +123,6 @@ const MainMenu = () => {
                     <span className="normal-case">{customer.email}</span>
                     <ChevronDown className="-rotate-90" />
                   </button>
-
                 </Link>
               </div>
             )}
@@ -144,9 +136,9 @@ const MainMenu = () => {
                   Click to select shipping country
                 </span>
                 <div className="flex items-center gap-x-2">
-                  <ReactCountryFlag countryCode={countryCode || "us"} svg />
+                  <ReactCountryFlag countryCode={countryCode || 'us'} svg />
                   <span className="normal-case">
-                    Shipping to{" "}
+                    Shipping to{' '}
                     {countries?.find((c) => c.country === countryCode)?.label}
                   </span>
                 </div>
@@ -158,6 +150,6 @@ const MainMenu = () => {
       </div>
     </div>
   );
-}
+};
 
-export default MainMenu
+export default MainMenu;

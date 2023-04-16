@@ -5,11 +5,7 @@ import { BiCategoryAlt } from 'react-icons/bi';
 import { FC } from 'react';
 import cn from '@lib/util/cn';
 
-interface CategoryProps extends IconProps {
-  className?: string;
-}
-
-const CategoryIcon: FC<CategoryProps> = ({ className, ...props }) => {
+const CategoryIcon: FC<IconProps> = ({ className, ...props }) => {
   return <BiCategoryAlt className={cn(className)} {...props} />;
 };
 

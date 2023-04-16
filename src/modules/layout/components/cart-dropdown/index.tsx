@@ -29,7 +29,7 @@ const CartDropdown = () => {
                 size={22}
                 aria-hidden="true"
               />
-              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-[2px] text-xs font-medium leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+              <span className="absolute top-0 right-0 inline-flex items-center px-1 py-[2px] text-xs font-medium leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
                 {totalItems}
               </span>
               <span className="sr-only">
