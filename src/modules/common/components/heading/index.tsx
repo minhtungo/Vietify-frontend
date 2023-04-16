@@ -11,7 +11,7 @@ const headingVariants = cva('capitalize', {
       default: 'text-xl md:text-xl lg:text-2xl',
       sm: 'text-[15px] md:text-base',
       md: 'text-lg',
-      lg: 'text-2xl md:text-4xl lg:text-5xl',
+      lg: 'text-2xl md:text-3xl lg:text-4xl',
     },
     weight: {
       semibold: 'font-semibold',
