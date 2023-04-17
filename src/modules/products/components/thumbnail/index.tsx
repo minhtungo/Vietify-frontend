@@ -1,11 +1,9 @@
+import cn from '@lib/util/cn';
 import { Image as MedusaImage } from '@medusajs/medusa';
 import PlaceholderImage from '@modules/common/icons/placeholder-image';
-import clsx from 'clsx';
-import Image, { ImageProps } from 'next/image';
-import React from 'react';
-
 import { cva, VariantProps } from 'class-variance-authority';
-import cn from '@lib/util/cn';
+import Image from 'next/image';
+import React from 'react';
 
 const thumbnailVariants = cva('', {
   variants: {

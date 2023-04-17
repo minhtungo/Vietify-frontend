@@ -1,24 +1,24 @@
-import { Image as MedusaImage } from "@medusajs/medusa"
-import Image from "next/legacy/image";
-import { useRef } from "react"
+import { Image as MedusaImage } from '@medusajs/medusa';
+import Image from 'next/legacy/image';
+import { useRef } from 'react';
 
 type ImageGalleryProps = {
-  images: MedusaImage[]
-}
+  images: MedusaImage[];
+};
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
-  const imageRefs = useRef<(HTMLDivElement | null)[]>([])
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const handleScrollTo = (id: string) => {
-    const element = document.getElementById(id)
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      })
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
     }
-  }
+  };
 
   return (
     <div className="flex items-start relative">
@@ -29,7 +29,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               key={image.id}
               className="h-14 w-12 relative border border-white"
               onClick={() => {
-                handleScrollTo(image.id)
+                handleScrollTo(image.id);
               }}
             >
               <span className="sr-only">Go to image {index + 1}</span>
@@ -41,7 +41,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                 alt="Thumbnail"
               />
             </button>
-          )
+          );
         })}
       </div>
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
@@ -62,11 +62,11 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                 alt={`Product image ${index + 1}`}
               />
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ImageGallery
+export default ImageGallery;

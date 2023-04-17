@@ -8,6 +8,7 @@ import { TiFlashOutline } from 'react-icons/ti';
 import Button from '@modules/common/components/button';
 import Link from '@modules/common/components/link';
 import { IoIosArrowForward } from 'react-icons/io';
+import CountDown from '@modules/common/components/countdown';
 
 const Deals = () => {
   const { data } = useFeaturedProductsQuery();
@@ -17,6 +18,8 @@ const Deals = () => {
       <div className="flex items-center mb-8">
         <TiFlashOutline size={32} className="text-blue-500 mr-2" />
         <Heading className="text-left">Deals Of The Week</Heading>
+
+        <CountDown date={Date.now() + 100000000} />
       </div>
 
       <Carousel

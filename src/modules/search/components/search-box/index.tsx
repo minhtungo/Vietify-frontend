@@ -53,7 +53,7 @@ const ControlledSearchBox = ({
             type="search"
             value={value}
             onChange={onChange}
-            className="w-full pr-3 text-sm focus:outline-none bg-transparent placeholder:text-gray-900"
+            className="w-full pr-3 text-sm focus:outline-none bg-transparent placeholder:text-gray-600"
           />
           {value && (
             <button

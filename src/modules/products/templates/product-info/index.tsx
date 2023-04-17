@@ -1,10 +1,10 @@
-import ProductActions from "@modules/products/components/product-actions"
-import React from "react"
-import { Product } from "types/medusa"
+import ProductActions from '@modules/products/components/product-actions';
+import React from 'react';
+import { Product } from 'types/medusa';
 
 type ProductInfoProps = {
-  product: Product
-}
+  product: Product;
+};
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   return (
@@ -15,7 +15,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductInfo
+export default ProductInfo;

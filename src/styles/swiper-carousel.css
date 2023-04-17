@@ -21,6 +21,29 @@
   background-color: #000;
 }
 
+#productGalleryThumbs .swiper-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+}
+#productGalleryThumbs .swiper-wrapper .swiper-slide {
+  margin: 5px 5px 6px;
+}
+#productGalleryThumbs .swiper-wrapper .swiper-slide.swiper-slide-thumb-active {
+  border-color: #80d8c7;
+}
+
+@media screen and (min-width: 1280px) {
+  #productGalleryThumbs .swiper-wrapper {
+    flex-flow: column;
+    margin: 0;
+  }
+  #productGalleryThumbs .swiper-wrapper .swiper-slide {
+    width: 100% !important;
+    margin: 0 0 12px;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .swiper .swiper-pagination-bullets {
     bottom: 28px;

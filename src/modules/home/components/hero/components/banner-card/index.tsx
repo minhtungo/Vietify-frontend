@@ -37,7 +37,9 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
           </p>
           {banner.btnText && (
             <Link href={banner.btnUrl}>
-              <Button className="mt-7 md:mt-8">{banner.btnText}</Button>
+              <Button variant="secondary" className="mt-7 md:mt-8">
+                {banner.btnText}
+              </Button>
             </Link>
           )}
         </div>

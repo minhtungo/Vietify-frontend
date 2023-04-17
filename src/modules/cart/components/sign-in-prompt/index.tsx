@@ -1,5 +1,5 @@
-import Button from "@modules/common/components/button"
-import Link from "next/link"
+import Button from '@modules/common/components/button';
+import Link from 'next/link';
 
 const SignInPrompt = () => {
   return (
@@ -12,13 +12,11 @@ const SignInPrompt = () => {
       </div>
       <div>
         <Link href="/account/login">
-
-          <Button variant="secondary">Sign in</Button>
-
+          <Button>Sign in</Button>
         </Link>
       </div>
     </div>
   );
-}
+};
 
-export default SignInPrompt
+export default SignInPrompt;
