@@ -1,10 +1,16 @@
-import { Tab } from '@headlessui/react';
 import { Product } from '@medusajs/medusa';
 import Back from '@modules/common/icons/back';
 import FastDelivery from '@modules/common/icons/fast-delivery';
 import Refresh from '@modules/common/icons/refresh';
 import clsx from 'clsx';
 import { useMemo } from 'react';
+
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@modules/common/components/tabs';
 
 type ProductTabsProps = {
   product: Product;
@@ -25,38 +31,39 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   }, [product]);
 
   return (
-    <Tab.Group>
-      <Tab.List className="border-b border-gray-200 box-border grid grid-cols-2">
+    <Tabs defaultValue="Product Information">
+      <TabsList className="border-b border-gray-200 box-border grid grid-cols-2">
         {tabs.map((tab, i) => {
           return (
-            <Tab
+            <TabsTrigger
               key={i}
-              className={({ selected }) =>
-                clsx(
-                  'text-left uppercase text-small-regular pb-2 -mb-px border-b border-gray-200 transition-color duration-150 ease-in-out',
-                  {
-                    'border-b border-gray-900': selected,
-                  }
-                )
-              }
+              value={tab.label}
+              className={clsx(
+                'text-left uppercase text-small-regular pb-2 -mb-px border-b border-gray-200 transition-color duration-150 ease-in-out'
+              )}
             >
               {tab.label}
-            </Tab>
+            </TabsTrigger>
           );
         })}
-      </Tab.List>
-      <Tab.Panels>
-        {tabs.map((tab, j) => {
-          return <div key={j}>{tab.component}</div>;
-        })}
-      </Tab.Panels>
-    </Tab.Group>
+      </TabsList>
+      {tabs.map((tab, i) => {
+        return (
+          <TabsContent value={tab.label} key={i}>
+            {tab.component}
+          </TabsContent>
+        );
+      })}
+    </Tabs>
   );
 };
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <Tab.Panel className="text-small-regular py-8">
+    <TabsContent
+      value="Product Information"
+      className="text-small-regular py-8"
+    >
       <div className="grid grid-cols-2 gap-x-8">
         <div className="flex flex-col gap-y-4">
           <div>
@@ -92,13 +99,13 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
           <span className="font-semibold">Tags</span>
         </div>
       ) : null}
-    </Tab.Panel>
+    </TabsContent>
   );
 };
 
 const ShippingInfoTab = () => {
   return (
-    <Tab.Panel className="text-small-regular py-8">
+    <TabsContent value="Shipping & Returns" className="text-small-regular py-8">
       <div className="grid grid-cols-1 gap-y-8">
         <div className="flex items-start gap-x-2">
           <FastDelivery />
@@ -132,7 +139,7 @@ const ShippingInfoTab = () => {
           </div>
         </div>
       </div>
-    </Tab.Panel>
+    </TabsContent>
   );
 };
 
