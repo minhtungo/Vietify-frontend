@@ -1,14 +1,14 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
-import ProductPreview from '@modules/products/components/product-preview';
-import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
-import Heading from '@modules/common/components/heading';
-import { TiFlashOutline } from 'react-icons/ti';
 import Button from '@modules/common/components/button';
-import Link from '@modules/common/components/link';
-import { IoIosArrowForward } from 'react-icons/io';
 import CountDown from '@modules/common/components/countdown';
+import Heading from '@modules/common/components/heading';
+import Link from '@modules/common/components/link';
+import ArrowForwardIcon from '@modules/common/icons/arrow-forward';
+import ProductPreview from '@modules/products/components/product-preview';
+import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import { TiFlashOutline } from 'react-icons/ti';
 
 const Deals = () => {
   const { data } = useFeaturedProductsQuery();
@@ -58,7 +58,7 @@ const Deals = () => {
         <Link href="/store" className="group relative ">
           <Button variant="secondary">
             View More
-            <IoIosArrowForward className="ml-1 duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
+            <ArrowForwardIcon className="ml-1 duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
           </Button>
         </Link>
       </div>

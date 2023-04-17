@@ -7,6 +7,7 @@ import ProductInfo from '@modules/products/templates/product-info';
 import React, { useRef } from 'react';
 import MobileActions from '../components/mobile-actions';
 import ThumbnailCarousel from '../components/thumbnail-carousel';
+import Breadcrumb from '@modules/common/components/breadcrumb';
 
 type ProductTemplateProps = {
   product: Product;
@@ -20,6 +21,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
   return (
     <ProductProvider product={product}>
       <div className="content-container pt-6 pb-2 md:pt-7">
+        <Breadcrumb className="mb-6" />
         <div className="grid-cols-11 lg:grid gap-7 2xl:gap-8 relative">
           <div className="col-span-5 overflow-hidden xl:col-span-5 md:mb-8 lg:mb-0">
             <ThumbnailCarousel gallery={product.images} />
@@ -34,7 +36,6 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
         <div className="my-16">
           <ProductTabs product={product} />
         </div>
-
         <div className="my-16">
           <RelatedProducts product={product} />
         </div>
