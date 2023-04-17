@@ -30,8 +30,8 @@ const swiperParams: SwiperOptions = {
 
 const ThumbnailCarousel: React.FC<Props> = ({
   gallery,
-  thumbnailClassName = 'xl:w-[700px] 2xl:w-[900px]',
-  galleryClassName = 'xl:w-[150px] 2xl:w-[170px]',
+  thumbnailClassName = 'xl:w-[700px] 2xl:w-[800px]',
+  galleryClassName = 'xl:w-[80px] 2xl:w-[100px]',
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const prevRef = useRef<HTMLDivElement>(null);

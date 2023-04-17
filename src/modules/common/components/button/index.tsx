@@ -4,17 +4,16 @@ import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center text-sm font-semibold transition-colors focus:outline-none    disabled:opacity-50 disabled:pointer-events-none data-[state=open]:bg-slate-100 items-center transition duration-300',
+  'inline-flex items-center justify-center text-sm font-semibold transition-colors focus:outline-none    disabled:opacity-50 disabled:pointer-events-none items-center transition duration-300',
   {
     variants: {
       variant: {
         secondary:
           'bg-brand-light text-brand-dark hover:text-brand-light hover:bg-brand',
-        primary: 'bg-blue-600 text-white hover:bg-blue-700',
+        primary: 'bg-brand text-white hover:bg-blue-700',
         destructive:
           'bg-red-500 text-white hover:bg-red-600 dark:hover:bg-red-600',
-        outline:
-          'bg-transparent border border-slate-200 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-100',
+        outline: 'bg-transparent border border-gray-200 hover:text-brand',
         subtle:
           'bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100',
         ghost:

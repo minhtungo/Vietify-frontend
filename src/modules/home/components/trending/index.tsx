@@ -8,15 +8,19 @@ import { AiOutlineFire } from 'react-icons/ai';
 import Button from '@modules/common/components/button';
 import Link from '@modules/common/components/link';
 import { IoIosArrowForward } from 'react-icons/io';
+import UnderlineLink from '@modules/common/components/underline-link';
 
 const Trending = () => {
   const { data } = useFeaturedProductsQuery();
 
   return (
     <div className="py-12 content-container">
-      <div className="flex items-center mb-8">
-        <AiOutlineFire size={32} className="text-blue-500 mr-2" />
-        <Heading className="text-left">Trending Now</Heading>
+      <div className="flex items-center mb-8 justify-between">
+        <div className="flex items-center gap-2">
+          <AiOutlineFire size={32} className="text-blue-500" />
+          <Heading className="text-left">Trending Now</Heading>
+        </div>
+        <UnderlineLink href="/store">View More</UnderlineLink>
       </div>
 
       <Carousel
