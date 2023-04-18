@@ -84,7 +84,7 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
           </button>
         </div>
         {!errors.email && subscriptionSuccess && (
-          <p className="my-2 text-13px text-brand">Subscribed</p>
+          <p className="my-2 text-brand">Subscribed</p>
         )}
       </form>
     </div>

@@ -23,7 +23,7 @@ const WidgetAbout: React.FC<AboutProps> = ({ social, className }) => {
           href={'/'}
           className="mx-auto mb-3 lg:mb-5 sm:ltr:ml-0 sm:rtl:mr-0"
         /> */}
-        <Heading size="md" className="mb-3 lg:mb-5 font-semibold">
+        <Heading size="md" className="mb-3 lg:mb-5">
           Vietify
         </Heading>
         <p className="text-brand-muted text-sm lg:text-[15px]">

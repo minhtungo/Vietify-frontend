@@ -5,6 +5,7 @@ import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
 import Heading from '@modules/common/components/heading';
 import { SlBadge } from 'react-icons/sl';
+import UnderlineLink from '@modules/common/components/underline-link';
 
 const FeaturedBooks = () => {
   const { data } = useFeaturedProductsQuery();
@@ -12,9 +13,12 @@ const FeaturedBooks = () => {
   return (
     <div className=" bg-blue-100/20">
       <div className="py-16 content-container ">
-        <div className="flex items-center mb-8">
-          <SlBadge size={32} className="text-blue-500 mr-2" />
-          <Heading className="text-left">Featured Books</Heading>
+        <div className="flex items-center mb-8 justify-between">
+          <div className="flex items-center gap-2">
+            <SlBadge size={32} className="fill-brand" />
+            <Heading className="text-left">Featured Books</Heading>
+          </div>
+          <UnderlineLink href="/store">View More</UnderlineLink>
         </div>
 
         <Carousel

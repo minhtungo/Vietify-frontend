@@ -54,15 +54,6 @@ const Trending = () => {
           </ul>
         )}
       </Carousel>
-
-      <div className="mt-16 text-center">
-        <Link href="/store" className="group relative ">
-          <Button variant="secondary">
-            View More
-            <IoIosArrowForward className="ml-1 duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 };

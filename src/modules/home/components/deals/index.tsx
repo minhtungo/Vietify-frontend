@@ -5,6 +5,7 @@ import Button from '@modules/common/components/button';
 import CountDown from '@modules/common/components/countdown';
 import Heading from '@modules/common/components/heading';
 import Link from '@modules/common/components/link';
+import UnderlineLink from '@modules/common/components/underline-link';
 import ArrowForwardIcon from '@modules/common/icons/arrow-forward';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
@@ -15,11 +16,13 @@ const Deals = () => {
 
   return (
     <div className="py-12 content-container">
-      <div className="flex items-center mb-8">
-        <TiFlashOutline size={32} className="text-blue-500 mr-2" />
-        <Heading className="text-left">Deals Of The Week</Heading>
-
-        <CountDown date={Date.now() + 100000000} />
+      <div className="flex items-center mb-8 justify-between">
+        <div className="flex items-center gap-2">
+          <TiFlashOutline size={32} className="text-blue-500" />
+          <Heading className="text-left">Deals Of The Week</Heading>
+          <CountDown date={Date.now() + 100000000} />
+        </div>
+        <UnderlineLink href="/store">View More</UnderlineLink>
       </div>
 
       <Carousel
@@ -53,15 +56,6 @@ const Deals = () => {
           </ul>
         )}
       </Carousel>
-
-      <div className="mt-16 text-center">
-        <Link href="/store" className="group relative ">
-          <Button variant="secondary">
-            View More
-            <ArrowForwardIcon className="ml-1 duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 };

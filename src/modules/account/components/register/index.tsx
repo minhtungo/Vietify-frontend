@@ -49,7 +49,9 @@ const Register = () => {
           <Spinner size={24} />
         </div>
       )}
-      <h1 className="text-large-semi uppercase mb-6">Become a Acme Member</h1>
+      <h1 className="text-large-semi uppercase mb-6">
+        Become a Vietify Member
+      </h1>
       <p className="text-center text-base-regular text-gray-700 mb-4">
         Create your Vietify Member profile, and get access to an enhanced
         shopping experience.
