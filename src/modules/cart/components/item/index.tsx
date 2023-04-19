@@ -1,18 +1,18 @@
-import { useStore } from "@lib/context/store-context"
-import { LineItem, Region } from "@medusajs/medusa"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
-import NativeSelect from "@modules/common/components/native-select"
-import Trash from "@modules/common/icons/trash"
-import Thumbnail from "@modules/products/components/thumbnail"
+import { useStore } from '@lib/context/store-context';
+import { LineItem, Region } from '@medusajs/medusa';
+import LineItemOptions from '@modules/common/components/line-item-options';
+import LineItemPrice from '@modules/common/components/line-item-price';
+import NativeSelect from '@modules/common/components/native-select';
+import Trash from '@modules/common/icons/trash';
+import Thumbnail from '@modules/products/components/thumbnail';
 
 type ItemProps = {
-  item: Omit<LineItem, "beforeInsert">
-  region: Region
-}
+  item: Omit<LineItem, 'beforeInsert'>;
+  region: Region;
+};
 
 const Item = ({ item, region }: ItemProps) => {
-  const { updateItem, deleteItem } = useStore()
+  const { updateItem, deleteItem } = useStore();
 
   return (
     <div className="grid grid-cols-[122px_1fr] gap-x-4">
@@ -46,12 +46,12 @@ const Item = ({ item, region }: ItemProps) => {
             )
               .slice(0, 10)
               .map((i) => {
-                const value = i + 1
+                const value = i + 1;
                 return (
                   <option value={value} key={i}>
                     {value}
                   </option>
-                )
+                );
               })}
           </NativeSelect>
         </div>
@@ -71,7 +71,7 @@ const Item = ({ item, region }: ItemProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Item
+export default Item;

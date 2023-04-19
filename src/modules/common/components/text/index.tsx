@@ -16,7 +16,7 @@ const textVariants = cva('', {
 interface TextProps
   extends HTMLAttributes<HTMLParagraphElement>,
     VariantProps<typeof textVariants> {
-  as: 'p' | 'span';
+  as?: 'p' | 'span';
 }
 
 const Text = forwardRef<HTMLParagraphElement, TextProps>(

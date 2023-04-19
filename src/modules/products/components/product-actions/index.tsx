@@ -1,7 +1,9 @@
 import { useProductActions } from '@lib/context/product-context';
 import useProductPrice from '@lib/hooks/use-product-price';
+import cn from '@lib/util/cn';
 import Button from '@modules/common/components/button';
 import Heading from '@modules/common/components/heading';
+import SocialShare from '@modules/common/components/social-share';
 import Text from '@modules/common/components/text';
 import HeartIcon from '@modules/common/icons/heart';
 import ShareIcon from '@modules/common/icons/share';
@@ -9,7 +11,8 @@ import OptionSelect from '@modules/products/components/option-select';
 import ProductRating from '@modules/products/components/product-rating';
 import clsx from 'clsx';
 import Link from 'next/link';
-import React, { useMemo } from 'react';
+import { useRouter } from 'next/router';
+import React, { useMemo, useState } from 'react';
 import { Product } from 'types/medusa';
 
 type ProductActionsProps = {
@@ -17,6 +20,12 @@ type ProductActionsProps = {
 };
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
+  const [shareButtonStatus, setShareButtonStatus] = useState<boolean>(false);
+  const router = useRouter();
+  const {
+    query: { slug },
+  } = router;
+
   const { updateOptions, addToCart, options, inStock, variant } =
     useProductActions();
 
@@ -95,10 +104,25 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         <Button variant="outline" className="gap-1">
           <HeartIcon size={18} /> Wishlist
         </Button>
-        <Button variant="outline" className="gap-1">
-          <ShareIcon size={18} />
-          Share
-        </Button>
+        <div className="relative group">
+          <Button
+            variant="outline"
+            className="gap-1 w-full"
+            onClick={() => setShareButtonStatus(!shareButtonStatus)}
+          >
+            <ShareIcon size={18} />
+            Share
+          </Button>
+          <SocialShare
+            className={cn(
+              'absolute z-10 right-0 w-[300px] transition-all duration-300',
+              shareButtonStatus
+                ? 'visible opacity-100 top-full'
+                : 'opacity-0 invisible top-[130%]'
+            )}
+            shareUrl={`https://google.com`}
+          />
+        </div>
       </div>
     </div>
   );

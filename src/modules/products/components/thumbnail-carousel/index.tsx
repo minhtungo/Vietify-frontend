@@ -102,20 +102,18 @@ const ThumbnailCarousel: React.FC<Props> = ({
           breakpoints={galleryCarouselBreakpoints}
         >
           {gallery?.map((item: any) => (
-            <>
-              <SwiperSlide
-                key={`product-thumb-gallery-${item.id}`}
-                className="flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75"
-              >
-                <Image
-                  src={item?.url}
-                  alt={`Product thumb gallery ${item.id}`}
-                  width={170}
-                  height={170}
-                  style={{ width: 'auto' }}
-                />
-              </SwiperSlide>
-            </>
+            <SwiperSlide
+              key={`product-thumb-gallery-${item.id}`}
+              className="flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75"
+            >
+              <Image
+                src={item?.url}
+                alt={`Product thumb gallery ${item.id}`}
+                width={170}
+                height={170}
+                style={{ width: 'auto' }}
+              />
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>

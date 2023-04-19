@@ -1,24 +1,24 @@
-import { Order } from "@medusajs/medusa"
-import Button from "@modules/common/components/button"
-import Thumbnail from "@modules/products/components/thumbnail"
-import { formatAmount } from "medusa-react"
-import Link from "next/link"
-import { useMemo } from "react"
+import { Order } from '@medusajs/medusa';
+import Button from '@modules/common/components/button';
+import Thumbnail from '@modules/products/components/thumbnail';
+import { formatAmount } from 'medusa-react';
+import Link from 'next/link';
+import { useMemo } from 'react';
 
 type OrderCardProps = {
-  order: Omit<Order, "beforeInsert">
-}
+  order: Omit<Order, 'beforeInsert'>;
+};
 
 const OrderCard = ({ order }: OrderCardProps) => {
   const numberOfLines = useMemo(() => {
     return order.items.reduce((acc, item) => {
-      return acc + item.quantity
-    }, 0)
-  }, [order])
+      return acc + item.quantity;
+    }, 0);
+  }, [order]);
 
   const numberOfProducts = useMemo(() => {
-    return order.items.length
-  }, [order])
+    return order.items.length;
+  }, [order]);
 
   return (
     <div className="bg-white flex flex-col">
@@ -35,7 +35,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
           })}
         </span>
         <span className="pl-2">{`${numberOfLines} ${
-          numberOfLines > 1 ? "items" : "item"
+          numberOfLines > 1 ? 'items' : 'item'
         }`}</span>
       </div>
       <div className="grid grid-cols-2 small:grid-cols-4 gap-4 my-4">
@@ -53,7 +53,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                 <span>{i.quantity}</span>
               </div>
             </div>
-          )
+          );
         })}
         {numberOfProducts > 4 && (
           <div className="w-full h-full flex flex-col items-center justify-center">
@@ -66,13 +66,11 @@ const OrderCard = ({ order }: OrderCardProps) => {
       </div>
       <div className="flex justify-end">
         <Link href={`/order/details/${order.id}`}>
-
           <Button variant="secondary">See details</Button>
-
         </Link>
       </div>
     </div>
   );
-}
+};
 
-export default OrderCard
+export default OrderCard;

@@ -1,19 +1,19 @@
-import useEnrichedLineItems from "@lib/hooks/use-enrich-line-items"
-import { LineItem, Region } from "@medusajs/medusa"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
-import Thumbnail from "@modules/products/components/thumbnail"
-import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item"
-import Link from "next/link"
+import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
+import { LineItem, Region } from '@medusajs/medusa';
+import LineItemOptions from '@modules/common/components/line-item-options';
+import LineItemPrice from '@modules/common/components/line-item-price';
+import Thumbnail from '@modules/products/components/thumbnail';
+import SkeletonLineItem from '@modules/skeletons/components/skeleton-line-item';
+import Link from 'next/link';
 
 type ItemsProps = {
-  items: LineItem[]
-  region: Region
-  cartId: string
-}
+  items: LineItem[];
+  region: Region;
+  cartId: string;
+};
 
 const Items = ({ items, region, cartId }: ItemsProps) => {
-  const enrichedItems = useEnrichedLineItems(items, cartId)
+  const enrichedItems = useEnrichedLineItems(items, cartId);
 
   return (
     <div className="p-10 border-b border-gray-200 gap-y-4 flex flex-col">
@@ -48,10 +48,10 @@ const Items = ({ items, region, cartId }: ItemsProps) => {
             );
           })
         : Array.from(Array(items.length).keys()).map((i) => {
-            return <SkeletonLineItem key={i} />
+            return <SkeletonLineItem key={i} />;
           })}
     </div>
   );
-}
+};
 
-export default Items
+export default Items;
