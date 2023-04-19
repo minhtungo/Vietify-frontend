@@ -8,6 +8,7 @@ import React, { useRef } from 'react';
 import MobileActions from '../components/mobile-actions';
 import ThumbnailCarousel from '../components/thumbnail-carousel';
 import Breadcrumb from '@modules/common/components/breadcrumb';
+import ReviewCard from '@modules/review/templates/review-card';
 
 type ProductTemplateProps = {
   product: Product;
@@ -36,6 +37,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
         <div className="my-16">
           <ProductTabs product={product} />
         </div>
+        <ReviewCard />
+        <ReviewCard />
+
         <div className="my-16">
           <RelatedProducts product={product} />
         </div>

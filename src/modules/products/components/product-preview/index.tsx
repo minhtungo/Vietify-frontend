@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
 import Thumbnail from '../thumbnail';
 import { HiOutlineEye } from 'react-icons/hi2';
-import ProductRating from '@modules/products/components/product-rating';
+import ReviewRating from '@modules/review/components/review-rating';
 import HeartIcon from '@modules/common/icons/heart';
 
 const ProductPreview = ({
@@ -28,7 +28,7 @@ const ProductPreview = ({
         </div>
         <div className="text-base-regular mt-2">
           <div className="font-semibold text-[15px]">{title}</div>
-          <ProductRating className="mt-2" />
+          <ReviewRating className="mt-2" />
           <div className="font-light text-gray-700 text-xs small:text-[13px] mt-2">
             Author
           </div>

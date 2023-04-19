@@ -2,11 +2,11 @@ import cn from '@lib/util/cn';
 import StarIcon from '@modules/common/icons/star';
 import { FC } from 'react';
 
-interface ProductRatingProps {
+interface ReviewRatingProps {
   className?: string;
 }
 
-const ProductRating: FC<ProductRatingProps> = ({ className }) => {
+const ReviewRating: FC<ReviewRatingProps> = ({ className }) => {
   return (
     <div className={cn('flex items-center', className)}>
       <StarIcon className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -19,4 +19,4 @@ const ProductRating: FC<ProductRatingProps> = ({ className }) => {
   );
 };
 
-export default ProductRating;
+export default ReviewRating;

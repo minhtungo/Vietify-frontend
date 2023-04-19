@@ -8,7 +8,7 @@ import Text from '@modules/common/components/text';
 import HeartIcon from '@modules/common/icons/heart';
 import ShareIcon from '@modules/common/icons/share';
 import OptionSelect from '@modules/products/components/option-select';
-import ProductRating from '@modules/products/components/product-rating';
+import ReviewRating from '@modules/review/components/review-rating';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -48,7 +48,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </Link>
       )}
       <Heading>{product.title}</Heading>
-      <ProductRating className="" />
+      <ReviewRating className="" />
       <Text>{product.description}</Text>
 
       {product.variants.length > 1 && (

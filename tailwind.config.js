@@ -16,6 +16,9 @@ module.exports = {
           light: '#ffffff',
           danger: '#dc2626',
         },
+        border: {
+          base: '#e7ecf0',
+        },
       },
       transitionProperty: {
         width: 'width',
