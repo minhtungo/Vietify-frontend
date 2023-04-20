@@ -6,6 +6,7 @@ const headingVariants = cva('capitalize', {
   variants: {
     variant: {
       default: 'text-gray-800',
+      title: 'text-base xl:text-lg xl:leading-7 font-semibold',
     },
     size: {
       default: 'text-xl md:text-xl lg:text-2xl',
