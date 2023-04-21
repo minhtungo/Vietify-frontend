@@ -65,7 +65,7 @@ export default function ProductsCategory() {
       </div>
       <Carousel
         spaceBetween={10}
-        slidesPerView={4}
+        slidesPerView={5}
         prevActivateId="prev-category-carousel-button"
         nextActivateId="next-category-carousel-button"
         prevButtonClassName="left-2 lg:left-2.5"
@@ -75,7 +75,7 @@ export default function ProductsCategory() {
           <SwiperSlide key={`category--key${id}`}>
             <div className="relative">
               <Image
-                className="object-center object-cover rounded-lg max-h-[220px]"
+                className="object-center object-cover rounded-lg max-h-[200px]"
                 src={imgSrc}
                 alt={altImg}
                 width="500"

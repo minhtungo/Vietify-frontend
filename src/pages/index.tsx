@@ -1,9 +1,7 @@
-import BundleGrid from '@modules/bundle/components/bundle-grid';
 import Head from '@modules/common/components/head';
 import Deals from '@modules/home/components/deals';
 import FeaturedBooks from '@modules/home/components/featured-books';
 import FeatureGrid from '@modules/home/components/featured-grid';
-import FeaturedCard from '@modules/home/components/featured-grid/featured-card';
 import Hero from '@modules/home/components/hero/templates';
 import ProductsCategory from '@modules/home/components/products-category';
 import Trending from '@modules/home/components/trending';
@@ -55,11 +53,11 @@ const Home: NextPageWithLayout = () => {
       />
       <Hero />
       {/* <BundleGrid data={bundleData} className="my-12 lg:my-14" /> */}
-      <FeatureGrid className="my-3 md:my-4 content-container" />
       <Deals />
       <ProductsCategory />
-      <Trending />
       <FeaturedBooks />
+      <Trending />
+      <FeatureGrid className="my-3 md:my-4 content-container" />
     </>
   );
 };

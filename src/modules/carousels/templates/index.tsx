@@ -40,15 +40,7 @@ const Carousel: FC<CarouselProps> = ({
 }) => {
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
-  let nextButtonClasses = cn(
-    'w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 text-base lg:text-lg xl:text-xl cursor-pointer flex items-center justify-center rounded-full bg-brand-light absolute transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none transform shadow-navigation 3xl:text-2xl',
 
-    nextButtonClassName
-  );
-  let prevButtonClasses = cn(
-    'w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 text-base lg:text-lg xl:text-xl cursor-pointer flex items-center justify-center rounded-full bg-brand-light absolute transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none transform shadow-navigation 3xl:text-2xl',
-    prevButtonClassName
-  );
   return (
     <div className={cn('relative', className)}>
       <Swiper
@@ -73,12 +65,21 @@ const Carousel: FC<CarouselProps> = ({
       </Swiper>
       {Boolean(navigation) && (
         <div
-          className={`flex items-center w-full absolute top-2/4 z-10 ${buttonGroupClassName}`}
+          className={cn(
+            'flex items-center w-full absolute top-2/4 z-10',
+            buttonGroupClassName
+          )}
         >
-          <div className={prevButtonClasses} id={prevActivateId}>
+          <div
+            className={cn('carousel-button', prevButtonClassName)}
+            id={prevActivateId}
+          >
             <IoIosArrowBack />
           </div>
-          <div className={nextButtonClasses} id={nextActivateId}>
+          <div
+            className={cn('carousel-button', nextButtonClassName)}
+            id={nextActivateId}
+          >
             <IoIosArrowForward />
           </div>
         </div>

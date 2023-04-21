@@ -13,7 +13,7 @@ const ListItem = React.forwardRef<
         <Link
           href={href!}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-200 focus:bg-slate-200',
+            'block select-none space-y-1 p-4 leading-none no-underline outline-none transition-colors hover:bg-slate-200 focus:bg-slate-200',
             className
           )}
           {...props}

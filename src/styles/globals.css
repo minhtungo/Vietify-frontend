@@ -50,6 +50,10 @@
 }
 
 @layer components {
+  .carousel-button {
+    @apply w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 text-base lg:text-lg xl:text-xl cursor-pointer flex items-center justify-center rounded-full bg-brand-light absolute transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none transform shadow-sm;
+  }
+
   .content-container {
     @apply max-w-[1440px] w-full mx-auto px-8;
   }

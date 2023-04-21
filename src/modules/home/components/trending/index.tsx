@@ -26,8 +26,8 @@ const Trending = () => {
       <Carousel
         spaceBetween={10}
         slidesPerView={5}
-        prevActivateId="prev-featured-carousel-button"
-        nextActivateId="next-featured-carousel-button"
+        prevActivateId="prev-trending-carousel-button"
+        nextActivateId="next-trending-carousel-button"
         centeredSlides={true}
         centeredSlidesBounds={true}
         prevButtonClassName="left-2 lg:left-2.5"
