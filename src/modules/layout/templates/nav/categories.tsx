@@ -57,7 +57,6 @@ const Categories = ({}) => {
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
-        <DesktopSearchModal />
       </NavigationMenu>
     </>
   );

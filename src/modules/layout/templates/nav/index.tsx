@@ -5,6 +5,7 @@ import Hamburger from '@modules/common/components/hamburger';
 import CartDropdown from '@modules/layout/components/cart-dropdown';
 import Categories from '@modules/layout/templates/nav/categories';
 import MobileMenu from '@modules/mobile-menu/templates';
+import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -148,14 +149,15 @@ export default function Nav() {
       )}
     >
       <div className="max-w-8xl px-4 small:px-6 h-14 flex items-center justify-between">
-        <div className="flex items-center">
-          <Link href="/">
-            <span className="sr-only">Vietify</span>
-            <span className="text-xl font-semibold">Vietify</span>
-          </Link>
-        </div>
+        <Link href="/" className="flex items-center">
+          <span className="sr-only">Vietify</span>
+          <span className="text-xl font-semibold">Vietify</span>
+        </Link>
 
-        <Categories />
+        <div className="flex">
+          <Categories />
+          <DesktopSearchModal />
+        </div>
 
         <div className="flex items-center gap-3">
           <CartDropdown />
