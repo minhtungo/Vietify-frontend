@@ -8,6 +8,11 @@ export type CollectionData = {
   title: string;
 };
 
+export type FilterOption = {
+  name: string;
+  value: string;
+};
+
 export type FeaturedProduct = {
   id: string;
   title: string;

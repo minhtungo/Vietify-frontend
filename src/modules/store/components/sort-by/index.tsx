@@ -8,10 +8,7 @@ import ChevronDownIcon from '@modules/common/icons/chevron-down';
 import { useRouter } from 'next/router';
 import SORT_OPTIONS from 'static/sort-options';
 import { useState } from 'react';
-type Option = {
-  name: string;
-  value: string;
-};
+import { FilterOption } from 'types/global';
 
 interface sortByProps {}
 
@@ -20,11 +17,13 @@ const SortBy: React.FC<sortByProps> = ({}) => {
   const { pathname, query } = router;
   const currentSelectedItem = query.sort_by
     ? SORT_OPTIONS.find((o) => o.value === query.sort_by)
-    : '';
+    : undefined;
 
-  const [selectedItem, setSelectedItem] = useState<Option>(currentSelectedItem);
+  const [selectedItem, setSelectedItem] = useState<FilterOption | undefined>(
+    currentSelectedItem
+  );
 
-  const onSortBy = (option: Option) => {
+  const onSortBy = (option: FilterOption) => {
     setSelectedItem(option);
     const { sort_by, ...restQuery } = query;
     router.push(
