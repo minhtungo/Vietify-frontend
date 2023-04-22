@@ -1,9 +1,9 @@
 const SORT_OPTIONS = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
+  { name: 'Most Popular', value: 'most_popular' },
+  { name: 'Best Rating', value: 'best_rating' },
+  { name: 'Newest', value: 'newest' },
+  { name: 'Price: Low to High', value: 'price_low_to_high' },
+  { name: 'Price: High to Low', value: 'price_high_to_low' },
 ];
 
 export default SORT_OPTIONS;
