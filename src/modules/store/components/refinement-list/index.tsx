@@ -1,14 +1,12 @@
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
-import {
-  ChevronDownIcon,
-  FunnelIcon,
-  MinusIcon,
-  PlusIcon,
-} from '@heroicons/react/20/solid';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 import cn from '@lib/util/cn';
 import { StoreGetProductsParams } from '@medusajs/medusa';
 import Heading from '@modules/common/components/heading';
+import ChevronDownIcon from '@modules/common/icons/chevron-down';
+import FunnelIcon from '@modules/common/icons/funnel';
+import MinusIcon from '@modules/common/icons/minus';
+import PlusIcon from '@modules/common/icons/plus';
+import XMarkIcon from '@modules/common/icons/x';
 import { useCollections } from 'medusa-react';
 import { ChangeEvent } from 'react';
 import { Fragment, useState } from 'react';
@@ -243,10 +241,10 @@ const RefinementList = ({
           <div className="flex items-center">
             <Menu as="div" className="relative inline-block text-left">
               <div>
-                <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                  Sort
+                <Menu.Button className="group inline-flex justify-center items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                  Sort by
                   <ChevronDownIcon
-                    className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                    className="-mr-1 ml-1 h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
                 </Menu.Button>
