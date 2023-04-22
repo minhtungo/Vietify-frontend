@@ -1,23 +1,17 @@
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
-import cn from '@lib/util/cn';
-import { StoreGetProductsParams } from '@medusajs/medusa';
+import { Dialog, Disclosure, Transition } from '@headlessui/react';
+import { ProductCollection, StoreGetProductsParams } from '@medusajs/medusa';
 import Heading from '@modules/common/components/heading';
-import ChevronDownIcon from '@modules/common/icons/chevron-down';
+import Link from '@modules/common/components/link';
 import FunnelIcon from '@modules/common/icons/funnel';
 import MinusIcon from '@modules/common/icons/minus';
 import PlusIcon from '@modules/common/icons/plus';
 import XMarkIcon from '@modules/common/icons/x';
+import SortBy from '@modules/store/components/sort-by';
 import { useCollections } from 'medusa-react';
+import { useRouter } from 'next/router';
 import { ChangeEvent } from 'react';
 import { Fragment, useState } from 'react';
 
-const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
-];
 const subCategories = [
   { name: 'Totes', href: '#' },
   { name: 'Backpacks', href: '#' },
@@ -75,19 +69,47 @@ const RefinementList = ({
   children,
 }: RefinementListProps) => {
   const [params, setParams] = useState<StoreGetProductsParams>({});
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const { collections, isLoading } = useCollections();
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  const router = useRouter();
+  const { pathname, query } = router;
+  const currentSelectedItem = query?.sort_by
+    ? collections?.find((c) => c.title === query.sort_by)!
+    : '';
 
   const handleCollectionChange = (
     e: ChangeEvent<HTMLInputElement>,
-    id: string
+    collection: ProductCollection
   ) => {
     const { checked } = e.target;
 
+    const { id, title } = collection;
+
     const collectionIds = refinementList.collection_id || [];
 
-    const exists = collectionIds.includes(id);
+    const exists = collectionIds.includes(collection.id);
+
+    const { sort_by, ...restQuery } = query;
+
+    const newQuery = {
+      ...restQuery,
+    };
+    router.push(
+      {
+        pathname,
+        query: {
+          ...restQuery,
+          sort_by: collectionIds,
+          // ...(values.value !== options[0].value
+          //   ? { sort_by: values.value }
+          //   : {}),
+        },
+      },
+      undefined,
+      { scroll: false }
+    );
 
     if (checked && !exists) {
       setRefinementList({
@@ -161,11 +183,11 @@ const RefinementList = ({
                     role="list"
                     className="px-2 py-3 font-medium text-gray-900"
                   >
-                    {subCategories.map((category) => (
-                      <li key={category.name}>
-                        <a href={category.href} className="block px-2 py-3">
-                          {category.name}
-                        </a>
+                    {collections?.map((c) => (
+                      <li key={c.id}>
+                        <Link href="/" className="block px-2 py-3">
+                          {c.title}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -239,50 +261,7 @@ const RefinementList = ({
           <Heading size="lg">New Arrivals</Heading>
 
           <div className="flex items-center">
-            <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <Menu.Button className="group inline-flex justify-center items-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                  Sort by
-                  <ChevronDownIcon
-                    className="-mr-1 ml-1 h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
-                    {sortOptions.map((option) => (
-                      <Menu.Item key={option.name}>
-                        {({ active }) => (
-                          <a
-                            href={option.href}
-                            className={cn(
-                              option.current
-                                ? 'font-medium text-gray-900'
-                                : 'text-gray-500',
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm'
-                            )}
-                          >
-                            {option.name}
-                          </a>
-                        )}
-                      </Menu.Item>
-                    ))}
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+            <SortBy />
 
             <button
               type="button"
@@ -330,9 +309,7 @@ const RefinementList = ({
                                 defaultChecked={refinementList.collection_id?.includes(
                                   c.id
                                 )}
-                                onChange={(e) =>
-                                  handleCollectionChange(e, c.id)
-                                }
+                                onChange={(e) => handleCollectionChange(e, c)}
                                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                               />
                               <span className="text-sm text-gray-600">
