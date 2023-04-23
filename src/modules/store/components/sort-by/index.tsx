@@ -43,7 +43,9 @@ const SortBy: React.FC<sortByProps> = ({}) => {
     <DropdownMenu>
       <DropdownMenuTrigger className="group inline-flex justify-center items-center text-sm font-medium text-gray-700 hover:text-gray-900">
         Sort by
-        {selectedItem && <span> {`: ${selectedItem.name}`}</span>}
+        {selectedItem && (
+          <span className="font-semibold">{`: ${selectedItem.name}`}</span>
+        )}
         <ChevronDownIcon
           className="-mr-1 ml-1 h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
           aria-hidden="true"

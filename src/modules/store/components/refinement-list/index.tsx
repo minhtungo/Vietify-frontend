@@ -9,8 +9,7 @@ import XMarkIcon from '@modules/common/icons/x';
 import SortBy from '@modules/store/components/sort-by';
 import { useCollections } from 'medusa-react';
 import { useRouter } from 'next/router';
-import { ChangeEvent } from 'react';
-import { Fragment, useState } from 'react';
+import { ChangeEvent, useMemo, Fragment, useState } from 'react';
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams;
@@ -30,9 +29,10 @@ const RefinementList = ({
 
   const router = useRouter();
   const { pathname, query } = router;
-  const currentSelectedItem = query?.sort_by
-    ? collections?.find((c) => c.title === query.sort_by)!
-    : '';
+  const selectedCategories = useMemo(
+    () => (query?.category ? (query.category as string).split(',') : []),
+    [query?.category]
+  );
 
   const handleCollectionChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -46,20 +46,20 @@ const RefinementList = ({
 
     const exists = collectionIds.includes(collection.id);
 
-    const { sort_by, ...restQuery } = query;
+    const { category, ...restQuery } = query;
 
-    const newQuery = {
-      ...restQuery,
-    };
+    let currentFormState = selectedCategories.includes(title)
+      ? selectedCategories.filter((i) => i !== title)
+      : [...selectedCategories, title];
+
     router.push(
       {
         pathname,
         query: {
           ...restQuery,
-          sort_by: collectionIds,
-          // ...(values.value !== options[0].value
-          //   ? { sort_by: values.value }
-          //   : {}),
+          ...(!!currentFormState.length
+            ? { category: currentFormState.join(',') }
+            : {}),
         },
       },
       undefined,
@@ -213,7 +213,6 @@ const RefinementList = ({
 
           <div className="flex items-center">
             <SortBy />
-
             <button
               type="button"
               className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
@@ -286,17 +285,3 @@ const RefinementList = ({
 };
 
 export default RefinementList;
-
-{
-  /* <h3 className="sr-only">Categories</h3>
-              <ul
-                role="list"
-                className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
-              >
-                {subCategories.map((category) => (
-                  <li key={category.name}>
-                    <a href={category.href}>{category.name}</a>
-                  </li>
-                ))}
-              </ul> */
-}
