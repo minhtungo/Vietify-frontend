@@ -7,7 +7,7 @@ import {
 import ChevronDownIcon from '@modules/common/icons/chevron-down';
 import { useRouter } from 'next/router';
 import SORT_OPTIONS from 'static/sort-options';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FilterOption } from 'types/global';
 
 interface sortByProps {}
@@ -22,6 +22,10 @@ const SortBy: React.FC<sortByProps> = ({}) => {
   const [selectedItem, setSelectedItem] = useState<FilterOption | undefined>(
     currentSelectedItem
   );
+
+  useEffect(() => {
+    setSelectedItem(currentSelectedItem);
+  }, [currentSelectedItem]);
 
   const onSortBy = (option: FilterOption) => {
     setSelectedItem(option);

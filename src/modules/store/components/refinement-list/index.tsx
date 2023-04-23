@@ -9,12 +9,19 @@ import XMarkIcon from '@modules/common/icons/x';
 import SortBy from '@modules/store/components/sort-by';
 import { useCollections } from 'medusa-react';
 import { useRouter } from 'next/router';
-import { ChangeEvent, useMemo, Fragment, useState } from 'react';
+import { ChangeEvent, useMemo, Fragment, useState, useEffect } from 'react';
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams;
   setRefinementList: (refinementList: StoreGetProductsParams) => void;
   children: React.ReactNode;
+};
+
+const checkIsActive = (arr: any, item: string) => {
+  if (arr.includes(item)) {
+    return true;
+  }
+  return false;
 };
 
 const RefinementList = ({
@@ -24,6 +31,8 @@ const RefinementList = ({
 }: RefinementListProps) => {
   const [params, setParams] = useState<StoreGetProductsParams>({});
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  console.log(params);
 
   const { collections, isLoading } = useCollections();
 
