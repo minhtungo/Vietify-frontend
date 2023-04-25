@@ -51,37 +51,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </Link>
       )}
       <Heading>{product.title}</Heading>
-      <ReviewRating className="" />
 
-      {product.variants.length > 1 && (
-        <div className="my-8 flex flex-col gap-y-6">
-          {product.options.map((option) => {
-            return (
-              <div key={option.id}>
-                <OptionSelect
-                  option={option}
-                  current={options[option.id]}
-                  updateOption={updateOptions}
-                  title={option.title}
-                />
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      <Counter
-        value={selectedQuantity}
-        onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
-        onDecrement={() =>
-          setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
-        }
-        disabled={!inStock}
-      />
-
-      <div className="mb-4">
+      <div className="mb-4 flex gap-2">
         {selectedPrice ? (
-          <div className="flex flex-col text-gray-700">
+          <div className="flex text-brand gap-2 items-center pr-2 border-r">
             <span
               className={clsx('text-xl-semi', {
                 'text-rose-600': selectedPrice.price_type === 'sale',
@@ -104,13 +77,42 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
             )}
           </div>
         ) : (
-          <div></div>
+          <></>
         )}
+        <ReviewRating className="" />
       </div>
 
-      <Button onClick={addToCart}>
-        {!inStock ? 'Out of stock' : 'Add to cart'}
-      </Button>
+      {product.variants.length > 1 && (
+        <div className="my-8 flex flex-col gap-y-6">
+          {product.options.map((option) => {
+            return (
+              <div key={option.id}>
+                <OptionSelect
+                  option={option}
+                  current={options[option.id]}
+                  updateOption={updateOptions}
+                  title={option.title}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      <div className="flex gap-3">
+        <Counter
+          value={selectedQuantity}
+          onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
+          onDecrement={() =>
+            setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
+          }
+          disabled={!inStock}
+        />
+        <Button onClick={addToCart} className="w-full">
+          {!inStock ? 'Out of stock' : 'Add to cart'}
+        </Button>
+      </div>
+
       <div className="grid grid-cols-2 gap-2.5">
         <Button variant="outline" className="gap-1">
           <HeartIcon size={18} /> Wishlist

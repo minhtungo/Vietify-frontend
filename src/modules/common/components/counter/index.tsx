@@ -4,19 +4,16 @@ import PlusIcon from '@modules/common/icons/plus';
 import { cva, VariantProps } from 'class-variance-authority';
 import { CounterProps } from 'types/global';
 
-const counterVariants = cva(
-  'flex items-center justify-between rounded overflow-hidden shrink-0 w-28 p-1 px-3',
-  {
-    variants: {
-      variant: {
-        single: 'h-10 bg-[#f3f5f9]',
-      },
+const counterVariants = cva('flex items-center rounded p-1 px-3 gap-2', {
+  variants: {
+    variant: {
+      single: 'h-10 bg-[#f3f5f9]',
     },
-    defaultVariants: {
-      variant: 'single',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: 'single',
+  },
+});
 
 export interface counterProps
   extends CounterProps,
@@ -44,8 +41,8 @@ const Counter: React.FC<counterProps> = ({
       </button>
       <span
         className={cn(
-          'font-semibold text-brand-dark  transition-colors duration-250 ease-in-out cursor-default shrink-0',
-          'text-base md:text-[17px]'
+          'font-semibold text-brand-dark transition-colors duration-250 ease-in-out cursor-default shrink-0',
+          'text-base md:text-[17px] w-5 text-center'
         )}
       >
         {value}

@@ -1,11 +1,8 @@
-import React from 'react';
-import { IconProps } from 'types/icon';
-import { HiCheck } from 'react-icons/hi';
-
-import { FC } from 'react';
 import cn from '@lib/util/cn';
+import { HiCheck } from 'react-icons/hi';
+import { IconProps } from 'types/icon';
 
-const CheckIcon: FC<IconProps> = ({ className, ...props }) => {
+const CheckIcon: React.FC<IconProps> = ({ className, ...props }) => {
   return <HiCheck className={cn(className)} {...props} />;
 };
 

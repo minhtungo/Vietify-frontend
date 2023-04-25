@@ -1,11 +1,8 @@
-import React from 'react';
-import { IconProps } from 'types/icon';
-import { BsCircle } from 'react-icons/bs';
-
-import { FC } from 'react';
 import cn from '@lib/util/cn';
+import { BsCircle } from 'react-icons/bs';
+import { IconProps } from 'types/icon';
 
-const CircleIcon: FC<IconProps> = ({ className, ...props }) => {
+const CircleIcon: React.FC<IconProps> = ({ className, ...props }) => {
   return <BsCircle className={cn(className)} {...props} />;
 };
 

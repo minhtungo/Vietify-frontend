@@ -1,11 +1,8 @@
-import React from 'react';
-import { IconProps } from 'types/icon';
-import { BiCategoryAlt } from 'react-icons/bi';
-
-import { FC } from 'react';
 import cn from '@lib/util/cn';
+import { BiCategoryAlt } from 'react-icons/bi';
+import { IconProps } from 'types/icon';
 
-const CategoryIcon: FC<IconProps> = ({ className, ...props }) => {
+const CategoryIcon: React.FC<IconProps> = ({ className, ...props }) => {
   return <BiCategoryAlt className={cn(className)} {...props} />;
 };
 
