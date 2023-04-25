@@ -88,3 +88,15 @@ export type InfiniteProductPage = {
     count: number;
   };
 };
+
+export type ButtonEvent = (
+  e: React.MouseEvent<HTMLButtonElement | MouseEvent>
+) => void;
+
+export type CounterProps = {
+  value: number;
+  onDecrement: ButtonEvent;
+  onIncrement: ButtonEvent;
+  className?: string;
+  disabled?: boolean;
+};

@@ -1,16 +1,18 @@
+import useTruncatedElement from '@lib/hooks/use-truncated-element';
+import cn from '@lib/util/cn';
 import { Product } from '@medusajs/medusa';
-import Back from '@modules/common/icons/back';
-import FastDelivery from '@modules/common/icons/fast-delivery';
-import Refresh from '@modules/common/icons/refresh';
-import clsx from 'clsx';
-import { useMemo } from 'react';
-
+import Button from '@modules/common/components/button';
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@modules/common/components/tabs';
+import Text from '@modules/common/components/text';
+import Back from '@modules/common/icons/back';
+import FastDelivery from '@modules/common/icons/fast-delivery';
+import Refresh from '@modules/common/icons/refresh';
+import { useMemo, useRef } from 'react';
 
 type ProductTabsProps = {
   product: Product;
@@ -38,7 +40,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
             <TabsTrigger
               key={i}
               value={tab.label}
-              className={clsx(
+              className={cn(
                 'text-left uppercase text-small-regular pb-2 -mb-px border-b border-gray-200 transition-color duration-150 ease-in-out'
               )}
             >
@@ -59,12 +61,18 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 };
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
+  const ref = useRef(null);
+  const { isTruncated, isShowingMore, toggleIsShowingMore } =
+    useTruncatedElement({
+      ref,
+    });
+
   return (
     <TabsContent
       value="Product Information"
-      className="text-small-regular py-8"
+      className="text-medium-regular py-8"
     >
-      <div className="grid grid-cols-2 gap-x-8">
+      <div className="grid grid-cols-2 gap-x-8 border-b pb-4">
         <div className="flex flex-col gap-y-4">
           <div>
             <span className="font-semibold">Material</span>
@@ -93,6 +101,28 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="py-4">
+        <Text
+          ref={ref}
+          className={cn('break-words', !isShowingMore && 'line-clamp-3')}
+        >
+          {product.description}
+          {product.description}
+          {product.description}
+          {product.description}
+          {product.description}
+        </Text>
+
+        {isTruncated && (
+          <Button
+            className="block mx-auto mt-4"
+            variant="outline"
+            onClick={toggleIsShowingMore}
+          >
+            {isShowingMore ? 'Show less' : 'Show more'}
+          </Button>
+        )}
       </div>
       {product.tags.length ? (
         <div>

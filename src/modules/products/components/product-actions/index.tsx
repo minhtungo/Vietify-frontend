@@ -2,6 +2,7 @@ import { useProductActions } from '@lib/context/product-context';
 import useProductPrice from '@lib/hooks/use-product-price';
 import cn from '@lib/util/cn';
 import Button from '@modules/common/components/button';
+import Counter from '@modules/common/components/counter';
 import Heading from '@modules/common/components/heading';
 import SocialShare from '@modules/common/components/social-share';
 import Text from '@modules/common/components/text';
@@ -21,6 +22,8 @@ type ProductActionsProps = {
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   const [shareButtonStatus, setShareButtonStatus] = useState<boolean>(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+
   const router = useRouter();
   const {
     query: { slug },
@@ -49,7 +52,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       )}
       <Heading>{product.title}</Heading>
       <ReviewRating className="" />
-      <Text>{product.description}</Text>
 
       {product.variants.length > 1 && (
         <div className="my-8 flex flex-col gap-y-6">
@@ -67,6 +69,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           })}
         </div>
       )}
+
+      <Counter
+        value={selectedQuantity}
+        onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
+        onDecrement={() =>
+          setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
+        }
+        disabled={!inStock}
+      />
 
       <div className="mb-4">
         {selectedPrice ? (
