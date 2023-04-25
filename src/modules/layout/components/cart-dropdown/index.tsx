@@ -2,9 +2,10 @@ import { Popover, Transition } from '@headlessui/react';
 import { useCartDropdown } from '@lib/context/cart-dropdown-context';
 import { useStore } from '@lib/context/store-context';
 import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
-import { Button } from '@modules/common/components/button';
+import Button from '@modules/common/components/button';
 import LineItemOptions from '@modules/common/components/line-item-options';
 import LineItemPrice from '@modules/common/components/line-item-price';
+import CartIcon from '@modules/common/icons/cart';
 import Trash from '@modules/common/icons/trash';
 import Thumbnail from '@modules/products/components/thumbnail';
 import { formatAmount, useCart } from 'medusa-react';
@@ -24,9 +25,9 @@ const CartDropdown = () => {
         <Link href="/cart" passHref>
           <Popover.Button className="h-full flex items-center">
             <span className="group relative inline-block">
-              <HiOutlineShoppingBag
+              <CartIcon
                 className="text-gray-600 group-hover:text-gray-800"
-                size={22}
+                size={24}
                 aria-hidden="true"
               />
               <span className="absolute top-0 right-0 inline-flex items-center px-1 py-[2px] text-xs font-medium leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">

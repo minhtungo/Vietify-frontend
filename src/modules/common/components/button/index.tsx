@@ -63,4 +63,4 @@ Button.displayName = 'Button';
 
 export default Button;
 
-export { Button, buttonVariants };
+export { buttonVariants };

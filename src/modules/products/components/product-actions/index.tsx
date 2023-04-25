@@ -5,7 +5,6 @@ import Button from '@modules/common/components/button';
 import Counter from '@modules/common/components/counter';
 import Heading from '@modules/common/components/heading';
 import SocialShare from '@modules/common/components/social-share';
-import Text from '@modules/common/components/text';
 import HeartIcon from '@modules/common/icons/heart';
 import ShareIcon from '@modules/common/icons/share';
 import OptionSelect from '@modules/products/components/option-select';
