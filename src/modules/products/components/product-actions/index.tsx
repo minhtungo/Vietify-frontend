@@ -21,15 +21,23 @@ type ProductActionsProps = {
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   const [shareButtonStatus, setShareButtonStatus] = useState<boolean>(false);
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   const router = useRouter();
   const {
     query: { slug },
   } = router;
 
-  const { updateOptions, addToCart, options, inStock, variant } =
-    useProductActions();
+  const {
+    updateOptions,
+    addToCart,
+    options,
+    inStock,
+    variant,
+    quantity,
+    decreaseQuantity,
+    increaseQuantity,
+    resetQuantity,
+  } = useProductActions();
 
   const price = useProductPrice({ id: product.id, variantId: variant?.id });
 
@@ -38,6 +46,11 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
     return variantPrice || cheapestPrice || null;
   }, [price]);
+
+  const addItemToCart = () => {
+    addToCart();
+    resetQuantity();
+  };
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -100,14 +113,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div className="flex gap-3">
         <Counter
-          value={selectedQuantity}
-          onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
-          onDecrement={() =>
-            setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
-          }
+          value={quantity}
+          onIncrement={increaseQuantity}
+          onDecrement={decreaseQuantity}
           disabled={!inStock}
         />
-        <Button onClick={addToCart} className="w-full">
+        <Button onClick={addItemToCart} className="w-full">
           {!inStock ? 'Out of stock' : 'Add to cart'}
         </Button>
       </div>

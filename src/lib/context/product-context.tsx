@@ -13,17 +13,18 @@ import { Product, Variant } from "types/medusa"
 import { useStore } from "./store-context"
 
 interface ProductContext {
-  formattedPrice: string
-  quantity: number
-  disabled: boolean
-  inStock: boolean
-  variant?: Variant
-  maxQuantityMet: boolean
-  options: Record<string, string>
-  updateOptions: (options: Record<string, string>) => void
-  increaseQuantity: () => void
-  decreaseQuantity: () => void
-  addToCart: () => void
+  formattedPrice: string;
+  quantity: number;
+  disabled: boolean;
+  inStock: boolean;
+  variant?: Variant;
+  maxQuantityMet: boolean;
+  options: Record<string, string>;
+  updateOptions: (options: Record<string, string>) => void;
+  increaseQuantity: () => void;
+  decreaseQuantity: () => void;
+  resetQuantity: () => void;
+  addToCart: () => void;
 }
 
 const ProductActionContext = createContext<ProductContext | null>(null)
@@ -147,6 +148,10 @@ export const ProductProvider = ({
     }
   }
 
+  const resetQuantity = () => {
+    setQuantity(1)
+  }
+
   return (
     <ProductActionContext.Provider
       value={{
@@ -160,6 +165,7 @@ export const ProductProvider = ({
         updateOptions,
         decreaseQuantity,
         increaseQuantity,
+        resetQuantity,
         formattedPrice,
       }}
     >

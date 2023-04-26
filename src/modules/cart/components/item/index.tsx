@@ -1,8 +1,10 @@
 import { useStore } from '@lib/context/store-context';
 import { LineItem, Region } from '@medusajs/medusa';
+import Heading from '@modules/common/components/heading';
 import LineItemOptions from '@modules/common/components/line-item-options';
 import LineItemPrice from '@modules/common/components/line-item-price';
 import NativeSelect from '@modules/common/components/native-select';
+import Text from '@modules/common/components/text';
 import Trash from '@modules/common/icons/trash';
 import Thumbnail from '@modules/products/components/thumbnail';
 
@@ -21,8 +23,10 @@ const Item = ({ item, region }: ItemProps) => {
       </div>
       <div className="text-base-regular flex flex-col gap-y-8">
         <div className="flex items-start justify-between">
-          <div className="flex flex-col">
-            <span>{item.title}</span>
+          <div className="flex flex-col flex-wrap">
+            <Heading variant="titleSmall" className="whitespace-normal">
+              {item.title}
+            </Heading>
             <LineItemOptions variant={item.variant} />
           </div>
           <NativeSelect
@@ -56,15 +60,14 @@ const Item = ({ item, region }: ItemProps) => {
           </NativeSelect>
         </div>
         <div className="flex items-end justify-between text-small-regular flex-1">
-          <div>
-            <button
-              className="flex items-center gap-x-1 text-gray-500"
-              onClick={() => deleteItem(item.id)}
-            >
-              <Trash size={14} />
-              <span>Remove</span>
-            </button>
-          </div>
+          <button
+            className="flex items-center gap-x-1 text-brand-muted"
+            onClick={() => deleteItem(item.id)}
+          >
+            <Trash size={14} />
+            <Text variant="info">Remove</Text>
+          </button>
+
           <div>
             <LineItemPrice item={item} region={region} />
           </div>
