@@ -9,41 +9,6 @@ import Layout from '@modules/layout/templates';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'types/global';
 
-export const bundleData = [
-  {
-    id: 1,
-    slug: 'spring-cleaning-for-home-appliance',
-    image: '/hero.jpg',
-    title: 'bundle-title-one',
-    description: 'bundle-description',
-    bgColor: '#FFEED6',
-  },
-  {
-    id: 2,
-    slug: 'your-pet-choice-for-fresh-healthy-food',
-    image: '/assets/hero.jpg',
-    title: 'bundle-title-two',
-    description: 'bundle-description',
-    bgColor: '#D9ECD2',
-  },
-  {
-    id: 3,
-    slug: 'washing-item-with-discount-product',
-    image: '/assets/hero.jpg',
-    title: 'bundle-title-three',
-    description: 'bundle-description',
-    bgColor: '#DBE5EF',
-  },
-  {
-    id: 4,
-    slug: 'fresh-quality-meat-item-with-discount',
-    image: '/assets/hero.jpg',
-    title: 'bundle-title-four',
-    description: 'bundle-description',
-    bgColor: '#EFD8D4',
-  },
-];
-
 const Home: NextPageWithLayout = () => {
   return (
     <>
@@ -57,7 +22,7 @@ const Home: NextPageWithLayout = () => {
       <ProductsCategory />
       <FeaturedBooks />
       <Trending />
-      <FeatureGrid className="my-3 md:my-4 content-container" />
+      <FeatureGrid className="content-container my-3 md:my-4" />
     </>
   );
 };

@@ -9,7 +9,6 @@ import HeartIcon from '@modules/common/icons/heart';
 import ShareIcon from '@modules/common/icons/share';
 import OptionSelect from '@modules/products/components/option-select';
 import ReviewRating from '@modules/review/components/review-rating';
-import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
@@ -66,9 +65,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div className="mb-4 flex gap-2">
         {selectedPrice ? (
-          <div className="flex text-brand gap-2 items-center pr-2 border-r">
+          <div className="flex items-center gap-2 border-r pr-2 text-brand">
             <span
-              className={clsx('text-xl-semi', {
+              className={cn('text-xl-semi', {
                 'text-rose-600': selectedPrice.price_type === 'sale',
               })}
             >
@@ -127,10 +126,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         <Button variant="outline" className="gap-1">
           <HeartIcon size={18} /> Wishlist
         </Button>
-        <div className="relative group">
+        <div className="group relative">
           <Button
             variant="outline"
-            className="gap-1 w-full"
+            className="w-full gap-1"
             onClick={() => setShareButtonStatus(!shareButtonStatus)}
           >
             <ShareIcon size={18} />
@@ -138,10 +137,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           </Button>
           <SocialShare
             className={cn(
-              'absolute z-10 right-0 w-[300px] transition-all duration-300',
+              'absolute right-0 z-10 w-[300px] transition-all duration-300',
               shareButtonStatus
-                ? 'visible opacity-100 top-full'
-                : 'opacity-0 invisible top-[130%]'
+                ? 'visible top-full opacity-100'
+                : 'invisible top-[130%] opacity-0'
             )}
             shareUrl={`https://google.com`}
           />

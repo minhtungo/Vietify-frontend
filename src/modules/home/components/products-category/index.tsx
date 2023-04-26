@@ -3,6 +3,7 @@ import Carousel from '@modules/carousels/templates';
 import Heading from '@modules/common/components/heading';
 import CategoryIcon from '@modules/common/icons/category';
 import Image from 'next/image';
+import { useCollections } from 'medusa-react';
 
 const CATEGORY = [
   {
@@ -57,10 +58,12 @@ const CATEGORY = [
 ];
 
 export default function ProductsCategory() {
+  const { collections, isLoading } = useCollections();
+
   return (
-    <div className="py-12 content-container">
-      <div className="flex items-center mb-8">
-        <CategoryIcon size={32} className="text-blue-500 mr-2" />
+    <div className="content-container py-12">
+      <div className="mb-8 flex items-center">
+        <CategoryIcon size={32} className="mr-2 text-blue-500" />
         <Heading className="text-left">Categories</Heading>
       </div>
       <Carousel
@@ -75,16 +78,16 @@ export default function ProductsCategory() {
           <SwiperSlide key={`category--key${id}`}>
             <div className="relative">
               <Image
-                className="object-center object-cover rounded-lg max-h-[200px]"
+                className="max-h-[200px] rounded-lg object-cover object-center"
                 src={imgSrc}
                 alt={altImg}
                 width="500"
                 height="300"
               />
-              <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+              <button className="absolute bottom-4 z-10 w-36 bg-white py-3 text-base font-medium leading-none text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
                 {name}
               </button>
-              <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
+              <div className="absolute bottom-3 z-0 w-36 bg-white bg-opacity-50 px-20 py-6 opacity-0 transition duration-500 group-hover:opacity-100" />
             </div>
           </SwiperSlide>
         ))}
