@@ -2,11 +2,11 @@ import cn from '@lib/util/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 import { forwardRef, HTMLAttributes } from 'react';
 
-const headingVariants = cva('capitalize', {
+const headingVariants = cva('capitalize font-semibold', {
   variants: {
     variant: {
-      default: 'text-gray-800',
-      title: 'text-base xl:text-lg xl:leading-7 font-semibold',
+      title: 'text-base xl:text-lg xl:leading-7 text-brand-dark',
+      titleMedium: 'font-semibold text-brand-dark text-xl',
     },
     size: {
       default: 'text-xl md:text-xl lg:text-2xl',
@@ -21,7 +21,7 @@ const headingVariants = cva('capitalize', {
   },
   defaultVariants: {
     size: 'default',
-    variant: 'default',
+    variant: 'title',
     weight: 'semibold',
   },
 });
