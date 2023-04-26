@@ -6,11 +6,11 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  PopoverClose,
 } from '@modules/common/components/popover';
 import CartIcon from '@modules/common/icons/cart';
 import { formatAmount, useCart } from 'medusa-react';
 import Link from 'next/link';
-import { Fragment } from 'react';
 
 import CartItem from './cart-item';
 import Text from '@modules/common/components/text';
@@ -81,12 +81,16 @@ const CartDropdown = () => {
                 </div>
                 <div className="flex gap-3">
                   <Link href="/cart" passHref className="flex-1">
-                    <Button variant="outline" className="w-full">
-                      View cart
-                    </Button>
+                    <PopoverClose asChild>
+                      <Button variant="outline" className="w-full">
+                        View cart
+                      </Button>
+                    </PopoverClose>
                   </Link>
                   <Link href="/checkout" passHref className="flex-1">
-                    <Button className="w-full">Checkout</Button>
+                    <PopoverClose asChild>
+                      <Button className="w-full">Checkout</Button>
+                    </PopoverClose>
                   </Link>
                 </div>
               </div>
