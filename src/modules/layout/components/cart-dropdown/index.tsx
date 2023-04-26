@@ -22,31 +22,27 @@ const CartDropdown = () => {
 
   return (
     <div
-      className="h-full z-50 relative"
+      className="relative z-50 h-full"
       onMouseEnter={open}
       onMouseLeave={close}
     >
       <Popover>
-        <PopoverTrigger className="h-full flex items-center">
-          <span className="group relative inline-block">
-            <CartIcon
-              className="text-gray-600 group-hover:text-gray-800"
-              size={24}
-              aria-hidden="true"
-            />
-            <span className="absolute top-0 right-0 inline-flex items-center px-1 py-[2px] text-xs font-medium leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <PopoverTrigger>
+          <button className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-200">
+            <CartIcon className="text-gray-600" size={24} aria-hidden="true" />
+            <span className="absolute right-[2px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand text-[10px] font-medium leading-none text-brand-light">
               {totalItems}
             </span>
             <span className="sr-only">
               {`${totalItems} items in cart, view bag`}
             </span>
-          </span>
+          </button>
         </PopoverTrigger>
-        <PopoverContent className="hidden small:block w-[410px]">
+        <PopoverContent className="hidden w-[410px] small:block">
           <Heading className="p-3">Shopping Cart</Heading>
           {cart && items?.length ? (
             <>
-              <div className="overflow-y-scroll max-h-[400px] px-3">
+              <div className="max-h-[400px] overflow-y-scroll px-3">
                 {items
                   .sort((a, b) => {
                     return a.created_at > b.created_at ? -1 : 1;
@@ -56,11 +52,11 @@ const CartDropdown = () => {
                       item={item}
                       cart={cart}
                       key={item.id}
-                      className="border-b first:pt-0 py-3.5 last:border-none"
+                      className="border-b py-3.5 first:pt-0 last:border-none"
                     />
                   ))}
               </div>
-              <div className="flex flex-col gap-y-4 text-small-regular p-3">
+              <div className="text-small-regular flex flex-col gap-y-4 p-3">
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col">
                     <Text variant="label" as="span">
@@ -97,8 +93,8 @@ const CartDropdown = () => {
             </>
           ) : (
             <div>
-              <div className="flex py-16 flex-col gap-y-4 items-center justify-center">
-                <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
+              <div className="flex flex-col items-center justify-center gap-y-4 py-16">
+                <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-gray-900 text-white">
                   <span>0</span>
                 </div>
                 <span>Your shopping bag is empty.</span>

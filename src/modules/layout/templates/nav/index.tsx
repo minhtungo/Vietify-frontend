@@ -46,11 +46,11 @@ export default function Nav() {
   return (
     <header
       className={cn(
-        'bg-white z-50 sticky w-full transition-all duration-300 shadow-md',
+        'sticky z-50 w-full bg-white shadow-md transition-all duration-300',
         scrollDirection === 'down' ? '-top-14' : 'top-0'
       )}
     >
-      <div className="max-w-8xl px-4 small:px-6 h-14 flex items-center justify-between">
+      <div className="flex h-14 max-w-8xl items-center justify-between px-4 small:px-6">
         <Link href="/" className="flex items-center">
           <span className="sr-only">Vietify</span>
           <span className="text-xl font-semibold">Vietify</span>
@@ -61,17 +61,17 @@ export default function Nav() {
           <DesktopSearchModal />
         </div>
 
-        <div className="flex gap-5 items-start">
+        <div className="flex items-center gap-4">
           <CartDropdown />
           <Link
             href="/account"
-            className=" text-gray-700 group-hover:text-gray-800"
+            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-200"
           >
-            <UserIcon size={23} aria-hidden="true" />
+            <UserIcon size={22} aria-hidden="true" className="text-gray-700" />
             <span className="sr-only">User</span>
           </Link>
         </div>
-        <div className="small:hidden basis-0 h-full flex items-center">
+        <div className="flex h-full basis-0 items-center small:hidden">
           <Hamburger setOpen={toggle} />
         </div>
       </div>
