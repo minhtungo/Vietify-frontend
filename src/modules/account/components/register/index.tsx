@@ -1,6 +1,6 @@
 import { medusaClient } from '@lib/config';
 import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
-import { Button } from '@modules/common/components/button';
+import Button from '@modules/common/components/button';
 import Input from '@modules/common/components/input';
 import Spinner from '@modules/common/icons/spinner';
 import Link from 'next/link';
@@ -43,21 +43,21 @@ const Register = () => {
   });
 
   return (
-    <div className="max-w-sm flex flex-col items-center">
+    <div className="flex max-w-sm flex-col items-center">
       {isSubmitting && (
-        <div className="z-10 fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
         </div>
       )}
-      <h1 className="text-large-semi uppercase mb-6">
+      <h1 className="text-large-semi mb-6 uppercase">
         Become a Vietify Member
       </h1>
-      <p className="text-center text-base-regular text-gray-700 mb-4">
+      <p className="text-base-regular mb-4 text-center text-gray-700">
         Create your Vietify Member profile, and get access to an enhanced
         shopping experience.
       </p>
-      <form className="w-full flex flex-col" onSubmit={onSubmit}>
-        <div className="flex flex-col w-full gap-y-2">
+      <form className="flex w-full flex-col" onSubmit={onSubmit}>
+        <div className="flex w-full flex-col gap-y-2">
           <Input
             label="First name"
             {...register('first_name', { required: 'First name is required' })}
@@ -94,12 +94,12 @@ const Register = () => {
         </div>
         {authError && (
           <div>
-            <span className="text-rose-500 w-full text-small-regular">
+            <span className="text-small-regular w-full text-rose-500">
               Incorrect email or password.
             </span>
           </div>
         )}
-        <span className="text-center text-gray-700 text-small-regular mt-6">
+        <span className="text-small-regular mt-6 text-center text-gray-700">
           By creating an account, you agree to Vietify&apos;s{' '}
           <Link href="/content/privacy-policy" className="underline">
             Privacy Policy
@@ -112,7 +112,7 @@ const Register = () => {
         </span>
         <Button className="mt-6 w-full uppercase">Join Us</Button>
       </form>
-      <span className="text-center text-gray-700 text-small-regular mt-6">
+      <span className="text-small-regular mt-6 text-center text-gray-700">
         Already a member?{' '}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}

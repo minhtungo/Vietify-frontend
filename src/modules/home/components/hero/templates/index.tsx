@@ -7,10 +7,12 @@ const Hero = () => {
   return (
     <>
       <Carousel
-        autoplay={true}
+        autoplay={{ delay: 5000 }}
         pagination={{
           clickable: true,
         }}
+        speed={1100}
+        loop
         prevActivateId="prev-banner-carousel-button"
         nextActivateId="next-banner-carousel-button"
         prevButtonClassName="left-2 lg:left-2.5"

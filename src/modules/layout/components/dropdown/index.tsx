@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@modules/common/components/button';
+import Button from '@modules/common/components/button';
 import {
   DropdownMenu,
   DropdownMenuContent,

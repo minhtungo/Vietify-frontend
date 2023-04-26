@@ -27,7 +27,7 @@ const CartDropdown = () => {
       onMouseLeave={close}
     >
       <Popover>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <button className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-200">
             <CartIcon className="text-gray-600" size={24} aria-hidden="true" />
             <span className="absolute right-[2px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand text-[10px] font-medium leading-none text-brand-light">
@@ -38,7 +38,7 @@ const CartDropdown = () => {
             </span>
           </button>
         </PopoverTrigger>
-        <PopoverContent className="hidden w-[410px] small:block">
+        <PopoverContent className="mt-[2px] hidden w-[410px] small:block">
           <Heading className="p-3">Shopping Cart</Heading>
           {cart && items?.length ? (
             <>
