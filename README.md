@@ -1,4 +1,4 @@
-# Vietify eCommerce Storefront 
+# Vietify eCommerce Storefront
 
 <p align="center">
   <a href="https://www.medusajs.com">
@@ -120,16 +120,16 @@ yarn add algoliasearch
 After this you will need to switch the current MeiliSearch `SearchClient` out with a Alogolia client. To do this update `@lib/search-client`.
 
 ```ts
-import algoliasearch from "algoliasearch/lite"
+import algoliasearch from 'algoliasearch/lite';
 
-const appId = process.env.NEXT_PUBLIC_SEARCH_APP_ID || "test_app_id" // You should add this to your environment variables
+const appId = process.env.NEXT_PUBLIC_SEARCH_APP_ID || 'test_app_id'; // You should add this to your environment variables
 
-const apiKey = process.env.NEXT_PUBLIC_SEARCH_API_KEY || "test_key"
+const apiKey = process.env.NEXT_PUBLIC_SEARCH_API_KEY || 'test_key';
 
-export const searchClient = algoliasearch(appId, apiKey)
+export const searchClient = algoliasearch(appId, apiKey);
 
 export const SEARCH_INDEX_NAME =
-  process.env.NEXT_PUBLIC_INDEX_NAME || "products"
+  process.env.NEXT_PUBLIC_INDEX_NAME || 'products';
 ```
 
 After this you will need to set up Algolia with your Medusa server, and then you should be good to go. For a more thorough walkthrough of using Algolia with Medusa – [see our documentation](https://docs.medusajs.com/add-plugins/algolia), and the [documentation for using `react-instantsearch-hooks-web`](https://www.algolia.com/doc/guides/building-search-ui/getting-started/react-hooks/).

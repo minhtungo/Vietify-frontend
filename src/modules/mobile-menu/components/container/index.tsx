@@ -1,13 +1,13 @@
-import { Dialog, Transition } from "@headlessui/react"
-import { useMobileMenu } from "@lib/context/mobile-menu-context"
-import { Fragment } from "react"
+import { Dialog, Transition } from '@headlessui/react';
+import { useMobileMenu } from '@lib/context/mobile-menu-context';
+import { Fragment } from 'react';
 
 type ContainerProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const Container = ({ children }: ContainerProps) => {
-  const { state, close } = useMobileMenu()
+  const { state, close } = useMobileMenu();
   return (
     <Transition.Root show={state} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 flex z-50" onClose={close}>
@@ -42,7 +42,7 @@ const Container = ({ children }: ContainerProps) => {
         </Transition.Child>
       </Dialog>
     </Transition.Root>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;

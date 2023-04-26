@@ -1,33 +1,33 @@
 import NativeSelect, {
   NativeSelectProps,
-} from "@modules/common/components/native-select"
-import { useCart, useRegions } from "medusa-react"
-import { forwardRef, useImperativeHandle, useMemo, useRef } from "react"
+} from '@modules/common/components/native-select';
+import { useCart, useRegions } from 'medusa-react';
+import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 
 const CountrySelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
-  ({ placeholder = "Country", ...props }, ref) => {
-    const innerRef = useRef<HTMLSelectElement>(null)
+  ({ placeholder = 'Country', ...props }, ref) => {
+    const innerRef = useRef<HTMLSelectElement>(null);
 
     useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
       ref,
       () => innerRef.current
-    )
+    );
 
-    const { regions } = useRegions()
-    const { cart } = useCart()
+    const { regions } = useRegions();
+    const { cart } = useCart();
 
     const countryOptions = useMemo(() => {
-      const currentRegion = regions?.find((r) => r.id === cart?.region_id)
+      const currentRegion = regions?.find((r) => r.id === cart?.region_id);
 
       if (!currentRegion) {
-        return []
+        return [];
       }
 
       return currentRegion.countries.map((country) => ({
         value: country.iso_2,
         label: country.display_name,
-      }))
-    }, [regions, cart])
+      }));
+    }, [regions, cart]);
 
     return (
       <NativeSelect ref={innerRef} placeholder={placeholder} {...props}>
@@ -37,10 +37,10 @@ const CountrySelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           </option>
         ))}
       </NativeSelect>
-    )
+    );
   }
-)
+);
 
-CountrySelect.displayName = "CountrySelect"
+CountrySelect.displayName = 'CountrySelect';
 
-export default CountrySelect
+export default CountrySelect;

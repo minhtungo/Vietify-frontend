@@ -1,21 +1,21 @@
-import { Listbox, Transition } from "@headlessui/react"
-import { useStore } from "@lib/context/store-context"
-import useToggleState from "@lib/hooks/use-toggle-state"
-import { useRegions } from "medusa-react"
-import { Fragment, useEffect, useMemo, useState } from "react"
-import ReactCountryFlag from "react-country-flag"
+import { Listbox, Transition } from '@headlessui/react';
+import { useStore } from '@lib/context/store-context';
+import useToggleState from '@lib/hooks/use-toggle-state';
+import { useRegions } from 'medusa-react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
+import ReactCountryFlag from 'react-country-flag';
 
 type CountryOption = {
-  country: string
-  region: string
-  label: string
-}
+  country: string;
+  region: string;
+  label: string;
+};
 
 const CountrySelect = () => {
-  const { countryCode, setRegion } = useStore()
-  const { regions } = useRegions()
-  const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
-  const { state, open, close } = useToggleState()
+  const { countryCode, setRegion } = useStore();
+  const { regions } = useRegions();
+  const [current, setCurrent] = useState<CountryOption | undefined>(undefined);
+  const { state, open, close } = useToggleState();
 
   const options: CountryOption[] | undefined = useMemo(() => {
     return regions
@@ -24,22 +24,22 @@ const CountrySelect = () => {
           country: c.iso_2,
           region: r.id,
           label: c.display_name,
-        }))
+        }));
       })
-      .flat()
-  }, [regions])
+      .flat();
+  }, [regions]);
 
   useEffect(() => {
     if (countryCode) {
-      const option = options?.find((o) => o.country === countryCode)
-      setCurrent(option)
+      const option = options?.find((o) => o.country === countryCode);
+      setCurrent(option);
     }
-  }, [countryCode, options])
+  }, [countryCode, options]);
 
   const handleChange = (option: CountryOption) => {
-    setRegion(option.region, option.country)
-    close()
-  }
+    setRegion(option.region, option.country);
+    close();
+  };
 
   return (
     <div onMouseEnter={open} onMouseLeave={close}>
@@ -59,8 +59,8 @@ const CountrySelect = () => {
                 <ReactCountryFlag
                   svg
                   style={{
-                    width: "16px",
-                    height: "16px",
+                    width: '16px',
+                    height: '16px',
                   }}
                   countryCode={current.country}
                 />
@@ -91,21 +91,21 @@ const CountrySelect = () => {
                     <ReactCountryFlag
                       svg
                       style={{
-                        width: "16px",
-                        height: "16px",
+                        width: '16px',
+                        height: '16px',
                       }}
                       countryCode={o.country}
-                    />{" "}
+                    />{' '}
                     {o.label}
                   </Listbox.Option>
-                )
+                );
               })}
             </Listbox.Options>
           </Transition>
         </div>
       </Listbox>
     </div>
-  )
-}
+  );
+};
 
-export default CountrySelect
+export default CountrySelect;

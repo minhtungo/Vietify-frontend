@@ -1,8 +1,8 @@
-import { useCheckout } from "@lib/context/checkout-context"
-import Spinner from "@modules/common/icons/spinner"
-import { useEffect } from "react"
-import PaymentContainer from "../payment-container"
-import StepContainer from "../step-container"
+import { useCheckout } from '@lib/context/checkout-context';
+import Spinner from '@modules/common/icons/spinner';
+import { useEffect } from 'react';
+import PaymentContainer from '../payment-container';
+import StepContainer from '../step-container';
 
 const Payment = () => {
   const {
@@ -10,28 +10,28 @@ const Payment = () => {
     setPaymentSession,
     initPayment,
     sameAsBilling: { state: isSame },
-  } = useCheckout()
+  } = useCheckout();
 
   /**
    * Fallback if the payment session are not loaded properly we
    * retry to load them after a 5 second delay.
    */
   useEffect(() => {
-    let timeout: NodeJS.Timeout | null = null
+    let timeout: NodeJS.Timeout | null = null;
 
     if (cart?.shipping_address && cart?.payment_sessions) {
       timeout = setTimeout(() => {
-        initPayment()
-      }, 5000)
+        initPayment();
+      }, 5000);
     }
 
     return () => {
       if (timeout) {
-        clearTimeout(timeout)
+        clearTimeout(timeout);
       }
-    }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart])
+  }, [cart]);
 
   return (
     <StepContainer
@@ -47,7 +47,7 @@ const Payment = () => {
         {cart?.payment_sessions?.length ? (
           cart.payment_sessions
             .sort((a, b) => {
-              return a.provider_id > b.provider_id ? 1 : -1
+              return a.provider_id > b.provider_id ? 1 : -1;
             })
             .map((paymentSession) => {
               return (
@@ -62,7 +62,7 @@ const Payment = () => {
                     setPaymentSession(paymentSession.provider_id)
                   }
                 />
-              )
+              );
             })
         ) : (
           <div className="flex flex-col items-center justify-center px-4 py-16 text-gray-900">
@@ -71,7 +71,7 @@ const Payment = () => {
         )}
       </div>
     </StepContainer>
-  )
-}
+  );
+};
 
-export default Payment
+export default Payment;

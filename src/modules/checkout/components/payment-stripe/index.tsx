@@ -2,13 +2,13 @@ import {
   CardCvcElement,
   CardExpiryElement,
   CardNumberElement,
-} from "@stripe/react-stripe-js"
+} from '@stripe/react-stripe-js';
 import {
   StripeCardCvcElementOptions,
   StripeCardExpiryElementOptions,
   StripeCardNumberElementOptions,
-} from "@stripe/stripe-js"
-import React, { useMemo } from "react"
+} from '@stripe/stripe-js';
+import React, { useMemo } from 'react';
 
 const PaymentStripe: React.FC = () => {
   const useOptions:
@@ -18,16 +18,16 @@ const PaymentStripe: React.FC = () => {
     return {
       style: {
         base: {
-          fontFamily: "var(--font-inter), sans-serif",
-          color: "#424270",
-          padding: "10px 12px",
-          "::placeholder": {
-            color: "#CFD7E0",
+          fontFamily: 'var(--font-inter), sans-serif',
+          color: '#424270',
+          padding: '10px 12px',
+          '::placeholder': {
+            color: '#CFD7E0',
           },
         },
       },
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div>
@@ -39,13 +39,13 @@ const PaymentStripe: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const CardNumber = ({
   options,
 }: {
-  options: StripeCardNumberElementOptions
+  options: StripeCardNumberElementOptions;
 }) => {
   return (
     <div className="border-b border-gray-200 py-2 relative">
@@ -54,13 +54,13 @@ const CardNumber = ({
       </span>
       <CardNumberElement options={options} />
     </div>
-  )
-}
+  );
+};
 
 const CardExpiry = ({
   options,
 }: {
-  options: StripeCardExpiryElementOptions
+  options: StripeCardExpiryElementOptions;
 }) => {
   return (
     <div className="border-b border-gray-200 w-full py-2 relative">
@@ -69,8 +69,8 @@ const CardExpiry = ({
       </span>
       <CardExpiryElement options={options} />
     </div>
-  )
-}
+  );
+};
 
 const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
   return (
@@ -78,9 +78,9 @@ const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
       <span className="absolute -top-6 text-gray-700 text-base-regular">
         CVC
       </span>
-      <CardCvcElement options={{ ...options, placeholder: "123" }} />
+      <CardCvcElement options={{ ...options, placeholder: '123' }} />
     </div>
-  )
-}
+  );
+};
 
-export default PaymentStripe
+export default PaymentStripe;

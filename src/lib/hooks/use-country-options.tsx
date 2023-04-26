@@ -1,14 +1,14 @@
-import { useRegions } from "medusa-react"
-import { useMemo } from "react"
+import { useRegions } from 'medusa-react';
+import { useMemo } from 'react';
 
 type CountryOption = {
-  country: string
-  region: string
-  label: string
-}
+  country: string;
+  region: string;
+  label: string;
+};
 
 const useCountryOptions = () => {
-  const { regions } = useRegions()
+  const { regions } = useRegions();
 
   const options: CountryOption[] | undefined = useMemo(() => {
     return regions
@@ -17,12 +17,12 @@ const useCountryOptions = () => {
           country: c.iso_2,
           region: r.id,
           label: c.display_name,
-        }))
+        }));
       })
-      .flat()
-  }, [regions])
+      .flat();
+  }, [regions]);
 
-  return options
-}
+  return options;
+};
 
-export default useCountryOptions
+export default useCountryOptions;

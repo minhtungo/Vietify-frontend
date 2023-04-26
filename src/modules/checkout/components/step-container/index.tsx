@@ -1,13 +1,13 @@
-import { Disclosure } from "@headlessui/react"
-import { useCheckout } from "@lib/context/checkout-context"
-import clsx from "clsx"
+import { Disclosure } from '@headlessui/react';
+import { useCheckout } from '@lib/context/checkout-context';
+import clsx from 'clsx';
 
 type StepContainerProps = {
-  index: number
-  title: string
-  closedState?: React.ReactNode
-  children?: React.ReactNode
-} & React.HTMLAttributes<HTMLDivElement>
+  index: number;
+  title: string;
+  closedState?: React.ReactNode;
+  children?: React.ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const StepContainer = ({
   index,
@@ -19,12 +19,12 @@ const StepContainer = ({
 }: StepContainerProps) => {
   const {
     editAddresses: { state },
-  } = useCheckout()
+  } = useCheckout();
   return (
     <div>
       <div
-        className={clsx("bg-white", className, {
-          "opacity-50 pointer-events-none select-none": state,
+        className={clsx('bg-white', className, {
+          'opacity-50 pointer-events-none select-none': state,
         })}
         {...props}
       >
@@ -38,10 +38,10 @@ const StepContainer = ({
           <Disclosure.Panel
             static
             className={clsx(
-              "transition-[max-height,opacity] duration-700 ease-in-out overflow-hidden",
+              'transition-[max-height,opacity] duration-700 ease-in-out overflow-hidden',
               {
-                "max-h-[9999px] opacity-100": !state,
-                "max-h-0 opacity-0": state,
+                'max-h-[9999px] opacity-100': !state,
+                'max-h-0 opacity-0': state,
               }
             )}
           >
@@ -50,10 +50,10 @@ const StepContainer = ({
           <Disclosure.Panel
             static
             className={clsx(
-              "transition-[max-height,opacity] duration-700 ease-in-out overflow-hidden",
+              'transition-[max-height,opacity] duration-700 ease-in-out overflow-hidden',
               {
-                "max-h-[9999px] opacity-100": state,
-                "max-h-0 opacity-0": !state,
+                'max-h-[9999px] opacity-100': state,
+                'max-h-0 opacity-0': !state,
               }
             )}
           >
@@ -62,7 +62,7 @@ const StepContainer = ({
         </Disclosure>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default StepContainer
+export default StepContainer;

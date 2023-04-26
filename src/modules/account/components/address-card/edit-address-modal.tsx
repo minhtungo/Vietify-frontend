@@ -1,45 +1,45 @@
-import { medusaClient } from "@lib/config"
-import { useAccount } from "@lib/context/account-context"
-import useToggleState from "@lib/hooks/use-toggle-state"
-import { Address } from "@medusajs/medusa"
-import CountrySelect from "@modules/checkout/components/country-select"
-import Button from "@modules/common/components/button"
-import Input from "@modules/common/components/input"
-import Modal from "@modules/common/components/modal"
-import Edit from "@modules/common/icons/edit"
-import Spinner from "@modules/common/icons/spinner"
-import Trash from "@modules/common/icons/trash"
-import clsx from "clsx"
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
+import { medusaClient } from '@lib/config';
+import { useAccount } from '@lib/context/account-context';
+import useToggleState from '@lib/hooks/use-toggle-state';
+import { Address } from '@medusajs/medusa';
+import CountrySelect from '@modules/checkout/components/country-select';
+import Button from '@modules/common/components/button';
+import Input from '@modules/common/components/input';
+import Modal from '@modules/common/components/modal';
+import Edit from '@modules/common/icons/edit';
+import Spinner from '@modules/common/icons/spinner';
+import Trash from '@modules/common/icons/trash';
+import clsx from 'clsx';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 type FormValues = {
-  first_name: string
-  last_name: string
-  city: string
-  country_code: string
-  postal_code: string
-  province?: string
-  address_1: string
-  address_2?: string
-  phone?: string
-  company?: string
-}
+  first_name: string;
+  last_name: string;
+  city: string;
+  country_code: string;
+  postal_code: string;
+  province?: string;
+  address_1: string;
+  address_2?: string;
+  phone?: string;
+  company?: string;
+};
 
 type EditAddressProps = {
-  address: Address
-  isActive?: boolean
-}
+  address: Address;
+  isActive?: boolean;
+};
 
 const EditAddress: React.FC<EditAddressProps> = ({
   address,
   isActive = false,
 }) => {
-  const { state, open, close } = useToggleState(false)
-  const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | undefined>(undefined)
+  const { state, open, close } = useToggleState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | undefined>(undefined);
 
-  const { refetchCustomer } = useAccount()
+  const { refetchCustomer } = useAccount();
   const {
     register,
     handleSubmit,
@@ -57,52 +57,52 @@ const EditAddress: React.FC<EditAddressProps> = ({
       company: address.company || undefined,
       province: address.province || undefined,
     },
-  })
+  });
 
   const submit = handleSubmit(async (data: FormValues) => {
-    setSubmitting(true)
-    setError(undefined)
+    setSubmitting(true);
+    setError(undefined);
 
     const payload = {
       first_name: data.first_name,
       last_name: data.last_name,
-      company: data.company || "Personal",
+      company: data.company || 'Personal',
       address_1: data.address_1,
-      address_2: data.address_2 || "",
+      address_2: data.address_2 || '',
       city: data.city,
       country_code: data.country_code,
-      province: data.province || "",
+      province: data.province || '',
       postal_code: data.postal_code,
-      phone: data.phone || "None",
+      phone: data.phone || 'None',
       metadata: {},
-    }
+    };
 
     medusaClient.customers.addresses
       .updateAddress(address.id, payload)
       .then(() => {
-        setSubmitting(false)
-        refetchCustomer()
-        close()
+        setSubmitting(false);
+        refetchCustomer();
+        close();
       })
       .catch(() => {
-        setSubmitting(false)
-        setError("Failed to update address, please try again.")
-      })
-  })
+        setSubmitting(false);
+        setError('Failed to update address, please try again.');
+      });
+  });
 
   const removeAddress = () => {
     medusaClient.customers.addresses.deleteAddress(address.id).then(() => {
-      refetchCustomer()
-    })
-  }
+      refetchCustomer();
+    });
+  };
 
   return (
     <>
       <div
         className={clsx(
-          "border border-gray-200 p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
+          'border border-gray-200 p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors',
           {
-            "border-gray-900": isActive,
+            'border-gray-900': isActive,
           }
         )}
       >
@@ -154,8 +154,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
             <div className="grid grid-cols-2 gap-x-2">
               <Input
                 label="First name"
-                {...register("first_name", {
-                  required: "First name is required",
+                {...register('first_name', {
+                  required: 'First name is required',
                 })}
                 required
                 errors={errors}
@@ -163,19 +163,19 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
               <Input
                 label="Last name"
-                {...register("last_name", {
-                  required: "Last name is required",
+                {...register('last_name', {
+                  required: 'Last name is required',
                 })}
                 required
                 errors={errors}
                 autoComplete="family-name"
               />
             </div>
-            <Input label="Company" {...register("company")} errors={errors} />
+            <Input label="Company" {...register('company')} errors={errors} />
             <Input
               label="Address"
-              {...register("address_1", {
-                required: "Address is required",
+              {...register('address_1', {
+                required: 'Address is required',
               })}
               required
               errors={errors}
@@ -183,15 +183,15 @@ const EditAddress: React.FC<EditAddressProps> = ({
             />
             <Input
               label="Apartment, suite, etc."
-              {...register("address_2")}
+              {...register('address_2')}
               errors={errors}
               autoComplete="address-line2"
             />
             <div className="grid grid-cols-[144px_1fr] gap-x-2">
               <Input
                 label="Postal code"
-                {...register("postal_code", {
-                  required: "Postal code is required",
+                {...register('postal_code', {
+                  required: 'Postal code is required',
                 })}
                 required
                 errors={errors}
@@ -199,8 +199,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
               <Input
                 label="City"
-                {...register("city", {
-                  required: "City is required",
+                {...register('city', {
+                  required: 'City is required',
                 })}
                 errors={errors}
                 required
@@ -209,17 +209,17 @@ const EditAddress: React.FC<EditAddressProps> = ({
             </div>
             <Input
               label="Province / State"
-              {...register("province")}
+              {...register('province')}
               errors={errors}
               autoComplete="address-level1"
             />
             <CountrySelect
-              {...register("country_code", { required: true })}
+              {...register('country_code', { required: true })}
               autoComplete="country"
             />
             <Input
               label="Phone"
-              {...register("phone")}
+              {...register('phone')}
               errors={errors}
               autoComplete="phone"
             />
@@ -239,7 +239,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default EditAddress
+export default EditAddress;

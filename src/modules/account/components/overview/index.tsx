@@ -1,15 +1,15 @@
-import { Customer, Order } from "@medusajs/medusa"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import MapPin from "@modules/common/icons/map-pin"
-import Package from "@modules/common/icons/package"
-import User from "@modules/common/icons/user"
-import { formatAmount } from "medusa-react"
-import Link from "next/link"
+import { Customer, Order } from '@medusajs/medusa';
+import ChevronDown from '@modules/common/icons/chevron-down';
+import MapPin from '@modules/common/icons/map-pin';
+import Package from '@modules/common/icons/package';
+import User from '@modules/common/icons/user';
+import { formatAmount } from 'medusa-react';
+import Link from 'next/link';
 
 type OverviewProps = {
-  orders?: Order[]
-  customer?: Omit<Customer, "password_hash">
-}
+  orders?: Order[];
+  customer?: Omit<Customer, 'password_hash'>;
+};
 
 const Overview = ({ orders, customer }: OverviewProps) => {
   return (
@@ -23,40 +23,37 @@ const Overview = ({ orders, customer }: OverviewProps) => {
             <li>
               <Link
                 href="/account/profile"
-                className="flex items-center justify-between py-4 border-b border-gray-200 px-8">
-
+                className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+              >
                 <div className="flex items-center gap-x-2">
                   <User size={16} />
                   <span>Profile</span>
                 </div>
                 <ChevronDown className="transform -rotate-90" />
-
               </Link>
             </li>
             <li>
               <Link
                 href="/account/addresses"
-                className="flex items-center justify-between py-4 border-b border-gray-200 px-8">
-
+                className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+              >
                 <div className="flex items-center gap-x-2">
                   <MapPin size={16} />
                   <span>Addresses</span>
                 </div>
                 <ChevronDown className="transform -rotate-90" />
-
               </Link>
             </li>
             <li>
               <Link
                 href="/account/orders"
-                className="flex items-center justify-between py-4 border-b border-gray-200 px-8">
-
+                className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+              >
                 <div className="flex items-center gap-x-2">
                   <Package size={16} />
                   <span>Orders</span>
                 </div>
                 <ChevronDown className="transform -rotate-90" />
-
               </Link>
             </li>
           </ul>
@@ -67,7 +64,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
         <div className="text-xl-semi flex justify-between items-start mb-4">
           <span>Hello {customer?.first_name}</span>
           <span className="text-small-regular text-gray-700">
-            Signed in as:{" "}
+            Signed in as:{' '}
             <span className="font-semibold">{customer?.email}</span>
           </span>
         </div>
@@ -109,12 +106,9 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                     return (
                       <li key={order.id}>
                         <Link href={`/order/details/${order.id}`}>
-
                           <div className="bg-gray-50 flex justify-between items-center p-4">
                             <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1">
-                              <span className="font-semibold">
-                                Date placed
-                              </span>
+                              <span className="font-semibold">Date placed</span>
                               <span className="font-semibold">
                                 Order number
                               </span>
@@ -143,7 +137,6 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                               <ChevronDown className="-rotate-90" />
                             </button>
                           </div>
-
                         </Link>
                       </li>
                     );
@@ -158,32 +151,32 @@ const Overview = ({ orders, customer }: OverviewProps) => {
       </div>
     </div>
   );
-}
+};
 
-const getProfileCompletion = (customer?: Omit<Customer, "password_hash">) => {
-  let count = 0
+const getProfileCompletion = (customer?: Omit<Customer, 'password_hash'>) => {
+  let count = 0;
 
   if (!customer) {
-    return 0
+    return 0;
   }
 
   if (customer.email) {
-    count++
+    count++;
   }
 
   if (customer.first_name && customer.last_name) {
-    count++
+    count++;
   }
 
   if (customer.phone) {
-    count++
+    count++;
   }
 
   if (customer.billing_address) {
-    count++
+    count++;
   }
 
-  return (count / 4) * 100
-}
+  return (count / 4) * 100;
+};
 
-export default Overview
+export default Overview;

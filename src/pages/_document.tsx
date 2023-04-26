@@ -1,10 +1,10 @@
-import { MEDUSA_BACKEND_URL } from "@lib/config"
-import Document, { Head, Html, Main, NextScript } from "next/document"
+import { MEDUSA_BACKEND_URL } from '@lib/config';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   render() {
-    const uri = MEDUSA_BACKEND_URL
-    const { hostname } = new URL(uri)
+    const uri = MEDUSA_BACKEND_URL;
+    const { hostname } = new URL(uri);
 
     return (
       <Html lang="en">
@@ -25,8 +25,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;

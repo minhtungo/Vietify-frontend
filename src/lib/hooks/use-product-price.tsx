@@ -1,14 +1,14 @@
-import { formatAmount, useCart, useProducts } from "medusa-react"
-import { useMemo } from "react"
-import { CalculatedVariant } from "types/medusa"
+import { formatAmount, useCart, useProducts } from 'medusa-react';
+import { useMemo } from 'react';
+import { CalculatedVariant } from 'types/medusa';
 
 type useProductPriceProps = {
-  id: string
-  variantId?: string
-}
+  id: string;
+  variantId?: string;
+};
 
 const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
-  const { cart } = useCart()
+  const { cart } = useCart();
 
   const { products, isLoading, isError } = useProducts(
     {
@@ -16,27 +16,27 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
       cart_id: cart?.id,
     },
     { enabled: !!cart }
-  )
+  );
 
-  const product = products?.[0]
+  const product = products?.[0];
 
   const getPercentageDiff = (original: number, calculated: number) => {
-    const diff = original - calculated
-    const decrease = (diff / original) * 100
+    const diff = original - calculated;
+    const decrease = (diff / original) * 100;
 
-    return decrease.toFixed()
-  }
+    return decrease.toFixed();
+  };
 
   const cheapestPrice = useMemo(() => {
     if (!product || !product.variants?.length || !cart?.region) {
-      return null
+      return null;
     }
 
-    const variants = product.variants as CalculatedVariant[]
+    const variants = product.variants as CalculatedVariant[];
 
     const cheapestVariant = variants.reduce((prev, curr) => {
-      return prev.calculated_price < curr.calculated_price ? prev : curr
-    })
+      return prev.calculated_price < curr.calculated_price ? prev : curr;
+    });
 
     return {
       calculated_price: formatAmount({
@@ -54,20 +54,20 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         cheapestVariant.original_price,
         cheapestVariant.calculated_price
       ),
-    }
-  }, [product, cart])
+    };
+  }, [product, cart]);
 
   const variantPrice = useMemo(() => {
     if (!product || !variantId || !cart?.region) {
-      return null
+      return null;
     }
 
     const variant = product.variants.find(
       (v) => v.id === variantId || v.sku === variantId
-    ) as CalculatedVariant
+    ) as CalculatedVariant;
 
     if (!variant) {
-      return null
+      return null;
     }
 
     return {
@@ -86,8 +86,8 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         variant.original_price,
         variant.calculated_price
       ),
-    }
-  }, [product, variantId, cart])
+    };
+  }, [product, variantId, cart]);
 
   return {
     product,
@@ -95,7 +95,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
     variantPrice,
     isLoading,
     isError,
-  }
-}
+  };
+};
 
-export default useProductPrice
+export default useProductPrice;

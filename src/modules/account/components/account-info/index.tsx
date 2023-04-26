@@ -1,19 +1,19 @@
-import { Disclosure } from "@headlessui/react"
-import useToggleState from "@lib/hooks/use-toggle-state"
-import { Button } from "@modules/common/components/button"
-import clsx from "clsx"
-import { useEffect } from "react"
+import { Disclosure } from '@headlessui/react';
+import useToggleState from '@lib/hooks/use-toggle-state';
+import { Button } from '@modules/common/components/button';
+import clsx from 'clsx';
+import { useEffect } from 'react';
 
 type AccountInfoProps = {
-  label: string
-  currentInfo: string | React.ReactNode
-  isLoading?: boolean
-  isSuccess?: boolean
-  isError?: boolean
-  errorMessage?: string
-  clearState: () => void
-  children?: React.ReactNode
-}
+  label: string;
+  currentInfo: string | React.ReactNode;
+  isLoading?: boolean;
+  isSuccess?: boolean;
+  isError?: boolean;
+  errorMessage?: string;
+  clearState: () => void;
+  children?: React.ReactNode;
+};
 
 const AccountInfo = ({
   label,
@@ -22,21 +22,21 @@ const AccountInfo = ({
   isSuccess,
   isError,
   clearState,
-  errorMessage = "An error occurred, please try again",
+  errorMessage = 'An error occurred, please try again',
   children,
 }: AccountInfoProps) => {
-  const { state, close, toggle } = useToggleState()
+  const { state, close, toggle } = useToggleState();
 
   const handleToggle = () => {
-    clearState()
-    setTimeout(() => toggle(), 100)
-  }
+    clearState();
+    setTimeout(() => toggle(), 100);
+  };
 
   useEffect(() => {
     if (isSuccess) {
-      close()
+      close();
     }
-  }, [isSuccess, close])
+  }, [isSuccess, close]);
 
   return (
     <div className="text-small-regular">
@@ -44,7 +44,7 @@ const AccountInfo = ({
         <div className="flex flex-col">
           <span className="uppercase text-gray-700">{label}</span>
           <div className="flex items-center flex-1 basis-0 justify-end gap-x-4">
-            {typeof currentInfo === "string" ? (
+            {typeof currentInfo === 'string' ? (
               <span className="font-semibold">{currentInfo}</span>
             ) : (
               currentInfo
@@ -56,9 +56,9 @@ const AccountInfo = ({
             variant="secondary"
             className="w-[100px] min-h-[25px] py-1"
             onClick={handleToggle}
-            type={state ? "reset" : "button"}
+            type={state ? 'reset' : 'button'}
           >
-            {state ? "Cancel" : "Edit"}
+            {state ? 'Cancel' : 'Edit'}
           </Button>
         </div>
       </div>
@@ -68,10 +68,10 @@ const AccountInfo = ({
         <Disclosure.Panel
           static
           className={clsx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
+            'transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden',
             {
-              "max-h-[1000px] opacity-100": isSuccess,
-              "max-h-0 opacity-0": !isSuccess,
+              'max-h-[1000px] opacity-100': isSuccess,
+              'max-h-0 opacity-0': !isSuccess,
             }
           )}
         >
@@ -86,10 +86,10 @@ const AccountInfo = ({
         <Disclosure.Panel
           static
           className={clsx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
+            'transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden',
             {
-              "max-h-[1000px] opacity-100": isError,
-              "max-h-0 opacity-0": !isError,
+              'max-h-[1000px] opacity-100': isError,
+              'max-h-0 opacity-0': !isError,
             }
           )}
         >
@@ -103,10 +103,10 @@ const AccountInfo = ({
         <Disclosure.Panel
           static
           className={clsx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
+            'transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden',
             {
-              "max-h-[1000px] opacity-100": state,
-              "max-h-0 opacity-0": !state,
+              'max-h-[1000px] opacity-100': state,
+              'max-h-0 opacity-0': !state,
             }
           )}
         >
@@ -125,7 +125,7 @@ const AccountInfo = ({
         </Disclosure.Panel>
       </Disclosure>
     </div>
-  )
-}
+  );
+};
 
-export default AccountInfo
+export default AccountInfo;

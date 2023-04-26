@@ -1,51 +1,51 @@
-import useToggleState from "@lib/hooks/use-toggle-state"
-import { createContext, useContext, useEffect, useState } from "react"
+import useToggleState from '@lib/hooks/use-toggle-state';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface CartDropdownContext {
-  state: boolean
-  open: () => void
-  timedOpen: () => void
-  close: () => void
+  state: boolean;
+  open: () => void;
+  timedOpen: () => void;
+  close: () => void;
 }
 
 export const CartDropdownContext = createContext<CartDropdownContext | null>(
   null
-)
+);
 
 export const CartDropdownProvider = ({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) => {
-  const { state, close, open } = useToggleState()
+  const { state, close, open } = useToggleState();
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined
-  )
+  );
 
   const timedOpen = () => {
-    open()
+    open();
 
-    const timer = setTimeout(close, 5000)
+    const timer = setTimeout(close, 5000);
 
-    setActiveTimer(timer)
-  }
+    setActiveTimer(timer);
+  };
 
   const openAndCancel = () => {
     if (activeTimer) {
-      clearTimeout(activeTimer)
+      clearTimeout(activeTimer);
     }
 
-    open()
-  }
+    open();
+  };
 
   // Clean up the timer when the component unmounts
   useEffect(() => {
     return () => {
       if (activeTimer) {
-        clearTimeout(activeTimer)
+        clearTimeout(activeTimer);
       }
-    }
-  }, [activeTimer])
+    };
+  }, [activeTimer]);
 
   return (
     <CartDropdownContext.Provider
@@ -53,17 +53,17 @@ export const CartDropdownProvider = ({
     >
       {children}
     </CartDropdownContext.Provider>
-  )
-}
+  );
+};
 
 export const useCartDropdown = () => {
-  const context = useContext(CartDropdownContext)
+  const context = useContext(CartDropdownContext);
 
   if (context === null) {
     throw new Error(
-      "useCartDropdown must be used within a CartDropdownProvider"
-    )
+      'useCartDropdown must be used within a CartDropdownProvider'
+    );
   }
 
-  return context
-}
+  return context;
+};

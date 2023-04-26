@@ -1,10 +1,10 @@
-import React from "react"
+import React from 'react';
 
 type CheckboxProps = {
-  checked?: boolean
-  onChange?: () => void
-  label: string
-}
+  checked?: boolean;
+  onChange?: () => void;
+  label: string;
+};
 
 const Checkbox: React.FC<CheckboxProps> = ({
   checked = false,
@@ -24,11 +24,11 @@ const Checkbox: React.FC<CheckboxProps> = ({
         aria-checked={checked}
         className="border border-gray-900 w-5 h-5 flex items-center justify-center"
       >
-        {checked ? "✓" : null}
+        {checked ? '✓' : null}
       </div>
       <span>{label}</span>
     </button>
-  )
-}
+  );
+};
 
-export default Checkbox
+export default Checkbox;

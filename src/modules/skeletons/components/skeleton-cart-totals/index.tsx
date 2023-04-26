@@ -24,7 +24,7 @@ const SkeletonCartTotals = ({ header = true }) => {
         <div className="w-24 h-6 bg-gray-100 mb-4"></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SkeletonCartTotals
+export default SkeletonCartTotals;

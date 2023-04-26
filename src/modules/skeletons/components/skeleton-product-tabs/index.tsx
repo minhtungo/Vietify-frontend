@@ -1,4 +1,4 @@
-import repeat from "@lib/util/repeat"
+import repeat from '@lib/util/repeat';
 
 const SkeletonProductTabs = () => {
   return (
@@ -26,7 +26,7 @@ const SkeletonProductTabs = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SkeletonProductTabs
+export default SkeletonProductTabs;

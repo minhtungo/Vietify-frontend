@@ -1,6 +1,6 @@
-import repeat from "@lib/util/repeat"
-import SkeletonButton from "@modules/skeletons/components/skeleton-button"
-import SkeletonProductTabs from "@modules/skeletons/components/skeleton-product-tabs"
+import repeat from '@lib/util/repeat';
+import SkeletonButton from '@modules/skeletons/components/skeleton-button';
+import SkeletonProductTabs from '@modules/skeletons/components/skeleton-product-tabs';
 
 const SkeletonProductPage = () => {
   return (
@@ -10,7 +10,9 @@ const SkeletonProductPage = () => {
           <div className="flex items-start relative">
             <div className="hidden small:flex flex-col gap-y-4 sticky top-20">
               {repeat(2).map((index) => {
-                return <div key={index} className="h-14 w-12 bg-gray-100"></div>
+                return (
+                  <div key={index} className="h-14 w-12 bg-gray-100"></div>
+                );
               })}
             </div>
             <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
@@ -20,7 +22,7 @@ const SkeletonProductPage = () => {
                     key={index}
                     className="relative aspect-[29/34] w-full bg-gray-100"
                   ></div>
-                )
+                );
               })}
             </div>
           </div>
@@ -48,7 +50,7 @@ const SkeletonProductPage = () => {
                             key={v}
                             className="bg-gray-100 w-[50px] h-[50px]"
                           ></div>
-                        )
+                        );
                       })}
                     </div>
                   </div>
@@ -66,7 +68,7 @@ const SkeletonProductPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SkeletonProductPage
+export default SkeletonProductPage;

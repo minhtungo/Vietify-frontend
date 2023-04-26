@@ -1,12 +1,12 @@
-import { Customer } from "@medusajs/medusa"
-import React from "react"
-import Detail from "../detail-container"
-import EditEmailModal from "./edit-email-modal"
-import EditPasswordModal from "./edit-password-modal"
+import { Customer } from '@medusajs/medusa';
+import React from 'react';
+import Detail from '../detail-container';
+import EditEmailModal from './edit-email-modal';
+import EditPasswordModal from './edit-password-modal';
 
 type LoginDetailsProps = {
-  customer: Omit<Customer, "password_hash">
-}
+  customer: Omit<Customer, 'password_hash'>;
+};
 
 const LoginDetails: React.FC<LoginDetailsProps> = ({ customer }) => {
   return (
@@ -22,7 +22,7 @@ const LoginDetails: React.FC<LoginDetailsProps> = ({ customer }) => {
         </Detail.SubDetail>
       </div>
     </Detail>
-  )
-}
+  );
+};
 
-export default LoginDetails
+export default LoginDetails;

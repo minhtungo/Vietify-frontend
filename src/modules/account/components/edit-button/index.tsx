@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 const EditButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (
   props
@@ -12,7 +12,7 @@ const EditButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (
         Edit
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default EditButton
+export default EditButton;

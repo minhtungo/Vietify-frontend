@@ -1,5 +1,5 @@
-import repeat from "@lib/util/repeat"
-import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
+import repeat from '@lib/util/repeat';
+import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 
 const SkeletonCollectionPage = () => {
   return (
@@ -15,7 +15,7 @@ const SkeletonCollectionPage = () => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default SkeletonCollectionPage
+export default SkeletonCollectionPage;

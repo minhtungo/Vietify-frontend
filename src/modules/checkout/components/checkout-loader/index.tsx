@@ -1,10 +1,10 @@
-import { Dialog, Transition } from "@headlessui/react"
-import { useCheckout } from "@lib/context/checkout-context"
-import noop from "@lib/util/noop"
-import Spinner from "@modules/common/icons/spinner"
+import { Dialog, Transition } from '@headlessui/react';
+import { useCheckout } from '@lib/context/checkout-context';
+import noop from '@lib/util/noop';
+import Spinner from '@modules/common/icons/spinner';
 
 const CheckoutLoader = () => {
-  const { isLoading } = useCheckout()
+  const { isLoading } = useCheckout();
 
   return (
     <Transition show={isLoading}>
@@ -23,7 +23,7 @@ const CheckoutLoader = () => {
         </Transition.Child>
       </Dialog>
     </Transition>
-  )
-}
+  );
+};
 
-export default CheckoutLoader
+export default CheckoutLoader;

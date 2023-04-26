@@ -1,9 +1,9 @@
-import clsx from "clsx"
-import React from "react"
+import clsx from 'clsx';
+import React from 'react';
 
 type HamburgerProps = {
-  setOpen: () => void
-}
+  setOpen: () => void;
+};
 
 const Hamburger: React.FC<HamburgerProps> = ({ setOpen }) => {
   return (
@@ -13,24 +13,24 @@ const Hamburger: React.FC<HamburgerProps> = ({ setOpen }) => {
         <span
           aria-hidden="true"
           className={clsx(
-            "block absolute h-0.5 w-5 rounded-sm bg-current -translate-y-1.5 "
+            'block absolute h-0.5 w-5 rounded-sm bg-current -translate-y-1.5 '
           )}
         ></span>
         <span
           aria-hidden="true"
           className={clsx(
-            "block absolute  h-0.5 w-5 bg-current rounded-sm transform"
+            'block absolute  h-0.5 w-5 bg-current rounded-sm transform'
           )}
         ></span>
         <span
           aria-hidden="true"
           className={clsx(
-            "block absolute  h-0.5 w-5 bg-current rounded-sm translate-y-1.5"
+            'block absolute  h-0.5 w-5 bg-current rounded-sm translate-y-1.5'
           )}
         ></span>
       </div>
     </button>
-  )
-}
+  );
+};
 
-export default Hamburger
+export default Hamburger;

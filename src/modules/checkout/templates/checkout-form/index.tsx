@@ -1,13 +1,13 @@
-import Addresses from "@modules/checkout/components/addresses"
-import Payment from "@modules/checkout/components/payment"
-import Shipping from "@modules/checkout/components/shipping"
-import { useCart } from "medusa-react"
+import Addresses from '@modules/checkout/components/addresses';
+import Payment from '@modules/checkout/components/payment';
+import Shipping from '@modules/checkout/components/shipping';
+import { useCart } from 'medusa-react';
 
 const CheckoutForm = () => {
-  const { cart } = useCart()
+  const { cart } = useCart();
 
   if (!cart?.id) {
-    return null
+    return null;
   }
 
   return (
@@ -26,7 +26,7 @@ const CheckoutForm = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutForm
+export default CheckoutForm;

@@ -1,9 +1,9 @@
-import React from "react"
-import { IconProps } from "types/icon"
+import React from 'react';
+import { IconProps } from 'types/icon';
 
 const Edit: React.FC<IconProps> = ({
-  size = "20",
-  color = "currentColor",
+  size = '20',
+  color = 'currentColor',
   ...attributes
 }) => {
   return (
@@ -30,7 +30,7 @@ const Edit: React.FC<IconProps> = ({
         strokeLinejoin="round"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;

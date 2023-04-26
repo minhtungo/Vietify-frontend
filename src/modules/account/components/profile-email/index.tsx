@@ -1,23 +1,23 @@
-import { useAccount } from "@lib/context/account-context"
-import { Customer } from "@medusajs/medusa"
-import Input from "@modules/common/components/input"
-import { useUpdateMe } from "medusa-react"
-import React, { useEffect } from "react"
-import { useForm, useWatch } from "react-hook-form"
-import AccountInfo from "../account-info"
+import { useAccount } from '@lib/context/account-context';
+import { Customer } from '@medusajs/medusa';
+import Input from '@modules/common/components/input';
+import { useUpdateMe } from 'medusa-react';
+import React, { useEffect } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import AccountInfo from '../account-info';
 
 type MyInformationProps = {
-  customer: Omit<Customer, "password_hash">
-}
+  customer: Omit<Customer, 'password_hash'>;
+};
 
 type UpdateCustomerEmailFormData = {
-  email: string
-}
+  email: string;
+};
 
 const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   const [errorMessage, setErrorMessage] = React.useState<string | undefined>(
     undefined
-  )
+  );
 
   const {
     register,
@@ -29,9 +29,9 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
     defaultValues: {
       email: customer.email,
     },
-  })
+  });
 
-  const { refetchCustomer } = useAccount()
+  const { refetchCustomer } = useAccount();
 
   const {
     mutate: update,
@@ -39,18 +39,18 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
     isSuccess,
     isError,
     reset: clearState,
-  } = useUpdateMe()
+  } = useUpdateMe();
 
   useEffect(() => {
     reset({
       email: customer.email,
-    })
-  }, [customer, reset])
+    });
+  }, [customer, reset]);
 
   const email = useWatch({
     control,
-    name: "email",
-  })
+    name: 'email',
+  });
 
   const updateEmail = (data: UpdateCustomerEmailFormData) => {
     return update(
@@ -60,14 +60,14 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
       },
       {
         onSuccess: () => {
-          refetchCustomer()
+          refetchCustomer();
         },
         onError: () => {
-          setErrorMessage("Email already in use")
+          setErrorMessage('Email already in use');
         },
       }
-    )
-  }
+    );
+  };
 
   return (
     <form onSubmit={handleSubmit(updateEmail)} className="w-full">
@@ -83,7 +83,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
         <div className="grid grid-cols-1 gap-y-2">
           <Input
             label="Email"
-            {...register("email", {
+            {...register('email', {
               required: true,
             })}
             defaultValue={email}
@@ -92,7 +92,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
         </div>
       </AccountInfo>
     </form>
-  )
-}
+  );
+};
 
-export default ProfileEmail
+export default ProfileEmail;

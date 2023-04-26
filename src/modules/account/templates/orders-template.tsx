@@ -1,4 +1,4 @@
-import OrderOverview from "../components/order-overview"
+import OrderOverview from '../components/order-overview';
 
 const OrdersTemplate = () => {
   return (
@@ -14,7 +14,7 @@ const OrdersTemplate = () => {
         <OrderOverview />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrdersTemplate
+export default OrdersTemplate;

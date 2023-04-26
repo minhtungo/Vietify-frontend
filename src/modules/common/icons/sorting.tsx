@@ -1,14 +1,14 @@
-import React from "react"
-import { IconProps } from "types/icon"
+import React from 'react';
+import { IconProps } from 'types/icon';
 
 type SortingIconProps = {
-  ascendingColor?: string
-  descendingColor?: string
-} & IconProps
+  ascendingColor?: string;
+  descendingColor?: string;
+} & IconProps;
 
 const Sorting: React.FC<SortingIconProps> = ({
-  size = "16",
-  color = "currentColor",
+  size = '16',
+  color = 'currentColor',
   ascendingColor,
   descendingColor,
   ...attributes
@@ -37,7 +37,7 @@ const Sorting: React.FC<SortingIconProps> = ({
         strokeLinejoin="round"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default Sorting
+export default Sorting;

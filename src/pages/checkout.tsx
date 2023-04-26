@@ -1,5 +1,5 @@
-import CheckoutTemplate from "@modules/checkout/templates"
-import Head from "@modules/common/components/head"
+import CheckoutTemplate from '@modules/checkout/templates';
+import Head from '@modules/common/components/head';
 
 const Checkout = () => {
   return (
@@ -7,7 +7,7 @@ const Checkout = () => {
       <Head title="Checkout" />
       <CheckoutTemplate />
     </>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;

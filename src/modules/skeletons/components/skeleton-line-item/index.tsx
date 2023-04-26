@@ -12,7 +12,7 @@ const SkeletonLineItem = () => {
         <div className="h-3 w-[65px] bg-gray-200" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SkeletonLineItem
+export default SkeletonLineItem;

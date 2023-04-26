@@ -1,10 +1,10 @@
-import { Cart } from "@medusajs/medusa"
-import { formatAmount } from "medusa-react"
-import React from "react"
+import { Cart } from '@medusajs/medusa';
+import { formatAmount } from 'medusa-react';
+import React from 'react';
 
 type CartTotalsProps = {
-  cart: Omit<Cart, "refundable_amount" | "refunded_total">
-}
+  cart: Omit<Cart, 'refundable_amount' | 'refunded_total'>;
+};
 
 const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
   const {
@@ -14,15 +14,15 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     tax_total,
     shipping_total,
     total,
-  } = cart
+  } = cart;
 
   const getAmount = (amount: number | null | undefined) => {
     return formatAmount({
       amount: amount || 0,
       region: cart.region,
       includeTaxes: false,
-    })
-  }
+    });
+  };
 
   return (
     <div>
@@ -60,7 +60,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartTotals
+export default CartTotals;

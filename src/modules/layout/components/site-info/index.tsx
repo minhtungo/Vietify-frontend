@@ -1,6 +1,6 @@
-import { Disclosure } from "@headlessui/react"
-import clsx from "clsx"
-import React from "react"
+import { Disclosure } from '@headlessui/react';
+import clsx from 'clsx';
+import React from 'react';
 
 const InfoContainer: React.FC<{ label: string }> = ({ label, children }) => {
   return (
@@ -13,8 +13,8 @@ const InfoContainer: React.FC<{ label: string }> = ({ label, children }) => {
         <Collapsible label={label}>{children}</Collapsible>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Collapsible: React.FC<{ label: string }> = ({ label, children }) => {
   return (
@@ -30,10 +30,10 @@ const Collapsible: React.FC<{ label: string }> = ({ label, children }) => {
               <Disclosure.Panel
                 static
                 className={clsx(
-                  "transition-[max-height,opacity] duration-700 ease-in-out overflow-hidden",
+                  'transition-[max-height,opacity] duration-700 ease-in-out overflow-hidden',
                   {
-                    "max-h-[300px] opacity-100": open,
-                    "max-h-0 opacity-0": !open,
+                    'max-h-[300px] opacity-100': open,
+                    'max-h-0 opacity-0': !open,
                   }
                 )}
               >
@@ -42,12 +42,12 @@ const Collapsible: React.FC<{ label: string }> = ({ label, children }) => {
                 </div>
               </Disclosure.Panel>
             </>
-          )
+          );
         }}
       </Disclosure>
     </div>
-  )
-}
+  );
+};
 
 const AnimatedButton = ({ open }: { open: boolean }) => {
   return (
@@ -55,10 +55,10 @@ const AnimatedButton = ({ open }: { open: boolean }) => {
       <div className="bg-gray-900 absolute top-[7px] inset-x-0 h-px" />
       <div
         className={clsx(
-          "bg-gray-900 absolute left-[7px] inset-y-0 w-px transition-all duration-300 ease-out",
-          { "rotate-90": open }
+          'bg-gray-900 absolute left-[7px] inset-y-0 w-px transition-all duration-300 ease-out',
+          { 'rotate-90': open }
         )}
       />
     </div>
-  )
-}
+  );
+};

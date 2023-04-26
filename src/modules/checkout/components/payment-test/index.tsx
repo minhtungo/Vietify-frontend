@@ -1,4 +1,4 @@
-import Alert from "@modules/common/icons/alert"
+import Alert from '@modules/common/icons/alert';
 
 const PaymentTest = () => {
   return (
@@ -11,7 +11,7 @@ const PaymentTest = () => {
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PaymentTest
+export default PaymentTest;

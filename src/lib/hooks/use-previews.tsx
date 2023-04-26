@@ -1,12 +1,12 @@
-import transformProductPreview from "@lib/util/transform-product-preview"
-import { Product, Region } from "@medusajs/medusa"
-import { useMemo } from "react"
-import { InfiniteProductPage, ProductPreviewType } from "types/global"
+import transformProductPreview from '@lib/util/transform-product-preview';
+import { Product, Region } from '@medusajs/medusa';
+import { useMemo } from 'react';
+import { InfiniteProductPage, ProductPreviewType } from 'types/global';
 
 type UsePreviewProps<T> = {
-  pages?: T[]
-  region?: Region
-}
+  pages?: T[];
+  region?: Region;
+};
 
 const usePreviews = <T extends InfiniteProductPage>({
   pages,
@@ -14,23 +14,23 @@ const usePreviews = <T extends InfiniteProductPage>({
 }: UsePreviewProps<T>) => {
   const previews: ProductPreviewType[] = useMemo(() => {
     if (!pages || !region) {
-      return []
+      return [];
     }
 
-    const products: Product[] = []
+    const products: Product[] = [];
 
     for (const page of pages) {
-      products.push(...page.response.products)
+      products.push(...page.response.products);
     }
 
     const transformedProducts = products.map((p) =>
       transformProductPreview(p, region)
-    )
+    );
 
-    return transformedProducts
-  }, [pages, region])
+    return transformedProducts;
+  }, [pages, region]);
 
-  return previews
-}
+  return previews;
+};
 
-export default usePreviews
+export default usePreviews;

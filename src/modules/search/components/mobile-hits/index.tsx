@@ -1,27 +1,27 @@
-import { ProductHit } from "@modules/search/components/hit"
-import React from "react"
+import { ProductHit } from '@modules/search/components/hit';
+import React from 'react';
 import {
   useHits,
   UseHitsProps,
   useSearchBox,
-} from "react-instantsearch-hooks-web"
+} from 'react-instantsearch-hooks-web';
 
-type HitsProps<THit> = React.ComponentProps<"div"> &
+type HitsProps<THit> = React.ComponentProps<'div'> &
   UseHitsProps & {
-    hitComponent: (props: { hit: THit }) => JSX.Element
-  }
+    hitComponent: (props: { hit: THit }) => JSX.Element;
+  };
 
 const MobileHits = ({
   hitComponent: Hit,
   className,
   ...props
 }: HitsProps<ProductHit>) => {
-  const { hits } = useHits(props)
-  const { query } = useSearchBox()
+  const { hits } = useHits(props);
+  const { query } = useSearchBox();
 
   // If the query is empty, we don't want to show the initial hits
   if (!!query === false || !hits.length) {
-    return null
+    return null;
   }
 
   return (
@@ -37,7 +37,7 @@ const MobileHits = ({
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MobileHits
+export default MobileHits;

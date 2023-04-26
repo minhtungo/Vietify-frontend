@@ -1,23 +1,23 @@
-import { useMobileMenu } from "@lib/context/mobile-menu-context"
-import { useStore } from "@lib/context/store-context"
-import useCountryOptions from "@lib/hooks/use-country-options"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import X from "@modules/common/icons/x"
-import ReactCountryFlag from "react-country-flag"
+import { useMobileMenu } from '@lib/context/mobile-menu-context';
+import { useStore } from '@lib/context/store-context';
+import useCountryOptions from '@lib/hooks/use-country-options';
+import ChevronDown from '@modules/common/icons/chevron-down';
+import X from '@modules/common/icons/x';
+import ReactCountryFlag from 'react-country-flag';
 
 const CountryMenu = () => {
   const {
     close,
     screen: [_, setScreen],
-  } = useMobileMenu()
+  } = useMobileMenu();
 
-  const { setRegion } = useStore()
-  const countryOptions = useCountryOptions()
+  const { setRegion } = useStore();
+  const countryOptions = useCountryOptions();
 
   const handleSelectCountry = (regionId: string, countryCode: string) => {
-    setRegion(regionId, countryCode)
-    close()
-  }
+    setRegion(regionId, countryCode);
+    close();
+  };
 
   return (
     <div className="flex flex-col flex-1">
@@ -25,7 +25,7 @@ const CountryMenu = () => {
         <div className="flex-1 basis-0">
           <button
             className="flex items-center gap-x-2"
-            onClick={() => setScreen("main")}
+            onClick={() => setScreen('main')}
           >
             <ChevronDown className="rotate-90 text-gray-700" size={20} />
           </button>
@@ -61,7 +61,7 @@ const CountryMenu = () => {
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CountryMenu
+export default CountryMenu;

@@ -1,9 +1,9 @@
-import React from "react"
-import { IconProps } from "types/icon"
+import React from 'react';
+import { IconProps } from 'types/icon';
 
 const Gift: React.FC<IconProps> = ({
-  size = "20",
-  color = "currentColor",
+  size = '20',
+  color = 'currentColor',
   ...attributes
 }) => {
   return (
@@ -51,7 +51,7 @@ const Gift: React.FC<IconProps> = ({
         strokeLinejoin="round"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default Gift
+export default Gift;

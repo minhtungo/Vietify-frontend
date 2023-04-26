@@ -1,39 +1,39 @@
-import { Cart } from "@medusajs/medusa"
-import Button from "@modules/common/components/button"
-import Input from "@modules/common/components/input"
-import Trash from "@modules/common/icons/trash"
-import { useCart } from "medusa-react"
-import React, { useMemo } from "react"
-import { useForm } from "react-hook-form"
+import { Cart } from '@medusajs/medusa';
+import Button from '@modules/common/components/button';
+import Input from '@modules/common/components/input';
+import Trash from '@modules/common/icons/trash';
+import { useCart } from 'medusa-react';
+import React, { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
 
 type GiftCardFormValues = {
-  gift_card_code: string
-}
+  gift_card_code: string;
+};
 
 type GiftCardProps = {
-  cart?: Omit<Cart, "refundable_amount" | "refunded_total">
-}
+  cart?: Omit<Cart, 'refundable_amount' | 'refunded_total'>;
+};
 
 const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
   const {
     updateCart: { mutate, isLoading },
     setCart,
-  } = useCart()
+  } = useCart();
 
   const {
     register,
     handleSubmit,
     formState: { touchedFields, errors },
     setError,
-  } = useForm<GiftCardFormValues>()
+  } = useForm<GiftCardFormValues>();
 
   const appliedGiftCard = useMemo(() => {
     if (!cart || !cart.gift_cards?.length) {
-      return undefined
+      return undefined;
     }
 
-    return cart.gift_cards[0].code
-  }, [cart])
+    return cart.gift_cards[0].code;
+  }, [cart]);
 
   const onSubmit = (data: GiftCardFormValues) => {
     mutate(
@@ -44,18 +44,18 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
         onSuccess: ({ cart }) => setCart(cart),
         onError: () => {
           setError(
-            "gift_card_code",
+            'gift_card_code',
             {
-              message: "Code is invalid",
+              message: 'Code is invalid',
             },
             {
               shouldFocus: true,
             }
-          )
+          );
         },
       }
-    )
-  }
+    );
+  };
 
   const onRemove = () => {
     mutate(
@@ -65,8 +65,8 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
       {
         onSuccess: ({ cart }) => setCart(cart),
       }
-    )
-  }
+    );
+  };
 
   return (
     <div className="w-full bg-white p-6 flex flex-col">
@@ -96,8 +96,8 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
             <div className="grid grid-cols-[1fr_80px] gap-x-2">
               <Input
                 label="Code"
-                {...register("gift_card_code", {
-                  required: "Code is required",
+                {...register('gift_card_code', {
+                  required: 'Code is required',
                 })}
                 errors={errors}
                 touched={touchedFields}
@@ -116,7 +116,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default GiftCard
+export default GiftCard;

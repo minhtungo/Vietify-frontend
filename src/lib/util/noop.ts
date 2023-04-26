@@ -1,6 +1,6 @@
 /**
  * A funtion that does nothing.
  */
-const noop = () => {}
+const noop = () => {};
 
-export default noop
+export default noop;

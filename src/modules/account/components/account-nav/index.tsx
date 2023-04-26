@@ -1,25 +1,24 @@
-import { useAccount } from "@lib/context/account-context"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import clsx from "clsx"
-import Link from "next/link"
-import { useRouter } from "next/router"
+import { useAccount } from '@lib/context/account-context';
+import ChevronDown from '@modules/common/icons/chevron-down';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const AccountNav = () => {
-  const { route } = useRouter()
-  const { handleLogout } = useAccount()
+  const { route } = useRouter();
+  const { handleLogout } = useAccount();
 
   return (
     <div>
       <div className="small:hidden">
-        {route !== "/account" && (
-          (<Link
+        {route !== '/account' && (
+          <Link
             href="/account"
-            className="flex items-center gap-x-2 text-small-regular py-2">
-
+            className="flex items-center gap-x-2 text-small-regular py-2"
+          >
             <ChevronDown className="transform rotate-90" />
             <span>Account</span>
-
-          </Link>)
+          </Link>
         )}
       </div>
       <div className="hidden small:block">
@@ -60,27 +59,26 @@ const AccountNav = () => {
       </div>
     </div>
   );
-}
+};
 
 type AccountNavLinkProps = {
-  href: string
-  route: string
-  children: React.ReactNode
-}
+  href: string;
+  route: string;
+  children: React.ReactNode;
+};
 
 const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
-  const active = route === href
+  const active = route === href;
   return (
-    (<Link
+    <Link
       href={href}
-      className={clsx("text-gray-700", {
-        "text-gray-900 font-semibold": active,
-      })}>
-
+      className={clsx('text-gray-700', {
+        'text-gray-900 font-semibold': active,
+      })}
+    >
       {children}
-
-    </Link>)
+    </Link>
   );
-}
+};
 
-export default AccountNav
+export default AccountNav;

@@ -1,9 +1,9 @@
-import { useCheckout } from "@lib/context/checkout-context"
-import Button from "@modules/common/components/button"
-import Checkbox from "@modules/common/components/checkbox"
-import Spinner from "@modules/common/icons/spinner"
-import BillingAddress from "../billing_address"
-import ShippingAddress from "../shipping-address"
+import { useCheckout } from '@lib/context/checkout-context';
+import Button from '@modules/common/components/button';
+import Checkbox from '@modules/common/components/checkbox';
+import Spinner from '@modules/common/icons/spinner';
+import BillingAddress from '../billing_address';
+import ShippingAddress from '../shipping-address';
 
 const Addresses = () => {
   const {
@@ -12,7 +12,7 @@ const Addresses = () => {
     setAddresses,
     handleSubmit,
     cart,
-  } = useCheckout()
+  } = useCheckout();
   return (
     <div className="bg-white">
       <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
@@ -60,15 +60,15 @@ const Addresses = () => {
                 <div className="flex items-start justify-between w-full">
                   <div className="flex flex-col">
                     <span>
-                      {cart.shipping_address.first_name}{" "}
+                      {cart.shipping_address.first_name}{' '}
                       {cart.shipping_address.last_name}
                     </span>
                     <span>
-                      {cart.shipping_address.address_1}{" "}
+                      {cart.shipping_address.address_1}{' '}
                       {cart.shipping_address.address_2}
                     </span>
                     <span>
-                      {cart.shipping_address.postal_code},{" "}
+                      {cart.shipping_address.postal_code},{' '}
                       {cart.shipping_address.city}
                     </span>
                     <span>
@@ -115,15 +115,15 @@ const Addresses = () => {
                     <div className="flex items-start justify-between w-full">
                       <div className="flex flex-col">
                         <span>
-                          {cart.billing_address.first_name}{" "}
+                          {cart.billing_address.first_name}{' '}
                           {cart.billing_address.last_name}
                         </span>
                         <span>
-                          {cart.billing_address.address_1}{" "}
+                          {cart.billing_address.address_1}{' '}
                           {cart.billing_address.address_2}
                         </span>
                         <span>
-                          {cart.billing_address.postal_code},{" "}
+                          {cart.billing_address.postal_code},{' '}
                           {cart.billing_address.city}
                         </span>
                         <span>
@@ -150,7 +150,7 @@ const Addresses = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Addresses
+export default Addresses;

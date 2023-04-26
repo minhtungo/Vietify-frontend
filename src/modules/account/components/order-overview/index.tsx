@@ -1,18 +1,18 @@
-import Button from "@modules/common/components/button"
-import Spinner from "@modules/common/icons/spinner"
-import { useCustomerOrders } from "medusa-react"
-import Link from "next/link"
-import OrderCard from "../order-card"
+import Button from '@modules/common/components/button';
+import Spinner from '@modules/common/icons/spinner';
+import { useCustomerOrders } from 'medusa-react';
+import Link from 'next/link';
+import OrderCard from '../order-card';
 
 const OrderOverview = () => {
-  const { orders, isLoading } = useCustomerOrders()
+  const { orders, isLoading } = useCustomerOrders();
 
   if (isLoading) {
     return (
       <div className="text-gray-900 w-full flex justify-center pt-12">
         <Spinner size={36} />
       </div>
-    )
+    );
   }
 
   if (orders?.length) {
@@ -27,14 +27,14 @@ const OrderOverview = () => {
           </div>
         ))}
       </div>
-    )
+    );
   }
 
   return (
     <div className="w-full flex flex-col items-center gap-y-4">
       <h2 className="text-large-semi">Nothing to see here</h2>
       <p className="text-base-regular">
-        You don&apos;t have any orders yet, let us change that {":)"}
+        You don&apos;t have any orders yet, let us change that {':)'}
       </p>
       <div className="mt-4">
         <Link href="/" passHref legacyBehavior>
@@ -43,6 +43,6 @@ const OrderOverview = () => {
       </div>
     </div>
   );
-}
+};
 
-export default OrderOverview
+export default OrderOverview;
