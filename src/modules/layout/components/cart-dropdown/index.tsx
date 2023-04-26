@@ -13,6 +13,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 
 import CartItem from './cart-item';
+import Text from '@modules/common/components/text';
 
 const CartDropdown = () => {
   const { cart, totalItems } = useCart();
@@ -41,33 +42,44 @@ const CartDropdown = () => {
             </span>
           </span>
         </PopoverTrigger>
-        <PopoverContent className="hidden small:block">
-          <Heading className="p-4">Shopping Cart</Heading>
+        <PopoverContent className="hidden small:block w-[410px]">
+          <Heading className="p-3">Shopping Cart</Heading>
           {cart && items?.length ? (
             <>
-              <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar">
+              <div className="overflow-y-scroll max-h-[400px] px-3">
                 {items
                   .sort((a, b) => {
                     return a.created_at > b.created_at ? -1 : 1;
                   })
                   .map((item) => (
-                    <CartItem item={item} cart={cart} key={item.id} />
+                    <CartItem
+                      item={item}
+                      cart={cart}
+                      key={item.id}
+                      className="border-b first:pt-0 py-3.5 last:border-none"
+                    />
                   ))}
               </div>
-              <div className="p-4 flex flex-col gap-y-4 text-small-regular">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-700 font-semibold">
-                    Subtotal <span className="font-normal">(incl. taxes)</span>
-                  </span>
-                  <span className="text-large-semi">
+              <div className="flex flex-col gap-y-4 text-small-regular p-3">
+                <div className="flex items-start justify-between">
+                  <div className="flex flex-col">
+                    <Text variant="label" as="span">
+                      Subtotal
+                    </Text>
+                    <Text as="span" variant="description">
+                      Shipping and taxes calculated at checkout.
+                    </Text>
+                  </div>
+
+                  <Text variant="label" as="span">
                     {formatAmount({
                       amount: cart.subtotal || 0,
                       region: cart.region,
                       includeTaxes: false,
                     })}
-                  </span>
+                  </Text>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                   <Link href="/cart" passHref className="flex-1">
                     <Button variant="outline" className="w-full">
                       View cart

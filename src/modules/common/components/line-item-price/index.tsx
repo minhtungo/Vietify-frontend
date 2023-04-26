@@ -1,29 +1,29 @@
-import { getPercentageDiff } from "@lib/util/get-precentage-diff"
-import { LineItem, Region } from "@medusajs/medusa"
-import clsx from "clsx"
-import { formatAmount } from "medusa-react"
-import { CalculatedVariant } from "types/medusa"
+import { getPercentageDiff } from '@lib/util/get-precentage-diff';
+import { LineItem, Region } from '@medusajs/medusa';
+import clsx from 'clsx';
+import { formatAmount } from 'medusa-react';
+import { CalculatedVariant } from 'types/medusa';
 
 type LineItemPriceProps = {
-  item: Omit<LineItem, "beforeInsert">
-  region: Region
-  style?: "default" | "tight"
-}
+  item: Omit<LineItem, 'beforeInsert'>;
+  region: Region;
+  style?: 'default' | 'tight';
+};
 
 const LineItemPrice = ({
   item,
   region,
-  style = "default",
+  style = 'default',
 }: LineItemPriceProps) => {
   const originalPrice =
-    (item.variant as CalculatedVariant).original_price * item.quantity
-  const hasReducedPrice = (item.total || 0) < originalPrice
+    (item.variant as CalculatedVariant).original_price * item.quantity;
+  const hasReducedPrice = (item.total || 0) < originalPrice;
 
   return (
-    <div className="flex flex-col text-gray-700 text-right">
+    <div className="flex flex-col text-brand-dark text-right">
       <span
-        className={clsx("text-base-regular", {
-          "text-rose-600": hasReducedPrice,
+        className={clsx('text-base-regular', {
+          'text-rose-600': hasReducedPrice,
         })}
       >
         {formatAmount({
@@ -35,7 +35,7 @@ const LineItemPrice = ({
       {hasReducedPrice && (
         <>
           <p>
-            {style === "default" && (
+            {style === 'default' && (
               <span className="text-gray-500">Original: </span>
             )}
             <span className="line-through">
@@ -46,7 +46,7 @@ const LineItemPrice = ({
               })}
             </span>
           </p>
-          {style === "default" && (
+          {style === 'default' && (
             <span className="text-rose-600">
               -{getPercentageDiff(originalPrice, item.total || 0)}%
             </span>
@@ -54,7 +54,7 @@ const LineItemPrice = ({
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default LineItemPrice
+export default LineItemPrice;

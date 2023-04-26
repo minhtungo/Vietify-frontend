@@ -6,6 +6,8 @@ const textVariants = cva('', {
   variants: {
     variant: {
       description: 'text-base-regular text-brand-muted',
+      info: 'text-small-regular text-brand-muted',
+      label: 'text-[15px] text-brand-dark font-semibold',
     },
   },
   defaultVariants: {

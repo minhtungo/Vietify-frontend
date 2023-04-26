@@ -46,7 +46,7 @@ const Categories = ({}) => {
             <NavigationMenuTrigger>
               <BiCategoryAlt className="text-gray-700" size={26} />
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
+            <NavigationMenuContent >
               <ul className="flex flex-col gap-3 min-w-[180px]">
                 {links.map((component) => (
                   <ListItem key={component.title} href={component.href}>

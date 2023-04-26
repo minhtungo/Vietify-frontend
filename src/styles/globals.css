@@ -67,7 +67,7 @@
   }
 
   .text-small-regular {
-    @apply text-xs leading-5 font-normal;
+    @apply text-[13.5px] leading-5 font-normal;
   }
 
   .text-small-semi {
