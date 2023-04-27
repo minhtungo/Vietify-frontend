@@ -45,7 +45,7 @@ const Carousel: FC<CarouselProps> = ({
     <div className={cn('relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
-        breakpoints={banner ? BREAKPOINTS : undefined}
+        breakpoints={BREAKPOINTS}
         navigation={
           navigation
             ? {
@@ -66,7 +66,7 @@ const Carousel: FC<CarouselProps> = ({
       {Boolean(navigation) && (
         <div
           className={cn(
-            'flex items-center w-full absolute top-2/4 z-10',
+            'absolute top-2/4 z-10 flex w-full items-center',
             buttonGroupClassName
           )}
         >

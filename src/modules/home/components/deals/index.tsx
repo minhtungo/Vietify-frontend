@@ -15,8 +15,8 @@ const Deals = () => {
   const { data } = useFeaturedProductsQuery();
 
   return (
-    <div className="py-12 content-container">
-      <div className="flex items-center mb-8 justify-between">
+    <div className="content-container py-12">
+      <div className="mb-8 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <TiFlashOutline size={32} className="text-blue-500" />
           <Heading className="text-left">Deals Of The Week</Heading>
@@ -28,8 +28,8 @@ const Deals = () => {
       <Carousel
         spaceBetween={10}
         slidesPerView={5}
-        prevActivateId="prev-featured-carousel-button"
-        nextActivateId="next-featured-carousel-button"
+        prevActivateId="prev-deals-carousel-button"
+        nextActivateId="next-deals-carousel-button"
         centeredSlides={true}
         centeredSlidesBounds={true}
         prevButtonClassName="left-2 lg:left-2.5"
@@ -38,16 +38,13 @@ const Deals = () => {
         {data ? (
           data.map((product) => (
             <>
-              <SwiperSlide key={`featured--key${product.id}`}>
-                <ProductPreview {...product} />
-              </SwiperSlide>
-              <SwiperSlide key={`featured--key${product.id}`}>
+              <SwiperSlide key={`deals--key-${product.id}`}>
                 <ProductPreview {...product} />
               </SwiperSlide>
             </>
           ))
         ) : (
-          <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-2">
+          <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-4">
             {Array.from(Array(4).keys()).map((i) => (
               <li key={i}>
                 <SkeletonProductPreview />

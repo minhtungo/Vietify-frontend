@@ -41,7 +41,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
     <div className="w-full xl:flex xl:flex-row-reverse">
       <div
         className={cn(
-          'w-full xl:ml-5 mb-2.5 md:mb-3 border border-gray-100 overflow-hidden rounded-md relative',
+          'relative mb-2.5 w-full overflow-hidden rounded-md border border-gray-100 md:mb-3 xl:ml-5',
           thumbnailClassName
         )}
       >
@@ -66,23 +66,23 @@ const ThumbnailCarousel: React.FC<Props> = ({
               <Image
                 src={item?.url}
                 alt={`Product gallery ${item.id}`}
-                width={650}
-                height={590}
-                className="rounded-lg w-full"
+                width={450}
+                height={600}
+                className="aspect-[3/4] rounded"
               />
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="flex items-center justify-between w-full absolute top-2/4 z-10 px-2.5">
+        <div className="absolute top-2/4 z-10 flex w-full items-center justify-between px-2.5">
           <div
             ref={prevRef}
-            className="flex items-center justify-center text-base transition duration-300 transform -translate-y-1/2 rounded-full cursor-pointer w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 lg:text-lg xl:text-xl bg-brand-light hover:bg-brand hover:text-brand-light focus:outline-none shadow-navigation"
+            className="shadow-navigation flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
           >
             <IoIosArrowBack />
           </div>
           <div
             ref={nextRef}
-            className="flex items-center justify-center text-base transition duration-300 transform -translate-y-1/2 rounded-full cursor-pointer w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 lg:text-lg xl:text-xl bg-brand-light hover:bg-brand hover:text-brand-light focus:outline-none shadow-navigation"
+            className="shadow-navigation flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
           >
             <IoIosArrowForward />
           </div>
@@ -104,7 +104,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: any) => (
             <SwiperSlide
               key={`product-thumb-gallery-${item.id}`}
-              className="flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75"
+              className="flex cursor-pointer items-center justify-center overflow-hidden rounded border border-border-base transition hover:opacity-75"
             >
               <Image
                 src={item?.url}

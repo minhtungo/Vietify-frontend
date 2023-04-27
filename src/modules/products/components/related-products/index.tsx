@@ -61,8 +61,8 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
         <Carousel
           spaceBetween={10}
           slidesPerView={5}
-          prevActivateId="prev-featured-carousel-button"
-          nextActivateId="next-featured-carousel-button"
+          prevActivateId="prev-related-carousel-button"
+          nextActivateId="next-related-carousel-button"
           centeredSlides={true}
           centeredSlidesBounds={true}
           prevButtonClassName="left-2 lg:left-2.5"
@@ -70,10 +70,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
         >
           {previews.map((product) => (
             <>
-              <SwiperSlide key={`featured--key${product.id}`}>
-                <ProductPreview {...product} />
-              </SwiperSlide>
-              <SwiperSlide key={`featured--key${product.id}`}>
+              <SwiperSlide key={`related--key-${product.id}`}>
                 <ProductPreview {...product} />
               </SwiperSlide>
             </>

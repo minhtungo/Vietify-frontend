@@ -12,8 +12,8 @@ const FeaturedBooks = () => {
 
   return (
     <div className=" bg-blue-100/20">
-      <div className="py-16 content-container ">
-        <div className="flex items-center mb-8 justify-between">
+      <div className="content-container py-16 ">
+        <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <SlBadge size={32} className="fill-brand" />
             <Heading className="text-left">Featured Books</Heading>
@@ -34,16 +34,13 @@ const FeaturedBooks = () => {
           {data ? (
             data.map((product) => (
               <>
-                <SwiperSlide key={`featured--key${product.id}`}>
-                  <ProductPreview {...product} />
-                </SwiperSlide>
-                <SwiperSlide key={`featured--key${product.id}`}>
+                <SwiperSlide key={`featured--key-${product.id}`}>
                   <ProductPreview {...product} />
                 </SwiperSlide>
               </>
             ))
           ) : (
-            <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-2">
+            <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-4">
               {Array.from(Array(4).keys()).map((i) => (
                 <div key={i}>
                   <SkeletonProductPreview />

@@ -41,7 +41,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   const initialImage = thumbnail || images?.[0]?.url;
 
   return (
-    <div className={cn('relative aspect-[5/7]', thumbnailVariants({ size }))}>
+    <div className={cn('relative aspect-[3/4]', thumbnailVariants({ size }))}>
       <ImageOrPlaceholder image={initialImage} size={size} rounded={rounded} />
     </div>
   );
