@@ -5,9 +5,12 @@ import { forwardRef, HTMLAttributes } from 'react';
 const headingVariants = cva('capitalize', {
   variants: {
     variant: {
+      heading: 'text-2xl md:text-3xl lg:text-4xl',
       title: 'text-base xl:text-lg xl:leading-7 text-brand-dark',
       titleMedium: 'font-semibold text-brand-dark text-xl',
       titleSmall: 'text-base font-medium',
+      titleLarge:
+        'text-xl md:text-2xl lg:text-3xl xl:leading-7 text-brand-dark',
     },
     size: {
       default: 'text-xl md:text-xl lg:text-2xl',

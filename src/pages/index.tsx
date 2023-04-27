@@ -18,11 +18,11 @@ const Home: NextPageWithLayout = () => {
       />
       <Hero />
       {/* <BundleGrid data={bundleData} className="my-12 lg:my-14" /> */}
+      <FeatureGrid className="content-container my-3 md:my-4" />
       <Deals />
       <ProductsCategory />
       <FeaturedBooks />
       <Trending />
-      <FeatureGrid className="content-container my-3 md:my-4" />
     </>
   );
 };
