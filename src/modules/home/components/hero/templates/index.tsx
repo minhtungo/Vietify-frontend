@@ -11,6 +11,7 @@ const Hero = () => {
         pagination={{
           clickable: true,
         }}
+        banner
         speed={1100}
         loop
         prevActivateId="prev-banner-carousel-button"

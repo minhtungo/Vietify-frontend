@@ -45,7 +45,7 @@ const Carousel: FC<CarouselProps> = ({
     <div className={cn('relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
-        breakpoints={BREAKPOINTS}
+        breakpoints={banner ? undefined : BREAKPOINTS}
         navigation={
           navigation
             ? {

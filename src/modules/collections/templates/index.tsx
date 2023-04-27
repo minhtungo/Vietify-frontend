@@ -4,10 +4,10 @@ import repeat from '@lib/util/repeat';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { fetchCollectionProducts } from '@pages/collections/[id]';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useCart } from 'medusa-react';
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useInfiniteQuery } from '@tanstack/react-query';
 
 type CollectionTemplateProps = {
   collection: {
@@ -28,6 +28,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
     fetchNextPage,
     isFetchingNextPage,
     isLoading,
+    refetch,
   } = useInfiniteQuery(
     [`get_collection_products`, collection.id, cart?.id],
     ({ pageParam }) =>
@@ -40,6 +41,12 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
       getNextPageParam: (lastPage) => lastPage.nextPage,
     }
   );
+
+  useEffect(() => {
+    if (cart?.region_id) {
+      refetch();
+    }
+  }, [cart?.region_id, refetch]);
 
   const previews = usePreviews({
     pages: infiniteData?.pages,
@@ -55,10 +62,10 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
 
   return (
     <div className="content-container py-6">
-      <div className="mb-8 text-2xl-semi">
+      <div className="text-2xl-semi mb-8">
         <h1>{collection.title}</h1>
       </div>
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-4 gap-y-8">
+      <ul className="grid grid-cols-2 gap-x-4 gap-y-8 small:grid-cols-3 medium:grid-cols-4">
         {previews.map((p) => (
           <li key={p.id}>
             <ProductPreview {...p} />
@@ -79,7 +86,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
           ))}
       </ul>
       <div
-        className="py-16 flex justify-center items-center text-small-regular text-gray-700"
+        className="text-small-regular flex items-center justify-center py-16 text-gray-700"
         ref={ref}
       >
         <span ref={ref}></span>
