@@ -37,7 +37,6 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   images,
   size,
   rounded,
-  className,
 }) => {
   const initialImage = thumbnail || images?.[0]?.url;
 
@@ -65,7 +64,7 @@ const ImageOrPlaceholder = ({
       draggable={false}
     />
   ) : (
-    <div className="w-full h-full absolute inset-0 bg-gray-100 flex items-center justify-center">
+    <div className="absolute inset-0 flex h-full w-full items-center justify-center bg-gray-100">
       <PlaceholderImage size={size === 'sm' ? 16 : 24} />
     </div>
   );

@@ -13,6 +13,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
 import { Product } from 'types/medusa';
+import toast from 'react-hot-toast';
+import AddedItem from './added-item';
 
 type ProductActionsProps = {
   product: Product;
@@ -48,6 +50,25 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   const addItemToCart = () => {
     addToCart();
+    toast.custom(
+      (t) => (
+        <div
+          className={cn(
+            'rounded bg-white p-3 shadow-md',
+            t.visible ? 'animate-enter' : 'animate-leave'
+          )}
+        >
+          <AddedItem
+            item={product}
+            price={selectedPrice?.calculated_price}
+            quantity={quantity}
+          />
+        </div>
+      ),
+      {
+        duration: 500,
+      }
+    );
     resetQuantity();
   };
 
