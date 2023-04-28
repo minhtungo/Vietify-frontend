@@ -1,5 +1,7 @@
 import CartIcon from '@icons/cart';
 import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
+import { ScrollArea } from '@modules/ui/scroll-area';
+import { Separator } from '@modules/ui/separator';
 import { buttonVariants } from '@ui/button';
 import Heading from '@ui/heading';
 import {
@@ -33,24 +35,30 @@ const CartDropdown = () => {
             </span>
           </button>
         </PopoverTrigger>
-        <PopoverContent className="mt-[2px] hidden w-[410px] small:block">
+        <PopoverContent className="mt-[2px] hidden w-full small:block">
           <Heading className="p-3">Shopping Cart</Heading>
           {cart && items?.length ? (
             <>
-              <div className="max-h-[400px] overflow-y-scroll px-3">
-                {items
-                  .sort((a, b) => {
-                    return a.created_at > b.created_at ? -1 : 1;
-                  })
-                  .map((item) => (
-                    <CartItem
-                      item={item}
-                      cart={cart}
-                      key={item.id}
-                      className="border-b py-3.5 first:pt-0 last:border-none"
-                    />
-                  ))}
-              </div>
+              <ScrollArea className="h-[400px] w-[410px]">
+                <div className="flex flex-col gap-3.5 px-3">
+                  {items
+                    .sort((a, b) => {
+                      return a.created_at > b.created_at ? -1 : 1;
+                    })
+                    .map((item) => (
+                      <>
+                        <CartItem
+                          item={item}
+                          cart={cart}
+                          key={item.id}
+                          className=""
+                        />
+                        <Separator className="last:hidden" />
+                      </>
+                    ))}
+                </div>
+              </ScrollArea>
+
               <div className="text-small-regular flex flex-col gap-y-4 p-3">
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col">
@@ -85,9 +93,7 @@ const CartDropdown = () => {
                   <PopoverClose asChild>
                     <Link
                       href="/checkout"
-                      className={buttonVariants({
-                        className: 'w-full',
-                      })}
+                      className={buttonVariants({ className: 'w-full' })}
                     >
                       Checkout
                     </Link>
@@ -99,10 +105,7 @@ const CartDropdown = () => {
             <div className="flex flex-col items-center justify-center gap-y-4 py-8">
               <span>Your cart is empty.</span>
               <PopoverClose asChild>
-                <Link
-                  href="/store"
-                  className={buttonVariants({ variant: 'primary' })}
-                >
+                <Link href="/store" className={buttonVariants({})}>
                   <span className="sr-only">Go to all products page</span>
                   Explore products
                 </Link>
