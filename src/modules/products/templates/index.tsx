@@ -7,7 +7,7 @@ import ProductInfo from '@modules/products/templates/product-info';
 import React, { useRef } from 'react';
 import MobileActions from '../components/mobile-actions';
 import ThumbnailCarousel from '../components/thumbnail-carousel';
-import Breadcrumb from '@modules/common/components/breadcrumb';
+import Breadcrumb from '@common/breadcrumb';
 import ReviewCard from '@modules/review/templates/review-card';
 
 type ProductTemplateProps = {

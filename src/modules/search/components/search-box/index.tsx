@@ -1,9 +1,9 @@
-import X from '@modules/common/icons/x';
+import X from '@icons/x';
 import { FormEvent } from 'react';
 import SearchBoxWrapper, {
   ControlledSearchBoxProps,
 } from '../search-box-wrapper';
-import Search from '@modules/common/icons/search';
+import Search from '@icons/search';
 
 const ControlledSearchBox = ({
   inputRef,
@@ -42,7 +42,7 @@ const ControlledSearchBox = ({
   return (
     <div {...props} className="w-full">
       <form action="" noValidate onSubmit={handleSubmit} onReset={handleReset}>
-        <div className="w-full cursor-pointer rounded border border-gray-900/50 py-2 transition md:max-w-[550px] px-4 flex flex-row items-center">
+        <div className="flex w-full cursor-pointer flex-row items-center rounded border border-gray-900/50 px-4 py-2 transition md:max-w-[550px]">
           <input
             ref={inputRef}
             autoComplete="off"
@@ -53,13 +53,13 @@ const ControlledSearchBox = ({
             type="search"
             value={value}
             onChange={onChange}
-            className="w-full pr-3 text-sm focus:outline-none bg-transparent placeholder:text-gray-600"
+            className="w-full bg-transparent pr-3 text-sm placeholder:text-gray-600 focus:outline-none"
           />
           {value && (
             <button
               onClick={handleReset}
               type="button"
-              className="h-4 w-4 rounded-full flex items-center justify-center text-gray-900 bg-gray-200 mr-[6px]"
+              className="mr-[6px] flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-gray-900"
             >
               <X size={12} />
             </button>

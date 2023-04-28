@@ -1,6 +1,6 @@
 import AccountLayout from '@modules/account/templates/account-layout';
 import OrdersTemplate from '@modules/account/templates/orders-template';
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Layout from '@modules/layout/templates';
 import { NextPageWithLayout } from 'types/global';
 

@@ -1,6 +1,6 @@
 import { medusaClient } from '@lib/config';
 import { IS_BROWSER } from '@lib/constants';
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Layout from '@modules/layout/templates';
 import OrderCompletedTemplate from '@modules/order/templates/order-completed-template';
 import SkeletonOrderConfirmed from '@modules/skeletons/templates/skeleton-order-confirmed';

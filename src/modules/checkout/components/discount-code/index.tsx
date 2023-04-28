@@ -1,8 +1,8 @@
 import { medusaClient } from '@lib/config';
 import { Cart } from '@medusajs/medusa';
-import Button from '@modules/common/components/button';
-import Input from '@modules/common/components/input';
-import Trash from '@modules/common/icons/trash';
+import Button from '@ui/button';
+import Input from '@common/input';
+import Trash from '@icons/trash';
 import { formatAmount, useCart, useUpdateCart } from 'medusa-react';
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
@@ -89,7 +89,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   };
 
   return (
-    <div className="w-full bg-white flex flex-col">
+    <div className="flex w-full flex-col bg-white">
       <div className="mb-4">
         <h3 className="text-base-semi">Discount</h3>
       </div>
@@ -123,7 +123,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
               />
               <div>
                 <Button
-                  className="!min-h-[0] h-[46px] w-[80px]"
+                  className="h-[46px] !min-h-[0] w-[80px]"
                   disabled={isLoading}
                   isLoading={isLoading}
                 >

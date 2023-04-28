@@ -1,11 +1,11 @@
 import { useStore } from '@lib/context/store-context';
 import { LineItem, Region } from '@medusajs/medusa';
-import Heading from '@modules/ui/heading';
-import LineItemOptions from '@modules/common/components/line-item-options';
-import LineItemPrice from '@modules/common/components/line-item-price';
-import NativeSelect from '@modules/common/components/native-select';
-import Text from '@modules/ui/text';
-import Trash from '@modules/common/icons/trash';
+import Heading from '@ui/heading';
+import LineItemOptions from '@common/line-item-options';
+import LineItemPrice from '@common/line-item-price';
+import NativeSelect from '@common/native-select';
+import Text from '@ui/text';
+import Trash from '@icons/trash';
 import Thumbnail from '@modules/products/components/thumbnail';
 
 type ItemProps = {

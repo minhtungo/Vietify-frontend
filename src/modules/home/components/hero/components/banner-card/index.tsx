@@ -1,6 +1,6 @@
 import cn from '@lib/util/cn';
-import Button from '@modules/common/components/button';
-import Link from '@modules/common/components/link';
+import Button from '@ui/button';
+import Link from '@common/link';
 import { FC } from 'react';
 import { Banner } from 'types/global';
 
@@ -15,7 +15,7 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
   return (
     <div
       className={cn(
-        'w-full bg-no-repeat bg-cover bg-center flex items-center',
+        'flex w-full items-center bg-cover bg-center bg-no-repeat',
         'min-h-[420px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[550px]',
         className
       )}
@@ -25,14 +25,14 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
     >
       <div
         className={cn(
-          'mx-auto flex flex-col h-full text-center px-6 max-w-[480px] md:max-w-[550px] xl:max-w-[750px] 2xl:max-w-[850px]'
+          'mx-auto flex h-full max-w-[480px] flex-col px-6 text-center md:max-w-[550px] xl:max-w-[750px] 2xl:max-w-[850px]'
         )}
       >
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-manrope font-extrabold text-brand-light xl:text-5xl 2xl:text-[55px]">
+          <h2 className="font-manrope text-3xl font-extrabold text-brand-light md:text-4xl xl:text-5xl 2xl:text-[55px]">
             {title}
           </h2>
-          <p className="text-base md:text-[17px] xl:text-lg leading-7 md:leading-8 xl:leading-[1.92em] xl:px-16 text-brand-light 2xl:px-32">
+          <p className="text-base leading-7 text-brand-light md:text-[17px] md:leading-8 xl:px-16 xl:text-lg xl:leading-[1.92em] 2xl:px-32">
             {description}
           </p>
           {banner.btnText && (

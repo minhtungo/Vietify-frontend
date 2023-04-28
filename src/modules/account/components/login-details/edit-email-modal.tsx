@@ -3,10 +3,10 @@ import useToggleState from '@lib/hooks/use-toggle-state';
 import { emailRegex } from '@lib/util/regex';
 import { Customer } from '@medusajs/medusa';
 import EditButton from '@modules/account/components/edit-button';
-import Button from '@modules/common/components/button';
-import Input from '@modules/common/components/input';
-import Modal from '@modules/common/components/modal';
-import Spinner from '@modules/common/icons/spinner';
+import Button from '@ui/button';
+import Input from '@common/input';
+import Modal from '@common/modal';
+import Spinner from '@icons/spinner';
 import { useUpdateMe } from 'medusa-react';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -70,7 +70,7 @@ const EditEmailModal: React.FC<EditEmailModalProps> = ({ customer }) => {
       <Modal isOpen={state} close={close}>
         <Modal.Title>Edit your email</Modal.Title>
         <Modal.Body>
-          <div className="flex flex-col w-full">
+          <div className="flex w-full flex-col">
             <Input
               label="Email"
               {...register('email', {
@@ -84,12 +84,12 @@ const EditEmailModal: React.FC<EditEmailModalProps> = ({ customer }) => {
             />
           </div>
           {error && (
-            <div className="text-rose-500 text-small-regular py-2">{error}</div>
+            <div className="text-small-regular py-2 text-rose-500">{error}</div>
           )}
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="!bg-gray-200 !text-gray-900 !border-gray-200 min-h-0"
+            className="min-h-0 !border-gray-200 !bg-gray-200 !text-gray-900"
             onClick={close}
           >
             Cancel

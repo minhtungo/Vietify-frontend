@@ -1,9 +1,9 @@
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import { useStore } from '@lib/context/store-context';
 import useCountryOptions from '@lib/hooks/use-country-options';
-import ChevronDown from '@modules/common/icons/chevron-down';
-import Search from '@modules/common/icons/search';
-import X from '@modules/common/icons/x';
+import ChevronDown from '@icons/chevron-down';
+import Search from '@icons/search';
+import X from '@icons/x';
 import { useCollections, useMeCustomer } from 'medusa-react';
 import Link from 'next/link';
 import ReactCountryFlag from 'react-country-flag';
@@ -24,8 +24,8 @@ const MainMenu = () => {
   const setScreenSearch = () => setScreen('search');
 
   return (
-    <div className="flex flex-col flex-1">
-      <div className="flex items-center justify-between w-full border-b border-gray-200 py-4 px-6">
+    <div className="flex flex-1 flex-col">
+      <div className="flex w-full items-center justify-between border-b border-gray-200 px-6 py-4">
         <div className="flex-1 basis-0">
           <button
             className="flex items-center gap-x-2"
@@ -38,17 +38,17 @@ const MainMenu = () => {
         <div>
           <h1 className="text-xl-semi uppercase">Acme</h1>
         </div>
-        <div className="flex-1 basis-0 flex justify-end">
+        <div className="flex flex-1 basis-0 justify-end">
           <button onClick={close}>
             <X size={20} />
           </button>
         </div>
       </div>
 
-      <div className="space-y-6 flex-1 flex flex-col justify-between p-6">
+      <div className="flex flex-1 flex-col justify-between space-y-6 p-6">
         {process.env.FEATURE_SEARCH_ENABLED && (
           <button
-            className="bg-gray-50 flex items-center px-4 py-2 gap-x-2 text-gray-500"
+            className="flex items-center gap-x-2 bg-gray-50 px-4 py-2 text-gray-500"
             onClick={setScreenSearch}
           >
             <Search size={24} />
@@ -58,12 +58,12 @@ const MainMenu = () => {
           </button>
         )}
 
-        <div className="flex flex-col flex-1 text-large-regular text-gray-900">
+        <div className="text-large-regular flex flex-1 flex-col text-gray-900">
           <ul className="flex flex-col gap-y-2">
             <li className="bg-gray-50 p-4">
               <Link href="/store">
                 <button
-                  className="flex items-center justify-between w-full"
+                  className="flex w-full items-center justify-between"
                   onClick={close}
                 >
                   <span className="sr-only">Go to Store</span>
@@ -78,7 +78,7 @@ const MainMenu = () => {
                   <li key={collection.id} className="bg-gray-50 p-4">
                     <Link href={`/collections/${collection.id}`}>
                       <button
-                        className="flex items-center justify-between w-full"
+                        className="flex w-full items-center justify-between"
                         onClick={close}
                       >
                         <span className="sr-only">
@@ -96,13 +96,13 @@ const MainMenu = () => {
         </div>
 
         <div className="flex flex-col">
-          <div className="flex flex-col gap-y-8 text-small-regular">
+          <div className="text-small-regular flex flex-col gap-y-8">
             {!customer ? (
               <div className="flex flex-col gap-y-4">
-                <span className="text-gray-700 uppercase">Account</span>
+                <span className="uppercase text-gray-700">Account</span>
                 <Link href={`/account/login`} passHref>
                   <button
-                    className="flex items-center justify-between border-b border-gray-200 py-2 w-full"
+                    className="flex w-full items-center justify-between border-b border-gray-200 py-2"
                     onClick={close}
                   >
                     <span className="sr-only">Go to sign in page</span>
@@ -113,10 +113,10 @@ const MainMenu = () => {
               </div>
             ) : (
               <div className="flex flex-col gap-y-4">
-                <span className="text-gray-700 uppercase">Signed in as</span>
+                <span className="uppercase text-gray-700">Signed in as</span>
                 <Link href={`/account`} passHref>
                   <button
-                    className="flex items-center justify-between border-b border-gray-200 py-2 w-full"
+                    className="flex w-full items-center justify-between border-b border-gray-200 py-2"
                     onClick={close}
                   >
                     <span className="sr-only">Go to account page</span>
@@ -127,7 +127,7 @@ const MainMenu = () => {
               </div>
             )}
             <div className="flex flex-col gap-y-4">
-              <span className="text-gray-700 uppercase">Delivery</span>
+              <span className="uppercase text-gray-700">Delivery</span>
               <button
                 className="flex items-center justify-between border-b border-gray-200 py-2"
                 onClick={setScreenCountry}

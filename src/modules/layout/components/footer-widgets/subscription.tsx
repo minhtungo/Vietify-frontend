@@ -1,7 +1,7 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/ui/heading';
-import EmailICon from '@modules/common/icons/email';
-import SendIcon from '@modules/common/icons/send';
+import Heading from '@ui/heading';
+import EmailICon from '@icons/email';
+import SendIcon from '@icons/send';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 

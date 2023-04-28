@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@modules/ui/accordion';
+} from '@ui/accordion';
 import { FC } from 'react';
 
 interface faqTemplateProps {}
@@ -62,7 +62,7 @@ const FAQS = [
 
 const FaqTemplate: FC<faqTemplateProps> = ({}) => {
   return (
-    <Accordion type="single" collapsible className="w-full content-container">
+    <Accordion type="single" collapsible className="content-container w-full">
       {FAQS.map((faq, index) => (
         <AccordionItem value={faq.answer} key={index}>
           <AccordionTrigger>{faq.question}</AccordionTrigger>

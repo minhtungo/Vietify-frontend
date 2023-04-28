@@ -1,12 +1,12 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
-import Button from '@modules/common/components/button';
-import CountDown from '@modules/common/components/countdown';
-import Heading from '@modules/ui/heading';
-import Link from '@modules/common/components/link';
-import UnderlineLink from '@modules/common/components/underline-link';
-import ArrowForwardIcon from '@modules/common/icons/arrow-forward';
+import Button from '@ui/button';
+import CountDown from '@common/countdown';
+import Heading from '@ui/heading';
+import Link from '@common/link';
+import UnderlineLink from '@common/underline-link';
+import ArrowForwardIcon from '@icons/arrow-forward';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { TiFlashOutline } from 'react-icons/ti';

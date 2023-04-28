@@ -1,5 +1,5 @@
 import LoginTemplate from '@modules/account/templates/login-template';
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Layout from '@modules/layout/templates';
 import { NextPageWithLayout } from 'types/global';
 

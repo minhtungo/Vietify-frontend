@@ -1,4 +1,4 @@
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Deals from '@modules/home/components/deals';
 import FeaturedBooks from '@modules/home/components/featured-books';
 import FeatureGrid from '@modules/home/components/featured-grid';

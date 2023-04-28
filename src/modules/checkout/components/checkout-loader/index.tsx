@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { useCheckout } from '@lib/context/checkout-context';
 import noop from '@lib/util/noop';
-import Spinner from '@modules/common/icons/spinner';
+import Spinner from '@icons/spinner';
 
 const CheckoutLoader = () => {
   const { isLoading } = useCheckout();
@@ -17,7 +17,7 @@ const CheckoutLoader = () => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
+          <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50">
             <Spinner size={24} />
           </div>
         </Transition.Child>

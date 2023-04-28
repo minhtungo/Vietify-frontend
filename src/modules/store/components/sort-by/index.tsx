@@ -3,8 +3,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@modules/ui/dropdown-menu';
-import ChevronDownIcon from '@modules/common/icons/chevron-down';
+} from '@ui/dropdown-menu';
+import ChevronDownIcon from '@icons/chevron-down';
 import { useRouter } from 'next/router';
 import SORT_OPTIONS from 'static/sort-options';
 import { useEffect, useState } from 'react';

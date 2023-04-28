@@ -1,8 +1,8 @@
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import useScrollDirection from '@lib/hooks/use-scroll-direction';
 import cn from '@lib/util/cn';
-import Hamburger from '@modules/common/components/hamburger';
-import UserIcon from '@modules/common/icons/user';
+import Hamburger from '@common/hamburger';
+import UserIcon from '@icons/user';
 import CartDropdown from '@modules/layout/components/cart-dropdown';
 import Categories from '@modules/layout/templates/nav/categories';
 import MobileMenu from '@modules/mobile-menu/templates';

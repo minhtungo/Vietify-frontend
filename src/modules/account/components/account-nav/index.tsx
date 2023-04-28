@@ -1,5 +1,5 @@
 import { useAccount } from '@lib/context/account-context';
-import ChevronDown from '@modules/common/icons/chevron-down';
+import ChevronDown from '@icons/chevron-down';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -14,9 +14,9 @@ const AccountNav = () => {
         {route !== '/account' && (
           <Link
             href="/account"
-            className="flex items-center gap-x-2 text-small-regular py-2"
+            className="text-small-regular flex items-center gap-x-2 py-2"
           >
-            <ChevronDown className="transform rotate-90" />
+            <ChevronDown className="rotate-90 transform" />
             <span>Account</span>
           </Link>
         )}
@@ -27,7 +27,7 @@ const AccountNav = () => {
             <h3 className="text-base-semi">Account</h3>
           </div>
           <div className="text-base-regular">
-            <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
+            <ul className="mb-0 flex flex-col items-start justify-start gap-y-4">
               <li>
                 <AccountNavLink href="/account" route={route}>
                   Overview
@@ -73,7 +73,7 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
     <Link
       href={href}
       className={clsx('text-gray-700', {
-        'text-gray-900 font-semibold': active,
+        'font-semibold text-gray-900': active,
       })}
     >
       {children}

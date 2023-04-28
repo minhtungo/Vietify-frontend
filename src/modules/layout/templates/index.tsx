@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Inter } from 'next/font/google';
 import cn from '@lib/util/cn';
-import HighlightedBar from '@modules/common/components/highlighted-bar';
+import HighlightedBar from '@common/highlighted-bar';
 
 interface LayoutProps {
   children: React.ReactNode;

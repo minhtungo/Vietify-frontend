@@ -1,8 +1,8 @@
 import { medusaClient } from '@lib/config';
 import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
-import Button from '@modules/common/components/button';
-import Input from '@modules/common/components/input';
-import Spinner from '@modules/common/icons/spinner';
+import Button from '@ui/button';
+import Input from '@common/input';
+import Spinner from '@icons/spinner';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';

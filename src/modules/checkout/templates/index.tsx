@@ -1,5 +1,5 @@
 import { CheckoutProvider } from '@lib/context/checkout-context';
-import ChevronDown from '@modules/common/icons/chevron-down';
+import ChevronDown from '@icons/chevron-down';
 import Link from 'next/link';
 import CheckoutLoader from '../components/checkout-loader';
 import CheckoutForm from './checkout-form';
@@ -8,12 +8,12 @@ import CheckoutSummary from './checkout-summary';
 const CheckoutTemplate = () => {
   return (
     <CheckoutProvider>
-      <div className="bg-gray-100 relative small:min-h-screen">
+      <div className="relative bg-gray-100 small:min-h-screen">
         <div className="h-16 bg-white">
-          <nav className="flex items-center h-full justify-between content-container">
+          <nav className="content-container flex h-full items-center justify-between">
             <Link
               href="/cart"
-              className="text-small-semi text-gray-700 flex items-center gap-x-2 uppercase flex-1 basis-0"
+              className="text-small-semi flex flex-1 basis-0 items-center gap-x-2 uppercase text-gray-700"
             >
               <ChevronDown className="rotate-90" size={16} />
               <span className="mt-px hidden small:block">
@@ -29,7 +29,7 @@ const CheckoutTemplate = () => {
         </div>
         <div className="relative">
           <CheckoutLoader />
-          <div className="grid grid-cols-1 small:grid-cols-[1fr_416px] gap-y-8 content-container gap-x-8 py-12">
+          <div className="content-container grid grid-cols-1 gap-x-8 gap-y-8 py-12 small:grid-cols-[1fr_416px]">
             <CheckoutForm />
             <CheckoutSummary />
           </div>

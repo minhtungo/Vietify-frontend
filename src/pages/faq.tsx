@@ -1,6 +1,6 @@
 import CartTemplate from '@modules/cart/templates';
-import Head from '@modules/common/components/head';
-import Heading from '@modules/ui/heading';
+import Head from '@common/head';
+import Heading from '@ui/heading';
 import FaqTemplate from '@modules/faq/templates';
 import Layout from '@modules/layout/templates';
 import { ReactElement } from 'react';

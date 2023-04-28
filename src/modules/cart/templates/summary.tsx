@@ -1,6 +1,6 @@
 import { Cart } from '@medusajs/medusa';
-import Button from '@modules/common/components/button';
-import CartTotals from '@modules/common/components/cart-totals';
+import Button from '@ui/button';
+import CartTotals from '@common/cart-totals';
 import Link from 'next/link';
 
 type SummaryProps = {

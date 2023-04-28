@@ -1,5 +1,5 @@
 import { ProductVariant } from '@medusajs/medusa';
-import Text from '@modules/ui/text';
+import Text from '@ui/text';
 
 type LineItemOptionsProps = { variant: ProductVariant };
 

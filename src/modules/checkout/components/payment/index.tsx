@@ -1,5 +1,5 @@
 import { useCheckout } from '@lib/context/checkout-context';
-import Spinner from '@modules/common/icons/spinner';
+import Spinner from '@icons/spinner';
 import { useEffect } from 'react';
 import PaymentContainer from '../payment-container';
 import StepContainer from '../step-container';
@@ -38,7 +38,7 @@ const Payment = () => {
       title="Payment"
       index={isSame ? 3 : 4}
       closedState={
-        <div className="px-8 pb-8 text-small-regular">
+        <div className="text-small-regular px-8 pb-8">
           <p>Enter your address to see available payment options.</p>
         </div>
       }

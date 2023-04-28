@@ -1,7 +1,7 @@
 import { Cart } from '@medusajs/medusa';
-import Button from '@modules/common/components/button';
-import Input from '@modules/common/components/input';
-import Trash from '@modules/common/icons/trash';
+import Button from '@ui/button';
+import Input from '@common/input';
+import Trash from '@icons/trash';
 import { useCart } from 'medusa-react';
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
@@ -69,7 +69,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
   };
 
   return (
-    <div className="w-full bg-white p-6 flex flex-col">
+    <div className="flex w-full flex-col bg-white p-6">
       <div className="mb-4">
         <h3 className="text-base-semi">Gift Card</h3>
       </div>
@@ -104,7 +104,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
               />
               <div>
                 <Button
-                  className="!min-h-[0] h-[46px] w-[80px]"
+                  className="h-[46px] !min-h-[0] w-[80px]"
                   disabled={isLoading}
                   isLoading={isLoading}
                 >

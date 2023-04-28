@@ -1,6 +1,6 @@
 import AccountLayout from '@modules/account/templates/account-layout';
 import OverviewTemplate from '@modules/account/templates/overview-template';
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Layout from '@modules/layout/templates';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'types/global';

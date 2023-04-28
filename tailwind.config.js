@@ -12,12 +12,23 @@ module.exports = {
         brand: {
           DEFAULT: 'rgb(59, 130, 246)',
           dark: '#000000',
-          muted: ' #595959',
+          muted: '#595959',
           light: '#ffffff',
-          danger: '#dc2626',
+        },
+        destructive: {
+          DEFAULT: '#dc2626',
+          foreground: '#ffffff',
+        },
+        muted: {
+          DEFAULT: '#595959',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
         border: {
-          base: '#e7ecf0',
+          DEFAULT: '#e7ecf0',
         },
       },
       transitionProperty: {

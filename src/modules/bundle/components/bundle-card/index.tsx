@@ -1,6 +1,6 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/ui/heading';
-import Link from '@modules/common/components/link';
+import Heading from '@ui/heading';
+import Link from '@common/link';
 import Image from 'next/image';
 
 interface Props {

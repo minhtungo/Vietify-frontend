@@ -1,7 +1,7 @@
 import cn from '@lib/util/cn';
 import { onlyUnique } from '@lib/util/only-unique';
 import { ProductOption } from '@medusajs/medusa';
-import Button from '@modules/common/components/button';
+import Button from '@ui/button';
 import clsx from 'clsx';
 import React from 'react';
 

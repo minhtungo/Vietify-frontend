@@ -1,6 +1,6 @@
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import { searchClient, SEARCH_INDEX_NAME } from '@lib/search-client';
-import Search from '@modules/common/icons/search';
+import Search from '@icons/search';
 import MobileHit from '@modules/search/components/mobile-hit';
 import MobileHits from '@modules/search/components/mobile-hits';
 import SearchBox from '@modules/search/components/search-box';
@@ -13,15 +13,15 @@ const SearchMenu = () => {
 
   return (
     <InstantSearch searchClient={searchClient} indexName={SEARCH_INDEX_NAME}>
-      <div className="flex flex-col flex-1">
-        <div className="flex items-center justify-between w-full border-b border-gray-200 py-4 px-6">
+      <div className="flex flex-1 flex-col">
+        <div className="flex w-full items-center justify-between border-b border-gray-200 px-6 py-4">
           <div className="flex-1 basis-0">
             <div className="flex items-center gap-x-2">
               <Search className="text-gray-500" size={20} />
               <SearchBox />
             </div>
           </div>
-          <div className="flex justify-end ml-4">
+          <div className="ml-4 flex justify-end">
             <button
               onClick={() => setScreen('main')}
               className="text-small-semi uppercase"
@@ -31,7 +31,7 @@ const SearchMenu = () => {
           </div>
         </div>
 
-        <div className="py-4 px-8">
+        <div className="px-8 py-4">
           <MobileHits hitComponent={MobileHit} />
         </div>
       </div>

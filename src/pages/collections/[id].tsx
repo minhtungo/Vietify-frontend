@@ -2,7 +2,7 @@ import { medusaClient } from '@lib/config';
 import { IS_BROWSER } from '@lib/constants';
 import { getCollectionIds } from '@lib/util/get-collection-ids';
 import CollectionTemplate from '@modules/collections/templates';
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Layout from '@modules/layout/templates';
 import SkeletonCollectionPage from '@modules/skeletons/templates/skeleton-collection-page';
 import { GetStaticPaths, GetStaticProps } from 'next';

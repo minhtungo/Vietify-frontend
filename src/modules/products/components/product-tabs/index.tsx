@@ -1,17 +1,12 @@
 import useTruncatedElement from '@lib/hooks/use-truncated-element';
 import cn from '@lib/util/cn';
 import { Product } from '@medusajs/medusa';
-import Button from '@modules/common/components/button';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@modules/ui/tabs';
-import Text from '@modules/ui/text';
-import Back from '@modules/common/icons/back';
-import FastDelivery from '@modules/common/icons/fast-delivery';
-import Refresh from '@modules/common/icons/refresh';
+import Button from '@ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
+import Text from '@ui/text';
+import Back from '@icons/back';
+import FastDelivery from '@icons/fast-delivery';
+import Refresh from '@icons/refresh';
 import { useMemo, useRef } from 'react';
 
 type ProductTabsProps = {

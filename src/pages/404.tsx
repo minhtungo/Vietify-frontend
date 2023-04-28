@@ -1,4 +1,4 @@
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Layout from '@modules/layout/templates';
 import Link from 'next/link';
 import { ReactElement } from 'react';

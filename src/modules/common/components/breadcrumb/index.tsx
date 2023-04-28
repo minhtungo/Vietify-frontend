@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Link from '@modules/common/components/link';
-import ArrowForwardIcon from '@modules/common/icons/arrow-forward';
+import Link from '@common/link';
+import ArrowForwardIcon from '@icons/arrow-forward';
 import cn from '@lib/util/cn';
 import { useRouter } from 'next/router';
 import useCrumb from '@lib/hooks/use-crumb';
@@ -20,7 +20,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ className }) => {
 
   return (
     <nav className={cn('flex', className)} aria-label="Breadcrumb">
-      <ol className="inline-flex items-center space-x-1 capitalize text-sm font-medium text-gray-600 ">
+      <ol className="inline-flex items-center space-x-1 text-sm font-medium capitalize text-gray-600 ">
         {breadcrumbs.map((crumb, idx) => {
           return (
             <Crumb

@@ -1,12 +1,12 @@
 'use client';
 
-import Button from '@modules/common/components/button';
+import Button from '@ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@modules/ui/dropdown-menu';
+} from '@ui/dropdown-menu';
 import { BiCategoryAlt } from 'react-icons/bi';
 
 const CATEGORY = [

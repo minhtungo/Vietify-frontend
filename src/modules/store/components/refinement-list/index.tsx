@@ -1,11 +1,11 @@
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { ProductCollection, StoreGetProductsParams } from '@medusajs/medusa';
-import Heading from '@modules/ui/heading';
-import Link from '@modules/common/components/link';
-import FunnelIcon from '@modules/common/icons/funnel';
-import MinusIcon from '@modules/common/icons/minus';
-import PlusIcon from '@modules/common/icons/plus';
-import XMarkIcon from '@modules/common/icons/x';
+import Heading from '@ui/heading';
+import Link from '@common/link';
+import FunnelIcon from '@icons/funnel';
+import MinusIcon from '@icons/minus';
+import PlusIcon from '@icons/plus';
+import XMarkIcon from '@icons/x';
 import SortBy from '@modules/store/components/sort-by';
 import { useCollections } from 'medusa-react';
 import { useRouter } from 'next/router';

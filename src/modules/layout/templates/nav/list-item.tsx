@@ -1,6 +1,6 @@
 import cn from '@lib/util/cn';
-import Link from '@modules/common/components/link';
-import { NavigationMenuLink } from '@modules/ui/navigation-menu';
+import Link from '@common/link';
+import { NavigationMenuLink } from '@ui/navigation-menu';
 import React from 'react';
 
 const ListItem = React.forwardRef<

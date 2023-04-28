@@ -1,4 +1,4 @@
-import Link from '@modules/common/components/link';
+import Link from '@common/link';
 import Image from 'next/image';
 
 interface CopyrightProps {
@@ -17,12 +17,12 @@ const year = new Date().getFullYear();
 
 const Copyright: React.FC<CopyrightProps> = ({ payment }) => {
   return (
-    <div className="pb-16 lg:pb-7 content-container">
-      <div className="flex flex-col pt-6 text-center border-t md:flex-row md:justify-between border-gray-400/20 lg:pt-7">
-        <p className="text-brand-muted text-sm leading-7 lg:leading-[27px] lg:text-15px">
+    <div className="content-container pb-16 lg:pb-7">
+      <div className="flex flex-col border-t border-gray-400/20 pt-6 text-center md:flex-row md:justify-between lg:pt-7">
+        <p className="lg:text-15px text-sm leading-7 text-brand-muted lg:leading-[27px]">
           &copy;&nbsp; Copyright {year}&nbsp;
           <Link
-            className="transition-colors duration-200 ease-in-out text-brand-dark hover:text-brand"
+            className="text-brand-dark transition-colors duration-200 ease-in-out hover:text-brand"
             href="/"
           >
             Vietify
@@ -30,10 +30,10 @@ const Copyright: React.FC<CopyrightProps> = ({ payment }) => {
           &nbsp; All rights reserved
         </p>
 
-        <ul className="flex flex-wrap justify-center items-center -mb-1.5 md:mb-0 pt-3.5 md:pt-0 gap-4 sm:gap-5 lg:gap-7">
+        <ul className="-mb-1.5 flex flex-wrap items-center justify-center gap-4 pt-3.5 sm:gap-5 md:mb-0 md:pt-0 lg:gap-7">
           {payment?.map((item) => (
             <li
-              className="inline-flex mb-2 md:mb-0 "
+              className="mb-2 inline-flex md:mb-0 "
               key={`payment-list--key${item.id}`}
             >
               <Image

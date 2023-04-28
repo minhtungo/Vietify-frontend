@@ -3,9 +3,9 @@ import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
-import Heading from '@modules/ui/heading';
+import Heading from '@ui/heading';
 import { SlBadge } from 'react-icons/sl';
-import UnderlineLink from '@modules/common/components/underline-link';
+import UnderlineLink from '@common/underline-link';
 
 const FeaturedBooks = () => {
   const { data } = useFeaturedProductsQuery();

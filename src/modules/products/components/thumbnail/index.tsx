@@ -1,6 +1,6 @@
 import cn from '@lib/util/cn';
 import { Image as MedusaImage } from '@medusajs/medusa';
-import PlaceholderImage from '@modules/common/icons/placeholder-image';
+import PlaceholderImage from '@icons/placeholder-image';
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
 import React from 'react';

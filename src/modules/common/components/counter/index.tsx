@@ -1,6 +1,6 @@
 import cn from '@lib/util/cn';
-import MinusIcon from '@modules/common/icons/minus';
-import PlusIcon from '@modules/common/icons/plus';
+import MinusIcon from '@icons/minus';
+import PlusIcon from '@icons/plus';
 import { cva, VariantProps } from 'class-variance-authority';
 import { CounterProps } from 'types/global';
 
@@ -32,8 +32,8 @@ const Counter: React.FC<counterProps> = ({
       <button
         onClick={onDecrement}
         className={cn(
-          'flex items-center justify-center shrink-0 h-full transition-all ease-in-out duration-300 ',
-          'w-6 h-6 rounded-full transform scale-80 lg:scale-100 hover:bg-brand-muted/20 text-brand-muted'
+          'flex h-full shrink-0 items-center justify-center transition-all duration-300 ease-in-out ',
+          'scale-80 h-6 w-6 transform rounded-full text-brand-muted hover:bg-brand-muted/20 lg:scale-100'
         )}
       >
         <span className="sr-only">Minus Button</span>
@@ -41,8 +41,8 @@ const Counter: React.FC<counterProps> = ({
       </button>
       <span
         className={cn(
-          'font-semibold text-brand-dark transition-colors duration-250 ease-in-out cursor-default shrink-0',
-          'text-base md:text-[17px] w-5 text-center'
+          'duration-250 shrink-0 cursor-default font-semibold text-brand-dark transition-colors ease-in-out',
+          'w-5 text-center text-base md:text-[17px]'
         )}
       >
         {value}
@@ -51,8 +51,8 @@ const Counter: React.FC<counterProps> = ({
         onClick={onIncrement}
         disabled={disabled}
         className={cn(
-          'flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300',
-          'w-6 h-6 rounded-full scale-80 lg:scale-100 hover:bg-brand-muted/20 text-brand-muted'
+          'flex h-full shrink-0 items-center justify-center transition-all duration-300 ease-in-out',
+          'scale-80 h-6 w-6 rounded-full text-brand-muted hover:bg-brand-muted/20 lg:scale-100'
         )}
         title={disabled ? 'Out of Stock' : ''}
       >

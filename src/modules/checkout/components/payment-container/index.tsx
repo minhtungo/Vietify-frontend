@@ -1,5 +1,5 @@
 import { PaymentSession } from '@medusajs/medusa';
-import Radio from '@modules/common/components/radio';
+import Radio from '@common/radio';
 import clsx from 'clsx';
 import React from 'react';
 import PaymentStripe from '../payment-stripe';
@@ -47,7 +47,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       )}
     >
       <button
-        className={'grid grid-cols-[12px_1fr] gap-x-4 py-4 px-8'}
+        className={'grid grid-cols-[12px_1fr] gap-x-4 px-8 py-4'}
         onClick={setSelected}
         disabled={disabled}
       >
@@ -56,11 +56,11 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
           <h3 className="text-base-semi leading-none text-gray-900">
             {PaymentInfoMap[paymentSession.provider_id].title}
           </h3>
-          <span className="text-gray-700 text-small-regular mt-2">
+          <span className="text-small-regular mt-2 text-gray-700">
             {PaymentInfoMap[paymentSession.provider_id].description}
           </span>
           {selected && (
-            <div className="w-full mt-4">
+            <div className="mt-4 w-full">
               <PaymentElement paymentSession={paymentSession} />
             </div>
           )}
@@ -78,7 +78,7 @@ const PaymentElement = ({
   switch (paymentSession.provider_id) {
     case 'stripe':
       return (
-        <div className="pt-8 pr-7">
+        <div className="pr-7 pt-8">
           <PaymentStripe />
         </div>
       );

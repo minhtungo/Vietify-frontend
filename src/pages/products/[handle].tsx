@@ -1,7 +1,7 @@
 import { medusaClient } from '@lib/config';
 import { IS_BROWSER } from '@lib/constants';
 import { getProductHandles } from '@lib/util/get-product-handles';
-import Head from '@modules/common/components/head';
+import Head from '@common/head';
 import Layout from '@modules/layout/templates';
 import ProductTemplate from '@modules/products/templates';
 import SkeletonProductPage from '@modules/skeletons/templates/skeleton-product-page';

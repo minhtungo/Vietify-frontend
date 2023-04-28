@@ -1,7 +1,7 @@
 import { CheckoutFormValues } from '@lib/context/checkout-context';
 import { emailRegex } from '@lib/util/regex';
-import ConnectForm from '@modules/common/components/connect-form';
-import Input from '@modules/common/components/input';
+import ConnectForm from '@common/connect-form';
+import Input from '@common/input';
 import { useMeCustomer } from 'medusa-react';
 import AddressSelect from '../address-select';
 import CountrySelect from '../country-select';

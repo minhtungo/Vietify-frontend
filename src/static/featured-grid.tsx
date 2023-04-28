@@ -1,4 +1,4 @@
-import Badge from '@modules/common/icons/badge';
+import Badge from '@icons/badge';
 
 const data = [
   {

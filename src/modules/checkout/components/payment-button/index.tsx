@@ -1,7 +1,7 @@
 import { useCheckout } from '@lib/context/checkout-context';
 import { PaymentSession } from '@medusajs/medusa';
-import Button from '@modules/common/components/button';
-import Spinner from '@modules/common/icons/spinner';
+import Button from '@ui/button';
+import Spinner from '@icons/spinner';
 import { OnApproveActions, OnApproveData } from '@paypal/paypal-js';
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
@@ -154,7 +154,7 @@ const StripePaymentButton = ({
         {submitting ? <Spinner /> : 'Checkout'}
       </Button>
       {errorMessage && (
-        <div className="text-red-500 text-small-regular mt-2">
+        <div className="text-small-regular mt-2 text-red-500">
           {errorMessage}
         </div>
       )}
@@ -208,7 +208,7 @@ const PayPalPaymentButton = ({
       }}
     >
       {errorMessage && (
-        <span className="text-rose-500 mt-4">{errorMessage}</span>
+        <span className="mt-4 text-rose-500">{errorMessage}</span>
       )}
       <PayPalButtons
         style={{ layout: 'horizontal' }}

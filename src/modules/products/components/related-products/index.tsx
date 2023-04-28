@@ -3,13 +3,13 @@ import usePreviews from '@lib/hooks/use-previews';
 import getNumberOfSkeletons from '@lib/util/get-number-of-skeletons';
 import repeat from '@lib/util/repeat';
 import { Product, StoreGetProductsParams } from '@medusajs/medusa';
-import Button from '@modules/common/components/button';
+import Button from '@ui/button';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { useCart } from 'medusa-react';
 import { useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import ProductPreview from '../product-preview';
-import Heading from '@modules/ui/heading';
+import Heading from '@ui/heading';
 import Carousel from '@modules/carousels/templates';
 import { SwiperSlide } from 'swiper/react';
 
