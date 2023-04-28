@@ -1,31 +1,26 @@
-import { useCartDropdown } from '@lib/context/cart-dropdown-context';
+import CartIcon from '@icons/cart';
 import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
-import Button from '@ui/button';
+import { buttonVariants } from '@ui/button';
 import Heading from '@ui/heading';
 import {
   Popover,
-  PopoverTrigger,
-  PopoverContent,
   PopoverClose,
+  PopoverContent,
+  PopoverTrigger,
 } from '@ui/popover';
-import CartIcon from '@icons/cart';
+import Text from '@ui/text';
 import { formatAmount, useCart } from 'medusa-react';
 import Link from 'next/link';
 
 import CartItem from './cart-item';
-import Text from '@ui/text';
 
 const CartDropdown = () => {
   const { cart, totalItems } = useCart();
   const items = useEnrichedLineItems();
-  const { state, open, close } = useCartDropdown();
+  // const { state, open, close } = useCartDropdown();
 
   return (
-    <div
-      className="relative z-50 h-full"
-      onMouseEnter={open}
-      onMouseLeave={close}
-    >
+    <div className="relative z-50 h-full">
       <Popover>
         <PopoverTrigger asChild>
           <button className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-200">
@@ -62,7 +57,7 @@ const CartDropdown = () => {
                     <Text variant="label" as="span">
                       Subtotal
                     </Text>
-                    <Text as="span" variant="description">
+                    <Text variant="description" as="span">
                       Shipping and taxes calculated at checkout.
                     </Text>
                   </div>
@@ -76,37 +71,42 @@ const CartDropdown = () => {
                   </Text>
                 </div>
                 <div className="flex gap-3">
-                  <Link href="/cart" passHref className="flex-1">
-                    <PopoverClose asChild>
-                      <Button variant="outline" className="w-full">
-                        View cart
-                      </Button>
-                    </PopoverClose>
-                  </Link>
-                  <Link href="/checkout" passHref className="flex-1">
-                    <PopoverClose asChild>
-                      <Button className="w-full">Checkout</Button>
-                    </PopoverClose>
-                  </Link>
+                  <PopoverClose asChild>
+                    <Link
+                      href="/cart"
+                      className={buttonVariants({
+                        variant: 'outline',
+                        className: 'w-full',
+                      })}
+                    >
+                      View cart
+                    </Link>
+                  </PopoverClose>
+                  <PopoverClose asChild>
+                    <Link
+                      href="/checkout"
+                      className={buttonVariants({
+                        className: 'w-full',
+                      })}
+                    >
+                      Checkout
+                    </Link>
+                  </PopoverClose>
                 </div>
               </div>
             </>
           ) : (
-            <div>
-              <div className="flex flex-col items-center justify-center gap-y-4 py-16">
-                <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-gray-900 text-white">
-                  <span>0</span>
-                </div>
-                <span>Your shopping bag is empty.</span>
-                <div>
-                  <Link href="/store">
-                    <span className="sr-only">Go to all products page</span>
-                    <Button variant="secondary" onClick={close}>
-                      Explore products
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+            <div className="flex flex-col items-center justify-center gap-y-4 py-8">
+              <span>Your cart is empty.</span>
+              <PopoverClose asChild>
+                <Link
+                  href="/store"
+                  className={buttonVariants({ variant: 'primary' })}
+                >
+                  <span className="sr-only">Go to all products page</span>
+                  Explore products
+                </Link>
+              </PopoverClose>
             </div>
           )}
         </PopoverContent>
