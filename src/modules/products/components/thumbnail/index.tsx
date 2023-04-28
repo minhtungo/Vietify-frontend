@@ -1,9 +1,9 @@
+import PlaceholderImage from '@icons/placeholder-image';
 import cn from '@lib/util/cn';
 import { Image as MedusaImage } from '@medusajs/medusa';
-import PlaceholderImage from '@icons/placeholder-image';
+import AspectRatio from '@ui/aspect-ratio';
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
-import React from 'react';
 
 const thumbnailVariants = cva('', {
   variants: {
@@ -41,8 +41,14 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   const initialImage = thumbnail || images?.[0]?.url;
 
   return (
-    <div className={cn('relative aspect-[3/4]', thumbnailVariants({ size }))}>
-      <ImageOrPlaceholder image={initialImage} size={size} rounded={rounded} />
+    <div className={cn('relative', thumbnailVariants({ size }))}>
+      <AspectRatio ratio={3 / 4}>
+        <ImageOrPlaceholder
+          image={initialImage}
+          size={size}
+          rounded={rounded}
+        />
+      </AspectRatio>
     </div>
   );
 };
