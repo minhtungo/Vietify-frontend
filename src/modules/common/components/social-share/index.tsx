@@ -2,7 +2,7 @@ import cn from '@lib/util/cn';
 import { FC } from 'react';
 import { FacebookIcon, FacebookShareButton } from 'react-share';
 
-import Heading from '../heading';
+import Heading from '../../../ui/heading';
 
 interface socialShareProps {
   className?: string;
@@ -16,14 +16,14 @@ const SocialShare: FC<socialShareProps> = ({
   return (
     <div
       className={cn(
-        'shadow bg-brand-light rounded-md p-4 md:p-6 lg:p-7',
+        'rounded-md bg-brand-light p-4 shadow md:p-6 lg:p-7',
         className
       )}
     >
       <Heading size="sm" className="mb-2">
         Share in social network
       </Heading>
-      <div className="flex flex-wrap items-center mb-4 -mx-1">
+      <div className="-mx-1 mb-4 flex flex-wrap items-center">
         <FacebookShareButton url={shareUrl} className="mx-1">
           <FacebookIcon
             size={40}

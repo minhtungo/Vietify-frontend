@@ -1,6 +1,6 @@
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { ProductCollection, StoreGetProductsParams } from '@medusajs/medusa';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import Link from '@modules/common/components/link';
 import FunnelIcon from '@modules/common/icons/funnel';
 import MinusIcon from '@modules/common/icons/minus';
@@ -259,7 +259,7 @@ const RefinementList = ({
                       </Disclosure.Button>
                     </h3>
                     <Disclosure.Panel className="pt-6">
-                      <ul className="flex gap-x-4 flex-col gap-y-2">
+                      <ul className="flex flex-col gap-x-4 gap-y-2">
                         {collections?.map((c) => (
                           <li key={c.id} className="">
                             <label className="flex items-center gap-x-2">

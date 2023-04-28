@@ -1,5 +1,5 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import Link from '@modules/common/components/link';
 import Image from 'next/legacy/image';
 
@@ -18,7 +18,7 @@ interface AboutProps {
 const WidgetAbout: React.FC<AboutProps> = ({ social, className }) => {
   return (
     <div className={cn('pb-10 sm:pb-0', className)}>
-      <div className="flex flex-col text-center sm:text-left max-w-[300px] mx-auto sm:ml-0 pb-6 sm:pb-5">
+      <div className="mx-auto flex max-w-[300px] flex-col pb-6 text-center sm:ml-0 sm:pb-5 sm:text-left">
         {/* <Logo
           href={'/'}
           className="mx-auto mb-3 lg:mb-5 sm:ltr:ml-0 sm:rtl:mr-0"
@@ -26,13 +26,13 @@ const WidgetAbout: React.FC<AboutProps> = ({ social, className }) => {
         <Heading size="md" className="mb-3 lg:mb-5">
           Vietify
         </Heading>
-        <p className="text-brand-muted text-sm lg:text-[15px]">
+        <p className="text-sm text-brand-muted lg:text-[15px]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
           voluptates exercitationem non ducimus.
         </p>
       </div>
 
-      <ul className="flex flex-wrap justify-center sm:justify-start gap-2">
+      <ul className="flex flex-wrap justify-center gap-2 sm:justify-start">
         {social?.map((item) => (
           <li
             className="transition hover:opacity-80"

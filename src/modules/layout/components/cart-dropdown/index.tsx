@@ -1,19 +1,19 @@
 import { useCartDropdown } from '@lib/context/cart-dropdown-context';
 import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
 import Button from '@modules/common/components/button';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverClose,
-} from '@modules/common/components/popover';
+} from '@modules/ui/popover';
 import CartIcon from '@modules/common/icons/cart';
 import { formatAmount, useCart } from 'medusa-react';
 import Link from 'next/link';
 
 import CartItem from './cart-item';
-import Text from '@modules/common/components/text';
+import Text from '@modules/ui/text';
 
 const CartDropdown = () => {
   const { cart, totalItems } = useCart();

@@ -1,10 +1,10 @@
 import { useStore } from '@lib/context/store-context';
 import { LineItem, Region } from '@medusajs/medusa';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import LineItemOptions from '@modules/common/components/line-item-options';
 import LineItemPrice from '@modules/common/components/line-item-price';
 import NativeSelect from '@modules/common/components/native-select';
-import Text from '@modules/common/components/text';
+import Text from '@modules/ui/text';
 import Trash from '@modules/common/icons/trash';
 import Thumbnail from '@modules/products/components/thumbnail';
 
@@ -59,7 +59,7 @@ const Item = ({ item, region }: ItemProps) => {
               })}
           </NativeSelect>
         </div>
-        <div className="flex items-end justify-between text-small-regular flex-1">
+        <div className="text-small-regular flex flex-1 items-end justify-between">
           <button
             className="flex items-center gap-x-1 text-brand-muted"
             onClick={() => deleteItem(item.id)}

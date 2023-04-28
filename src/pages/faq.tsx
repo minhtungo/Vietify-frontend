@@ -1,6 +1,6 @@
 import CartTemplate from '@modules/cart/templates';
 import Head from '@modules/common/components/head';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import FaqTemplate from '@modules/faq/templates';
 import Layout from '@modules/layout/templates';
 import { ReactElement } from 'react';
@@ -10,7 +10,7 @@ const Faq: NextPageWithLayout = () => {
   return (
     <>
       <Head title="FAQ" description="Frequently asked questions" />
-      <Heading className="text-center pt-12">
+      <Heading className="pt-12 text-center">
         Frequently Asked Questions
       </Heading>
       <FaqTemplate />

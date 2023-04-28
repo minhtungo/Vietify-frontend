@@ -1,7 +1,7 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import UnderlineLink from '@modules/common/components/underline-link';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';

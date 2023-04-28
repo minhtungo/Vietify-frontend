@@ -4,7 +4,7 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@modules/common/components/navigation-menu';
+} from '@modules/ui/navigation-menu';
 import ListItem from '@modules/layout/templates/nav/list-item';
 import { useCollections } from 'medusa-react';
 import { BiCategoryAlt } from 'react-icons/bi';

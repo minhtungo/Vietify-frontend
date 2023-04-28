@@ -1,10 +1,10 @@
 import { useStore } from '@lib/context/store-context';
 import cn from '@lib/util/cn';
 import { Cart, LineItem } from '@medusajs/medusa';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import LineItemOptions from '@modules/common/components/line-item-options';
 import LineItemPrice from '@modules/common/components/line-item-price';
-import Text from '@modules/common/components/text';
+import Text from '@modules/ui/text';
 import Trash from '@modules/common/icons/trash';
 import Thumbnail from '@modules/products/components/thumbnail';
 import Link from 'next/link';
@@ -23,13 +23,13 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
       <div className="w-[85px]">
         <Thumbnail thumbnail={item.thumbnail} size="full" />
       </div>
-      <div className="flex flex-col justify-between flex-1">
+      <div className="flex flex-1 flex-col justify-between">
         <div className="flex items-start justify-between">
           <div>
             <Link href={`/products/${item.variant.product.handle}`}>
               <Heading
                 variant="titleSmall"
-                className="overflow-ellipsis overflow-hidden whitespace-nowrap w-[195px]"
+                className="w-[195px] overflow-hidden overflow-ellipsis whitespace-nowrap"
               >
                 {item.title}
               </Heading>
@@ -41,7 +41,7 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
           </div>
         </div>
 
-        <div className="flex items-end justify-between text-small-regular flex-1">
+        <div className="text-small-regular flex flex-1 items-end justify-between">
           <Text variant="info">Qty: {item.quantity}</Text>
           <button
             className="flex items-center gap-x-1 text-brand-muted"

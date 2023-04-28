@@ -3,7 +3,7 @@ import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
 import Button from '@modules/common/components/button';
 import CountDown from '@modules/common/components/countdown';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import Link from '@modules/common/components/link';
 import UnderlineLink from '@modules/common/components/underline-link';
 import ArrowForwardIcon from '@modules/common/icons/arrow-forward';

@@ -7,8 +7,8 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@modules/common/components/tabs';
-import Text from '@modules/common/components/text';
+} from '@modules/ui/tabs';
+import Text from '@modules/ui/text';
 import Back from '@modules/common/icons/back';
 import FastDelivery from '@modules/common/icons/fast-delivery';
 import Refresh from '@modules/common/icons/refresh';
@@ -34,14 +34,14 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   return (
     <Tabs defaultValue="Product Information">
-      <TabsList className="border-b border-gray-200 box-border grid grid-cols-2">
+      <TabsList className="box-border grid grid-cols-2 border-b border-gray-200">
         {tabs.map((tab, i) => {
           return (
             <TabsTrigger
               key={i}
               value={tab.label}
               className={cn(
-                'text-left uppercase text-small-regular pb-2 -mb-px border-b border-gray-200 transition-color duration-150 ease-in-out'
+                'text-small-regular transition-color -mb-px border-b border-gray-200 pb-2 text-left uppercase duration-150 ease-in-out'
               )}
             >
               {tab.label}
@@ -116,7 +116,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 
         {isTruncated && (
           <Button
-            className="block mx-auto mt-4"
+            className="mx-auto mt-4 block"
             variant="outline"
             onClick={toggleIsShowingMore}
           >

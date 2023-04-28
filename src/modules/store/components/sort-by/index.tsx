@@ -3,7 +3,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@modules/common/components/dropdown-menu';
+} from '@modules/ui/dropdown-menu';
 import ChevronDownIcon from '@modules/common/icons/chevron-down';
 import { useRouter } from 'next/router';
 import SORT_OPTIONS from 'static/sort-options';
@@ -45,7 +45,7 @@ const SortBy: React.FC<sortByProps> = ({}) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="group inline-flex justify-center items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+      <DropdownMenuTrigger className="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
         Sort by
         {selectedItem && (
           <span className="font-semibold">{`: ${selectedItem.name}`}</span>

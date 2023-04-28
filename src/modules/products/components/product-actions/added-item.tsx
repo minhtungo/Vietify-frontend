@@ -1,6 +1,6 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/common/components/heading';
-import Text from '@modules/common/components/text';
+import Heading from '@modules/ui/heading';
+import Text from '@modules/ui/text';
 
 import Thumbnail from '@modules/products/components/thumbnail';
 import { Product } from 'types/medusa';

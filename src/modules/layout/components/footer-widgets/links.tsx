@@ -1,5 +1,5 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import Link from '@modules/common/components/link';
 
 interface Props {
@@ -18,7 +18,7 @@ const WidgetLink: React.FC<Props> = ({ className, data }) => {
   const { title, lists } = data;
   return (
     <div className={cn(className)}>
-      <Heading size="sm" className="mb-4 sm:mb-5 lg:mb-6 pb-0.5">
+      <Heading size="sm" className="mb-4 pb-0.5 sm:mb-5 lg:mb-6">
         {title}
       </Heading>
       <ul className="flex flex-col space-y-3 text-sm lg:text-[15px]">

@@ -3,7 +3,7 @@ import useProductPrice from '@lib/hooks/use-product-price';
 import cn from '@lib/util/cn';
 import Button from '@modules/common/components/button';
 import Counter from '@modules/common/components/counter';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import SocialShare from '@modules/common/components/social-share';
 import HeartIcon from '@modules/common/icons/heart';
 import ShareIcon from '@modules/common/icons/share';
@@ -15,7 +15,7 @@ import React, { useMemo, useState } from 'react';
 import { Product } from 'types/medusa';
 import toast from 'react-hot-toast';
 import AddedItem from './added-item';
-import Text from '@modules/common/components/text';
+import Text from '@modules/ui/text';
 
 type ProductActionsProps = {
   product: Product;

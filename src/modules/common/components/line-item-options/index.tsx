@@ -1,5 +1,5 @@
 import { ProductVariant } from '@medusajs/medusa';
-import Text from '@modules/common/components/text';
+import Text from '@modules/ui/text';
 
 type LineItemOptionsProps = { variant: ProductVariant };
 
@@ -12,7 +12,7 @@ const LineItemOptions = ({ variant }: LineItemOptionsProps) => {
         //     ?.title || 'Option';
         return (
           <Text
-            className="first:pr-2 first:pl-0 px-2 first:border-none border-x last:border-none"
+            className="border-x px-2 first:border-none first:pl-0 first:pr-2 last:border-none"
             key={option.id}
             variant="info"
             as="span"

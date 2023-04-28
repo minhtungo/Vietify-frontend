@@ -1,7 +1,7 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import Link from '@modules/common/components/link';
-import Text from '@modules/common/components/text';
+import Text from '@modules/ui/text';
 import { IoCaretForward } from 'react-icons/io5';
 
 interface ItemProps {

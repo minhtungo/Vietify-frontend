@@ -1,5 +1,5 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import Link from '@modules/common/components/link';
 import Image from 'next/image';
 
@@ -29,7 +29,7 @@ const BundleCard: React.FC<Props> = ({
   return (
     <Link href={href} className={cn('group flex', className)}>
       <div
-        className="relative flex items-center w-full overflow-hidden"
+        className="relative flex w-full items-center overflow-hidden"
         style={{ backgroundColor: bgColor }}
       >
         <div className={cn('flex shrink-0', thumbnailClassName)}>
@@ -39,14 +39,14 @@ const BundleCard: React.FC<Props> = ({
             width={imgWidth as number}
             height={imgHeight as number}
             style={{ width: 'auto' }}
-            className="object-cover transition duration-200 ease-in-out transform bg-sink-thumbnail group-hover:scale-105"
+            className="bg-sink-thumbnail transform object-cover transition duration-200 ease-in-out group-hover:scale-105"
           />
         </div>
-        <div className="py-3 lg:py-5 ltr:pr-4 rtl:pl-4 lg:ltr:pr-3 lg:rtl:pl-3 xl:ltr:pr-4 xl:rtl:pl-4">
+        <div className="py-3 ltr:pr-4 rtl:pl-4 lg:py-5 lg:ltr:pr-3 lg:rtl:pl-3 xl:ltr:pr-4 xl:rtl:pl-4">
           <Heading variant="default" className="mb-[5px]">
             {title}
           </Heading>
-          <p className="text-sm leading-6 lg:text-13px xl:text-sm">
+          <p className="lg:text-13px text-sm leading-6 xl:text-sm">
             {description}
           </p>
         </div>

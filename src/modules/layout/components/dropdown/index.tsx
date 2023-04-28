@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@modules/common/components/dropdown-menu';
+} from '@modules/ui/dropdown-menu';
 import { BiCategoryAlt } from 'react-icons/bi';
 
 const CATEGORY = [

@@ -9,7 +9,7 @@ import { useCart } from 'medusa-react';
 import { useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import ProductPreview from '../product-preview';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import Carousel from '@modules/carousels/templates';
 import { SwiperSlide } from 'swiper/react';
 
@@ -53,7 +53,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
 
   return (
     <div className="product-page-constraint">
-      <div className="flex items-center justify-center mb-16">
+      <div className="mb-16 flex items-center justify-center">
         <Heading size="lg">Related Books</Heading>
       </div>
 
@@ -78,7 +78,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
         </Carousel>
       )}
 
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-5 gap-x-4 gap-y-8">
+      <ul className="grid grid-cols-2 gap-x-4 gap-y-8 small:grid-cols-3 medium:grid-cols-5">
         {isLoading && !previews.length && (
           <>
             {Array.from(Array(5).keys()).map((i) => (
@@ -96,7 +96,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
           ))}
       </ul>
       {hasNextPage && (
-        <div className="flex items-center justify-center mt-8">
+        <div className="mt-8 flex items-center justify-center">
           <Button
             isLoading={isLoading}
             onClick={() => fetchNextPage()}

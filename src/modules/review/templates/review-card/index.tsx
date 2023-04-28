@@ -1,6 +1,6 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/common/components/heading';
-import Text from '@modules/common/components/text';
+import Heading from '@modules/ui/heading';
+import Text from '@modules/ui/text';
 import ReviewRating from '@modules/review/components/review-rating';
 import { FC } from 'react';
 
@@ -12,7 +12,7 @@ const ReviewCard: FC<reviewCardProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        'border-b border-border-base last:border-0 pb-6 mb-6 last:mb-0',
+        'mb-6 border-b border-border-base pb-6 last:mb-0 last:border-0',
         className
       )}
     >
@@ -21,7 +21,7 @@ const ReviewCard: FC<reviewCardProps> = ({ className }) => {
       <Text className="xl:leading-[2em]">Description</Text>
       <div className="pt-2 text-sm text-brand-dark text-opacity-80">
         By
-        <Text as="span" className="inline-block ml-[3px]">
+        <Text as="span" className="ml-[3px] inline-block">
           User
         </Text>
       </div>

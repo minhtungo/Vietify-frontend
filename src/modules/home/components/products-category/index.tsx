@@ -1,6 +1,6 @@
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import CategoryIcon from '@modules/common/icons/category';
 import Image from 'next/image';
 import { useCollections } from 'medusa-react';

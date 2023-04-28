@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@modules/common/components/accordion';
+} from '@modules/ui/accordion';
 import { FC } from 'react';
 
 interface faqTemplateProps {}

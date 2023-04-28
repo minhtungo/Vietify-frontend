@@ -24,6 +24,8 @@
     "paths": {
       "@lib/*": ["lib/*"],
       "@modules/*": ["modules/*"],
+      "@components/*": ["modules/components/*"],
+      "@ui/*": ["modules/ui/*"],
       "@pages/*": ["pages/*"]
     }
   },

@@ -1,5 +1,5 @@
 import cn from '@lib/util/cn';
-import Heading from '@modules/common/components/heading';
+import Heading from '@modules/ui/heading';
 import EmailICon from '@modules/common/icons/email';
 import SendIcon from '@modules/common/icons/send';
 import { useState } from 'react';
@@ -48,7 +48,7 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
         Subscribe Now
       </Heading>
 
-      <p className="lg:-mt-1 max-w-[400px] text-brand-muted text-sm lg:text-[15px]">
+      <p className="max-w-[400px] text-sm text-brand-muted lg:-mt-1 lg:text-[15px]">
         Subscribe your email for newsletter and get notification about new
       </p>
       <form
@@ -56,15 +56,15 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
         className="relative mt-5 max-w-[400px]"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <span className="flex items-center absolute ltr:left-0 rtl:right-0 top-0 h-12 px-3.5 transform">
-          <EmailICon className="w-4 2xl:w-[18px] h-4 2xl:h-[18px]" />
+        <span className="absolute top-0 flex h-12 transform items-center px-3.5 ltr:left-0 rtl:right-0">
+          <EmailICon className="h-4 w-4 2xl:h-[18px] 2xl:w-[18px]" />
         </span>
-        <div className="w-full rounded border border-gray-900/50 py-2 transition md:max-w-[550px] px-4 flex items-center h-12">
+        <div className="flex h-12 w-full items-center rounded border border-gray-900/50 px-4 py-2 transition md:max-w-[550px]">
           <input
             placeholder="Enter your email here"
             type="email"
             id="subscription-email"
-            className="w-full text-sm focus:outline-none px-6 placeholder:text-gray-500"
+            className="w-full px-6 text-sm placeholder:text-gray-500 focus:outline-none"
             {...register('email', {
               required: 'Email required',
               pattern: {
@@ -76,11 +76,11 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
             // error={errors.email?.message}
           />
           <button
-            className="absolute right-0 top-0 hover:opacity-80 focus:outline-none h-12 px-3 lg:px-3.5 transform scale-90 2xl:scale-100"
+            className="absolute right-0 top-0 h-12 scale-90 transform px-3 hover:opacity-80 focus:outline-none lg:px-3.5 2xl:scale-100"
             aria-label="Subscribe Button"
             type="submit"
           >
-            <SendIcon className="w-[18px] 2xl:w-5 h-[18px] 2xl:h-5" />
+            <SendIcon className="h-[18px] w-[18px] 2xl:h-5 2xl:w-5" />
           </button>
         </div>
         {!errors.email && subscriptionSuccess && (
