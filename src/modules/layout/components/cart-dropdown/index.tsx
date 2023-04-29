@@ -45,7 +45,7 @@ const CartDropdown = () => {
                     .sort((a, b) => {
                       return a.created_at > b.created_at ? -1 : 1;
                     })
-                    .map((item) => (
+                    .map((item, index) => (
                       <>
                         <CartItem
                           item={item}
@@ -53,7 +53,9 @@ const CartDropdown = () => {
                           key={item.id}
                           className=""
                         />
-                        <Separator className="last:hidden" />
+                        {index !== items.length - 1 && (
+                          <Separator className="last:hidden" />
+                        )}
                       </>
                     ))}
                 </div>

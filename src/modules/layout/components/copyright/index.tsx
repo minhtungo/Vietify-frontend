@@ -17,8 +17,8 @@ const year = new Date().getFullYear();
 
 const Copyright: React.FC<CopyrightProps> = ({ payment }) => {
   return (
-    <div className="content-container pb-16 lg:pb-7">
-      <div className="flex flex-col border-t border-gray-400/20 pt-6 text-center md:flex-row md:justify-between lg:pt-7">
+    <div className="pb-16 lg:py-7">
+      <div className="flex flex-col text-center md:flex-row md:justify-between">
         <p className="lg:text-15px text-sm leading-7 text-brand-muted lg:leading-[27px]">
           &copy;&nbsp; Copyright {year}&nbsp;
           <Link
