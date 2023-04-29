@@ -4,6 +4,7 @@ import SearchBoxWrapper, {
   ControlledSearchBoxProps,
 } from '../search-box-wrapper';
 import Search from '@icons/search';
+import { Input } from '@modules/ui/input';
 
 const ControlledSearchBox = ({
   inputRef,
@@ -42,29 +43,25 @@ const ControlledSearchBox = ({
   return (
     <div {...props} className="w-full">
       <form action="" noValidate onSubmit={handleSubmit} onReset={handleReset}>
-        <div className="flex w-full cursor-pointer flex-row items-center rounded border border-gray-900/50 px-4 py-2 transition md:max-w-[550px]">
-          <input
+        <div className="relative flex w-full max-w-[550px] items-center space-x-2">
+          <Input
             ref={inputRef}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            placeholder={placeholder}
-            spellCheck={false}
+            className="w-full pl-4 pr-[55px]"
             type="search"
             value={value}
             onChange={onChange}
-            className="w-full bg-transparent pr-3 text-sm placeholder:text-gray-600 focus:outline-none"
+            placeholder={placeholder}
           />
           {value && (
             <button
               onClick={handleReset}
               type="button"
-              className="mr-[6px] flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-gray-900"
+              className="absolute right-8 flex h-4 w-4 items-center justify-center rounded-full bg-accent"
             >
-              <X size={12} />
+              <X size={10} />
             </button>
           )}
-          <Search size={16} className="text-gray-600" />
+          <Search size={20} className="absolute right-2 text-gray-600" />
         </div>
       </form>
     </div>

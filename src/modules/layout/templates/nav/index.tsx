@@ -47,10 +47,10 @@ export default function Nav() {
     <header
       className={cn(
         'sticky z-50 w-full bg-white shadow-md transition-all duration-300',
-        scrollDirection === 'down' ? '-top-14' : 'top-0'
+        scrollDirection === 'down' ? '-top-16' : 'top-0'
       )}
     >
-      <div className="flex h-14 max-w-8xl items-center justify-between px-4 small:px-6">
+      <div className="flex h-16 max-w-8xl items-center justify-between px-4 small:px-6">
         <Link href="/" className="flex items-center">
           <span className="sr-only">Vietify</span>
           <span className="text-xl font-semibold">Vietify</span>

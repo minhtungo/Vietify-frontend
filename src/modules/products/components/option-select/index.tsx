@@ -31,8 +31,8 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               variant="outline"
               key={v}
               className={cn(
-                'text-xsmall-regular h-[35px] w-fit border !border-gray-200 !font-medium transition-all duration-200',
-                v === current && 'border-gray-900'
+                'text-xsmall-regular h-[35px] w-fit border !font-medium ',
+                v === current && 'border-brand bg-accent text-accent-foreground'
               )}
             >
               {v}

@@ -61,7 +61,7 @@ const CartDropdown = () => {
                 </div>
               </ScrollArea>
 
-              <div className="text-small-regular flex flex-col gap-y-4 p-3">
+              <div className="text-small-regular mt-3 flex flex-col gap-y-4 p-3">
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col">
                     <Text variant="label" as="span">

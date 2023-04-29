@@ -8,12 +8,12 @@ const DesktopSearchModal = () => {
   return (
     <>
       <InstantSearch indexName={SEARCH_INDEX_NAME} searchClient={searchClient}>
-        <div className="flex flex-col relative">
-          <div className="w-full min-w-[550px] flex items-center gap-x-2 ">
+        <div className="relative flex flex-col">
+          <div className="w-full min-w-[550px] ">
             <SearchBox />
           </div>
 
-          <div className="overflow-y-auto  no-scrollbar mt-6 absolute top-[60%] bg-white shadow-md">
+          <div className="no-scrollbar absolute top-[60%] mt-6 overflow-y-auto bg-white shadow-md">
             <DesktopHits hitComponent={DesktopHit} />
           </div>
         </div>
