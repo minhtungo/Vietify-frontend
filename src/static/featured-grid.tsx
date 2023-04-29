@@ -1,56 +1,49 @@
-import Badge from '@icons/badge';
+import Back from '@icons/back';
+import FastDelivery from '@icons/fast-delivery';
+import Refresh from '@icons/refresh';
 
 const data = [
   {
     id: 1,
     icon: (
-      <Badge
+      <FastDelivery
         size={32}
         color="#F38E00"
         className="3xl:scale-100 scale-75 transform xl:scale-90"
       />
     ),
     title: 'Fast & Secure Delivery',
-    href: '',
+    description:
+      'Your package will arrive in 3-5 business days at your pick up location or in the comfort of your home.',
     bgColor: '#FFEED6',
   },
   {
     id: 2,
     icon: (
-      <Badge
+      <Back
         size={32}
         color="#0095E7"
         className="3xl:scale-100 scale-75 transform xl:scale-90"
       />
     ),
     title: 'Money Back Guarantee',
-    href: '',
+    description:
+      'Your package will arrive in 3-5 business days at your pick up location or in the comfort of your home.',
     bgColor: '#CCEDFF',
   },
+
   {
     id: 3,
     icon: (
-      <Badge
-        size={36}
-        color="#02B290"
-        className="3xl:scale-100 scale-75 transform xl:scale-90"
-      />
-    ),
-    title: 'feature-title-three',
-    href: '',
-    bgColor: '#D7F1EC',
-  },
-  {
-    id: 4,
-    icon: (
-      <Badge
+      <Refresh
         size={36}
         color="#FF7B7B"
         className="3xl:scale-100 scale-75 transform xl:scale-90"
       />
     ),
-    title: 'feature-title-four',
-    href: '',
+    title: 'Easy returns',
+    description:
+      "Just return your product and we'll refund your money. No questions asked – we'll do our best to make sure your return is hassle-free.",
     bgColor: '#FFE1E1',
   },
 ];

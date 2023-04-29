@@ -33,7 +33,7 @@ const FeaturedGrid: React.FC<featuredGridProps> = ({
           ))}
         </Carousel>
       ) : (
-        <div className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 2xl:grid">
+        <div className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid">
           {data?.map((item) => (
             <FeaturedCard item={item} key={`featured-key-${item.id}`} />
           ))}

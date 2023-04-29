@@ -1,12 +1,11 @@
 import cn from '@lib/util/cn';
 import Heading from '@ui/heading';
-import Link from '@common/link';
 import Text from '@ui/text';
-import { IoCaretForward } from 'react-icons/io5';
 
 interface ItemProps {
   icon: JSX.Element;
   title: string;
+  description: string;
   bgColor: string;
 }
 
@@ -16,7 +15,7 @@ interface Props {
 }
 
 const FeaturedCard: React.FC<Props> = ({ item, className }) => {
-  const { icon, title, bgColor } = item;
+  const { icon, title, description, bgColor } = item;
   return (
     <div
       className={cn('group flex items-center gap-2 p-3 xl:p-4', className)}
@@ -30,7 +29,7 @@ const FeaturedCard: React.FC<Props> = ({ item, className }) => {
           {title}
         </Heading>
         <Text variant="info" className="text-sm">
-          Tell about your service.
+          {description}
         </Text>
       </div>
     </div>

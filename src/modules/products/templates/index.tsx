@@ -8,7 +8,6 @@ import React, { useRef } from 'react';
 import MobileActions from '../components/mobile-actions';
 import ThumbnailCarousel from '../components/thumbnail-carousel';
 import Breadcrumb from '@common/breadcrumb';
-import ReviewCard from '@modules/review/templates/review-card';
 
 type ProductTemplateProps = {
   product: Product;
@@ -24,7 +23,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
       <div className="content-container pb-2 pt-6 md:pt-7">
         <Breadcrumb className="mb-6" />
         <div className="relative grid-cols-11 gap-2 lg:grid">
-          <div className="col-span-5 overflow-hidden md:mb-8 lg:mb-0 ">
+          <div className="col-span-5 overflow-hidden md:mb-8 lg:mb-0">
             <ThumbnailCarousel gallery={product.images} />
           </div>
           <div
@@ -37,7 +36,6 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
         <div className="my-16">
           <ProductTabs product={product} />
         </div>
-        <ReviewCard />
         <div className="my-16">
           <RelatedProducts product={product} />
         </div>
