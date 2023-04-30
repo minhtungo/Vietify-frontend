@@ -1,9 +1,11 @@
 import { ErrorMessage } from '@hookform/error-message';
 import Eye from '@icons/eye';
 import EyeOff from '@icons/eye-off';
-import clsx from 'clsx';
+import cn from '@lib/util/cn';
+import { Input } from '@ui/input';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 import { get } from 'react-hook-form';
+import { Label } from '@ui/label';
 
 type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -15,7 +17,7 @@ type InputProps = Omit<
   name: string;
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ type, name, label, errors, touched, required, ...props }, ref) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [showPassword, setShowPassword] = useState(false);
@@ -38,37 +40,33 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div>
         <div className="text-base-regular relative z-0 w-full">
-          <input
+          <Input
             type={inputType}
             name={name}
             placeholder=" "
-            className={clsx(
-              'mt-0 block w-full appearance-none border border-gray-200 bg-transparent px-4 pb-1 pt-4 focus:border-gray-400 focus:outline-none focus:ring-0',
-              {
-                'border-rose-500 focus:border-rose-500': hasError,
-              }
+            className={cn(
+              '!h-full w-full px-4 pb-1.5 pt-4',
+              hasError && 'border-destructive focus:border-destructive'
             )}
             {...props}
             ref={inputRef}
           />
-          <label
+          <Label
             htmlFor={name}
             onClick={() => inputRef.current?.focus()}
-            className={clsx(
-              '-z-1 origin-0 absolute top-3 mx-3 px-1 text-gray-500 transition-all duration-300',
-              {
-                '!text-rose-500': hasError,
-              }
+            className={cn(
+              '-z-1 origin-0 absolute top-3.5 mx-3 px-1 text-muted-foreground transition-all duration-300',
+              hasError && '!text-destructive'
             )}
           >
             {label}
-            {required && <span className="text-rose-500">*</span>}
-          </label>
+            {required && <span className="text-destructive">*</span>}
+          </Label>
           {type === 'password' && (
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-0 top-3 px-4 text-gray-400 outline-none transition-all duration-150 focus:text-gray-700 focus:outline-none"
+              className="absolute right-0 top-3 px-4 text-muted-foreground outline-none transition-all duration-150 "
             >
               {showPassword ? <Eye /> : <EyeOff />}
             </button>
@@ -92,6 +90,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = 'Input';
+FormInput.displayName = 'FormInput';
 
-export default Input;
+export default FormInput;

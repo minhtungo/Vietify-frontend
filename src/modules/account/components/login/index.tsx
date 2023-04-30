@@ -1,11 +1,12 @@
 import { medusaClient } from '@lib/config';
 import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
 import Button from '@ui//button';
-import Input from '@common/input';
+import Input from '@common/form-input';
 import Spinner from '@icons/spinner';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import Heading from '@modules/ui/heading';
 
 interface SignInCredentials extends FieldValues {
   email: string;
@@ -45,10 +46,14 @@ const Login = () => {
           <Spinner size={24} />
         </div>
       )}
-      <h1 className="text-large-semi mb-6 uppercase">Welcome back</h1>
-      <p className="text-base-regular mb-8 text-center text-gray-700">
-        Sign in to access an enhanced shopping experience.
-      </p>
+      <Heading variant="large" className="mb-6">
+        Welcome back
+      </Heading>
+
+      <div>
+        <Button variant="outline"></Button>
+      </div>
+
       <form className="w-full" onSubmit={onSubmit}>
         <div className="flex w-full flex-col gap-y-2">
           <Input
@@ -66,13 +71,11 @@ const Login = () => {
           />
         </div>
         {authError && (
-          <div>
-            <span className="text-small-regular w-full text-rose-500">
-              These credentials do not match our records
-            </span>
+          <div className="text-small-regular w-full text-destructive">
+            These credentials do not match our records
           </div>
         )}
-        <Button className="mt-6 w-full uppercase">Sign In</Button>
+        <Button className="mt-6 w-full">Sign In</Button>
       </form>
       <span className="text-small-regular mt-6 text-center text-gray-700">
         Not a member?{' '}

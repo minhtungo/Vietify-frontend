@@ -3,7 +3,7 @@ import { useAccount } from '@lib/context/account-context';
 import useToggleState from '@lib/hooks/use-toggle-state';
 import CountrySelect from '@modules/checkout/components/country-select';
 import Button from '@ui/button';
-import Input from '@common/input';
+import Input from '@common/form-input';
 import Modal from '@common/modal';
 import Plus from '@icons/plus';
 import Spinner from '@icons/spinner';

@@ -4,7 +4,7 @@ import useToggleState from '@lib/hooks/use-toggle-state';
 import { Address } from '@medusajs/medusa';
 import CountrySelect from '@modules/checkout/components/country-select';
 import Button from '@ui/button';
-import Input from '@common/input';
+import Input from '@common/form-input';
 import Modal from '@common/modal';
 import Edit from '@icons/edit';
 import Spinner from '@icons/spinner';

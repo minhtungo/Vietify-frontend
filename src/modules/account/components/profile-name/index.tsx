@@ -1,6 +1,6 @@
 import { useAccount } from '@lib/context/account-context';
 import { Customer } from '@medusajs/medusa';
-import Input from '@common/input';
+import Input from '@common/form-input';
 import { useUpdateMe } from 'medusa-react';
 import React, { useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';

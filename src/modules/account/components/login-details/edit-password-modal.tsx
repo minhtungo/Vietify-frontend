@@ -4,7 +4,7 @@ import useToggleState from '@lib/hooks/use-toggle-state';
 import { Customer } from '@medusajs/medusa';
 import EditButton from '@modules/account/components/edit-button';
 import Button from '@ui/button';
-import Input from '@common/input';
+import Input from '@common/form-input';
 import Modal from '@common/modal';
 import Spinner from '@icons/spinner';
 import { useUpdateMe } from 'medusa-react';

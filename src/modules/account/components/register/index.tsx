@@ -1,8 +1,8 @@
+import Input from '@common/form-input';
+import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
 import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
 import Button from '@ui/button';
-import Input from '@common/input';
-import Spinner from '@icons/spinner';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';

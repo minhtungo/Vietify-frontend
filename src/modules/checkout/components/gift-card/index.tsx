@@ -1,6 +1,6 @@
 import { Cart } from '@medusajs/medusa';
 import Button from '@ui/button';
-import Input from '@common/input';
+import Input from '@common/form-input';
 import Trash from '@icons/trash';
 import { useCart } from 'medusa-react';
 import React, { useMemo } from 'react';

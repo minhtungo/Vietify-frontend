@@ -39,7 +39,7 @@ const CartDropdown = () => {
           <Heading className="p-3">Shopping Cart</Heading>
           {cart && items?.length ? (
             <>
-              <ScrollArea className="h-[400px] w-[410px]">
+              <ScrollArea className="max-h-[400px] w-[410px]">
                 <div className="flex flex-col gap-3.5 px-3">
                   {items
                     .sort((a, b) => {
