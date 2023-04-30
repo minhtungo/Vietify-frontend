@@ -1,18 +1,20 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@ui/dropdown-menu';
-import ChevronDownIcon from '@icons/chevron-down';
 import { useRouter } from 'next/router';
 import SORT_OPTIONS from 'static/sort-options';
 import { useEffect, useState } from 'react';
 import { FilterOption } from 'types/global';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@ui/select';
 
-interface sortByProps {}
+interface SortByProps {}
 
-const SortBy: React.FC<sortByProps> = ({}) => {
+const SortBy: React.FC<SortByProps> = ({}) => {
   const router = useRouter();
   const { pathname, query } = router;
   const currentSelectedItem = query.sort_by
@@ -44,25 +46,25 @@ const SortBy: React.FC<sortByProps> = ({}) => {
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-        Sort by
-        {selectedItem && (
-          <span className="font-semibold">{`: ${selectedItem.name}`}</span>
-        )}
-        <ChevronDownIcon
-          className="-mr-1 ml-1 h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-          aria-hidden="true"
-        />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="mt-2 w-40">
-        {SORT_OPTIONS.map((option) => (
-          <DropdownMenuItem key={option.name} onClick={() => onSortBy(option)}>
-            {option.name}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Select>
+      <SelectTrigger className="w-[150px]">
+        <SelectValue placeholder="Sorting" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Default sorting</SelectLabel>
+          {SORT_OPTIONS.map((option) => (
+            <SelectItem
+              key={option.name}
+              value={option.name}
+              onClick={() => onSortBy(option)}
+            >
+              {option.name}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   );
 };
 
