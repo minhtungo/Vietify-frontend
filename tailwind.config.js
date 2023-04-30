@@ -17,7 +17,7 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          DEFAULT: 'rgb(59, 130, 246)',
+          DEFAULT: 'rgb(254, 115, 29)',
           dark: '#000000',
           muted: '#595959',
           light: '#ffffff',

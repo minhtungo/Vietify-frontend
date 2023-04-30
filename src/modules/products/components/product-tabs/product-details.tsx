@@ -6,7 +6,7 @@ interface AdditionalInfoTabProps {
   product: Product;
 }
 
-const AdditionalInfoTab = ({ product }: AdditionalInfoTabProps) => {
+const ProductDetails = ({ product }: AdditionalInfoTabProps) => {
   return (
     <TabsContent value="Additional Info" className="text-medium-regular py-8">
       <div className="grid grid-cols-2 gap-x-8 border-b pb-4">
@@ -48,4 +48,4 @@ const AdditionalInfoTab = ({ product }: AdditionalInfoTabProps) => {
   );
 };
 
-export default AdditionalInfoTab;
+export default ProductDetails;

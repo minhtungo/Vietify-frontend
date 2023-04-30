@@ -18,8 +18,8 @@ const Deals = () => {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <TiFlashOutline size={32} className="text-blue-500" />
-          <Heading className="text-left">Deals Of The Week</Heading>
+          <TiFlashOutline size={32} className="text-primary" />
+          <Heading className="text-left">Deals of The Week</Heading>
           <CountDown date={Date.now() + 100000000} />
         </div>
         <UnderlineLink href="/store">View More</UnderlineLink>

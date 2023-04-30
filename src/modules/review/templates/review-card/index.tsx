@@ -10,12 +10,7 @@ interface reviewCardProps {
 
 const ReviewCard: FC<reviewCardProps> = ({ className }) => {
   return (
-    <div
-      className={cn(
-        'border-border-base mb-6 border-b pb-6 last:mb-0 last:border-0',
-        className
-      )}
-    >
+    <div className={cn(className)}>
       <ReviewRating />
       <Heading size="sm">Title</Heading>
       <Text className="xl:leading-[2em]">Description</Text>

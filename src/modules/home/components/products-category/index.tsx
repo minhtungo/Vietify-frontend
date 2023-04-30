@@ -63,7 +63,7 @@ export default function ProductsCategory() {
   return (
     <div className="content-container py-12">
       <div className="mb-8 flex items-center">
-        <CategoryIcon size={32} className="mr-2 text-blue-500" />
+        <CategoryIcon size={32} className="mr-2 text-primary" />
         <Heading className="text-left">Categories</Heading>
       </div>
       <Carousel

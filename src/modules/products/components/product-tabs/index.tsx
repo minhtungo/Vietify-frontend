@@ -3,7 +3,7 @@ import { Product } from '@medusajs/medusa';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { useMemo } from 'react';
 
-import AdditionalInfoTab from './additional-info';
+import ProductDetails from './product-details';
 import DescriptionTab from './description-tab';
 import ReviewsTab from './reviews';
 
@@ -19,8 +19,8 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
         component: <DescriptionTab product={product} />,
       },
       {
-        label: 'Additional Info',
-        component: <AdditionalInfoTab product={product} />,
+        label: 'Product Details',
+        component: <ProductDetails product={product} />,
       },
       {
         label: 'Reviews',

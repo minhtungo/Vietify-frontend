@@ -80,7 +80,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           {product.collection.title}
         </Link>
       )} */}
-      <Heading variant="titleLarge">{product.title}</Heading>
+      <Heading variant="large">{product.title}</Heading>
       <div className="flex gap-2">
         <Text variant="info">
           <span className="text-brand-muted/80">Author:</span> Nguyễn Nhật Ánh
