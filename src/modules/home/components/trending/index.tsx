@@ -1,10 +1,9 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
-import Heading from '@ui/heading';
-import UnderlineLink from '@common/underline-link';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import Heading from '@ui/heading';
 import { AiOutlineFire } from 'react-icons/ai';
 
 const Trending = () => {
@@ -12,12 +11,9 @@ const Trending = () => {
 
   return (
     <div className="content-container py-12">
-      <div className="mb-8 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <AiOutlineFire size={32} className="text-primary" />
-          <Heading className="text-left">Trending Now</Heading>
-        </div>
-        <UnderlineLink href="/store">View More</UnderlineLink>
+      <div className="mb-8 flex items-center gap-2">
+        <AiOutlineFire size={32} className="text-primary" />
+        <Heading className="text-left">Trending Now</Heading>
       </div>
 
       <Carousel

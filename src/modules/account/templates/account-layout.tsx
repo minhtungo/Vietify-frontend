@@ -3,6 +3,8 @@ import UnderlineLink from '@common/underline-link';
 import Spinner from '@icons/spinner';
 import React, { useEffect } from 'react';
 import AccountNav from '../components/account-nav';
+import Link from '@modules/common/components/link';
+import { buttonVariants } from '@modules/ui/button';
 
 const AccountLayout: React.FC = ({
   children,
@@ -41,9 +43,12 @@ const AccountLayout: React.FC = ({
             </span>
           </div>
           <div>
-            <UnderlineLink href="/customer-service">
+            <Link
+              className={buttonVariants({ variant: 'link' })}
+              href="/customer-service"
+            >
               Customer Service
-            </UnderlineLink>
+            </Link>
           </div>
         </div>
       </div>

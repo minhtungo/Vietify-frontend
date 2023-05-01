@@ -61,8 +61,7 @@ export default function Nav() {
           <DesktopSearchModal />
         </div>
 
-        <div className="flex items-center gap-4">
-          <CartDropdown />
+        <div className="flex items-center gap-2">
           <Link
             href="/account"
             className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-200"
@@ -70,6 +69,7 @@ export default function Nav() {
             <UserIcon size={22} aria-hidden="true" className="text-gray-700" />
             <span className="sr-only">User</span>
           </Link>
+          <CartDropdown />
         </div>
         <div className="flex h-full basis-0 items-center small:hidden">
           <Hamburger setOpen={toggle} />

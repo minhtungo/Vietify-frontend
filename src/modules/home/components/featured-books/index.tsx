@@ -1,11 +1,10 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
-import ProductPreview from '@modules/products/components/product-preview';
-import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
+import ProductPreview from '@modules/products/components/product-preview';
+import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import Heading from '@ui/heading';
 import { SlBadge } from 'react-icons/sl';
-import UnderlineLink from '@common/underline-link';
 
 const FeaturedBooks = () => {
   const { data } = useFeaturedProductsQuery();
@@ -13,12 +12,9 @@ const FeaturedBooks = () => {
   return (
     <div className=" bg-blue-100/20">
       <div className="content-container py-16 ">
-        <div className="mb-8 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <SlBadge size={32} className="fill-brand" />
-            <Heading className="text-left">Featured Books</Heading>
-          </div>
-          <UnderlineLink href="/store">View More</UnderlineLink>
+        <div className="mb-8 flex items-center gap-2 ">
+          <SlBadge size={32} className="fill-brand" />
+          <Heading className="text-left">Featured Books</Heading>
         </div>
 
         <Carousel

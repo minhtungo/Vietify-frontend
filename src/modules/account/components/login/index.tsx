@@ -9,6 +9,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import Heading from '@modules/ui/heading';
 import Google from '@icons/google';
 import { Separator } from '@ui/separator';
+import Facebook from '@icons/facebook';
 
 interface SignInCredentials extends FieldValues {
   email: string;
@@ -42,7 +43,7 @@ const Login = () => {
   });
 
   return (
-    <div className="flex w-full max-w-[420px] flex-col items-center">
+    <div className="flex w-full max-w-md flex-col items-center">
       {isSubmitting && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
@@ -58,8 +59,8 @@ const Login = () => {
           Continue with Google
         </Button>
         <Button variant="outline">
-          <Google className="mr-2 h-4 w-4" />
-          Continue with Google
+          <Facebook className="mr-2 h-4 w-4" />
+          Continue with Facebook
         </Button>
       </div>
 

@@ -1,4 +1,5 @@
-import UnderlineLink from '@common/underline-link';
+import Link from '@common/link';
+import { buttonVariants } from '@ui/button';
 
 const EmptyCartMessage = () => {
   return (
@@ -9,7 +10,9 @@ const EmptyCartMessage = () => {
         the link below to start browsing our products.
       </p>
       <div>
-        <UnderlineLink href="/store">Explore products</UnderlineLink>
+        <Link className={buttonVariants({ variant: 'outline' })} href="/store">
+          Explore products
+        </Link>
       </div>
     </div>
   );
