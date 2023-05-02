@@ -28,7 +28,7 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
           <div>
             <Link href={`/products/${item.variant.product.handle}`}>
               <Heading
-                variant="titleSmall"
+                variant="small"
                 className="w-[195px] overflow-hidden overflow-ellipsis whitespace-nowrap"
               >
                 {item.title}

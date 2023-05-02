@@ -12,10 +12,7 @@ const DesktopSearchModal = () => {
           <div className="w-full min-w-[550px] ">
             <SearchBox />
           </div>
-
-          <div className="no-scrollbar absolute top-[60%] mt-6 overflow-y-auto bg-white shadow-md">
-            <DesktopHits hitComponent={DesktopHit} />
-          </div>
+          <DesktopHits hitComponent={DesktopHit} />
         </div>
       </InstantSearch>
     </>
