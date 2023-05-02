@@ -8,6 +8,7 @@ const textVariants = cva('', {
       description: 'text-base-regular text-brand-muted',
       info: '!text-small-regular text-brand-muted',
       label: 'text-[15px] text-brand-dark font-semibold',
+      link: 'text-sm lg:text-[15px] text-brand-muted transition-colors duration-200 hover:text-brand',
     },
   },
   defaultVariants: {

@@ -1,13 +1,13 @@
-import cn from '@lib/util/cn';
-import Heading from '@ui/heading';
 import Link from '@common/link';
+import cn from '@lib/util/cn';
+import Logo from '@modules/common/components/logo';
 import Image from 'next/legacy/image';
 
 interface AboutProps {
   className?: string;
   social?: {
     id: string | number;
-    path?: string;
+    path: string;
     name: string;
     image: string;
     width: number;
@@ -19,16 +19,9 @@ const WidgetAbout: React.FC<AboutProps> = ({ social, className }) => {
   return (
     <div className={cn('pb-10 sm:pb-0', className)}>
       <div className="mx-auto flex max-w-[300px] flex-col pb-6 text-center sm:ml-0 sm:pb-5 sm:text-left">
-        {/* <Logo
-          href={'/'}
-          className="mx-auto mb-3 lg:mb-5 sm:ltr:ml-0 sm:rtl:mr-0"
-        /> */}
-        <Heading size="md" className="mb-3 lg:mb-5">
-          Vietify
-        </Heading>
+        <Logo className="mx-auto mb-3 select-none sm:ml-0 lg:mb-4" />
         <p className="text-sm text-brand-muted lg:text-[15px]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-          voluptates exercitationem non ducimus.
+          Where the Viet never sleeps.
         </p>
       </div>
 
@@ -38,7 +31,7 @@ const WidgetAbout: React.FC<AboutProps> = ({ social, className }) => {
             className="transition hover:opacity-80"
             key={`social-list--key${item.id}`}
           >
-            <Link href={item.path ? item.path : '/#'}>
+            <Link href={item.path}>
               <Image
                 src={item.image}
                 alt={item.name}

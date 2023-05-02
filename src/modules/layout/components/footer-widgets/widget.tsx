@@ -1,4 +1,4 @@
-import WidgetAbout from './about-us';
+import WidgetAbout from './about';
 import WidgetLink from './links';
 import { footer } from '@modules/layout/templates/footer/data';
 import WidgetSubscription from './subscription';
@@ -30,7 +30,7 @@ const Widgets: React.FC<WidgetsProps> = ({ widgets }) => {
       ))}
       <WidgetSubscription
         className={cn(
-          '3xl:pl-16 3xl:pr-16 col-span-full border-t border-gray-400/20 pt-8 sm:col-span-1 sm:border-t-0 sm:pt-0 md:col-span-4 md:col-start-4 xl:col-span-3 xl:col-start-auto xl:pl-6 2xl:pl-7'
+          'col-span-full border-t border-gray-400/20 pt-8 sm:col-span-1 sm:border-t-0 sm:pt-0 md:col-span-4 md:col-start-4 xl:col-span-3 xl:col-start-auto xl:pl-6 2xl:pl-7'
         )}
       />
     </div>

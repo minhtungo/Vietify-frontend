@@ -45,12 +45,12 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
   };
 
   return (
-    <div className={cn('flex flex-col', className)}>
-      <Heading variant="medium" className="mb-4 lg:mb-6 lg:pb-0.5">
+    <div className={cn('flex flex-col sm:-mt-[6px]', className)}>
+      <Heading variant="small" className="mb-3 lg:mb-4">
         Subscribe Now
       </Heading>
 
-      <p className="max-w-[400px] text-sm text-brand-muted lg:-mt-1 lg:text-[15px]">
+      <p className="text-sm text-brand-muted lg:text-[15px]">
         Subscribe your email for newsletter and get notification about new
       </p>
       <form noValidate className="mt-5" onSubmit={handleSubmit(onSubmit)}>

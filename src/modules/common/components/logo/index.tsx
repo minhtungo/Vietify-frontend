@@ -1,14 +1,17 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import SVGLogo from '/public/assets/images/logo/logo.svg';
+import cn from '@lib/util/cn';
 
-interface LogoProps {}
+interface LogoProps {
+  className?: string;
+}
 
-const Logo: React.FC<LogoProps> = ({}) => {
+const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
-    <Link href="/" className="flex items-center">
+    <div className={cn('w-28 items-center ', className)}>
       <span className="sr-only">Vietify</span>
-      <span className="text-xl font-semibold">Vietify</span>
-    </Link>
+      <Image src={SVGLogo} alt="" className="" />
+    </div>
   );
 };
 

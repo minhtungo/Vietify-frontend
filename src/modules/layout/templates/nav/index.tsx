@@ -52,7 +52,9 @@ export default function Nav() {
       )}
     >
       <div className="flex h-16 max-w-8xl items-center justify-between px-4 small:px-6">
-        <Logo />
+        <Link href="/" className="hidden md:block">
+          <Logo />
+        </Link>
 
         <div className="flex items-center">
           <Categories />
