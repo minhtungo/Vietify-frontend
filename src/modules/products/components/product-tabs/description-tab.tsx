@@ -19,7 +19,7 @@ const DescriptionTab = ({ product }: DescriptionTabProps) => {
 
   return (
     <TabsContent value="Description" className="text-medium-regular py-8">
-      <div className="py-4">
+      <div>
         <Text
           ref={ref}
           className={cn('break-words', !isShowingMore && 'line-clamp-3')}

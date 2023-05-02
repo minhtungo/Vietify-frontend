@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import ProductDetails from './product-details';
 import DescriptionTab from './description-tab';
 import ReviewsTab from './reviews';
+import Heading from '@modules/ui/heading';
 
 type ProductTabsProps = {
   product: Product;
@@ -41,7 +42,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
                 'transition-color w-[15%] uppercase duration-150 ease-in-out'
               )}
             >
-              {tab.label}
+              <Heading variant="medium">{tab.label}</Heading>
             </TabsTrigger>
           );
         })}
