@@ -1,15 +1,16 @@
+import Hamburger from '@common/hamburger';
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import useScrollDirection from '@lib/hooks/use-scroll-direction';
 import cn from '@lib/util/cn';
-import Hamburger from '@common/hamburger';
-import UserIcon from '@icons/user';
+import Logo from '@modules/common/components/logo';
 import CartDropdown from '@modules/layout/components/cart-dropdown';
+import User from '@modules/layout/components/user';
 import Categories from '@modules/layout/templates/nav/categories';
 import MobileMenu from '@modules/mobile-menu/templates';
 import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Nav() {
   const { pathname } = useRouter();
@@ -37,9 +38,9 @@ export default function Nav() {
   //   }
   // }, [isHome]);
 
-  useEffect(() => {
-    pathname === '/' ? setIsHome(true) : setIsHome(false);
-  }, [pathname]);
+  // useEffect(() => {
+  //   pathname === '/' ? setIsHome(true) : setIsHome(false);
+  // }, [pathname]);
 
   const { toggle } = useMobileMenu();
 
@@ -51,26 +52,18 @@ export default function Nav() {
       )}
     >
       <div className="flex h-16 max-w-8xl items-center justify-between px-4 small:px-6">
-        <Link href="/" className="flex items-center">
-          <span className="sr-only">Vietify</span>
-          <span className="text-xl font-semibold">Vietify</span>
-        </Link>
+        <Logo />
 
         <div className="flex items-center">
           <Categories />
           <DesktopSearchModal />
         </div>
 
-        <div className="flex items-start ">
-          <Link
-            href="/account"
-            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-200"
-          >
-            <UserIcon size={22} aria-hidden="true" className="text-gray-700" />
-            <span className="sr-only">User</span>
-          </Link>
+        <div className="flex items-start">
+          <User />
           <CartDropdown />
         </div>
+
         <div className="flex h-full basis-0 items-center small:hidden">
           <Hamburger setOpen={toggle} />
         </div>

@@ -2,7 +2,7 @@ import CartIcon from '@icons/cart';
 import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
 import { ScrollArea } from '@modules/ui/scroll-area';
 import { Separator } from '@modules/ui/separator';
-import { buttonVariants } from '@ui/button';
+import Button, { buttonVariants } from '@ui/button';
 import Heading from '@ui/heading';
 import {
   Popover,
@@ -25,15 +25,18 @@ const CartDropdown = () => {
     <div className="relative z-50 h-full">
       <Popover>
         <PopoverTrigger asChild>
-          <button className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-200">
+          <Button
+            variant="ghost"
+            className="relative h-10 w-10 rounded-full p-0 duration-150"
+          >
             <CartIcon className="text-gray-600" size={25} aria-hidden="true" />
-            <span className="absolute right-[2px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand text-[10px] font-medium leading-none text-brand-light">
+            <span className="absolute right-[2px] top-0 flex h-[19px] w-[19px] items-center justify-center rounded-full bg-brand text-[11px] font-semibold leading-none text-brand-light">
               {totalItems}
             </span>
             <span className="sr-only">
               {`${totalItems} items in cart, view bag`}
             </span>
-          </button>
+          </Button>
         </PopoverTrigger>
         <PopoverContent className="mt-[2px] hidden w-full small:block">
           <Heading className="p-3">Shopping Cart</Heading>

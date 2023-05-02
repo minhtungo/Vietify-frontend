@@ -1,20 +1,14 @@
 import Image from 'next/image';
-import { FC } from 'react';
+import Link from 'next/link';
 
 interface LogoProps {}
 
-const Logo: FC<LogoProps> = ({}) => {
+const Logo: React.FC<LogoProps> = ({}) => {
   return (
-    <div>
+    <Link href="/" className="flex items-center">
+      <span className="sr-only">Vietify</span>
       <span className="text-xl font-semibold">Vietify</span>
-      {/* <Image
-        alt="Logo"
-        className="hidden cursor-pointer md:block"
-        height="100"
-        width="100"
-        src="/images/logo.png"
-      /> */}
-    </div>
+    </Link>
   );
 };
 
