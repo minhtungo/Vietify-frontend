@@ -10,6 +10,7 @@ import Heading from '@modules/ui/heading';
 import Google from '@icons/google';
 import { Separator } from '@ui/separator';
 import Facebook from '@icons/facebook';
+import Text from '@modules/ui/text';
 
 interface SignInCredentials extends FieldValues {
   email: string;
@@ -43,13 +44,13 @@ const Login = () => {
   });
 
   return (
-    <div className="flex w-full max-w-md flex-col items-center">
+    <div className="flex w-full max-w-md flex-col">
       {isSubmitting && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
         </div>
       )}
-      <Heading variant="large" className="mb-6">
+      <Heading variant="large" className="mb-6 text-center">
         Welcome back
       </Heading>
 
@@ -64,14 +65,14 @@ const Login = () => {
         </Button>
       </div>
 
-      <div className="mb-6 flex h-5 w-full max-w-[420px] items-center justify-center space-x-4">
-        <div className="h-[1px] border-t border-blue-400 bg-blue-500" />
-        <span>or</span>
-        <div className="h-[1px] bg-blue-500" />
+      <div className="mb-6 flex items-center">
+        <div className="h-[0.5px] flex-grow bg-border" />
+        <Text className="text-md mx-3">OR</Text>
+        <div className="h-[0.5px] flex-grow bg-border" />
       </div>
 
       <form className="w-full" onSubmit={onSubmit}>
-        <div className="flex w-full flex-col gap-y-2">
+        <div className="flex w-full flex-col gap-y-3.5">
           <Input
             label="Email"
             {...register('email', { required: 'Email is required' })}

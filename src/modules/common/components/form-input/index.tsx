@@ -6,6 +6,7 @@ import { Input } from '@ui/input';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 import { get } from 'react-hook-form';
 import { Label } from '@ui/label';
+import { DropdownMenuLabel } from '@modules/ui/dropdown-menu';
 
 type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -38,14 +39,15 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
     const hasError = get(errors, name) && get(touched, name);
 
     return (
-      <div>
-        <div className="text-base-regular relative z-0 w-full">
+      <>
+        <div className="relative w-full">
           <Input
             type={inputType}
             name={name}
+            id={name}
             placeholder=" "
             className={cn(
-              '!h-full w-full px-4 pb-1.5 pt-4',
+              'peer !h-full px-2.5 pb-2.5 pt-4',
               hasError && 'border-destructive focus:border-destructive'
             )}
             {...props}
@@ -53,9 +55,8 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
           />
           <Label
             htmlFor={name}
-            onClick={() => inputRef.current?.focus()}
             className={cn(
-              '-z-1 origin-0 absolute top-3.5 mx-3 px-1 text-muted-foreground transition-all duration-300',
+              'absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-[.95] peer-focus:px-2 peer-focus:text-primary  ',
               hasError && '!text-destructive'
             )}
           >
@@ -85,7 +86,7 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
             }}
           />
         )}
-      </div>
+      </>
     );
   }
 );
