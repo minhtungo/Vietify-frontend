@@ -159,3 +159,22 @@
     @apply text-[36px] font-semibold leading-[48px];
   }
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: hsl(var(--accent));
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary));
+}

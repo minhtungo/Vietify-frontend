@@ -28,7 +28,7 @@ const DesktopHits = ({
   }, [hits]);
 
   return (
-    <Popover defaultOpen={false} open={!!hitsLength} modal>
+    <Popover defaultOpen={false} open={!!hitsLength}>
       <PopoverAnchor />
       <PopoverContent
         className="max-h-[400px] w-full max-w-[550px] overflow-y-auto"
