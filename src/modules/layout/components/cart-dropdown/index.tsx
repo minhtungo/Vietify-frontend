@@ -22,7 +22,7 @@ const CartDropdown = () => {
   // const { state, open, close } = useCartDropdown();
 
   return (
-    <div className="relative z-50 h-full">
+    <div className="relative z-50">
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -38,12 +38,12 @@ const CartDropdown = () => {
             </span>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="mt-[2px] hidden w-full small:block">
-          <Heading className="p-3">Shopping Cart</Heading>
+        <PopoverContent className="mt-[2px] hidden w-full space-y-4 px-0 py-5 small:block">
           {cart && items?.length ? (
             <>
-              <ScrollArea className="max-h-[400px] w-[410px]">
-                <div className="flex flex-col gap-3.5 px-3">
+              <Heading className="px-4">Shopping Cart</Heading>
+              <div className="max-h-[400px] w-[400px] overflow-y-auto">
+                <div className="flex flex-col gap-3.5 px-4">
                   {items
                     .sort((a, b) => {
                       return a.created_at > b.created_at ? -1 : 1;
@@ -62,9 +62,9 @@ const CartDropdown = () => {
                       </>
                     ))}
                 </div>
-              </ScrollArea>
+              </div>
 
-              <div className="text-small-regular mt-3 flex flex-col gap-y-4 p-3">
+              <div className="text-small-regular flex flex-col gap-y-4 px-4">
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col">
                     <Text variant="label" as="span">
@@ -107,11 +107,11 @@ const CartDropdown = () => {
               </div>
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center gap-y-4 py-8">
+            <div className="flex w-[290px] flex-col items-center justify-center gap-y-4 px-4">
               <span>Your cart is empty.</span>
               <PopoverClose asChild>
                 <Link href="/store" className={buttonVariants({})}>
-                  <span className="sr-only">Go to all products page</span>
+                  <Text className="sr-only">Go to all products page</Text>
                   Explore products
                 </Link>
               </PopoverClose>
