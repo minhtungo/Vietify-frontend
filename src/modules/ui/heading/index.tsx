@@ -2,7 +2,7 @@ import cn from '@lib/util/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 import { forwardRef, HTMLAttributes } from 'react';
 
-const headingVariants = cva('capitalize text-foreground', {
+export const headingVariants = cva('capitalize text-foreground', {
   variants: {
     variant: {
       heading: 'text-xl md:text-2xl lg:text-3xl',
