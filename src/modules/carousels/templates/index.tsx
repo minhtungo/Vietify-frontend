@@ -13,7 +13,7 @@ import {
 } from '@modules/carousels/components/slider';
 import React, { FC, useRef } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import BREAKPOINTS from '../breakpoints';
+import { BREAKPOINTS, FEATURED_BREAKPOINTS } from 'static/breakpoints';
 
 export interface CarouselProps extends SwiperOptions {
   className?: string;
@@ -24,6 +24,7 @@ export interface CarouselProps extends SwiperOptions {
   prevActivateId?: string;
   nextActivateId?: string;
   banner?: boolean;
+  featured?:boolean;
 }
 
 const Carousel: FC<CarouselProps> = ({
@@ -36,6 +37,7 @@ const Carousel: FC<CarouselProps> = ({
   prevButtonClassName = 'left-2 lg:left-2.5',
   nextButtonClassName = 'right-2 lg:right-2.5',
   banner,
+  featured,
   ...props
 }) => {
   const prevRef = useRef<HTMLDivElement>(null);
@@ -45,7 +47,7 @@ const Carousel: FC<CarouselProps> = ({
     <div className={cn('relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
-        breakpoints={banner ? undefined : BREAKPOINTS}
+        breakpoints={banner ? undefined : featured ? FEATURED_BREAKPOINTS : BREAKPOINTS}
         navigation={
           navigation
             ? {

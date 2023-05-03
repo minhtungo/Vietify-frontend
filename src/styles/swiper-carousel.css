@@ -11,6 +11,17 @@
   bottom: 20px;
 }
 
+#featured-books .swiper-slide {
+  opacity: 0.9;
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+}
+
+#featured-books .swiper-slide.swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
 .swiper
   .swiper-pagination-bullets
   .swiper-pagination-bullet.swiper-pagination-bullet-active {

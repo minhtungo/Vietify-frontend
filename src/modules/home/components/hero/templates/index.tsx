@@ -1,7 +1,7 @@
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
 import BannerCard from '@modules/home/components/hero/components/banner-card';
-import { banners } from '@modules/home/components/hero/content';
+import { BANNERS } from 'static/banner';
 
 const Hero = () => {
   return (
@@ -19,7 +19,7 @@ const Hero = () => {
         prevButtonClassName="left-2 lg:left-2.5"
         nextButtonClassName="right-2 lg:right-2.5"
       >
-        {banners.map((banner) => (
+        {BANNERS.map((banner) => (
           <SwiperSlide key={`banner--key${banner.id}`}>
             <BannerCard banner={banner} />
           </SwiperSlide>

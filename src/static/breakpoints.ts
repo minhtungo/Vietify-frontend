@@ -16,6 +16,24 @@ const BREAKPOINTS = {
   },
 };
 
+const FEATURED_BREAKPOINTS = {
+  '1024': {
+    slidesPerView: 5,
+    spaceBetween: 10,
+  },
+  '768': {
+    slidesPerView: 5,
+    spaceBetween: 10,
+  },
+  '680': {
+    slidesPerView: 4,
+    spaceBetween: 8,
+  },
+  '0': {
+    slidesPerView: 2,
+  },
+};
+
 const GRID_BREAKPOINTS = {
   '1024': {
     slidesPerView: 3,
@@ -34,6 +52,4 @@ const GRID_BREAKPOINTS = {
   },
 };
 
-export default BREAKPOINTS;
-
-export {GRID_BREAKPOINTS }
+export { GRID_BREAKPOINTS, FEATURED_BREAKPOINTS, BREAKPOINTS };

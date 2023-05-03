@@ -11,6 +11,7 @@ module.exports = withStoreConfig({
       'tailwindui.com',
       'images.unsplash.com',
       'i.ibb.co',
+      'demo2.pavothemes.com',
     ],
   },
 });

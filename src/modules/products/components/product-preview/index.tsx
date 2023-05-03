@@ -5,6 +5,7 @@ import Thumbnail from '../thumbnail';
 import { HiOutlineEye } from 'react-icons/hi2';
 import ReviewRating from '@modules/review/components/review-rating';
 import HeartIcon from '@icons/heart';
+import Text from '@modules/ui/text';
 
 const ProductPreview = ({
   title,
@@ -15,7 +16,13 @@ const ProductPreview = ({
   return (
     <Link href={`/products/${handle}`}>
       <div className="group relative">
-        <Thumbnail thumbnail={thumbnail} size="full" rounded="lg" />
+        <Thumbnail
+          thumbnail={
+            'https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/26.jpg'
+          }
+          size="full"
+          rounded="md"
+        />
         <div className="absolute bottom-3 right-2 flex flex-col gap-1 opacity-0 transition-all duration-200 group-hover:opacity-100">
           <span className=" flex items-center rounded-full bg-white p-2 text-gray-800 shadow transition-all  duration-100 hover:bg-blue-500 hover:text-white">
             <HeartIcon />
@@ -39,13 +46,10 @@ const ProductPreview = ({
                   {price.original_price}
                 </span>
               )}
-              <span
-                className={clsx('font-medium', {
-                  'text-rose-500': price.price_type === 'sale',
-                })}
-              >
+
+              <Text variant='label' as='span' className='text-brand'>
                 {price.calculated_price}
-              </span>
+              </Text>
             </>
           ) : (
             <div className="h-6 w-20 animate-pulse bg-gray-100"></div>

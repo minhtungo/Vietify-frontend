@@ -1,21 +1,20 @@
-import { useProductActions } from '@lib/context/product-context';
-import useProductPrice from '@lib/hooks/use-product-price';
-import cn from '@lib/util/cn';
-import Button from '@ui/button';
 import Counter from '@common/counter';
-import Heading from '@ui/heading';
 import SocialShare from '@common/social-share';
 import HeartIcon from '@icons/heart';
 import ShareIcon from '@icons/share';
+import { useProductActions } from '@lib/context/product-context';
+import useProductPrice from '@lib/hooks/use-product-price';
+import cn from '@lib/util/cn';
 import OptionSelect from '@modules/products/components/option-select';
 import ReviewRating from '@modules/review/components/review-rating';
+import Button from '@ui/button';
+import Heading from '@ui/heading';
+import Text from '@ui/text';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
-import { Product } from 'types/medusa';
 import toast from 'react-hot-toast';
+import { Product } from 'types/medusa';
 import AddedItem from './added-item';
-import Text from '@ui/text';
-import { Separator } from '@ui/separator';
 
 type ProductActionsProps = {
   product: Product;
