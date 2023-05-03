@@ -1,43 +1,43 @@
-import { useRouter } from 'next/router';
-import SORT_OPTIONS from 'static/sort-options';
-import { useEffect, useState } from 'react';
-import { FilterOption } from 'types/global';
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@ui/select';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import SORT_OPTIONS from 'static/sort-options';
+import { FilterOption } from 'types/global';
 
 interface SortByProps {}
 
 const SortBy: React.FC<SortByProps> = ({}) => {
   const router = useRouter();
   const { pathname, query } = router;
-  const currentSelectedItem = query.sort_by
-    ? SORT_OPTIONS.find((o) => o.value === query.sort_by)
+  const currentSelectedItem = query.sort
+    ? SORT_OPTIONS.find((o) => o.value === query.sort)?.name
     : undefined;
 
-  const [selectedItem, setSelectedItem] = useState<FilterOption | undefined>(
-    currentSelectedItem
+  const [selectedItem, setSelectedItem] = useState<string | undefined>(
+    undefined
   );
 
   useEffect(() => {
-    setSelectedItem(currentSelectedItem);
+    if (currentSelectedItem) {
+      setSelectedItem(currentSelectedItem);
+    }
   }, [currentSelectedItem]);
 
   const onSortBy = (option: FilterOption) => {
-    setSelectedItem(option);
-    const { sort_by, ...restQuery } = query;
+    setSelectedItem(option.name);
+    const { sort, ...restQuery } = query;
     router.push(
       {
         pathname,
         query: {
           ...restQuery,
-          sort_by: option.value,
+          sort: option.value,
         },
       },
       undefined,
@@ -46,23 +46,16 @@ const SortBy: React.FC<SortByProps> = ({}) => {
   };
 
   return (
-    <Select>
-      <SelectTrigger className="w-[150px]">
-        <SelectValue placeholder="Sorting" />
+    <Select onValueChange={onSortBy}>
+      <SelectTrigger className="w-[140px]">
+        <SelectValue>{selectedItem || 'Sort'}</SelectValue>
       </SelectTrigger>
       <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Default sorting</SelectLabel>
-          {SORT_OPTIONS.map((option) => (
-            <SelectItem
-              key={option.name}
-              value={option.name}
-              onClick={() => onSortBy(option)}
-            >
-              {option.name}
-            </SelectItem>
-          ))}
-        </SelectGroup>
+        {SORT_OPTIONS.map((option) => (
+          <SelectItem key={option.name} value={option}>
+            {option.name}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );

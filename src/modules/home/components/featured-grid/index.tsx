@@ -3,7 +3,7 @@ import { SwiperSlide } from '@modules/carousels/components/slider';
 import dynamic from 'next/dynamic';
 import FeaturedCard from './featured-card';
 import { GRID_BREAKPOINTS } from 'static/breakpoints';
-import data from 'static/featured-grid';
+import data from 'static/features';
 
 const Carousel = dynamic(() => import('@modules/carousels/templates'), {
   ssr: false,
