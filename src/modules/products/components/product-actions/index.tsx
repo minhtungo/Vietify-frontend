@@ -9,13 +9,13 @@ import HeartIcon from '@icons/heart';
 import ShareIcon from '@icons/share';
 import OptionSelect from '@modules/products/components/option-select';
 import ReviewRating from '@modules/review/components/review-rating';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
 import { Product } from 'types/medusa';
 import toast from 'react-hot-toast';
 import AddedItem from './added-item';
 import Text from '@ui/text';
+import { Separator } from '@ui/separator';
 
 type ProductActionsProps = {
   product: Product;
@@ -81,11 +81,35 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </Link>
       )} */}
       <Heading variant="large">{product.title}</Heading>
-      <div className="flex gap-2">
-        <Text variant="info">
-          <span className="text-brand-muted/80">Author:</span> Nguyễn Nhật Ánh
-        </Text>
-        <ReviewRating className="border-l pl-2" />
+      <div className="mt-1 flex w-full flex-wrap justify-between">
+        <span className="w-1/2">
+          <Text variant="info" className="font-semibold" as="span">
+            Author:{' '}
+          </Text>
+          <Text variant="info" as="span">
+            Nguyễn Nhật Ánh
+          </Text>
+        </span>
+        <span className="">
+          <Text variant="info" className="font-semibold" as="span">
+            Publisher:{' '}
+          </Text>
+          <Text variant="info" as="span">
+            Nguyễn Nhật Ánh
+          </Text>
+        </span>
+        <span>
+          <Text variant="info" className="font-semibold" as="span">
+            SKU:{' '}
+          </Text>
+          <Text variant="info" as="span">
+            123456789
+          </Text>
+        </span>
+      </div>
+      <div className="flex items-center space-x-1">
+        <ReviewRating className="" />
+        <span className="text-xs text-muted-foreground">{'(25 reviews)'}</span>
       </div>
 
       <div className="mb-4 flex gap-2">

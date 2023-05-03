@@ -16,7 +16,7 @@ const User: React.FC<UserProps> = ({}) => {
         })
       )}
     >
-      <UserIcon size={22} aria-hidden="true" className="text-gray-700" />
+      <UserIcon size={23.5} aria-hidden="true" className="text-gray-700" />
       <span className="sr-only">User</span>
     </Link>
   );

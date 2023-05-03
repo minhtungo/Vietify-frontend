@@ -14,7 +14,7 @@ const ReviewRating: FC<ReviewRatingProps> = ({ className }) => {
       <StarIcon className="h-4 w-4 fill-yellow-400 text-yellow-400" />
       <StarIcon className="h-4 w-4 fill-yellow-400 text-yellow-400" />
       <StarIcon className="h-4 w-4 text-yellow-400 " />
-      <p className="ml-2 text-xs font-medium text-gray-700 ">10</p>
+      <span className="ml-2 text-xs font-semibold text-gray-700 ">10</span>
     </div>
   );
 };
