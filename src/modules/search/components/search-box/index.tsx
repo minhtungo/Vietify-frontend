@@ -5,6 +5,7 @@ import SearchBoxWrapper, {
 } from '../search-box-wrapper';
 import Search from '@icons/search';
 import { Input } from '@modules/ui/input';
+import Button from '@modules/ui/button';
 
 const ControlledSearchBox = ({
   inputRef,
@@ -53,15 +54,18 @@ const ControlledSearchBox = ({
             placeholder={placeholder}
           />
           {value && (
-            <button
+            <Button
               onClick={handleReset}
-              type="button"
-              className="absolute right-8 flex h-4 w-4 items-center justify-center rounded-full bg-accent"
+              variant="ghost"
+              className="absolute right-8 h-6 w-6 rounded-full p-0 text-muted-foreground duration-150"
             >
-              <X size={10} />
-            </button>
+              <X size={16} />
+            </Button>
           )}
-          <Search size={20} className="absolute right-2 text-gray-600" />
+          <Search
+            size={20}
+            className="absolute right-2 text-muted-foreground"
+          />
         </div>
       </form>
     </div>

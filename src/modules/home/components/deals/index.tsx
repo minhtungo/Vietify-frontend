@@ -14,7 +14,7 @@ const Deals = () => {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-2">
         <Flash size={32} className="text-primary" />
-        <Heading className="text-left">Deals of The Week</Heading>
+        <Heading variant="heading">Deals of The Week</Heading>
         <CountDown date={Date.now() + 100000000} />
       </div>
 

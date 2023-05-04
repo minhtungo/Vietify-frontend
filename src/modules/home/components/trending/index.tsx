@@ -13,7 +13,7 @@ const Trending = () => {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-2">
         <AiOutlineFire size={32} className="text-primary" />
-        <Heading className="text-left">Trending Now</Heading>
+        <Heading variant="heading">Trending Now</Heading>
       </div>
 
       <Carousel

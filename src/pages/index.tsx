@@ -3,6 +3,7 @@ import Deals from '@modules/home/components/deals';
 import FeaturedBooks from '@modules/home/components/featured-books';
 import FeatureGrid from '@modules/home/components/featured-grid';
 import Hero from '@modules/home/components/hero/templates';
+import Popular from '@modules/home/components/popular';
 import ProductsCategory from '@modules/home/components/products-category';
 import Trending from '@modules/home/components/trending';
 import Layout from '@modules/layout/templates';
@@ -23,6 +24,7 @@ const Home: NextPageWithLayout = () => {
       <ProductsCategory />
       <FeaturedBooks />
       <Trending />
+      <Popular />
     </>
   );
 };

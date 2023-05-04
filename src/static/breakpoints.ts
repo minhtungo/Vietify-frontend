@@ -19,7 +19,7 @@ const BREAKPOINTS = {
 const FEATURED_BREAKPOINTS = {
   '1024': {
     slidesPerView: 5,
-    spaceBetween: 10,
+    spaceBetween: 0,
   },
   '768': {
     slidesPerView: 5,

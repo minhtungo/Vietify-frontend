@@ -14,7 +14,6 @@
 #featured-books .swiper-slide {
   opacity: 0.9;
   transform: scale(0.9);
-  transition: all 0.3s ease-in-out;
 }
 
 #featured-books .swiper-slide.swiper-slide-active {

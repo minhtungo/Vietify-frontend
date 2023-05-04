@@ -13,7 +13,6 @@ const Hero = () => {
         }}
         banner
         speed={1100}
-        loop
         prevActivateId="prev-banner-carousel-button"
         nextActivateId="next-banner-carousel-button"
         prevButtonClassName="left-2 lg:left-2.5"
