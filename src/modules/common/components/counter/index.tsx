@@ -7,7 +7,7 @@ import { CounterProps } from 'types/global';
 const counterVariants = cva('flex items-center rounded p-1 px-3 gap-2', {
   variants: {
     variant: {
-      single: 'h-10 bg-[#f3f5f9]',
+      single: 'h-10 bg-accent',
     },
   },
   defaultVariants: {
@@ -33,7 +33,7 @@ const Counter: React.FC<counterProps> = ({
         onClick={onDecrement}
         className={cn(
           'flex h-full shrink-0 items-center justify-center transition-all duration-300 ease-in-out ',
-          'scale-80 h-6 w-6 transform rounded-full text-brand-muted hover:bg-brand-muted/20 lg:scale-100'
+          'scale-80 h-6 w-6 transform rounded-full text-brand-muted hover:bg-brand-muted/10 lg:scale-100'
         )}
       >
         <span className="sr-only">Minus Button</span>
@@ -52,7 +52,7 @@ const Counter: React.FC<counterProps> = ({
         disabled={disabled}
         className={cn(
           'flex h-full shrink-0 items-center justify-center transition-all duration-300 ease-in-out',
-          'scale-80 h-6 w-6 rounded-full text-brand-muted hover:bg-brand-muted/20 lg:scale-100'
+          'scale-80 h-6 w-6 rounded-full text-brand-muted hover:bg-brand-muted/10 lg:scale-100'
         )}
         title={disabled ? 'Out of Stock' : ''}
       >

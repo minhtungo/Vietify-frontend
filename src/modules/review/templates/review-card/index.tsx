@@ -12,8 +12,10 @@ const ReviewCard: FC<reviewCardProps> = ({ className }) => {
   return (
     <div className={cn(className)}>
       <ReviewRating />
-      <Heading size="sm">Title</Heading>
-      <Text className="xl:leading-[2em]">Description</Text>
+      <Heading variant="small" className="pt-3">
+        Title
+      </Heading>
+      <Text variant="info">Description</Text>
       <div className="pt-2 text-sm text-brand-dark text-opacity-80">
         By
         <Text as="span" className="ml-[3px] inline-block">

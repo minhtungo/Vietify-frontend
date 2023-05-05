@@ -12,6 +12,7 @@ const Hero = () => {
           clickable: true,
         }}
         banner
+        loop
         speed={1100}
         prevActivateId="prev-banner-carousel-button"
         nextActivateId="next-banner-carousel-button"

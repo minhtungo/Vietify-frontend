@@ -15,6 +15,12 @@ import React, { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Product } from 'types/medusa';
 import AddedItem from './added-item';
+import {
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverTrigger,
+} from '@ui/popover';
 
 type ProductActionsProps = {
   product: Product;
@@ -173,25 +179,18 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         <Button variant="outline" className="gap-1">
           <HeartIcon size={18} /> Wishlist
         </Button>
-        <div className="group relative">
-          <Button
-            variant="outline"
-            className="w-full gap-1"
-            onClick={() => setShareButtonStatus(!shareButtonStatus)}
-          >
-            <ShareIcon size={18} />
-            Share
-          </Button>
-          <SocialShare
-            className={cn(
-              'absolute right-0 z-10 w-[300px] transition-all duration-300',
-              shareButtonStatus
-                ? 'visible top-full opacity-100'
-                : 'invisible top-[130%] opacity-0'
-            )}
-            shareUrl={`https://google.com`}
-          />
-        </div>
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline" className="w-full gap-1">
+              <ShareIcon size={18} />
+              Share
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-[245px] px-4 py-4">
+            <SocialShare className={cn('')} shareUrl={`https://google.com`} />
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   );

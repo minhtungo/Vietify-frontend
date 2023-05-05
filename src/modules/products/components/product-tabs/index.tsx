@@ -25,7 +25,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
         component: <ProductDetails product={product} />,
       },
       {
-        label: 'Reviews',
+        label: 'Reviews (0)',
         component: <ReviewsTab product={product} />,
       },
     ];
@@ -33,7 +33,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   return (
     <Tabs defaultValue="Description">
-      <TabsList className="flex flex-col flex-wrap lg:flex-row lg:space-x-4 ">
+      <TabsList className="flex flex-col flex-wrap justify-start gap-x-2 lg:flex-row">
         {tabs.map((tab, i) => {
           return (
             <TabsTrigger

@@ -1,6 +1,5 @@
 import CartIcon from '@icons/cart';
 import useEnrichedLineItems from '@lib/hooks/use-enrich-line-items';
-import { ScrollArea } from '@modules/ui/scroll-area';
 import { Separator } from '@modules/ui/separator';
 import Button, { buttonVariants } from '@ui/button';
 import Heading from '@ui/heading';

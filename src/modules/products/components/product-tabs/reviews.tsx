@@ -10,7 +10,7 @@ interface ReviewsTabProps {
 
 const ReviewsTab = ({ product }: ReviewsTabProps) => {
   return (
-    <TabsContent value="Reviews" className="text-medium-regular py-8">
+    <TabsContent value="Reviews (0)" className="text-medium-regular py-8">
       <ReviewCard />
       <Separator className="my-4" />
       <ReviewCard />
