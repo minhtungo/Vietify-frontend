@@ -9,7 +9,7 @@ const DesktopSearchModal = () => {
     <>
       <InstantSearch indexName={SEARCH_INDEX_NAME} searchClient={searchClient}>
         <div className="relative flex flex-col">
-          <div className="w-full min-w-[550px] ">
+          <div className="w-full min-w-[500px] ">
             <SearchBox />
           </div>
           <DesktopHits hitComponent={DesktopHit} />

@@ -54,23 +54,6 @@ const Login = () => {
         Welcome back
       </Heading>
 
-      <div className="mb-6 flex w-full justify-between">
-        <Button variant="outline">
-          <Google className="mr-2 h-4 w-4" />
-          Continue with Google
-        </Button>
-        <Button variant="outline">
-          <Facebook className="mr-2 h-4 w-4" />
-          Continue with Facebook
-        </Button>
-      </div>
-
-      <div className="mb-6 flex items-center">
-        <div className="h-[0.5px] flex-grow bg-border" />
-        <Text className="text-md mx-3">OR</Text>
-        <div className="h-[0.5px] flex-grow bg-border" />
-      </div>
-
       <form className="w-full" onSubmit={onSubmit}>
         <div className="flex w-full flex-col gap-y-3.5">
           <Input
@@ -94,16 +77,34 @@ const Login = () => {
         )}
         <Button className="mt-6 w-full">Sign In</Button>
       </form>
-      <span className="text-small-regular mt-6 text-center text-gray-700">
-        Not a member?{' '}
-        <button
+
+      <div className="my-6 flex items-center">
+        <div className="h-[0.5px] flex-grow bg-border" />
+        <Text className="text-md mx-3">OR</Text>
+        <div className="h-[0.5px] flex-grow bg-border" />
+      </div>
+
+      <div className="mb-6 flex w-full justify-between">
+        <Button variant="outline">
+          <Google className="mr-2 h-4 w-4" />
+          Continue with Google
+        </Button>
+        <Button variant="outline">
+          <Facebook className="mr-2 h-4 w-4" />
+          Continue with Facebook
+        </Button>
+      </div>
+
+      <Text variant="info" className="!text-small-regular mt-6 text-center ">
+        {'Don’t have an account? '}
+        <Button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-          className="underline"
+          variant="link"
+          className="!text-small-regular font-medium"
         >
-          Join us
-        </button>
-        .
-      </span>
+          Create Account
+        </Button>
+      </Text>
     </div>
   );
 };
