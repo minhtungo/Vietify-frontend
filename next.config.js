@@ -12,6 +12,7 @@ module.exports = withStoreConfig({
       'images.unsplash.com',
       'i.ibb.co',
       'demo2.pavothemes.com',
+      'cdn0.fahasa.com',
     ],
   },
 });

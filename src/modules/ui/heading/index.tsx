@@ -5,7 +5,7 @@ import { forwardRef, HTMLAttributes } from 'react';
 export const headingVariants = cva('capitalize text-foreground', {
   variants: {
     variant: {
-      heading: 'text-xl md:text-2xl lg:text-3xl',
+      heading: 'text-xl md:text-2xl lg:text-2xl',
       title: 'text-base xl:text-lg xl:leading-7',
       medium: 'font-semibold text-xl',
       small: 'text-base font-medium',

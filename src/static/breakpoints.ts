@@ -52,4 +52,27 @@ const GRID_BREAKPOINTS = {
   },
 };
 
-export { GRID_BREAKPOINTS, FEATURED_BREAKPOINTS, BREAKPOINTS };
+const CATEGORY_BREAKPOINTS = {
+  '1024': {
+    slidesPerView: 8,
+    spaceBetween: 15,
+  },
+  '768': {
+    slidesPerView: 4,
+    spaceBetween: 10,
+  },
+  '680': {
+    slidesPerView: 3,
+    spaceBetween: 8,
+  },
+  '0': {
+    slidesPerView: 2,
+  },
+};
+
+export {
+  GRID_BREAKPOINTS,
+  FEATURED_BREAKPOINTS,
+  BREAKPOINTS,
+  CATEGORY_BREAKPOINTS,
+};

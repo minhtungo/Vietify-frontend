@@ -21,7 +21,7 @@ const HeaderList = ({}) => {
             <NavigationMenuTrigger className="relative">
               {item.label}
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="relative">
+            <NavigationMenuContent>
               <ul className="flex min-w-[180px] flex-col gap-3">
                 {item.subMenu.map((c) => (
                   <ListItem href={`/category/${item.path}`} key={c.id}>
