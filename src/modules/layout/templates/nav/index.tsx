@@ -38,7 +38,7 @@ export default function Nav() {
           <HeaderList />
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <DesktopSearchModal />
           <div className="flex items-center">
             <User />
