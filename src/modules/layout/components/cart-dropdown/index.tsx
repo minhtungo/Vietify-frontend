@@ -107,11 +107,13 @@ const CartDropdown = () => {
             </>
           ) : (
             <div className="flex w-[290px] flex-col items-center justify-center gap-y-4 px-4">
-              <span>Your cart is empty.</span>
+              <Text variant="label" as="span" className="text-lg">
+                Your cart is empty.
+              </Text>
               <PopoverClose asChild>
                 <Link href="/store" className={buttonVariants({})}>
                   <Text className="sr-only">Go to all products page</Text>
-                  Explore products
+                  Explore Books
                 </Link>
               </PopoverClose>
             </div>

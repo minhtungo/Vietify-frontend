@@ -4,12 +4,17 @@ import Text from '@ui/text';
 
 import Thumbnail from '@modules/products/components/thumbnail';
 import { Product } from 'types/medusa';
+import { toast, type Toast } from 'react-hot-toast';
+import XMarkIcon from '@modules/common/icons/x';
+import { Separator } from '@modules/ui/separator';
+import Button from '@modules/ui/button';
 
 interface cartItemProps {
   item: Product;
   price: string | undefined;
   quantity: number;
   className?: string;
+  t: Toast;
 }
 
 const AddedItem: React.FC<cartItemProps> = ({
@@ -17,26 +22,38 @@ const AddedItem: React.FC<cartItemProps> = ({
   price,
   className,
   quantity,
+  t,
 }) => {
   return (
-    <div className="flex flex-col p-1">
-      <Heading variant="titleSmall" className="pb-2 text-sm">
-        Added to cart!
-      </Heading>
-      <div className={cn('flex gap-x-2 border-t pt-2', className)}>
+    <div className="!m-0">
+      <div className="flex items-center justify-between border-b border-border">
+        <Heading variant="small" className="text-sm">
+          Added to cart!
+        </Heading>
+        <Button
+          onClick={() => {
+            toast.dismiss(t.id);
+          }}
+          variant="fade"
+          className="p-0 text-foreground"
+        >
+          <XMarkIcon size={18} />
+        </Button>
+      </div>
+
+      <div className={cn('flex gap-x-2 pt-3', className)}>
         <div className="w-[55px]">
           <Thumbnail thumbnail={item.thumbnail} size="full" />
         </div>
         <div className="flex flex-col justify-between">
           <div className="flex items-start justify-between">
-            <div>
-              <Heading
-                variant="titleSmall"
-                className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm"
-              >
-                {item.title}
-              </Heading>
-            </div>
+            <Heading
+              variant="small"
+              className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm"
+            >
+              {item.title}
+            </Heading>
+
             <div className="flex justify-end">
               <Text variant="label" as="span" className="text-sm">
                 {price}

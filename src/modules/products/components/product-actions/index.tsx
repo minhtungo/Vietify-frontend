@@ -9,18 +9,13 @@ import OptionSelect from '@modules/products/components/option-select';
 import ReviewRating from '@modules/review/components/review-rating';
 import Button from '@ui/button';
 import Heading from '@ui/heading';
+import { Popover, PopoverContent, PopoverTrigger } from '@ui/popover';
 import Text from '@ui/text';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Product } from 'types/medusa';
 import AddedItem from './added-item';
-import {
-  Popover,
-  PopoverClose,
-  PopoverContent,
-  PopoverTrigger,
-} from '@ui/popover';
 
 type ProductActionsProps = {
   product: Product;
@@ -56,23 +51,17 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   const addItemToCart = () => {
     addToCart();
-    toast.custom(
+    toast(
       (t) => (
-        <div
-          className={cn(
-            'rounded bg-white p-3 shadow-md',
-            t.visible ? 'animate-enter' : 'animate-leave'
-          )}
-        >
-          <AddedItem
-            item={product}
-            price={selectedPrice?.calculated_price}
-            quantity={quantity}
-          />
-        </div>
+        <AddedItem
+          item={product}
+          price={selectedPrice?.calculated_price}
+          quantity={quantity}
+          t={t}
+        />
       ),
       {
-        duration: 500,
+        duration: 1600,
       }
     );
     resetQuantity();
