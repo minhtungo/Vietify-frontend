@@ -14,6 +14,7 @@ import { formatAmount, useCart } from 'medusa-react';
 import Link from 'next/link';
 
 import CartItem from './cart-item';
+import Indicator from './indicator';
 
 const CartDropdown = () => {
   const { cart, totalItems } = useCart();
@@ -29,12 +30,10 @@ const CartDropdown = () => {
             className="relative h-10 w-10 rounded-full p-0 duration-150"
           >
             <CartIcon className="text-gray-600" size={25} aria-hidden="true" />
-            <span className="absolute right-[2px] top-0 flex h-[19px] w-[19px] items-center justify-center rounded-full bg-brand text-[11px] font-semibold leading-none text-brand-light">
-              {totalItems}
-            </span>
-            <span className="sr-only">
-              {`${totalItems} items in cart, view bag`}
-            </span>
+            <Indicator
+              className="absolute right-[2px] top-0"
+              totalItems={totalItems}
+            />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="mt-[2px] hidden w-full space-y-4 px-0 py-5 small:block">
@@ -111,7 +110,7 @@ const CartDropdown = () => {
                 Your cart is empty.
               </Text>
               <PopoverClose asChild>
-                <Link href="/store" className={buttonVariants({})}>
+                <Link href="/shop" className={buttonVariants({})}>
                   <Text className="sr-only">Go to all products page</Text>
                   Explore Books
                 </Link>

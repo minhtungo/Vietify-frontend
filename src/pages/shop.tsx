@@ -11,7 +11,7 @@ const Store: NextPageWithLayout = () => {
 
   return (
     <>
-      <Head title="Store" description="Explore all of our products." />
+      <Head title="Shop" description="Explore all of our products." />
       <div className="flex flex-col py-6 small:flex-row small:items-start">
         <RefinementList refinementList={params} setRefinementList={setParams}>
           <InfiniteProducts params={params} />

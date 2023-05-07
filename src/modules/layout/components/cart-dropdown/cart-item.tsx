@@ -8,6 +8,7 @@ import Text from '@ui/text';
 import Trash from '@icons/trash';
 import Thumbnail from '@modules/products/components/thumbnail';
 import Link from 'next/link';
+import Button from '@modules/ui/button';
 
 interface cartItemProps {
   item: Omit<LineItem, 'beforeInsert'>;
@@ -41,15 +42,15 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
           </div>
         </div>
 
-        <div className="text-small-regular flex flex-1 items-end justify-between">
+        <div className="flex items-baseline justify-between">
           <Text variant="info">Qty: {item.quantity}</Text>
-          <button
-            className="flex items-center gap-x-1 text-brand-muted"
+          <Button
             onClick={() => deleteItem(item.id)}
+            variant="fade"
+            className="text-muted-foreground hover:text-secondary-foreground"
           >
-            <Trash size={14} />
-            <Text variant="info">Remove</Text>
-          </button>
+            <Trash size={19} />
+          </Button>
         </div>
       </div>
     </div>

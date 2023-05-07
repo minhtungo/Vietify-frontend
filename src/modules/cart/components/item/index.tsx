@@ -24,7 +24,7 @@ const Item = ({ item, region }: ItemProps) => {
       <div className="text-base-regular flex flex-col gap-y-8">
         <div className="flex items-start justify-between">
           <div className="flex flex-col flex-wrap">
-            <Heading variant="titleSmall" className="whitespace-normal">
+            <Heading variant="small" className="whitespace-normal">
               {item.title}
             </Heading>
             <LineItemOptions variant={item.variant} />

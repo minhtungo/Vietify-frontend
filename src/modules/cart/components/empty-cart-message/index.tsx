@@ -10,7 +10,7 @@ const EmptyCartMessage = () => {
         the link below to start browsing our products.
       </p>
       <div>
-        <Link className={buttonVariants({ variant: 'outline' })} href="/store">
+        <Link className={buttonVariants({ variant: 'outline' })} href="/shop">
           Explore products
         </Link>
       </div>

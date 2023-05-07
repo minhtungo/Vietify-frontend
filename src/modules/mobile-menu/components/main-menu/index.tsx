@@ -61,7 +61,7 @@ const MainMenu = () => {
         <div className="text-large-regular flex flex-1 flex-col text-gray-900">
           <ul className="flex flex-col gap-y-2">
             <li className="bg-gray-50 p-4">
-              <Link href="/store">
+              <Link href="/shop">
                 <button
                   className="flex w-full items-center justify-between"
                   onClick={close}
