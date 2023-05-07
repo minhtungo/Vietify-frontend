@@ -33,13 +33,13 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   return (
     <Tabs defaultValue="Description">
-      <TabsList className="flex flex-col flex-wrap justify-start gap-x-2 lg:flex-row">
+      <TabsList className="flex flex-col flex-wrap justify-start gap-x-7 lg:flex-row">
         {tabs.map((tab, i) => {
           return (
             <TabsTrigger
               key={i}
               value={tab.label}
-              className="text-lg hover:border-gray-500 hover:text-gray-600"
+              className="text-md px-0 hover:border-gray-400 hover:text-foreground/80"
             >
               {tab.label}
             </TabsTrigger>
