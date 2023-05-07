@@ -5,6 +5,7 @@ import FeatureGrid from '@modules/home/components/featured-grid';
 import Hero from '@modules/home/components/hero/templates';
 import Popular from '@modules/home/components/popular';
 import ProductsCategory from '@modules/home/components/products-category';
+import TheMonth from '@modules/home/components/the-month';
 import Trending from '@modules/home/components/trending';
 import Layout from '@modules/layout/templates';
 import { ReactElement } from 'react';
@@ -24,6 +25,7 @@ const Home: NextPageWithLayout = () => {
       <FeaturedBooks />
       <Trending />
       <Popular />
+      <TheMonth />
       <FeatureGrid className="content-container my-3 md:my-4" />
     </>
   );

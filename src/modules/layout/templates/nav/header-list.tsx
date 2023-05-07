@@ -15,12 +15,10 @@ const HeaderList = ({}) => {
 
   return (
     <NavigationMenu>
-      <NavigationMenuList>
+      <NavigationMenuList className="gap-1">
         {HEADER_LIST.map((item) => (
-          <NavigationMenuItem key={item.id} className="relative">
-            <NavigationMenuTrigger className="relative">
-              {item.label}
-            </NavigationMenuTrigger>
+          <NavigationMenuItem key={item.id}>
+            <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="flex min-w-[180px] flex-col gap-3">
                 {item.subMenu.map((c) => (

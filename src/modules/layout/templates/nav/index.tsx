@@ -8,7 +8,6 @@ import User from '@modules/layout/components/user';
 import MobileMenu from '@modules/mobile-menu/templates';
 import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import HeaderList from './header-list';
 
 export default function Nav() {
@@ -30,7 +29,7 @@ export default function Nav() {
         scrollDirection === 'down' ? '-top-16' : 'top-0'
       )}
     >
-      <div className="mx-auto flex h-16 max-w-8xl items-center justify-between px-4 small:px-6">
+      <div className="content-container mx-auto flex h-16 items-center justify-between px-0">
         <div className="flex items-center gap-6">
           <Link href="/" className="hidden md:block">
             <Logo />

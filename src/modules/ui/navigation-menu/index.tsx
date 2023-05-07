@@ -51,12 +51,16 @@ const NavigationMenuTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Trigger
     ref={ref}
-    className={cn(navigationMenuTriggerStyle(), 'group', className)}
+    className={cn(
+      navigationMenuTriggerStyle(),
+      'group font-semibold',
+      className
+    )}
     {...props}
   >
     {children}
     <ChevronDown
-      className="relative top-[1px] ml-1 text-muted-foreground transition duration-200 group-data-[state=open]:rotate-180"
+      className="group-data-[state=open]:rotate-180 relative top-[1px] ml-1 text-muted-foreground transition duration-200"
       aria-hidden="true"
     />
   </NavigationMenuPrimitive.Trigger>
@@ -89,7 +93,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className={cn('absolute left-0 top-full flex justify-center')}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        'origin-top-center data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-95 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-border bg-white shadow-lg  md:w-[var(--radix-navigation-menu-viewport-width)]',
+        'origin-top-center data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-95 md:w-[var(--radix-navigation-menu-viewport-width)] relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-border bg-white  shadow-lg',
         className
       )}
       ref={ref}
