@@ -1,5 +1,7 @@
+import cn from '@lib/util/cn';
 import { getPercentageDiff } from '@lib/util/get-precentage-diff';
 import { LineItem, Region } from '@medusajs/medusa';
+import Text from '@modules/ui/text';
 import clsx from 'clsx';
 import { formatAmount } from 'medusa-react';
 import { CalculatedVariant } from 'types/medusa';
@@ -20,18 +22,18 @@ const LineItemPrice = ({
   const hasReducedPrice = (item.total || 0) < originalPrice;
 
   return (
-    <div className="flex flex-col text-brand-dark text-right">
-      <span
-        className={clsx('text-base-regular', {
-          'text-rose-600': hasReducedPrice,
-        })}
+    <div className="flex flex-col text-right text-brand-dark">
+      <Text
+        variant="label"
+        as="span"
+        className={cn('text-base-regular', hasReducedPrice && 'text-rose-600')}
       >
         {formatAmount({
           amount: item.total || 0,
           region: region,
           includeTaxes: false,
         })}
-      </span>
+      </Text>
       {hasReducedPrice && (
         <>
           <p>

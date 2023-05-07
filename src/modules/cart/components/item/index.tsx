@@ -4,9 +4,16 @@ import Heading from '@ui/heading';
 import LineItemOptions from '@common/line-item-options';
 import LineItemPrice from '@common/line-item-price';
 import NativeSelect from '@common/native-select';
-import Text from '@ui/text';
 import Trash from '@icons/trash';
 import Thumbnail from '@modules/products/components/thumbnail';
+import Button from '@modules/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@ui/select';
 
 type ItemProps = {
   item: Omit<LineItem, 'beforeInsert'>;
@@ -16,61 +23,64 @@ type ItemProps = {
 const Item = ({ item, region }: ItemProps) => {
   const { updateItem, deleteItem } = useStore();
 
+  const updateItemQuantity = () => {};
+
   return (
     <div className="grid grid-cols-[122px_1fr] gap-x-4">
       <div className="w-[122px]">
         <Thumbnail thumbnail={item.thumbnail} size="full" />
       </div>
-      <div className="text-base-regular flex flex-col gap-y-8">
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col flex-wrap">
-            <Heading variant="small" className="whitespace-normal">
+      <div className="text-base-regular flex flex-col justify-between">
+        <div>
+          <div className="flex flex-1 items-center justify-between">
+            <Heading variant="small" className="mb-1 whitespace-normal">
               {item.title}
             </Heading>
-            <LineItemOptions variant={item.variant} />
+            <Button
+              onClick={() => deleteItem(item.id)}
+              variant="fade"
+              className="text-muted-foreground hover:text-secondary-foreground"
+            >
+              <Trash size={22} />
+            </Button>
           </div>
-          <NativeSelect
-            value={item.quantity}
-            onChange={(value) =>
+          <LineItemOptions variant={item.variant} />
+        </div>
+        <div className="text-small-regular flex items-center justify-between">
+          <Select
+            onValueChange={(value) =>
               updateItem({
                 lineId: item.id,
-                quantity: parseInt(value.target.value),
+                quantity: parseInt(value),
               })
             }
-            className="max-h-[35px] w-[75px]"
           >
-            {Array.from(
-              [
-                ...Array(
-                  item.variant.inventory_quantity > 0
-                    ? item.variant.inventory_quantity
-                    : 10
-                ),
-              ].keys()
-            )
-              .slice(0, 10)
-              .map((i) => {
-                const value = i + 1;
-                return (
-                  <option value={value} key={i}>
-                    {value}
-                  </option>
-                );
-              })}
-          </NativeSelect>
-        </div>
-        <div className="text-small-regular flex flex-1 items-end justify-between">
-          <button
-            className="flex items-center gap-x-1 text-brand-muted"
-            onClick={() => deleteItem(item.id)}
-          >
-            <Trash size={14} />
-            <Text variant="info">Remove</Text>
-          </button>
+            <SelectTrigger className="w-[60px]">
+              <SelectValue>{item.quantity || 'Sort'}</SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              {Array.from(
+                [
+                  ...Array(
+                    item.variant.inventory_quantity > 0
+                      ? item.variant.inventory_quantity
+                      : 10
+                  ),
+                ].keys()
+              )
+                .slice(0, 10)
+                .map((i) => {
+                  const value = i + 1;
+                  return (
+                    <SelectItem value={value} key={i}>
+                      {value}
+                    </SelectItem>
+                  );
+                })}
+            </SelectContent>
+          </Select>
 
-          <div>
-            <LineItemPrice item={item} region={region} />
-          </div>
+          <LineItemPrice item={item} region={region} />
         </div>
       </div>
     </div>
