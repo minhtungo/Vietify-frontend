@@ -29,8 +29,8 @@ export default function Nav() {
         scrollDirection === 'down' ? '-top-16' : 'top-0'
       )}
     >
-      <div className="content-container mx-auto flex h-16 items-center justify-between px-0">
-        <div className="flex items-center gap-6">
+      <div className="mx-auto flex h-16 max-w-8xl items-center justify-between px-6 xl:px-4">
+        <div className="flex items-center gap-7">
           <Link href="/" className="hidden md:block">
             <Logo />
           </Link>

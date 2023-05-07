@@ -2,6 +2,7 @@ import cn from '@lib/util/cn';
 import Link from '@common/link';
 import { NavigationMenuLink } from '@ui/navigation-menu';
 import React from 'react';
+import Text from '@modules/ui/text';
 
 const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
@@ -13,14 +14,17 @@ const ListItem = React.forwardRef<
         <Link
           href={href!}
           className={cn(
-            'block select-none space-y-1 p-4 leading-none no-underline outline-none transition-colors hover:bg-slate-200 focus:bg-slate-200',
+            'block select-none space-y-1 px-4 py-3 leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent',
             className
           )}
           {...props}
         >
-          <span className="text-sm font-medium leading-none text-black">
+          <Text
+            className="text-sm font-medium leading-none text-foreground"
+            as="span"
+          >
             {children}
-          </span>
+          </Text>
         </Link>
       </NavigationMenuLink>
     </li>
