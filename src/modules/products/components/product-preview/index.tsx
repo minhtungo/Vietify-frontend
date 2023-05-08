@@ -3,6 +3,7 @@ import ProductQuickView from '@modules/products/components/product-quickview';
 import Thumbnail from '@modules/products/components/thumbnail';
 import ReviewRating from '@modules/review/components/review-rating';
 import Button from '@modules/ui/button';
+import Heading from '@modules/ui/heading';
 import Text from '@modules/ui/text';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
@@ -22,15 +23,18 @@ const ProductPreview = ({
     id,
   };
   return (
-    <Link href={`/products/${handle}`}>
+    <div>
       <div className="group relative">
-        <Thumbnail
-          thumbnail={
-            'https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/26.jpg'
-          }
-          size="full"
-          rounded="md"
-        />
+        <Link href={`/products/${handle}`}>
+          <Thumbnail
+            thumbnail={
+              'https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/26.jpg'
+            }
+            size="full"
+            rounded="md"
+          />
+        </Link>
+
         <div className="absolute bottom-3 right-2 flex flex-col gap-1 opacity-0 transition-all duration-200 group-hover:opacity-100">
           <Button
             variant="ghost"
@@ -41,8 +45,13 @@ const ProductPreview = ({
           <ProductQuickView {...product} />
         </div>
       </div>
-      <div className="text-base-regular mt-2">
-        <div className="text-[15px] font-semibold">{title}</div>
+      <div className="text-base-regular mt-2 transition-colors duration-150">
+        <Link href={`/products/${handle}`}>
+          <Heading variant="small" className="hover:text-primary">
+            {title}
+          </Heading>
+        </Link>
+
         <ReviewRating className="mt-2" />
         <div className="mt-2 text-xs font-light text-gray-700 small:text-[13px]">
           Author
@@ -64,7 +73,7 @@ const ProductPreview = ({
           )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
