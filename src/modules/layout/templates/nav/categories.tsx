@@ -1,11 +1,13 @@
+import ListItem from '@modules/common/components/list-item';
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
+  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@ui/navigation-menu';
-import ListItem from '@modules/layout/templates/nav/list-item';
+
 import { useCollections } from 'medusa-react';
 import { BiCategoryAlt } from 'react-icons/bi';
 
@@ -23,7 +25,11 @@ const Categories = ({}) => {
             <ul className="flex min-w-[180px] flex-col gap-3">
               {collections?.map((c) => (
                 <li key={c.id}>
-                  <ListItem href={`/category/${c.handle}`}>{c.title}</ListItem>
+                  <NavigationMenuLink asChild>
+                    <ListItem href={`/category/${c.handle}`}>
+                      {c.title}
+                    </ListItem>
+                  </NavigationMenuLink>
                 </li>
               ))}
             </ul>

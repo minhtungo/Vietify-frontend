@@ -1,3 +1,4 @@
+import ListItem from '@modules/common/components/list-item';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -5,7 +6,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@ui/navigation-menu';
-import ListItem from '@modules/layout/templates/nav/list-item';
+
 import { useCollections } from 'medusa-react';
 
 import { HEADER_LIST } from 'static/header';
@@ -22,9 +23,11 @@ const HeaderList = ({}) => {
             <NavigationMenuContent>
               <ul className="flex min-w-[150px] flex-col">
                 {item.subMenu.map((c) => (
-                  <ListItem href={`/category/${item.path}`} key={c.id}>
-                    {item.label}
-                  </ListItem>
+                  <li key={c.id}>
+                    <ListItem href={`/category/${item.path}`}>
+                      {item.label}
+                    </ListItem>
+                  </li>
                 ))}
               </ul>
             </NavigationMenuContent>

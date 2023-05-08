@@ -19,7 +19,6 @@ import Indicator from './indicator';
 const CartDropdown = () => {
   const { cart, totalItems } = useCart();
   const items = useEnrichedLineItems();
-  // const { state, open, close } = useCartDropdown();
 
   return (
     <div className="relative z-50">
