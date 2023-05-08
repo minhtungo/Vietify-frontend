@@ -30,12 +30,12 @@ export default function Nav() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-8xl items-center justify-between px-6 xl:px-4">
-        <div className="flex items-center gap-7">
+        <nav className="flex items-center gap-7">
           <Link href="/" className="hidden md:block">
             <Logo />
           </Link>
           <HeaderList />
-        </div>
+        </nav>
 
         <div className="flex items-center gap-4">
           <DesktopSearchModal />

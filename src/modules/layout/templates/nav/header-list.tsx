@@ -11,7 +11,7 @@ import { useCollections } from 'medusa-react';
 
 import { HEADER_LIST } from 'static/header';
 
-const HeaderList = ({}) => {
+const HeaderList = () => {
   const { collections } = useCollections();
 
   return (

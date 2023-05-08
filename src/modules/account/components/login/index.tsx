@@ -1,16 +1,15 @@
+import Input from '@common/form-input';
+import Facebook from '@icons/facebook';
+import Google from '@icons/google';
+import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
 import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
+import Heading from '@modules/ui/heading';
+import Text from '@modules/ui/text';
 import Button from '@ui//button';
-import Input from '@common/form-input';
-import Spinner from '@icons/spinner';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import Heading from '@modules/ui/heading';
-import Google from '@icons/google';
-import { Separator } from '@ui/separator';
-import Facebook from '@icons/facebook';
-import Text from '@modules/ui/text';
 
 interface SignInCredentials extends FieldValues {
   email: string;

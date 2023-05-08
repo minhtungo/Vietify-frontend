@@ -16,6 +16,7 @@ import React, { useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { Product } from 'types/medusa';
 import AddedItem from './added-item';
+import { Separator } from '@modules/ui/separator';
 
 type ProductActionsProps = {
   product: Product;
@@ -150,34 +151,32 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </div>
       )}
 
-      <div className="mt-6 flex gap-3">
-        <Counter
-          value={quantity}
-          onIncrement={increaseQuantity}
-          onDecrement={decreaseQuantity}
-          disabled={!inStock}
-        />
+      <Counter
+        value={quantity}
+        onIncrement={increaseQuantity}
+        onDecrement={decreaseQuantity}
+        disabled={!inStock}
+        className="mt-4 w-fit"
+      />
+
+      <div className="mt-4 flex gap-3">
         <Button onClick={addItemToCart} className="w-full">
           {!inStock ? 'Out of stock' : 'Add to cart'}
         </Button>
-      </div>
-
-      <div className="grid grid-cols-2 gap-2.5">
         <Button variant="outline" className="gap-1">
           <HeartIcon size={18} /> Wishlist
         </Button>
+      </div>
 
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="w-full gap-1">
-              <ShareIcon size={18} />
-              Share
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[245px] px-4 py-4">
-            <SocialShare className={cn('')} shareUrl={`https://google.com`} />
-          </PopoverContent>
-        </Popover>
+      <Separator className="mb-2 mt-4" />
+      <div>
+        <Text variant="label" className="text-sm">
+          Share
+        </Text>
+        <SocialShare
+          shareUrl="vietify.shop"
+          className="mt-2.5 flex flex-row gap-2"
+        />
       </div>
     </div>
   );

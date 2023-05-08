@@ -29,9 +29,6 @@ const Home: NextPageWithLayout = () => {
       <Popular />
       <TheMonth />
       {/* <FeatureGrid className="content-container my-3 md:my-4" /> */}
-      <Separator className="my-10" />
-      <Incentives />
-      <Separator className="my-10" />
     </>
   );
 };

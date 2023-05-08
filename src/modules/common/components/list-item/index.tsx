@@ -10,6 +10,7 @@ const ListItem = React.forwardRef<
   return (
     <Link
       href={href!}
+      ref={ref}
       className={cn(
         'block select-none px-4 py-3 leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent',
         className
