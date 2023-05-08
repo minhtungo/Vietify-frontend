@@ -5,10 +5,15 @@ import { forwardRef, HTMLAttributes } from 'react';
 const textVariants = cva('', {
   variants: {
     variant: {
-      description: 'text-base-regular text-brand-muted',
-      info: '!text-small-regular text-brand-muted',
-      label: 'text-[15px] text-brand-dark font-semibold',
-      link: 'text-sm lg:text-[15px] text-brand-muted transition-colors duration-200 hover:text-brand',
+      description: 'text-base-regular text-muted-foreground',
+      info: '!text-small-regular text-muted-foreground',
+      label: 'text-[15px] text-secondary-foreground font-semibold',
+      link: 'text-sm lg:text-[15px] text-muted-foreground transition-colors duration-200 hover:text-brand',
+    },
+    size: {
+      default: 'text-base-regular',
+      sm: '!text-small-regular',
+      md: 'text-[15px]',
     },
   },
   defaultVariants: {

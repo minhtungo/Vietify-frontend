@@ -14,7 +14,7 @@ const LineItemOptions = ({ variant }: LineItemOptionsProps) => {
         return (
           <>
             <div>
-              <Text className="" key={option.id} variant="info">
+              <Text className="" key={option.id} variant="info" size="sm">
                 {option.value}
               </Text>
             </div>

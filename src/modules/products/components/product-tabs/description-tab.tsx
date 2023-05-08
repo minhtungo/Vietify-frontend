@@ -22,7 +22,7 @@ const DescriptionTab = ({ product }: DescriptionTabProps) => {
       <div>
         <Text
           ref={ref}
-          className={cn('break-words', !isShowingMore && 'line-clamp-3')}
+          className={cn('break-words', !isShowingMore && 'line-clamp-[10]')}
         >
           {product.description}
         </Text>

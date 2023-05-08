@@ -95,7 +95,11 @@ const Login = () => {
         </Button>
       </div>
 
-      <Text variant="info" className="!text-small-regular mt-6 text-center ">
+      <Text
+        variant="info"
+        size="sm"
+        className="!text-small-regular mt-6 text-center "
+      >
         {'Don’t have an account? '}
         <Button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}

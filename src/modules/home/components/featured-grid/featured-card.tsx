@@ -25,10 +25,10 @@ const FeaturedCard: React.FC<Props> = ({ item, className }) => {
         {icon}
       </div>
       <div>
-        <Heading variant="titleSmall" className="-mt-0.5 mb-1.5">
+        <Heading variant="small" className="-mt-0.5 mb-1.5">
           {title}
         </Heading>
-        <Text variant="info" className="text-sm">
+        <Text variant="info" size="sm">
           {description}
         </Text>
       </div>

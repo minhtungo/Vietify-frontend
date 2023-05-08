@@ -47,7 +47,7 @@ const ProductPreview = ({
                 </span>
               )}
 
-              <Text variant='label' as='span' className='text-brand'>
+              <Text variant="label" as="span" className="text-brand">
                 {price.calculated_price}
               </Text>
             </>

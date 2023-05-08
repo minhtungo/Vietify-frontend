@@ -12,7 +12,7 @@ import Heading from '@ui/heading';
 import { Popover, PopoverContent, PopoverTrigger } from '@ui/popover';
 import Text from '@ui/text';
 import { useRouter } from 'next/router';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { Product } from 'types/medusa';
 import AddedItem from './added-item';
@@ -22,8 +22,6 @@ type ProductActionsProps = {
 };
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
-  const [shareButtonStatus, setShareButtonStatus] = useState<boolean>(false);
-
   const router = useRouter();
   const {
     query: { slug },

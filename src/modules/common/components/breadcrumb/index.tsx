@@ -20,7 +20,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ className }) => {
 
   return (
     <nav className={cn('flex', className)} aria-label="Breadcrumb">
-      <ol className="inline-flex items-center space-x-1 text-sm font-medium capitalize text-gray-600 ">
+      <ol className="inline-flex items-center space-x-1 text-sm font-medium capitalize text-muted-foreground">
         {breadcrumbs.map((crumb, idx) => {
           return (
             <Crumb
@@ -37,7 +37,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ className }) => {
 
 const Crumb: FC<CrumbProps> = ({ title, href, last = false }) => {
   if (last) {
-    return <li className="font-semibold">{title}</li>;
+    return <li className="font-semibold text-foreground/80">{title}</li>;
   }
 
   return (
