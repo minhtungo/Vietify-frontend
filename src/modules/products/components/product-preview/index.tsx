@@ -1,11 +1,11 @@
 import HeartIcon from '@icons/heart';
+import ProductQuickView from '@modules/products/components/product-quickview';
+import Thumbnail from '@modules/products/components/thumbnail';
 import ReviewRating from '@modules/review/components/review-rating';
+import Button from '@modules/ui/button';
 import Text from '@modules/ui/text';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
-import Thumbnail from '@modules/products/components/thumbnail';
-import Button from '@modules/ui/button';
-import ProductQuickView from '@modules/products/components/product-quickview';
 
 const ProductPreview = ({
   title,
@@ -55,7 +55,6 @@ const ProductPreview = ({
                   {price.original_price}
                 </span>
               )}
-
               <Text variant="label" as="span" className="text-brand">
                 {price.calculated_price}
               </Text>

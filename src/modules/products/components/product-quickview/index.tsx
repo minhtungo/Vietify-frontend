@@ -1,21 +1,15 @@
 import Eye from '@icons/eye';
-import Button from '@ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@ui/dialog';
-import { ProductPreviewType } from 'types/global';
 import Thumbnail from '@modules/products/components/thumbnail';
+import Button, { buttonVariants } from '@ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@ui/dialog';
 import Heading from '@ui/heading';
+import Link from 'next/link';
+import { ProductPreviewType } from 'types/global';
 
-import Text from '@ui/text';
-import ReviewRating from '@modules/review/components/review-rating';
 import cn from '@lib/util/cn';
 import Counter from '@modules/common/components/counter';
+import ReviewRating from '@modules/review/components/review-rating';
+import Text from '@ui/text';
 
 const ProductQuickView = ({
   title,
@@ -124,9 +118,17 @@ const ProductQuickView = ({
               />
               <Button className="w-full">Add to cart</Button>
             </div>
-            <Button variant="outline" className="mt-3 w-full">
+            <Link
+              className={cn(
+                buttonVariants({
+                  variant: 'outline',
+                }),
+                'mt-3 w-full'
+              )}
+              href={`/products/${handle}`}
+            >
               View full details
-            </Button>
+            </Link>
           </div>
         </div>
       </DialogContent>
