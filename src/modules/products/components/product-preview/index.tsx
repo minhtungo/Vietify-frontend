@@ -1,18 +1,26 @@
-import clsx from 'clsx';
+import HeartIcon from '@icons/heart';
+import ReviewRating from '@modules/review/components/review-rating';
+import Text from '@modules/ui/text';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
-import Thumbnail from '../thumbnail';
-import { HiOutlineEye } from 'react-icons/hi2';
-import ReviewRating from '@modules/review/components/review-rating';
-import HeartIcon from '@icons/heart';
-import Text from '@modules/ui/text';
+import Thumbnail from '@modules/products/components/thumbnail';
+import Button from '@modules/ui/button';
+import ProductQuickView from '@modules/products/components/product-quickview';
 
 const ProductPreview = ({
   title,
   handle,
   thumbnail,
   price,
+  id,
 }: ProductPreviewType) => {
+  const product = {
+    title,
+    handle,
+    thumbnail,
+    price,
+    id,
+  };
   return (
     <Link href={`/products/${handle}`}>
       <div className="group relative">
@@ -24,12 +32,13 @@ const ProductPreview = ({
           rounded="md"
         />
         <div className="absolute bottom-3 right-2 flex flex-col gap-1 opacity-0 transition-all duration-200 group-hover:opacity-100">
-          <span className=" flex items-center rounded-full bg-white p-2 text-gray-800 shadow transition-all  duration-100 hover:bg-blue-500 hover:text-white">
+          <Button
+            variant="ghost"
+            className="h-8 w-8 rounded-full bg-secondary p-0 text-foreground/80 duration-150 hover:bg-primary hover:text-primary-foreground"
+          >
             <HeartIcon />
-          </span>
-          <span className="flex items-center rounded-full bg-white p-2 text-gray-800 hover:bg-blue-500 hover:text-white">
-            <HiOutlineEye />
-          </span>
+          </Button>
+          <ProductQuickView {...product} />
         </div>
       </div>
       <div className="text-base-regular mt-2">
