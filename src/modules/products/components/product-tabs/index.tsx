@@ -1,14 +1,13 @@
-import cn from '@lib/util/cn';
 import { Product } from '@medusajs/medusa';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { useMemo } from 'react';
 
-import ProductDetails from './product-details';
 import DescriptionTab from './description-tab';
+import ProductDetails from './product-details';
 import ReviewsTab from './reviews';
+import { book } from '@static/book';
 
 import { Separator } from '@ui/separator';
-
 type ProductTabsProps = {
   product: Product;
 };
@@ -17,15 +16,15 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   const tabs = useMemo(() => {
     return [
       {
-        label: 'Description',
+        label: book.description,
         component: <DescriptionTab product={product} />,
       },
       {
-        label: 'Product Details',
+        label: book.details,
         component: <ProductDetails product={product} />,
       },
       {
-        label: 'Reviews (0)',
+        label: book.review,
         component: <ReviewsTab product={product} />,
       },
     ];

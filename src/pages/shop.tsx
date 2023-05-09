@@ -1,10 +1,11 @@
 import { StoreGetProductsParams } from '@medusajs/medusa';
 import Head from '@common/head';
 import Layout from '@modules/layout/templates';
-import InfiniteProducts from '@modules/products/components/infinite-products';
+
 import RefinementList from '@modules/store/components/refinement-list';
 import { useState } from 'react';
 import { NextPageWithLayout } from 'types/global';
+import InfiniteProducts from '@modules/products/components/infinite-products';
 
 const Store: NextPageWithLayout = () => {
   const [params, setParams] = useState<StoreGetProductsParams>({});

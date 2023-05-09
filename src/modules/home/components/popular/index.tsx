@@ -8,25 +8,26 @@ import { AiOutlineFire } from 'react-icons/ai';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { Separator } from '@ui/separator';
 import { TABS } from 'static/popular';
+import { book } from '@static/book';
 
 const Popular = () => {
   const { data } = useFeaturedProductsQuery();
 
   return (
     <div className="content-container py-8">
-      <div className="mb-8 flex items-center gap-2">
+      <div className="mb-1 flex items-center gap-2">
         <AiOutlineFire size={32} className="text-primary" />
-        <Heading variant="heading">Popular</Heading>
+        <Heading variant="heading">{book.popular}</Heading>
       </div>
 
       <Tabs defaultValue={TABS[0].label}>
-        <TabsList className="flex flex-col flex-wrap justify-start lg:flex-row lg:space-x-4">
+        <TabsList className="flex flex-col flex-wrap justify-start gap-x-7 lg:flex-row">
           {TABS.map((tab, i) => {
             return (
               <TabsTrigger
                 key={i}
                 value={tab.label}
-                className="text-lg hover:border-gray-500 hover:text-gray-600"
+                className="text-md px-0 hover:border-gray-400 hover:text-foreground/80"
               >
                 {tab.label}
               </TabsTrigger>

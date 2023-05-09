@@ -100,3 +100,22 @@ export type CounterProps = {
   className?: string;
   disabled?: boolean;
 };
+
+export interface Book {
+  description: string;
+  details: string;
+  publisher: string;
+  publishDate: string;
+  size: string;
+  cover: string;
+  numberOfPages: string;
+  author: string;
+  sku: string;
+  review: string;
+  relatedBooks: string;
+  addToCart: string;
+  outOfStock: string;
+  trending: string;
+  category: string;
+  popular: string;
+}

@@ -3,6 +3,7 @@ import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import { book } from '@static/book';
 import Heading from '@ui/heading';
 import { AiOutlineFire } from 'react-icons/ai';
 
@@ -13,7 +14,7 @@ const Trending = () => {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-2">
         <AiOutlineFire size={32} className="text-primary" />
-        <Heading variant="heading">Trending Now</Heading>
+        <Heading variant="heading">{book.trending}</Heading>
       </div>
 
       <Carousel

@@ -27,7 +27,8 @@
       "@common/*": ["modules/common/components/*"],
       "@icons/*": ["modules/common/icons/*"],
       "@ui/*": ["modules/ui/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@static/*": ["static/*"]
     }
   },
   "include": [

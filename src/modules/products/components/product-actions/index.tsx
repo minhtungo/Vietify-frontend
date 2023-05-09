@@ -1,22 +1,23 @@
 import Counter from '@common/counter';
 import SocialShare from '@common/social-share';
 import HeartIcon from '@icons/heart';
-import ShareIcon from '@icons/share';
 import { useProductActions } from '@lib/context/product-context';
 import useProductPrice from '@lib/hooks/use-product-price';
 import cn from '@lib/util/cn';
 import OptionSelect from '@modules/products/components/option-select';
 import ReviewRating from '@modules/review/components/review-rating';
+import { Separator } from '@modules/ui/separator';
+import { Skeleton } from '@modules/ui/skeleton';
 import Button from '@ui/button';
 import Heading from '@ui/heading';
-import { Popover, PopoverContent, PopoverTrigger } from '@ui/popover';
 import Text from '@ui/text';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { Product } from 'types/medusa';
+
+import { book } from '@static/book';
 import AddedItem from './added-item';
-import { Separator } from '@modules/ui/separator';
 
 type ProductActionsProps = {
   product: Product;
@@ -77,7 +78,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       <div className="mt-1 flex w-full flex-wrap justify-between">
         <span className="w-1/2">
           <Text variant="info" className="font-semibold" as="span">
-            Author:{' '}
+            {`${book.author}: `}
           </Text>
           <Text variant="info" as="span">
             Nguyễn Nhật Ánh
@@ -85,7 +86,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </span>
         <span className="">
           <Text variant="info" className="font-semibold" as="span">
-            Publisher:{' '}
+            {`${book.publisher}: `}
           </Text>
           <Text variant="info" as="span">
             Nguyễn Nhật Ánh
@@ -93,19 +94,20 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </span>
         <span>
           <Text variant="info" className="font-semibold" as="span">
-            SKU:{' '}
+            {`${book.sku}: `}
           </Text>
           <Text variant="info" as="span">
             123456789
           </Text>
         </span>
       </div>
+
       <div className="flex items-center space-x-1">
         <ReviewRating className="" />
         <span className="text-xs text-muted-foreground">{'(25 reviews)'}</span>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div>
         {selectedPrice ? (
           <div className="flex items-center gap-2 text-brand">
             <span
@@ -130,7 +132,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
             )}
           </div>
         ) : (
-          <></>
+          <Skeleton className="h-9 w-16" />
         )}
       </div>
 
@@ -161,7 +163,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div className="mt-4 flex gap-3">
         <Button onClick={addItemToCart} className="w-full">
-          {!inStock ? 'Out of stock' : 'Add to cart'}
+          {!inStock ? book.outOfStock : book.addToCart}
         </Button>
         <Button variant="outline" className="gap-1">
           <HeartIcon size={18} /> Wishlist

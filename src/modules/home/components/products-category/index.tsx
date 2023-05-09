@@ -1,6 +1,7 @@
 import CategoryIcon from '@icons/category';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
+import { book } from '@static/book';
 import Heading from '@ui/heading';
 import Text from '@ui/text';
 import { useCollections } from 'medusa-react';
@@ -15,14 +16,14 @@ export default function ProductsCategory() {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-2">
         <CategoryIcon size={32} className="text-primary" />
-        <Heading variant="heading">Categories</Heading>
+        <Heading variant="heading">{book.category}</Heading>
       </div>
       <Carousel
         breakpoints={CATEGORY_BREAKPOINTS}
         prevActivateId="prev-category-carousel-button"
         nextActivateId="next-category-carousel-button"
-        prevButtonClassName="left-2 lg:left-2.5"
-        nextButtonClassName="right-2 lg:right-2.5"
+        prevButtonClassName="left-2"
+        nextButtonClassName="right-2"
       >
         {CATEGORIES.map(({ id, imgSrc, altImg, name }) => (
           <SwiperSlide key={`categories--key${id}`}>

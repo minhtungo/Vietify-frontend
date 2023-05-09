@@ -12,6 +12,7 @@ import ProductPreview from '../product-preview';
 import Heading from '@ui/heading';
 import Carousel from '@modules/carousels/templates';
 import { SwiperSlide } from 'swiper/react';
+import { book } from '@static/book';
 
 type RelatedProductsProps = {
   product: Product;
@@ -54,7 +55,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
   return (
     <div className="product-page-constraint">
       <div className="mb-8 flex items-center justify-center">
-        <Heading variant="heading">Related Books</Heading>
+        <Heading variant="heading">{book.relatedBooks}</Heading>
       </div>
 
       {previews && previews.length > 0 && (

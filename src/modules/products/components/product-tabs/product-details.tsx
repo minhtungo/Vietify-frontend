@@ -1,7 +1,7 @@
 import { Product } from '@medusajs/medusa';
-import { Separator } from '@modules/ui/separator';
 import { TabsContent } from '@ui/tabs';
 import Text from '@ui/text';
+import { book } from '@static/book';
 
 interface AdditionalInfoTabProps {
   product: Product;
@@ -9,7 +9,7 @@ interface AdditionalInfoTabProps {
 
 const ProductDetails = ({ product }: AdditionalInfoTabProps) => {
   return (
-    <TabsContent value="Product Details" className="text-medium-regular py-8">
+    <TabsContent value={book.details} className="text-medium-regular py-8">
       <table className="mx-auto w-2/3 table-auto text-left">
         <tbody>
           <tr className="border-b border-gray-200">

@@ -1,0 +1,18 @@
+{
+  "description": "Tóm Tắt Nội Dung",
+  "details": "Thông Tin Sản Phẩm",
+  "publisher": "Nhà Xuất Bản",
+  "publishDate": "Ngày Xuất Bản",
+  "size": "Kích Thước",
+  "cover": "Loại Bìa",
+  "numberOfPages": "Số Trang",
+  "author": "Tác Giả",
+  "sku": "SKU",
+  "review": "Đánh Giá",
+  "relatedBooks": "Sản Phẩm Liên Quan",
+  "addToCart": "Thêm Vào Giỏ Hàng",
+  "outOfStock": "Hết Hàng",
+  "trending": "Xu Hướng Mua Sắm",
+  "category": "Danh Mục Sản Phẩm",
+  "popular": "Phổ Biến"
+}

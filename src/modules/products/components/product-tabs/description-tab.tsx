@@ -5,6 +5,7 @@ import Button from '@ui/button';
 import { TabsContent } from '@ui/tabs';
 import Text from '@ui/text';
 import { useRef } from 'react';
+import { book } from '@static/book';
 
 interface DescriptionTabProps {
   product: Product;
@@ -18,7 +19,7 @@ const DescriptionTab = ({ product }: DescriptionTabProps) => {
     });
 
   return (
-    <TabsContent value="Description" className="text-medium-regular py-8">
+    <TabsContent value={book.description} className="text-medium-regular py-8">
       <div>
         <Text
           ref={ref}
