@@ -1,10 +1,12 @@
 import CountDown from '@common/countdown';
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
+import repeat from '@lib/util/repeat';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
 import Flash from '@modules/common/icons/flash';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import { book } from '@static/book';
 import Heading from '@ui/heading';
 
 const Deals = () => {
@@ -14,7 +16,7 @@ const Deals = () => {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-2">
         <Flash size={32} className="text-primary" />
-        <Heading variant="heading">Deals of The Week</Heading>
+        <Heading variant="heading">{book.deals}</Heading>
         <CountDown date={Date.now() + 100000000} />
       </div>
 
@@ -30,15 +32,13 @@ const Deals = () => {
       >
         {data ? (
           data.map((product) => (
-            <>
-              <SwiperSlide key={`deals--key-${product.id}`}>
-                <ProductPreview {...product} />
-              </SwiperSlide>
-            </>
+            <SwiperSlide key={`deals--key-${product.id}`}>
+              <ProductPreview {...product} />
+            </SwiperSlide>
           ))
         ) : (
           <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-4">
-            {Array.from(Array(4).keys()).map((i) => (
+            {repeat(5).map((i) => (
               <li key={i}>
                 <SkeletonProductPreview />
               </li>

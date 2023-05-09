@@ -1,13 +1,15 @@
+import { Skeleton } from '@ui/skeleton';
+
 const SkeletonProductPreview = () => {
   return (
-    <div className="animate-pulse">
-      <div className="aspect-[5/7] w-full bg-gray-100 rounded-2xl"></div>
-      <div className="text-base-regular mt-2">
-        <div className="w-3/5 h-5 bg-gray-100"></div>
+    <div>
+      <Skeleton className="aspect-[3/4] w-full" />
 
-        <div className="w-1/2 h-4 bg-gray-100 mt-2"></div>
-        <div className="w-2/6 h-3 bg-gray-100 mt-2"></div>
-        <div className="w-3/6 h-5 bg-gray-100 mt-2"></div>
+      <div className="mt-2">
+        <Skeleton className="h-5 w-3/5" />
+        <Skeleton className="mt-2 h-4 w-1/2 " />
+        <Skeleton className="mt-2 h-3 w-2/6 " />
+        <Skeleton className="mt-2 h-5 w-3/6 " />
       </div>
     </div>
   );

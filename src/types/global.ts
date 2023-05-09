@@ -118,4 +118,5 @@ export interface Book {
   trending: string;
   category: string;
   popular: string;
+  deals: string;
 }

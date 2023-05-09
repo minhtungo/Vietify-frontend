@@ -6,6 +6,7 @@ import {
 import repeat from '@lib/util/repeat';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import { Skeleton } from '@modules/ui/skeleton';
 import clsx from 'clsx';
 import { chunk } from 'lodash';
 import Link from 'next/link';
@@ -85,10 +86,7 @@ const DropdownMenu = () => {
                           })}
                         {loadingCollections &&
                           repeat(6).map((index) => (
-                            <div
-                              key={index}
-                              className="h-4 w-12 animate-pulse bg-gray-100"
-                            />
+                            <Skeleton key={index} className="h-4 w-12" />
                           ))}
                       </div>
                     </div>

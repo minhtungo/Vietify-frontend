@@ -4,6 +4,7 @@ import Thumbnail from '@modules/products/components/thumbnail';
 import ReviewRating from '@modules/review/components/review-rating';
 import Button from '@modules/ui/button';
 import Heading from '@modules/ui/heading';
+import { Skeleton } from '@modules/ui/skeleton';
 import Text from '@modules/ui/text';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
@@ -69,7 +70,7 @@ const ProductPreview = ({
               </Text>
             </>
           ) : (
-            <div className="h-6 w-20 animate-pulse bg-gray-100"></div>
+            <Skeleton className="h-6 w-20" />
           )}
         </div>
       </div>
