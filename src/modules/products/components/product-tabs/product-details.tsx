@@ -2,15 +2,57 @@ import { Product } from '@medusajs/medusa';
 import { TabsContent } from '@ui/tabs';
 import Text from '@ui/text';
 import { book } from '@static/book';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@ui/table';
 
 interface AdditionalInfoTabProps {
   product: Product;
 }
 
+const bookDetail = [
+  {
+    label: book.cover,
+    value: 'Paid',
+  },
+  {
+    label: book.category,
+    value: 'Pending',
+  },
+  {
+    label: book.numberOfPages,
+    value: 'Pending',
+  },
+  {
+    label: book.publishDate,
+    value: 'Pending',
+  },
+  {
+    label: book.publisher,
+    value: 'Pending',
+  },
+];
+
 const ProductDetails = ({ product }: AdditionalInfoTabProps) => {
   return (
     <TabsContent value={book.details} className="text-medium-regular py-8">
-      <table className="mx-auto w-2/3 table-auto text-left">
+      <Table className="mx-auto w-2/3">
+        <TableBody>
+          {bookDetail.map((book) => (
+            <TableRow key={book.label}>
+              <TableHead className="">{book.label}</TableHead>
+              <TableCell>{book.value}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      {/* <table className="mx-auto w-2/3 table-auto text-left">
         <tbody>
           <tr className="border-b border-gray-200">
             <th scope="row" className="bg-muted px-6 py-4 font-semibold">
@@ -39,7 +81,7 @@ const ProductDetails = ({ product }: AdditionalInfoTabProps) => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
     </TabsContent>
   );
 };
