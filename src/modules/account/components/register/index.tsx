@@ -54,7 +54,7 @@ const Register = () => {
   });
 
   return (
-    <>
+    <div className="flex w-full justify-center py-12">
       {isSubmitting && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
@@ -122,13 +122,13 @@ const Register = () => {
           </Text>
           <Text variant="info" className="text-[13px]">
             Bạn đã là thành viên?{' '}
-            <Link href="/login" className="text-brand hover:underline">
+            <Link href="/account/login" className="text-brand hover:underline">
               Đăng nhập
             </Link>
           </Text>
         </CardFooter>
       </Card>
-    </>
+    </div>
   );
 };
 

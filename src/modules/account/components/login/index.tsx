@@ -54,7 +54,7 @@ const Login = () => {
   });
 
   return (
-    <>
+    <div className="flex w-full justify-center py-12">
       {isSubmitting && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
@@ -136,13 +136,16 @@ const Login = () => {
           </Text>
           <Text variant="info" className="text-[13px]">
             Thành viên mới?{' '}
-            <Link href="/register" className="text-brand hover:underline">
+            <Link
+              href="/account/register"
+              className="text-brand hover:underline"
+            >
               Đăng kí
             </Link>
           </Text>
         </CardFooter>
       </Card>
-    </>
+    </div>
   );
 };
 
