@@ -46,7 +46,7 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
             id={name}
             placeholder=" "
             className={cn(
-              'peer !h-full px-2.5 pb-2.5 pt-4',
+              'peer !h-10 px-2.5 pb-2.5 pt-4',
               hasError && 'border-destructive focus:border-destructive'
             )}
             {...props}

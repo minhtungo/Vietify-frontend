@@ -2,7 +2,7 @@ import cn from '@lib/util/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 import { forwardRef, HTMLAttributes } from 'react';
 
-const textVariants = cva('', {
+export const textVariants = cva('', {
   variants: {
     variant: {
       description: 'text-base-regular text-muted-foreground',

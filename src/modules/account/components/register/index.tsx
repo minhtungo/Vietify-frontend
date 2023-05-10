@@ -2,6 +2,9 @@ import Input from '@common/form-input';
 import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
 import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
+import cn from '@lib/util/cn';
+import Heading from '@modules/ui/heading';
+import Text, { textVariants } from '@modules/ui/text';
 import Button from '@ui/button';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -49,25 +52,22 @@ const Register = () => {
           <Spinner size={24} />
         </div>
       )}
-      <h1 className="text-large-semi mb-6 uppercase">
-        Become a Vietify Member
-      </h1>
-      <p className="text-base-regular mb-4 text-center text-gray-700">
-        Create your Vietify Member profile, and get access to an enhanced
-        shopping experience.
-      </p>
+      <Heading variant="heading" className="mb-4">
+        Tạo tài khoản
+      </Heading>
+
       <form className="flex w-full flex-col" onSubmit={onSubmit}>
         <div className="flex w-full flex-col gap-y-2">
           <Input
-            label="First name"
-            {...register('first_name', { required: 'First name is required' })}
-            autoComplete="given-name"
+            label="Họ"
+            {...register('last_name', { required: 'Last name is required' })}
+            autoComplete="family-name"
             errors={errors}
           />
           <Input
-            label="Last name"
-            {...register('last_name', { required: 'Last name is required' })}
-            autoComplete="family-name"
+            label="Tên"
+            {...register('first_name', { required: 'First name is required' })}
+            autoComplete="given-name"
             errors={errors}
           />
           <Input
@@ -77,13 +77,7 @@ const Register = () => {
             errors={errors}
           />
           <Input
-            label="Phone"
-            {...register('phone')}
-            autoComplete="tel"
-            errors={errors}
-          />
-          <Input
-            label="Password"
+            label="Mật khẩu"
             {...register('password', {
               required: 'Password is required',
             })}
@@ -99,29 +93,49 @@ const Register = () => {
             </span>
           </div>
         )}
-        <span className="text-small-regular mt-6 text-center text-gray-700">
-          By creating an account, you agree to Vietify&apos;s{' '}
-          <Link href="/content/privacy-policy" className="underline">
-            Privacy Policy
-          </Link>{' '}
-          and{' '}
-          <Link href="/content/terms-of-use" className="underline">
-            Terms of Use
-          </Link>
-          .
-        </span>
-        <Button className="mt-6 w-full uppercase">Join Us</Button>
+
+        <Button className="mt-6 w-full">Tạo tài khoản</Button>
       </form>
-      <span className="text-small-regular mt-6 text-center text-gray-700">
-        Already a member?{' '}
+      <Text variant="info" className="mt-6 text-center text-[11px]">
+        Bằng việc đăng ký, bạn đã đồng ý với Vietify về{' '}
+        <Link
+          href="/terms-of-use"
+          className={cn(
+            textVariants({
+              variant: 'link',
+              className: '!text-[11px] underline',
+            })
+          )}
+        >
+          Điều khoản dịch vụ
+        </Link>
+        {' & '}
+        <Link
+          href="/privacy-policy"
+          className={cn(
+            textVariants({
+              variant: 'link',
+              className: '!text-[11px] underline',
+            })
+          )}
+        >
+          Chính sách bảo mật
+        </Link>
+      </Text>
+      <Text variant="info" className="mt-3 text-center text-[11px]">
+        Bạn đã là thành viên?{' '}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
-          className="underline"
+          className={cn(
+            textVariants({
+              variant: 'link',
+              className: '!text-[11px] underline',
+            })
+          )}
         >
-          Sign in
+          Đăng nhập
         </button>
-        .
-      </span>
+      </Text>
     </div>
   );
 };

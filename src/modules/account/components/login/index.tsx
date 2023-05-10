@@ -4,8 +4,9 @@ import Google from '@icons/google';
 import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
 import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
+import cn from '@lib/util/cn';
 import Heading from '@modules/ui/heading';
-import Text from '@modules/ui/text';
+import Text, { textVariants } from '@modules/ui/text';
 import Button from '@ui//button';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -49,8 +50,8 @@ const Login = () => {
           <Spinner size={24} />
         </div>
       )}
-      <Heading variant="large" className="mb-6 text-center">
-        Welcome back
+      <Heading variant="heading" className="mb-4 text-center">
+        Chào mừng đến với Vietify!
       </Heading>
 
       <form className="w-full" onSubmit={onSubmit}>
@@ -62,7 +63,7 @@ const Login = () => {
             errors={errors}
           />
           <Input
-            label="Password"
+            label="Mật khẩu"
             {...register('password', { required: 'Password is required' })}
             type="password"
             autoComplete="current-password"
@@ -74,39 +75,39 @@ const Login = () => {
             These credentials do not match our records
           </div>
         )}
-        <Button className="mt-6 w-full">Sign In</Button>
+        <Button className="mt-6 w-full">Đăng nhập</Button>
       </form>
 
       <div className="my-6 flex items-center">
         <div className="h-[0.5px] flex-grow bg-border" />
-        <Text className="text-md mx-3">OR</Text>
+        <Text className="mx-3 text-[12px]">hoặc tiếp tục với</Text>
         <div className="h-[0.5px] flex-grow bg-border" />
       </div>
 
-      <div className="mb-6 flex w-full justify-between">
-        <Button variant="outline">
+      <div className="flex w-full justify-between gap-3">
+        <Button variant="outline" className="w-full">
           <Google className="mr-2 h-4 w-4" />
-          Continue with Google
+          Google
         </Button>
-        <Button variant="outline">
+        <Button variant="outline" className="w-full">
           <Facebook className="mr-2 h-4 w-4" />
-          Continue with Facebook
+          Facebook
         </Button>
       </div>
 
-      <Text
-        variant="info"
-        size="sm"
-        className="!text-small-regular mt-6 text-center "
-      >
-        {'Don’t have an account? '}
-        <Button
+      <Text variant="info" className="mt-3 text-center text-[11px]">
+        {'Thành viên mới? '}
+        <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-          variant="link"
-          className="!text-small-regular font-medium"
+          className={cn(
+            textVariants({
+              variant: 'link',
+              className: '!text-[11px] underline',
+            })
+          )}
         >
-          Create Account
-        </Button>
+          Đăng kí
+        </button>
       </Text>
     </div>
   );

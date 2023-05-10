@@ -20,20 +20,17 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
 
   return (
     <ProductProvider product={product}>
-      <div className="content-container pb-2 pt-6 md:pt-7">
-        <Breadcrumb className="mb-6" />
-        <div className="relative grid-cols-11 gap-2 lg:grid">
-          <div className="col-span-5 overflow-hidden md:mb-8 lg:mb-0">
+      <div className="content-container pt-6">
+        <Breadcrumb className="mb-5" />
+        <div className="relative grid-cols-7 gap-2 lg:grid lg:gap-6">
+          <div className="col-span-3 overflow-hidden md:mb-8 lg:mb-0">
             <ThumbnailCarousel gallery={product.images} />
           </div>
-          <div
-            className="col-span-6 flex shrink-0 flex-col gap-y-10"
-            ref={info}
-          >
+          <div className="col-span-4" ref={info}>
             <ProductInfo product={product} />
           </div>
         </div>
-        <div className="my-16">
+        <div className="my-12">
           <ProductTabs product={product} />
         </div>
         <div className="my-16">
