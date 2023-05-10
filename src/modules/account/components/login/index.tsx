@@ -60,11 +60,12 @@ const Login = () => {
           <Spinner size={24} />
         </div>
       )}
-      <Card className={cn('max-w-sm')}>
+      <Card className="max-w-sm">
         <CardHeader className="text-center">
           <CardTitle>Chào mừng đến với Vietify!</CardTitle>
           {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
         </CardHeader>
+
         <CardContent className="grid gap-4">
           <form onSubmit={onSubmit} className="flex flex-col gap-2">
             <Input
@@ -93,7 +94,7 @@ const Login = () => {
               <Checkbox id="remember" />
               <label
                 htmlFor="remember"
-                className="text-[13px] font-medium text-foreground"
+                className="text-[13px] font-medium text-muted-foreground"
               >
                 Nhớ mật khẩu
               </label>

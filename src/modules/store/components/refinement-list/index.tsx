@@ -2,6 +2,7 @@ import FunnelIcon from '@icons/funnel';
 import MinusIcon from '@icons/minus';
 import PlusIcon from '@icons/plus';
 import { ProductCollection, StoreGetProductsParams } from '@medusajs/medusa';
+import PriceSelector from '@modules/common/components/price-selector';
 import SortBy from '@modules/store/components/sort-by';
 import {
   Collapsible,
@@ -104,6 +105,8 @@ const RefinementList = ({
     return;
   };
 
+  console.log(selectedCategories);
+
   return (
     <>
       <main className="content-container">
@@ -112,6 +115,7 @@ const RefinementList = ({
 
           <div className="flex items-center">
             <SortBy />
+            sad
             {/* Mobile filter dialog */}
             <Sheet>
               <SheetTrigger
@@ -173,7 +177,6 @@ const RefinementList = ({
             </Sheet>
           </div>
         </div>
-
         <Separator className="my-4" />
 
         <section aria-labelledby="products-heading" className="pt-6">
@@ -222,6 +225,8 @@ const RefinementList = ({
                   </ul>
                 </CollapsibleContent>
               </Collapsible>
+              <Separator className="my-4" />
+              <PriceSelector defaultValue={[0, 100]} />
             </form>
             <div className="lg:col-span-3">{children}</div>
           </div>

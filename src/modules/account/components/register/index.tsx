@@ -60,9 +60,9 @@ const Register = () => {
           <Spinner size={24} />
         </div>
       )}
-      <Card className={cn('max-w-sm')}>
+      <Card className="max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle>Tạo tài khoản</CardTitle>
+          <CardTitle>Đăng ký</CardTitle>
           {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -121,7 +121,7 @@ const Register = () => {
             </Link>
           </Text>
           <Text variant="info" className="text-[13px]">
-            Bạn đã là thành viên?{' '}
+            Bạn đã có tài khoản?{' '}
             <Link href="/account/login" className="text-brand hover:underline">
               Đăng nhập
             </Link>

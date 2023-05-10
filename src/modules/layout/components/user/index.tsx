@@ -23,10 +23,10 @@ const User: React.FC<UserProps> = ({}) => {
       </PopoverTrigger>
       <PopoverContent className="mt-[2px] hidden w-full space-y-0 p-0 small:block">
         <PopoverClose asChild>
-          <ListItem href="/account">Create an account</ListItem>
+          <ListItem href="/account/register">Đăng ký</ListItem>
         </PopoverClose>
         <PopoverClose asChild>
-          <ListItem href="/account">Sign in</ListItem>
+          <ListItem href="/account/login">Đăng nhập</ListItem>
         </PopoverClose>
       </PopoverContent>
     </Popover>
