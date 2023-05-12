@@ -61,12 +61,12 @@ const Register = () => {
         </div>
       )}
       <Card className="max-w-sm">
-        <CardHeader className="text-center">
+        <CardHeader className="pb-4 text-center">
           <CardTitle>Đăng ký</CardTitle>
           {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
         </CardHeader>
         <CardContent className="grid gap-4">
-          <form onSubmit={onSubmit} className="flex flex-col gap-2">
+          <form onSubmit={onSubmit} className="grid gap-3">
             <Input
               label="Họ"
               {...register('last_name', {
@@ -106,7 +106,7 @@ const Register = () => {
                 </span>
               </div>
             )}
-            <Button className="mt-4 w-full">Tạo tài khoản</Button>
+            <Button className="mt-2 w-full">Tạo tài khoản</Button>
           </form>
         </CardContent>
         <CardFooter className="flex flex-col gap-3 text-center">

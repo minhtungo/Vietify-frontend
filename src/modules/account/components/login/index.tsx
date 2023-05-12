@@ -61,13 +61,13 @@ const Login = () => {
         </div>
       )}
       <Card className="max-w-sm">
-        <CardHeader className="text-center">
+        <CardHeader className="pb-4 text-center">
           <CardTitle>Chào mừng đến với Vietify!</CardTitle>
           {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
         </CardHeader>
 
         <CardContent className="grid gap-4">
-          <form onSubmit={onSubmit} className="flex flex-col gap-2">
+          <form onSubmit={onSubmit} className="grid gap-3">
             <Input
               label="Email"
               {...register('email', { required: 'Email is required' })}
@@ -82,31 +82,27 @@ const Login = () => {
               errors={errors}
             />
             {authError && (
-              <div>
-                <span className="text-small-regular w-full text-rose-500">
-                  Incorrect email or password.
+              <Text variant="description" className="text-rose-500">
+                Incorrect email or password.
+              </Text>
+            )}
+            <div className="mt-1 flex justify-between">
+              <div className="flex items-center space-x-2">
+                <Checkbox id="remember" />
+                <span className="text-[13px] text-muted-foreground">
+                  Nhớ mật khẩu
                 </span>
               </div>
-            )}
-          </form>
-          <div className="flex justify-between">
-            <div className="flex items-center space-x-2">
-              <Checkbox id="remember" />
-              <label
-                htmlFor="remember"
-                className="text-[13px] font-medium text-muted-foreground"
+              <Link
+                href="/terms-of-use"
+                className="text-[13px] text-brand hover:underline"
               >
-                Nhớ mật khẩu
-              </label>
+                Quên mật khẩu?
+              </Link>
             </div>
-            <Link
-              href="/terms-of-use"
-              className="text-[13px] text-brand hover:underline"
-            >
-              Quên mật khẩu?
-            </Link>
-          </div>
-          <Button className="mt-1 w-full">Đăng nhập</Button>
+            <Button className="mt-2 w-full">Đăng nhập</Button>
+          </form>
+
           <div className="flex items-center">
             <div className="h-[0.5px] flex-grow bg-border" />
             <Text className="mx-3 text-[12px]">hoặc tiếp tục với</Text>
