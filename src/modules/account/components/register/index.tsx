@@ -106,8 +106,8 @@ const Register = () => {
                 </span>
               </div>
             )}
+            <Button className="mt-4 w-full">Tạo tài khoản</Button>
           </form>
-          <Button className="mt-1 w-full">Tạo tài khoản</Button>
         </CardContent>
         <CardFooter className="flex flex-col gap-3 text-center">
           <Text variant="info" className="text-[11px]">

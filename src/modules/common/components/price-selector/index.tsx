@@ -17,7 +17,7 @@ const PriceSelector: FC<PriceSelectorProps> = ({ defaultValue }) => {
       <div className="flex items-center justify-between">
         <Label htmlFor="priceRange">Price Range</Label>
         <span className="rounded-md text-sm text-muted-foreground hover:border-border">
-          {`${value![0]} - ${value![1]}`}
+          {`$${value![0]} - $${value![1]}`}
         </span>
       </div>
       <Slider

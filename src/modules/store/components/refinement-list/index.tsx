@@ -2,7 +2,6 @@ import FunnelIcon from '@icons/funnel';
 import MinusIcon from '@icons/minus';
 import PlusIcon from '@icons/plus';
 import { ProductCollection, StoreGetProductsParams } from '@medusajs/medusa';
-import PriceSelector from '@modules/common/components/price-selector';
 import SortBy from '@modules/store/components/sort-by';
 import {
   Collapsible,
@@ -21,6 +20,7 @@ import {
 import { useCollections } from 'medusa-react';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useMemo, useState } from 'react';
+import Filter from '../filter';
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams;
@@ -115,7 +115,6 @@ const RefinementList = ({
 
           <div className="flex items-center">
             <SortBy />
-            sad
             {/* Mobile filter dialog */}
             <Sheet>
               <SheetTrigger
@@ -142,7 +141,6 @@ const RefinementList = ({
                         <span className="font-medium text-gray-900">
                           Genres
                         </span>
-
                         {isOpen ? (
                           <MinusIcon className="h-5 w-5" aria-hidden="true" />
                         ) : (
@@ -179,55 +177,17 @@ const RefinementList = ({
         </div>
         <Separator className="my-4" />
 
-        <section aria-labelledby="products-heading" className="pt-6">
-          <h2 id="products-heading" className="sr-only">
+        <section aria-labelledby="filter-products" className="pt-6">
+          <h2 id="filter-products" className="sr-only">
             Genres
           </h2>
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-            <form className="hidden lg:block">
-              <Collapsible
-                open={isOpen}
-                onOpenChange={setIsOpen}
-                className="space-y-2"
-              >
-                <CollapsibleTrigger asChild>
-                  <div className="flow-root">
-                    <div className="flex w-full items-center justify-between text-sm text-gray-400 hover:text-gray-500">
-                      <span className="font-medium text-gray-900">Genres</span>
-
-                      {isOpen ? (
-                        <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                      ) : (
-                        <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                      )}
-                    </div>
-                  </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="pt-3">
-                  <ul className="flex flex-col gap-y-2">
-                    {collections?.map((c) => (
-                      <li key={c.id} className="flex items-center space-x-2">
-                        <label className="flex items-center gap-x-2">
-                          <input
-                            type="checkbox"
-                            defaultChecked={refinementList.collection_id?.includes(
-                              c.id
-                            )}
-                            onChange={(e) => handleCollectionChange(e, c)}
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                          />
-                          <span className="text-sm text-gray-600">
-                            {c.title}
-                          </span>
-                        </label>
-                      </li>
-                    ))}
-                  </ul>
-                </CollapsibleContent>
-              </Collapsible>
-              <Separator className="my-4" />
-              <PriceSelector defaultValue={[0, 100]} />
-            </form>
+            <Filter
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              handleCollectionChange={handleCollectionChange}
+              refinementList={refinementList}
+            />
             <div className="lg:col-span-3">{children}</div>
           </div>
         </section>
