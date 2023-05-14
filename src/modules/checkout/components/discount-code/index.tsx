@@ -1,12 +1,13 @@
-import { medusaClient } from '@lib/config';
-import { Cart } from '@medusajs/medusa';
-import Button from '@ui/button';
 import Input from '@common/form-input';
 import Trash from '@icons/trash';
+import { medusaClient } from '@lib/config';
+import { Cart } from '@medusajs/medusa';
+import { useMutation } from '@tanstack/react-query';
+import Button from '@ui/button';
+import { Card, CardContent, CardDescription, CardHeader } from '@ui/card';
 import { formatAmount, useCart, useUpdateCart } from 'medusa-react';
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
 
 type DiscountFormValues = {
   discount_code: string;
@@ -89,27 +90,25 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   };
 
   return (
-    <div className="flex w-full flex-col bg-white">
-      <div className="mb-4">
-        <h3 className="text-base-semi">Discount</h3>
-      </div>
-      <div className="text-small-regular">
+    <Card>
+      <CardHeader className="p-5">
+        <CardDescription className="text-base-semi">Discount</CardDescription>
+      </CardHeader>
+      <CardContent className="text-small-regular">
         {appliedDiscount ? (
           <div className="flex items-center justify-between">
             <div>
               <span>Code: </span>
               <span className="font-semibold">{appliedDiscount}</span>
             </div>
-            <div>
-              <button
-                className="flex items-center gap-x-2"
-                onClick={onRemove}
-                disabled={isLoading}
-              >
-                <Trash size={16} />
-                <span className="sr-only">Remove gift card from order</span>
-              </button>
-            </div>
+            <button
+              className="flex items-center gap-x-2"
+              onClick={onRemove}
+              disabled={isLoading}
+            >
+              <Trash size={16} />
+              <span className="sr-only">Remove gift card from order</span>
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit(onApply)} className="w-full">
@@ -121,20 +120,19 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                 })}
                 errors={errors}
               />
-              <div>
-                <Button
-                  className="h-[46px] !min-h-[0] w-[80px]"
-                  disabled={isLoading}
-                  isLoading={isLoading}
-                >
-                  Apply
-                </Button>
-              </div>
+
+              <Button
+                className="h-[46px] !min-h-[0] w-[80px]"
+                disabled={isLoading}
+                isLoading={isLoading}
+              >
+                Apply
+              </Button>
             </div>
           </form>
         )}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,7 +1,8 @@
-import { Cart } from '@medusajs/medusa';
-import Button from '@ui/button';
 import Input from '@common/form-input';
 import Trash from '@icons/trash';
+import { Cart } from '@medusajs/medusa';
+import Button from '@ui/button';
+import { Card, CardContent, CardDescription, CardHeader } from '@ui/card';
 import { useCart } from 'medusa-react';
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
@@ -69,27 +70,25 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
   };
 
   return (
-    <div className="flex w-full flex-col bg-white p-6">
-      <div className="mb-4">
-        <h3 className="text-base-semi">Gift Card</h3>
-      </div>
-      <div className="text-small-regular">
+    <Card>
+      <CardHeader className="p-5">
+        <CardDescription className="text-base-semi">Gift Card</CardDescription>
+      </CardHeader>
+      <CardContent className="text-small-regular">
         {appliedGiftCard ? (
           <div className="flex items-center justify-between">
             <div>
               <span className="text-gray-700">Code: </span>
               <span className="font-semibold">{appliedGiftCard}</span>
             </div>
-            <div>
-              <button
-                className="flex items-center gap-x-2"
-                onClick={onRemove}
-                disabled={isLoading}
-              >
-                <Trash size={16} />
-                <span className="sr-only">Remove gift card from order</span>
-              </button>
-            </div>
+            <button
+              className="flex items-center gap-x-2"
+              onClick={onRemove}
+              disabled={isLoading}
+            >
+              <Trash size={16} />
+              <span className="sr-only">Remove gift card from order</span>
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -102,20 +101,18 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
                 errors={errors}
                 touched={touchedFields}
               />
-              <div>
-                <Button
-                  className="h-[46px] !min-h-[0] w-[80px]"
-                  disabled={isLoading}
-                  isLoading={isLoading}
-                >
-                  Apply
-                </Button>
-              </div>
+              <Button
+                className="h-[46px] !min-h-[0] w-[80px]"
+                disabled={isLoading}
+                isLoading={isLoading}
+              >
+                Apply
+              </Button>
             </div>
           </form>
         )}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -7,35 +7,30 @@ import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
 import { useCart } from 'medusa-react';
 import React, { useEffect, useState } from 'react';
+import cn from '@lib/util/cn';
 
-type PaymentButtonProps = {
+interface PaymentButtonProps {
   paymentSession?: PaymentSession | null;
-};
+  className?: string;
+}
 
-const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
+const PaymentButton: React.FC<PaymentButtonProps> = ({
+  paymentSession,
+  className,
+}) => {
   const [notReady, setNotReady] = useState(true);
   const { cart } = useCart();
 
   useEffect(() => {
     setNotReady(true);
 
-    if (!cart) {
-      return;
-    }
-
-    if (!cart.shipping_address) {
-      return;
-    }
-
-    if (!cart.billing_address) {
-      return;
-    }
-
-    if (!cart.email) {
-      return;
-    }
-
-    if (cart.shipping_methods.length < 1) {
+    if (
+      !cart ||
+      !cart.shipping_address ||
+      !cart.billing_address ||
+      !cart.email ||
+      cart.shipping_methods.length < 1
+    ) {
       return;
     }
 
@@ -54,7 +49,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
         <PayPalPaymentButton notReady={notReady} session={paymentSession} />
       );
     default:
-      return <Button disabled>Select a payment method</Button>;
+      return (
+        <Button className={cn(className)} disabled>
+          Select a payment method
+        </Button>
+      );
   }
 };
 

@@ -58,6 +58,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           price={selectedPrice?.calculated_price}
           quantity={quantity}
           t={t}
+          className="pt-3"
         />
       ),
       {
