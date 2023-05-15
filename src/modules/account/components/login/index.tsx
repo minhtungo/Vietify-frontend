@@ -3,24 +3,15 @@ import Facebook from '@icons/facebook';
 import Google from '@icons/google';
 import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
-import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
-import cn from '@lib/util/cn';
-import Heading from '@modules/ui/heading';
-import Text, { textVariants } from '@modules/ui/text';
+import { useAccount } from '@lib/context/account-context';
+import Link from '@modules/common/components/link';
+import { Checkbox } from '@modules/ui/checkbox';
+import Text from '@modules/ui/text';
 import Button from '@ui//button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@modules/ui/card';
-import Link from '@modules/common/components/link';
-import { Checkbox } from '@modules/ui/checkbox';
 
 interface SignInCredentials extends FieldValues {
   email: string;

@@ -8,6 +8,7 @@ import { type LineItem, type Region } from '@medusajs/medusa';
 import { formatAmount } from 'medusa-react';
 import XMarkIcon from '@modules/common/icons/x';
 import _ from 'lodash';
+import LineItemOptions from '../line-item-options';
 
 interface CartItemProps {
   className?: string;
@@ -17,9 +18,9 @@ interface CartItemProps {
 
 const CartItem: React.FC<CartItemProps> = React.memo(
   ({ className, item, region }) => {
-    const { thumbnail, title, quantity, unit_price } = item;
-
-    const getAmount = (amount) => {
+    const { thumbnail, title, quantity, unit_price, variant } = item;
+    console.log(variant);
+    const getAmount = (amount: number | string) => {
       if (typeof unit_price === 'string') {
         console.log(parseFloat(unit_price));
         return amount;
@@ -32,23 +33,27 @@ const CartItem: React.FC<CartItemProps> = React.memo(
     };
 
     return (
-      <div className={cn('flex gap-x-2 pt-3', className)}>
-        <div className="w-[55px]">
-          <Thumbnail thumbnail={thumbnail} size="full" />
+      <div className={cn('flex justify-between', className)}>
+        <div className="flex gap-x-2">
+          <div className="w-[55px]">
+            <Thumbnail thumbnail={thumbnail} size="full" />
+          </div>
+          <div>
+            <Heading
+              variant="small"
+              className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm"
+            >
+              {title}
+            </Heading>
+            <Text variant="info" className="flex items-center text-xs">
+              {quantity}
+              <XMarkIcon />
+              {getAmount(unit_price)}
+              {/* {variant ? <LineItemOptions variant={variant} /> : ''} */}
+            </Text>
+          </div>
         </div>
-        <div>
-          <Heading
-            variant="small"
-            className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm"
-          >
-            {title}
-          </Heading>
-          <Text variant="info" className="flex items-center text-xs">
-            {quantity}
-            <XMarkIcon />
-            {getAmount(unit_price)}
-          </Text>
-        </div>
+
         <Text variant="label" as="span" className="text-sm">
           {getAmount(unit_price * quantity)}
         </Text>

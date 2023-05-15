@@ -1,10 +1,10 @@
+import Radio from '@common/radio';
 import { RadioGroup } from '@headlessui/react';
 import { ErrorMessage } from '@hookform/error-message';
-import { useCheckout } from '@lib/context/checkout-context';
-import { Cart } from '@medusajs/medusa';
-import Radio from '@common/radio';
 import Spinner from '@icons/spinner';
-import clsx from 'clsx';
+import { useCheckout } from '@lib/context/checkout-context';
+import cn from '@lib/util/cn';
+import { Cart } from '@medusajs/medusa';
 import { formatAmount, useCart, useCartShippingOptions } from 'medusa-react';
 import React, { useEffect, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -120,11 +120,9 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                       <RadioGroup.Option
                         key={option.value}
                         value={option.value}
-                        className={clsx(
+                        className={cn(
                           'text-small-regular flex cursor-pointer items-center justify-between border-b border-gray-200 px-8 py-4 last:border-b-0',
-                          {
-                            'bg-gray-50': option.value === value,
-                          }
+                          option.value === value && 'bg-accent/50'
                         )}
                       >
                         <div className="flex items-center gap-x-4">

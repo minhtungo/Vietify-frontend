@@ -21,7 +21,7 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
 
   return (
     <div className={cn('flex gap-x-4', className)} key={item.id}>
-      <div className="w-[85px]">
+      <div className="w-[80px]">
         <Thumbnail thumbnail={item.thumbnail} size="full" />
       </div>
       <div className="flex flex-1 flex-col justify-between">

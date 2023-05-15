@@ -36,7 +36,7 @@ const CheckoutSummary = () => {
           </CardDescription>
         </CardHeader>
         <Separator className="my-3" />
-        <CardContent className="grid gap-4">
+        <CardContent className="grid gap-2">
           {cart.items.map((item) => (
             <CartItem key={item.id} item={item} region={cart.region} />
           ))}
