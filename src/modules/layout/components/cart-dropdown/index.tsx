@@ -47,12 +47,7 @@ const CartDropdown = () => {
                     })
                     .map((item, index) => (
                       <>
-                        <CartItem
-                          item={item}
-                          cart={cart}
-                          key={item.id}
-                          className=""
-                        />
+                        <CartItem item={item} cart={cart} key={item.id} />
                         {index !== items.length - 1 && (
                           <Separator className="last:hidden" />
                         )}

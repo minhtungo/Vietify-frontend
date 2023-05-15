@@ -1,30 +1,41 @@
 import cn from '@lib/util/cn';
 import Heading from '@ui/heading';
 import Text from '@ui/text';
+import React from 'react';
 
 import Thumbnail from '@modules/products/components/thumbnail';
+import { type LineItem, type Region } from '@medusajs/medusa';
+import { formatAmount } from 'medusa-react';
+import XMarkIcon from '@modules/common/icons/x';
+import _ from 'lodash';
 
 interface CartItemProps {
   className?: string;
-  thumbnail?: string | null;
-  title: string;
-  price: string | undefined;
-  quantity: number;
+  item: LineItem;
+  region: Region;
 }
 
-const CartItem: React.FC<CartItemProps> = ({
-  className,
-  thumbnail,
-  title,
-  price,
-  quantity,
-}) => {
-  return (
-    <div className={cn('flex w-full gap-x-2', className)}>
-      <div className="w-[55px]">
-        <Thumbnail thumbnail={thumbnail} size="full" />
-      </div>
-      <div className="flex justify-between">
+const CartItem: React.FC<CartItemProps> = React.memo(
+  ({ className, item, region }) => {
+    const { thumbnail, title, quantity, unit_price } = item;
+
+    const getAmount = (amount) => {
+      if (typeof unit_price === 'string') {
+        console.log(parseFloat(unit_price));
+        return amount;
+      }
+      return formatAmount({
+        amount: amount,
+        region: region,
+        includeTaxes: false,
+      });
+    };
+
+    return (
+      <div className={cn('flex gap-x-2 pt-3', className)}>
+        <div className="w-[55px]">
+          <Thumbnail thumbnail={thumbnail} size="full" />
+        </div>
         <div>
           <Heading
             variant="small"
@@ -32,19 +43,20 @@ const CartItem: React.FC<CartItemProps> = ({
           >
             {title}
           </Heading>
-          <Text variant="info" className="text-xs">
-            Qty: {quantity}
+          <Text variant="info" className="flex items-center text-xs">
+            {quantity}
+            <XMarkIcon />
+            {getAmount(unit_price)}
           </Text>
         </div>
-
-        <div className="flex justify-end">
-          <Text variant="label" as="span" className="text-sm">
-            {price}
-          </Text>
-        </div>
+        <Text variant="label" as="span" className="text-sm">
+          {getAmount(unit_price * quantity)}
+        </Text>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+CartItem.displayName = 'Cart Item';
 
 export default CartItem;

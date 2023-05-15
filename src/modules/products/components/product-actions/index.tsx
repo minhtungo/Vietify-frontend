@@ -41,7 +41,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
     resetQuantity,
   } = useProductActions();
 
-  const price = useProductPrice({ id: product.id, variantId: variant?.id });
+  const price = useProductPrice({ id: product?.id, variantId: variant?.id });
 
   const selectedPrice = useMemo(() => {
     const { variantPrice, cheapestPrice } = price;
@@ -51,20 +51,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   const addItemToCart = () => {
     addToCart();
-    toast(
-      (t) => (
-        <AddedItem
-          item={product}
-          price={selectedPrice?.calculated_price}
-          quantity={quantity}
-          t={t}
-          className="pt-3"
-        />
-      ),
-      {
-        duration: 1600,
-      }
-    );
+    const item = {
+      thumbnail: product.thumbnail,
+      title: product.title,
+      quantity,
+      unit_price: selectedPrice?.calculated_price,
+    };
+    toast((t) => <AddedItem item={item} t={t} />, {
+      duration: 1600,
+    });
     resetQuantity();
   };
 
@@ -75,7 +70,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           {product.collection.title}
         </Link>
       )} */}
-      <Heading variant="large">{product.title}</Heading>
+      <Heading variant="large">{product?.title}</Heading>
       <div className="mt-1 flex w-full flex-wrap justify-between">
         <span className="w-1/2">
           <Text variant="info" className="font-semibold" as="span">
@@ -137,7 +132,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         )}
       </div>
 
-      {product.variants.length > 1 && (
+      {product?.variants.length > 1 && (
         <div className="flex flex-col gap-y-4">
           {product.options.map((option) => {
             return (

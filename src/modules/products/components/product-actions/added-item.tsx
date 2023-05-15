@@ -1,29 +1,22 @@
 import cn from '@lib/util/cn';
 import Heading from '@ui/heading';
-import Text from '@ui/text';
 
-import Thumbnail from '@modules/products/components/thumbnail';
-import { Product } from 'types/medusa';
-import { toast, type Toast } from 'react-hot-toast';
+import { type LineItem } from '@medusajs/medusa';
+import CartItem from '@modules/common/components/cart-item';
 import XMarkIcon from '@modules/common/icons/x';
 import Button from '@modules/ui/button';
-import CartItem from '@modules/common/components/cart-item';
+import { useCart } from 'medusa-react';
+import { toast, type Toast } from 'react-hot-toast';
 
 interface cartItemProps {
-  item: Product;
-  price: string | undefined;
-  quantity: number;
+  item: LineItem;
   className?: string;
   t: Toast;
 }
 
-const AddedItem: React.FC<cartItemProps> = ({
-  item,
-  price,
-  className,
-  quantity,
-  t,
-}) => {
+const AddedItem: React.FC<cartItemProps> = ({ item, className, t }) => {
+  const { cart } = useCart();
+
   return (
     <div className={cn(className)}>
       <div className="flex items-center justify-between border-b border-border">
@@ -40,12 +33,7 @@ const AddedItem: React.FC<cartItemProps> = ({
           <XMarkIcon size={18} />
         </Button>
       </div>
-      <CartItem
-        thumbnail={item.thumbnail}
-        title={item.title}
-        price={price}
-        quantity={quantity}
-      />
+      <CartItem item={item} region={cart!.region} />
     </div>
   );
 };

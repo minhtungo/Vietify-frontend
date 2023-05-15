@@ -26,8 +26,6 @@ const CheckoutSummary = () => {
     return null;
   }
 
-  console.log(cart.items);
-
   return (
     <div className="sticky top-0 flex flex-col-reverse gap-y-8 small:flex-col">
       <Card>
@@ -40,16 +38,9 @@ const CheckoutSummary = () => {
         <Separator className="my-3" />
         <CardContent className="grid gap-4">
           {cart.items.map((item) => (
-            <>
-              <CartItem
-                thumbnail={item.thumbnail}
-                title={item.title}
-                price={item.unit_price}
-                quantity={item.quantity}
-              />
-              <Separator className="first:hidden" />
-            </>
+            <CartItem key={item.id} item={item} region={cart.region} />
           ))}
+          <Separator />
           <CartTotals cart={cart} />
         </CardContent>
         <CardFooter>
