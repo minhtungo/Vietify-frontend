@@ -71,10 +71,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
 
   return (
     <Card>
-      <CardHeader className="p-5">
-        <CardDescription className="text-base-semi">Gift Card</CardDescription>
-      </CardHeader>
-      <CardContent className="text-small-regular">
+      <CardContent className="text-small-regular p-6">
         {appliedGiftCard ? (
           <div className="flex items-center justify-between">
             <div>
@@ -94,7 +91,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <div className="grid grid-cols-[1fr_80px] gap-x-2">
               <Input
-                label="Code"
+                label="Enter your gift card"
                 {...register('gift_card_code', {
                   required: 'Code is required',
                 })}
@@ -102,7 +99,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
                 touched={touchedFields}
               />
               <Button
-                className="h-[46px] !min-h-[0] w-[80px]"
+                className="h-full w-full"
                 disabled={isLoading}
                 isLoading={isLoading}
               >

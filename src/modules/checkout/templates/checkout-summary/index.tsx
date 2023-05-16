@@ -14,6 +14,8 @@ import {
 import { Separator } from '@modules/ui/separator';
 import { useCart } from 'medusa-react';
 import CartItem from '@modules/common/components/cart-item';
+import OrderSummary from '@modules/common/components/order-summary';
+import OrderDetails from '@modules/common/components/order-details';
 
 const getTotalItems = (cartItems: LineItem[]) => {
   return cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -27,30 +29,9 @@ const CheckoutSummary = () => {
   }
 
   return (
-    <div className="sticky top-0 flex flex-col-reverse gap-y-8 small:flex-col">
-      <Card>
-        <CardHeader className="p-5 pb-0">
-          <CardTitle>Shopping Cart</CardTitle>
-          <CardDescription>
-            You have {getTotalItems(cart.items)} items in your cart.
-          </CardDescription>
-        </CardHeader>
-        <Separator className="my-3" />
-        <CardContent className="grid gap-2">
-          {cart.items.map((item) => (
-            <CartItem key={item.id} item={item} region={cart.region} />
-          ))}
-          <Separator />
-          <CartTotals cart={cart} />
-        </CardContent>
-        <CardFooter>
-          <PaymentButton
-            paymentSession={cart?.payment_session}
-            className="w-full"
-          />
-        </CardFooter>
-      </Card>
-
+    <div className="sticky top-0 flex flex-col-reverse gap-y-6 small:flex-col">
+      <OrderSummary cart={cart} />
+      <OrderDetails cart={cart} />
       <DiscountCode cart={cart} />
       <GiftCard cart={cart} />
     </div>

@@ -1,18 +1,10 @@
-import { useCheckout } from '@lib/context/checkout-context';
-import Button from '@ui/button';
 import Checkbox from '@common/checkbox';
 import Spinner from '@icons/spinner';
+import { useCheckout } from '@lib/context/checkout-context';
+import Button from '@ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
 import BillingAddress from '../billing_address';
 import ShippingAddress from '../shipping-address';
-import Heading from '@modules/ui/heading';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@ui/card';
 
 const Addresses = () => {
   const {
@@ -90,11 +82,10 @@ const Addresses = () => {
                         </div>
                       )}
                     </div>
-                    <div>
-                      <Button variant="link" onClick={setEdit}>
-                        Edit
-                      </Button>
-                    </div>
+
+                    <Button variant="link" onClick={setEdit}>
+                      Edit
+                    </Button>
                   </div>
                 </div>
               ) : (
@@ -137,9 +128,10 @@ const Addresses = () => {
                             <span>{cart.billing_address.phone}</span>
                           </div>
                         </div>
-                        <div>
-                          <button onClick={setEdit}>Edit</button>
-                        </div>
+
+                        <Button variant="link" onClick={setEdit}>
+                          Edit
+                        </Button>
                       </div>
                     </div>
                   ) : (

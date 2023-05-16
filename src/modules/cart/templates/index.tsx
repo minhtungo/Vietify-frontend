@@ -3,9 +3,9 @@ import DiscountCode from '@modules/checkout/components/discount-code';
 import SkeletonCartPage from '@modules/skeletons/templates/skeleton-cart-page';
 import { useCart, useMeCustomer } from 'medusa-react';
 import EmptyCartMessage from '../components/empty-cart-message';
-import SignInPrompt from '../components/sign-in-prompt';
+import LogInPrompt from '../components/log-in-prompt';
 import ItemsTemplate from './items';
-import Summary from './summary';
+import OrderSummary from '@modules/common/components/order-summary';
 
 const CartTemplate = () => {
   const { cart } = useCart();
@@ -17,24 +17,21 @@ const CartTemplate = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-12">
+    <div className="bg-accent/50 py-12">
       <div className="content-container">
+        <div className="mb-4">{!customer && <LogInPrompt />}</div>
+
         {cart.items.length ? (
-          <div className="grid grid-cols-1 small:grid-cols-[1fr_360px] gap-x-8">
-            <div className="flex flex-col bg-white p-6 gap-y-6">
-              {!customer && <SignInPrompt />}
+          <div className="grid grid-cols-1 gap-x-8 small:grid-cols-[1fr_360px]">
+            <div className="flex flex-col gap-y-6 bg-white p-6">
               <ItemsTemplate region={cart?.region} items={items} />
             </div>
             <div className="relative">
-              <div className="flex flex-col gap-y-8 sticky top-12">
+              <div className="sticky top-12 flex flex-col gap-y-6">
                 {cart && cart.region && (
                   <>
-                    <div className="bg-white p-6">
-                      <Summary cart={cart} />
-                    </div>
-                    <div className="bg-white p-6">
-                      <DiscountCode cart={cart} />
-                    </div>
+                    <OrderSummary cart={cart} />
+                    <DiscountCode cart={cart} />
                   </>
                 )}
               </div>
@@ -42,7 +39,7 @@ const CartTemplate = () => {
           </div>
         ) : (
           <div>
-            {!customer && <SignInPrompt />}
+            {!customer && <LogInPrompt />}
             <EmptyCartMessage />
           </div>
         )}
