@@ -1,6 +1,7 @@
+import cn from '@lib/util/cn';
 import { PaymentSession } from '@medusajs/medusa';
-import Radio from '@common/radio';
-import clsx from 'clsx';
+import { Label } from '@modules/ui/label';
+import { RadioGroup, RadioGroupItem } from '@ui/radio-group';
 import React from 'react';
 import PaymentStripe from '../payment-stripe';
 import PaymentTest from '../payment-test';
@@ -39,23 +40,22 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
 }) => {
   return (
     <div
-      className={clsx(
-        'flex flex-col gap-y-4 border-b border-gray-200 last:border-b-0',
-        {
-          'bg-gray-50': selected,
-        }
+      className={cn(
+        'flex flex-col gap-y-4 border-b border-border last:border-b-0',
+        selected && 'bg-accent/50'
       )}
     >
-      <button
-        className={'grid grid-cols-[12px_1fr] gap-x-4 px-8 py-4'}
-        onClick={setSelected}
+      <RadioGroup
+        defaultValue="option-one"
+        className="grid grid-cols-[12px_1fr] gap-x-4 px-8 py-4"
         disabled={disabled}
+        onClick={setSelected}
       >
-        <Radio checked={selected} />
-        <div className="flex flex-col text-left">
-          <h3 className="text-base-semi leading-none text-gray-900">
+        <RadioGroupItem value="option-one" id="option-one" />
+        <div className="flex flex-col">
+          <Label htmlFor="option-one" className="cursor-pointer font-semibold">
             {PaymentInfoMap[paymentSession.provider_id].title}
-          </h3>
+          </Label>
           <span className="text-small-regular mt-2 text-gray-700">
             {PaymentInfoMap[paymentSession.provider_id].description}
           </span>
@@ -65,7 +65,27 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
             </div>
           )}
         </div>
-      </button>
+      </RadioGroup>
+      {/* <button
+        className={'grid grid-cols-[12px_1fr] gap-x-4 px-8 py-4'}
+        onClick={setSelected}
+        disabled={disabled}
+      >
+        <Radio checked={selected} />
+        <div className="flex flex-col text-left">
+          <Heading className="text-base-semi leading-none text-gray-900">
+            {PaymentInfoMap[paymentSession.provider_id].title}
+          </Heading>
+          <span className="text-small-regular mt-2 text-gray-700">
+            {PaymentInfoMap[paymentSession.provider_id].description}
+          </span>
+          {selected && (
+            <div className="mt-4 w-full">
+              <PaymentElement paymentSession={paymentSession} />
+            </div>
+          )}
+        </div>
+      </button> */}
     </div>
   );
 };

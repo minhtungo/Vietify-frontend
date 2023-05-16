@@ -22,7 +22,6 @@ const CartItem: React.FC<CartItemProps> = React.memo(
     console.log(variant);
     const getAmount = (amount: number | string) => {
       if (typeof unit_price === 'string') {
-        console.log(parseFloat(unit_price));
         return amount;
       }
       return formatAmount({

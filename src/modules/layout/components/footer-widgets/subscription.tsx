@@ -32,7 +32,7 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
 
   const onSubmit = (values: NewsLetterFormValues, e: any) => {
     e.preventDefault();
-    console.log('hello');
+
     setSubscriptionSuccess(true);
 
     setTimeout(() => {

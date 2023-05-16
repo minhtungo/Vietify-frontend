@@ -10,8 +10,6 @@ interface PriceSelectorProps {
 const PriceSelector: FC<PriceSelectorProps> = ({ defaultValue }) => {
   const [value, setValue] = useState(defaultValue);
 
-  console.log(value);
-
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between">

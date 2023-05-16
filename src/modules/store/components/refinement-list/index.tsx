@@ -105,8 +105,6 @@ const RefinementList = ({
     return;
   };
 
-  console.log(selectedCategories);
-
   return (
     <>
       <main className="content-container">

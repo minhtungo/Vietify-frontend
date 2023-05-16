@@ -1,5 +1,3 @@
-import Radio from '@common/radio';
-import { RadioGroup } from '@headlessui/react';
 import { ErrorMessage } from '@hookform/error-message';
 import Spinner from '@icons/spinner';
 import { useCheckout } from '@lib/context/checkout-context';
@@ -9,6 +7,9 @@ import { formatAmount, useCart, useCartShippingOptions } from 'medusa-react';
 import React, { useEffect, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import StepContainer from '../step-container';
+import { RadioGroup, RadioGroupItem } from '@ui/radio-group';
+import { Label } from '@ui/label';
+import Text from '@modules/ui/text';
 
 type ShippingOption = {
   value: string;
@@ -109,32 +110,36 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
         control={control}
         render={({ field: { value, onChange } }) => {
           return (
-            <div>
+            <>
               <RadioGroup
                 value={value}
-                onChange={(value: string) => handleChange(value, onChange)}
+                defaultValue={value}
+                onValueChange={(value: string) => handleChange(value, onChange)}
               >
                 {shippingMethods && shippingMethods.length ? (
                   shippingMethods.map((option) => {
                     return (
-                      <RadioGroup.Option
-                        key={option.value}
-                        value={option.value}
+                      <div
                         className={cn(
-                          'text-small-regular flex cursor-pointer items-center justify-between border-b border-gray-200 px-8 py-4 last:border-b-0',
+                          'flex w-full cursor-pointer items-center justify-between space-x-2 border-b border-border px-8 py-4 last:border-b-0',
                           option.value === value && 'bg-accent/50'
                         )}
+                        key={option.value}
                       >
-                        <div className="flex items-center gap-x-4">
-                          <Radio checked={value === option.value} />
-                          <span className="text-base-regular">
+                        <div>
+                          <RadioGroupItem
+                            value={option.value}
+                            id={option.value}
+                          />
+                          <Label
+                            htmlFor={option.value}
+                            className="ml-2 cursor-pointer"
+                          >
                             {option.label}
-                          </span>
+                          </Label>
                         </div>
-                        <span className="justify-self-end text-gray-700">
-                          {option.price}
-                        </span>
-                      </RadioGroup.Option>
+                        <Text variant="label">{option.price}</Text>
+                      </div>
                     );
                   })
                 ) : (
@@ -154,7 +159,7 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                   );
                 }}
               />
-            </div>
+            </>
           );
         }}
       />
