@@ -27,9 +27,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className={cn(inter.variable, 'relative font-sans')}>
         {children}
       </main>
-      <Separator className="my-10" />
+      <Separator  />
       <Incentives />
-      <Separator className="my-10" />
+      <Separator />
       <Footer />
     </div>
   );

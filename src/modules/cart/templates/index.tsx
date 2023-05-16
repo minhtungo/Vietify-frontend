@@ -17,11 +17,10 @@ const CartTemplate = () => {
   }
 
   return (
-    <div className="bg-accent/50 py-12">
-      <div className="content-container">
-        <div className="mb-4">{!customer && <LogInPrompt />}</div>
-
-        {cart.items.length ? (
+    <div className="content-container py-12">
+      {cart.items.length ? (
+        <>
+          <div className="mb-4">{!customer && <LogInPrompt />}</div>
           <div className="grid grid-cols-1 gap-x-8 small:grid-cols-[1fr_360px]">
             <div className="flex flex-col gap-y-6 bg-white p-6">
               <ItemsTemplate region={cart?.region} items={items} />
@@ -37,13 +36,10 @@ const CartTemplate = () => {
               </div>
             </div>
           </div>
-        ) : (
-          <div>
-            {!customer && <LogInPrompt />}
-            <EmptyCartMessage />
-          </div>
-        )}
-      </div>
+        </>
+      ) : (
+        <EmptyCartMessage />
+      )}
     </div>
   );
 };
