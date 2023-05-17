@@ -1,10 +1,11 @@
-import Checkbox from '@common/checkbox';
 import Spinner from '@icons/spinner';
 import { useCheckout } from '@lib/context/checkout-context';
 import Button from '@ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
 import BillingAddress from '../billing_address';
 import ShippingAddress from '../shipping-address';
+import { Checkbox } from '@modules/ui/checkbox';
+import { Label } from '@modules/ui/label';
 
 const Addresses = () => {
   const {
@@ -23,17 +24,17 @@ const Addresses = () => {
         {isEdit ? (
           <>
             <ShippingAddress />
-            <div className="mt-6">
+            <div className="mt-6 flex items-center space-x-2">
               <Checkbox
-                label="Same as billing address"
+                id="same-billing"
                 checked={checked}
-                onChange={onChange}
+                onCheckedChange={onChange}
               />
+              <Label htmlFor="same-billing">Same as billing address</Label>
             </div>
             {!checked && (
               <>
                 <CardTitle className="pb-6 pt-8">Billing address</CardTitle>
-
                 <BillingAddress />
               </>
             )}
