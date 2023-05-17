@@ -28,7 +28,11 @@ const Item = ({ item, region }: ItemProps) => {
   return (
     <div className="grid grid-cols-[122px_1fr] gap-x-4">
       <div className="w-[122px]">
-        <Thumbnail thumbnail={item.thumbnail} size="full" />
+        <Thumbnail
+          thumbnail={item.thumbnail}
+          size="full"
+          alt={`Product thumbnail ${item.id}`}
+        />
       </div>
       <div className="text-base-regular flex flex-col justify-between">
         <div>

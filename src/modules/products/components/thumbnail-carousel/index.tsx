@@ -9,6 +9,7 @@ import {
 } from '@modules/carousels/components/slider';
 import cn from '@lib/util/cn';
 import Image from 'next/image';
+import Thumbnail from '../thumbnail';
 
 interface Props {
   gallery: any[];
@@ -63,12 +64,10 @@ const ThumbnailCarousel: React.FC<Props> = ({
               key={`product-gallery-${item.id}`}
               className="flex items-center justify-center"
             >
-              <Image
-                src={item?.url}
-                alt={`Product gallery ${item.id}`}
-                width={450}
-                height={600}
-                className="aspect-[3/4] rounded"
+              <Thumbnail
+                thumbnail={item?.url}
+                size="full"
+                alt={`Product image ${item.id}`}
               />
             </SwiperSlide>
           ))}
@@ -104,14 +103,12 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: any) => (
             <SwiperSlide
               key={`product-thumb-gallery-${item.id}`}
-              className="flex cursor-pointer items-center justify-center overflow-hidden rounded border border-border-base transition hover:opacity-75"
+              className="flex cursor-pointer items-center justify-center overflow-hidden border !border-muted transition hover:opacity-75"
             >
-              <Image
-                src={item?.url}
+              <Thumbnail
+                thumbnail={item?.url}
+                size="full"
                 alt={`Product thumb gallery ${item.id}`}
-                width={170}
-                height={170}
-                style={{ width: 'auto' }}
               />
             </SwiperSlide>
           ))}

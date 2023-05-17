@@ -14,7 +14,7 @@ const thumbnailVariants = cva('', {
       full: 'w-full',
     },
     rounded: {
-      default: '',
+      default: 'rounded-md',
       sm: 'rounded-md',
       md: 'rounded-lg',
       lg: 'rounded-2xl',
@@ -30,6 +30,7 @@ export interface ThumbnailProps extends VariantProps<typeof thumbnailVariants> {
   thumbnail?: string | null;
   images?: MedusaImage[] | null;
   className?: string;
+  alt: string;
 }
 
 const Thumbnail: React.FC<ThumbnailProps> = ({
@@ -37,6 +38,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   images,
   size,
   rounded,
+  alt,
 }) => {
   const initialImage = thumbnail || images?.[0]?.url;
 
@@ -47,6 +49,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           image={initialImage}
           size={size}
           rounded={rounded}
+          alt={alt}
         />
       </AspectRatio>
     </div>
@@ -57,11 +60,12 @@ const ImageOrPlaceholder = ({
   image,
   size,
   rounded,
+  alt,
 }: ThumbnailProps & { image?: string }) => {
   return image ? (
     <Image
       src={image}
-      alt="Thumbnail"
+      alt={alt}
       fill
       className={cn(
         'absolute inset-0 object-cover object-center',
