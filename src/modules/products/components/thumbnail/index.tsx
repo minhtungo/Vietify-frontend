@@ -15,7 +15,7 @@ const thumbnailVariants = cva('', {
     },
     rounded: {
       default: 'rounded-md',
-      sm: 'rounded-md',
+      sm: 'rounded-sm',
       md: 'rounded-lg',
       lg: 'rounded-2xl',
     },
@@ -45,37 +45,23 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   return (
     <div className={cn('relative', thumbnailVariants({ size }))}>
       <AspectRatio ratio={3 / 4}>
-        <ImageOrPlaceholder
-          image={initialImage}
-          size={size}
-          rounded={rounded}
-          alt={alt}
-        />
+        {initialImage ? (
+          <Image
+            src={initialImage}
+            alt={alt}
+            fill
+            className={cn(
+              'absolute inset-0 object-cover object-center',
+              thumbnailVariants({ rounded })
+            )}
+            draggable={false}
+          />
+        ) : (
+          <div className="absolute inset-0 flex h-full w-full items-center justify-center bg-accent">
+            <PlaceholderImage size={size === 'sm' ? 16 : 24} />
+          </div>
+        )}
       </AspectRatio>
-    </div>
-  );
-};
-
-const ImageOrPlaceholder = ({
-  image,
-  size,
-  rounded,
-  alt,
-}: ThumbnailProps & { image?: string }) => {
-  return image ? (
-    <Image
-      src={image}
-      alt={alt}
-      fill
-      className={cn(
-        'absolute inset-0 object-cover object-center',
-        thumbnailVariants({ rounded })
-      )}
-      draggable={false}
-    />
-  ) : (
-    <div className="absolute inset-0 flex h-full w-full items-center justify-center bg-gray-100">
-      <PlaceholderImage size={size === 'sm' ? 16 : 24} />
     </div>
   );
 };

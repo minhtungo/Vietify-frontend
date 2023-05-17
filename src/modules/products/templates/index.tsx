@@ -22,7 +22,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
     <ProductProvider product={product}>
       <div className="content-container pt-6">
         <Breadcrumb className="mb-5" />
-        <div className="relative grid-cols-7 gap-2 lg:grid lg:gap-6">
+        <div className="grid-cols-7 gap-2 lg:grid">
           <div className="col-span-3 overflow-hidden md:mb-8 lg:mb-0">
             <ThumbnailCarousel
               gallery={[
@@ -31,7 +31,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
             />
             {/* <ThumbnailCarousel gallery={product.images} /> */}
           </div>
-          <div className="col-span-4" ref={info}>
+          <div className="col-span-4" ref={info} id="product-info">
             <ProductInfo product={product} />
           </div>
         </div>

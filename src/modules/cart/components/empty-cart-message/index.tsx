@@ -1,6 +1,4 @@
-import Link from '@common/link';
 import EmptyState from '@modules/common/components/empty-state';
-import { buttonVariants } from '@ui/button';
 
 const EmptyCartMessage = () => {
   return (

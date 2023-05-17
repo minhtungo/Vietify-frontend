@@ -23,8 +23,6 @@ type ItemProps = {
 const Item = ({ item, region }: ItemProps) => {
   const { updateItem, deleteItem } = useStore();
 
-  const updateItemQuantity = () => {};
-
   return (
     <div className="grid grid-cols-[122px_1fr] gap-x-4">
       <div className="w-[122px]">
