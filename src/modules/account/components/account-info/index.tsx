@@ -1,4 +1,3 @@
-import { Disclosure } from '@headlessui/react';
 import useToggleState from '@lib/hooks/use-toggle-state';
 import {
   Accordion,
@@ -8,7 +7,6 @@ import {
 } from '@modules/ui/accordion';
 import Text from '@modules/ui/text';
 import Button from '@ui/button';
-import clsx from 'clsx';
 import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 

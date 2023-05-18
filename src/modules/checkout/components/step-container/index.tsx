@@ -1,13 +1,7 @@
-import { Disclosure } from '@headlessui/react';
 import { useCheckout } from '@lib/context/checkout-context';
 import cn from '@lib/util/cn';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@ui/accordion';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
+import { Accordion, AccordionContent, AccordionItem } from '@ui/accordion';
+import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
 
 type StepContainerProps = {
   index: number;
