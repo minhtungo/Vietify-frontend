@@ -4,6 +4,7 @@ import ProfileName from '@modules/account/components/profile-name';
 import ProfilePassword from '@modules/account/components/profile-password';
 import ProfileBillingAddress from '../components/profile-billing-address';
 import ProfilePhone from '../components/profile-phone';
+import { Separator } from '@modules/ui/separator';
 
 const ProfileTemplate = () => {
   const { customer, retrievingCustomer, refetchCustomer } = useAccount();
@@ -22,15 +23,15 @@ const ProfileTemplate = () => {
           your password.
         </p>
       </div>
-      <div className="flex flex-col gap-y-8 w-full">
+      <div className="flex w-full flex-col gap-y-8">
         <ProfileName customer={customer} />
-        <Divider />
+        <Separator className="my-1" />
         <ProfileEmail customer={customer} />
-        <Divider />
+        <Separator className="my-1" />
         <ProfilePhone customer={customer} />
-        <Divider />
+        <Separator className="my-1" />
         <ProfilePassword customer={customer} />
-        <Divider />
+        <Separator className="my-1" />
         <ProfileBillingAddress customer={customer} />
       </div>
     </div>
@@ -38,7 +39,7 @@ const ProfileTemplate = () => {
 };
 
 const Divider = () => {
-  return <div className="w-full h-px bg-gray-200" />;
+  return <div className="h-px w-full bg-gray-200" />;
 };
 
 export default ProfileTemplate;

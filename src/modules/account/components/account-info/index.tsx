@@ -1,8 +1,16 @@
 import { Disclosure } from '@headlessui/react';
 import useToggleState from '@lib/hooks/use-toggle-state';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@modules/ui/accordion';
+import Text from '@modules/ui/text';
 import Button from '@ui/button';
 import clsx from 'clsx';
 import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 type AccountInfoProps = {
   label: string;
@@ -34,96 +42,60 @@ const AccountInfo = ({
 
   useEffect(() => {
     if (isSuccess) {
+      toast.success(`${label} updated successfully!`);
       close();
     }
-  }, [isSuccess, close]);
+    if (isError) {
+      toast.error(`${errorMessage}`);
+      close();
+    }
+  }, [isSuccess, close, isError]);
 
   return (
     <div className="text-small-regular">
-      <div className="flex items-end justify-between">
-        <div className="flex flex-col">
-          <span className="uppercase text-gray-700">{label}</span>
-          <div className="flex flex-1 basis-0 items-center justify-end gap-x-4">
-            {typeof currentInfo === 'string' ? (
-              <span className="font-semibold">{currentInfo}</span>
-            ) : (
-              currentInfo
-            )}
+      <Accordion
+        type="single"
+        collapsible
+        className="w-full"
+        onValueChange={handleToggle}
+        value={state ? label : ''}
+      >
+        <AccordionItem value={label}>
+          <div className="flex items-start justify-between">
+            <div>
+              <span className="uppercase text-gray-700">{label}</span>
+              <div className="flex flex-1 basis-0 items-center justify-end gap-x-4">
+                {typeof currentInfo === 'string' ? (
+                  <Text variant="label">{currentInfo}</Text>
+                ) : (
+                  currentInfo
+                )}
+              </div>
+            </div>
+            <AccordionTrigger noIcon className="py-0">
+              <Button
+                className="min-h-[25px] w-[80px]"
+                type={state ? 'reset' : 'button'}
+              >
+                {state ? 'Cancel' : 'Edit'}
+              </Button>
+            </AccordionTrigger>
           </div>
-        </div>
-        <div>
-          <Button
-            variant="secondary"
-            className="min-h-[25px] w-[100px] py-1"
-            onClick={handleToggle}
-            type={state ? 'reset' : 'button'}
-          >
-            {state ? 'Cancel' : 'Edit'}
-          </Button>
-        </div>
-      </div>
-
-      {/* Success state */}
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clsx(
-            'overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out',
-            {
-              'max-h-[1000px] opacity-100': isSuccess,
-              'max-h-0 opacity-0': !isSuccess,
-            }
-          )}
-        >
-          <div className="my-4 bg-green-100 p-4 text-green-500">
-            <span>{label} updated succesfully</span>
-          </div>
-        </Disclosure.Panel>
-      </Disclosure>
-
-      {/* Error state  */}
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clsx(
-            'overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out',
-            {
-              'max-h-[1000px] opacity-100': isError,
-              'max-h-0 opacity-0': !isError,
-            }
-          )}
-        >
-          <div className="mt-4 bg-rose-100 p-4 text-rose-500">
-            <span>{errorMessage}</span>
-          </div>
-        </Disclosure.Panel>
-      </Disclosure>
-
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clsx(
-            'overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out',
-            {
-              'max-h-[1000px] opacity-100': state,
-              'max-h-0 opacity-0': !state,
-            }
-          )}
-        >
-          <div className="flex flex-col gap-y-2 py-4">
-            <div>{children}</div>
-            <div className="mt-2 flex items-center justify-end">
+          <AccordionContent>
+            <div className="flex flex-col gap-y-2 py-4">
+              <div>{children}</div>
               <Button
                 isLoading={isLoading}
-                className="w-full small:max-w-[140px]"
+                className="ml-auto mt-2 w-full small:max-w-[140px]"
                 type="submit"
               >
                 Save changes
               </Button>
             </div>
-          </div>
-        </Disclosure.Panel>
-      </Disclosure>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      <Toaster position="bottom-right" />
     </div>
   );
 };
