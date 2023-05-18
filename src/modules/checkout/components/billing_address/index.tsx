@@ -1,14 +1,14 @@
 import { CheckoutFormValues } from '@lib/context/checkout-context';
 import ConnectForm from '@common/connect-form';
 import CountrySelect from '../country-select';
-import { Input } from '@modules/ui/input';
+import Input from '@common/form-input';
 
 const BillingAddress = () => {
   return (
     <ConnectForm<CheckoutFormValues>>
       {({ register, formState: { errors, touchedFields } }) => (
-        <div className="grid grid-cols-1 gap-y-2">
-          <div className="grid grid-cols-2 gap-x-2">
+        <div className="grid grid-cols-1 gap-y-4">
+          <div className="grid grid-cols-2 gap-x-3">
             <Input
               label="First name"
               {...register('billing_address.first_name', {
@@ -28,15 +28,17 @@ const BillingAddress = () => {
               touched={touchedFields}
             />
           </div>
+          <div className="grid grid-cols-2 gap-x-3">
+            <Input
+              label="Phone"
+              {...register('billing_address.phone')}
+              autoComplete="tel"
+              errors={errors}
+              touched={touchedFields}
+            />
+          </div>
           <Input
-            label="Company"
-            {...register('billing_address.company')}
-            autoComplete="organization"
-            errors={errors}
-            touched={touchedFields}
-          />
-          <Input
-            label="Address"
+            label="Street Address, PO Box"
             {...register('billing_address.address_1', {
               required: 'Address is required',
             })}
@@ -45,22 +47,13 @@ const BillingAddress = () => {
             touched={touchedFields}
           />
           <Input
-            label="Apartments, suite, etc."
+            label="Apartments/Unit"
             {...register('billing_address.address_2')}
             autoComplete="address-line2"
             errors={errors}
             touched={touchedFields}
           />
-          <div className="grid grid-cols-[144px_1fr] gap-x-2">
-            <Input
-              label="Postal code"
-              {...register('billing_address.postal_code', {
-                required: 'Postal code is required',
-              })}
-              autoComplete="postal-code"
-              errors={errors}
-              touched={touchedFields}
-            />
+          <div className="grid grid-cols-2 gap-x-3">
             <Input
               label="City"
               {...register('billing_address.city', {
@@ -70,26 +63,21 @@ const BillingAddress = () => {
               errors={errors}
               touched={touchedFields}
             />
+            <Input
+              label="Postal code"
+              {...register('billing_address.postal_code', {
+                required: 'Postal code is required',
+              })}
+              autoComplete="postal-code"
+              errors={errors}
+              touched={touchedFields}
+            />
           </div>
-          <CountrySelect
-            {...register('billing_address.country_code', {
-              required: 'Country is required',
-            })}
-            autoComplete="country"
-            errors={errors}
-            touched={touchedFields}
-          />
+
           <Input
             label="State / Province"
             {...register('billing_address.province')}
             autoComplete="address-level1"
-            errors={errors}
-            touched={touchedFields}
-          />
-          <Input
-            label="Phone"
-            {...register('billing_address.phone')}
-            autoComplete="tel"
             errors={errors}
             touched={touchedFields}
           />
