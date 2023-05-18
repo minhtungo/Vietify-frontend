@@ -4,11 +4,12 @@ import Link from 'next/link';
 import CheckoutLoader from '../components/checkout-loader';
 import CheckoutForm from './checkout-form';
 import CheckoutSummary from './checkout-summary';
+import Logo from '@modules/common/components/logo';
 
 const CheckoutTemplate = () => {
   return (
     <CheckoutProvider>
-      <div className="relative bg-gray-100 small:min-h-screen">
+      <div className="relative bg-accent small:min-h-screen">
         <div className="h-16 bg-white">
           <nav className="content-container flex h-full items-center justify-between">
             <Link
@@ -21,8 +22,9 @@ const CheckoutTemplate = () => {
               </span>
               <span className="mt-px block small:hidden">Back</span>
             </Link>
-            <Link href="/" className="text-xl-semi">
-              ACME
+
+            <Link href="/" className="hidden md:block">
+              <Logo />
             </Link>
             <div className="flex-1 basis-0" />
           </nav>

@@ -29,13 +29,13 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
   return (
     <div className="text-small-regular flex flex-col gap-y-2 text-foreground">
       <div className="flex items-center justify-between">
-        <Text variant="label" as="span" className="text-sm">
+        <Text as="span" className="text-sm text-secondary-foreground">
           Subtotal
         </Text>
         <span>{getAmount(subtotal)}</span>
       </div>
       <div className="flex items-center justify-between">
-        <Text variant="label" as="span" className="text-sm">
+        <Text as="span" className="text-sm text-secondary-foreground">
           Taxes
         </Text>
         <span>{getAmount(tax_total)}</span>
@@ -58,18 +58,20 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
           </div>
         )}
         <div className="flex items-center justify-between">
-          <Text variant="label" as="span" className="text-sm">
+          <Text as="span" className="text-sm text-secondary-foreground">
             Shipping
           </Text>
           <span>{getAmount(shipping_total)}</span>
         </div>
       </div>
-      <Separator className="my-2" />
+      <Separator className="my-1" />
       <div className="mb-1 flex items-center justify-between">
         <Text variant="label" as="span" className="text-sm">
           Total
         </Text>
-        <span>{getAmount(total)}</span>
+        <Text variant="label" as="span" className="text-sm">
+          {getAmount(total)}
+        </Text>
       </div>
     </div>
   );

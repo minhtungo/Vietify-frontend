@@ -153,7 +153,7 @@ const StripePaymentButton = ({
         {submitting ? <Spinner /> : 'Checkout'}
       </Button>
       {errorMessage && (
-        <div className="text-small-regular mt-2 text-red-500">
+        <div className="text-small-regular mt-2 text-destructive">
           {errorMessage}
         </div>
       )}
@@ -207,7 +207,7 @@ const PayPalPaymentButton = ({
       }}
     >
       {errorMessage && (
-        <span className="mt-4 text-rose-500">{errorMessage}</span>
+        <span className="mt-4 text-destructive">{errorMessage}</span>
       )}
       <PayPalButtons
         style={{ layout: 'horizontal' }}

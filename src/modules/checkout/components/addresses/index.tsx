@@ -6,6 +6,8 @@ import BillingAddress from '../billing_address';
 import ShippingAddress from '../shipping-address';
 import { Checkbox } from '@modules/ui/checkbox';
 import { Label } from '@modules/ui/label';
+import { useMeCustomer } from 'medusa-react';
+import Heading from '@modules/ui/heading';
 
 const Addresses = () => {
   const {
@@ -15,13 +17,14 @@ const Addresses = () => {
     handleSubmit,
     cart,
   } = useCheckout();
+const { customer } = useMeCustomer();
   return (
     <Card>
       <CardHeader>
         <CardTitle>Shipping address</CardTitle>
       </CardHeader>
       <CardContent>
-        {isEdit ? (
+        {isEdit || (customer && (customer.billing_addresses?.length || 0) > 0) ? (
           <>
             <ShippingAddress />
             <div className="mt-6 flex items-center space-x-2">
@@ -49,45 +52,22 @@ const Addresses = () => {
           <>
             <div className="text-small-regular bg-accent/50 px-8 py-6">
               {cart && cart.shipping_address ? (
-                <div className="flex items-start gap-x-8">
-                  <div className="text-small-regular flex h-6 min-w-[24px] items-center justify-center rounded-full bg-green-400 text-white">
-                    ✓
-                  </div>
-                  <div className="flex w-full items-start justify-between">
-                    <div className="flex flex-col">
-                      <span>
-                        {cart.shipping_address.first_name}{' '}
-                        {cart.shipping_address.last_name}
-                      </span>
-                      <span>
-                        {cart.shipping_address.address_1}{' '}
-                        {cart.shipping_address.address_2}
-                      </span>
-                      <span>
-                        {cart.shipping_address.postal_code},{' '}
-                        {cart.shipping_address.city}
-                      </span>
-                      <span>
-                        {cart.shipping_address.country_code?.toUpperCase()}
-                      </span>
-                      <div className="mt-4 flex flex-col">
-                        <span>{cart.shipping_address.phone}</span>
-                        <span>{cart.email}</span>
-                      </div>
-                      {checked && (
-                        <div className="mt-6 flex items-center gap-x-2">
-                          <div className="flex h-4 w-4 items-center justify-center border border-gray-700 bg-gray-100">
-                            ✓
-                          </div>
-                          <span>Same as billing address</span>
-                        </div>
-                      )}
-                    </div>
+                <div className="flex w-full items-start justify-between">
+                  <div className="flex flex-col">
+                    <span>{`${cart.shipping_address.first_name} ${cart.shipping_address.last_name}`}</span>
+                    <span>{`${cart.shipping_address.address_1} ${cart.shipping_address.address_2}`}</span>
+                    <span>{`${cart.shipping_address.postal_code}, ${cart.shipping_address.city}`}</span>
+                    {/* <span>
+                      {cart.shipping_address.country_code?.toUpperCase()}
+                    </span> */}
 
-                    <Button variant="link" onClick={setEdit}>
-                      Edit
-                    </Button>
+                    <span>{cart.shipping_address.phone}</span>
+                    <span>{cart.email}</span>
                   </div>
+
+                  <Button variant="link" onClick={setEdit}>
+                    Edit
+                  </Button>
                 </div>
               ) : (
                 <Spinner />

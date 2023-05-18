@@ -25,7 +25,7 @@ const OrderSummary = ({ cart }: OrderSummaryProps) => {
       <CardHeader>
         <CardTitle>Order Summary</CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-2">
+      <CardContent className="grid gap-2 pb-4">
         <CartTotals cart={cart} />
       </CardContent>
       <CardFooter>

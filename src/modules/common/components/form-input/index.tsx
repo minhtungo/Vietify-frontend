@@ -38,16 +38,16 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
     const hasError = get(errors, name) && get(touched, name);
 
     return (
-      <>
-        <div className="relative w-full">
+      <div>
+        <div className="relative">
           <Input
             type={inputType}
             name={name}
             id={name}
             placeholder=" "
             className={cn(
-              'peer !h-10 px-2.5 pb-2.5 pt-4',
-              hasError && 'border-destructive focus:border-destructive'
+              'peer px-2.5 pb-2.5 pt-4',
+              hasError && 'border-destructive'
             )}
             {...props}
             ref={inputRef}
@@ -55,13 +55,14 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
           <Label
             htmlFor={name}
             className={cn(
-              'absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-[.95] peer-focus:px-2 peer-focus:text-primary  ',
+              'scale-80 absolute left-1 top-2 z-10 origin-[0] -translate-y-4 transform bg-white px-2 text-xs text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-[.95] peer-focus:px-2 peer-focus:text-primary',
               hasError && '!text-destructive'
             )}
           >
             {label}
-            {required && <span className="text-destructive">*</span>}
+            {required && <span>*</span>}
           </Label>
+
           {type === 'password' && (
             <button
               type="button"
@@ -78,14 +79,14 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
             name={name}
             render={({ message }) => {
               return (
-                <div className="text-xsmall-regular pl-2 pt-1 text-rose-500">
-                  <span>{message}</span>
-                </div>
+                <p className="text-xsmall-regular ml-2.5 pt-1 text-destructive">
+                  {message}
+                </p>
               );
             }}
           />
         )}
-      </>
+      </div>
     );
   }
 );
