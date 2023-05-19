@@ -22,7 +22,7 @@ const inter = Inter({
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <HighlightedBar>Get free delivery on orders over $50</HighlightedBar>
+      <HighlightedBar>Free shipping cho đơn hàng trên $50</HighlightedBar>
       <Nav />
       <main className={cn(inter.variable, 'relative font-sans')}>
         {children}

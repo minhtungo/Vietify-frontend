@@ -29,27 +29,27 @@ export default function Nav() {
         scrollDirection === 'down' ? '-top-16' : 'top-0'
       )}
     >
-      <div className="mx-auto flex h-16 max-w-8xl items-center justify-between px-6 xl:px-4">
-        <nav className="flex items-center gap-7">
+      <div className="mx-auto flex h-16 max-w-8xl items-center justify-between gap-2 px-6 xl:px-4">
+        <div className="flex h-full basis-0 items-center md:hidden">
+          <MobileMenu />
+        </div>
+        <div className="flex items-center gap-7">
           <Link href="/" className="hidden md:block">
             <Logo />
           </Link>
           <HeaderList />
-        </nav>
+        </div>
 
-        <div className="flex items-center gap-4">
+        <div className="3xl:max-w-[700px] flex w-full max-w-[550px] items-center gap-2 md:gap-3">
           <DesktopSearchModal />
           <div className="flex items-center">
-            <User />
+            <div className="hidden md:block">
+              <User />
+            </div>
             <CartDropdown />
           </div>
         </div>
-
-        <div className="flex h-full basis-0 items-center small:hidden">
-          <Hamburger setOpen={toggle} />
-        </div>
       </div>
-      <MobileMenu />
     </header>
   );
 }

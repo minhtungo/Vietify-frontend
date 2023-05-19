@@ -25,26 +25,6 @@ const MainMenu = () => {
 
   return (
     <div className="flex flex-1 flex-col">
-      <div className="flex w-full items-center justify-between border-b border-gray-200 px-6 py-4">
-        <div className="flex-1 basis-0">
-          <button
-            className="flex items-center gap-x-2"
-            onClick={setScreenCountry}
-          >
-            <ReactCountryFlag countryCode={countryCode || 'us'} svg />
-            <ChevronDown />
-          </button>
-        </div>
-        <div>
-          <h1 className="text-xl-semi uppercase">Acme</h1>
-        </div>
-        <div className="flex flex-1 basis-0 justify-end">
-          <button onClick={close}>
-            <X size={20} />
-          </button>
-        </div>
-      </div>
-
       <div className="flex flex-1 flex-col justify-between space-y-6 p-6">
         {process.env.FEATURE_SEARCH_ENABLED && (
           <button

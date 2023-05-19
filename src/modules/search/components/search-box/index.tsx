@@ -42,33 +42,32 @@ const ControlledSearchBox = ({
   };
 
   return (
-    <div {...props} className="w-full">
-      <form noValidate onSubmit={handleSubmit} onReset={handleReset}>
-        <div className="relative flex w-full min-w-[400px] items-center">
-          <Input
-            ref={inputRef}
-            className="h-9 w-full border-gray-400 pl-4 pr-[55px]"
-            type="search"
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-          />
-          {value && (
+    <form noValidate onSubmit={handleSubmit} onReset={handleReset}>
+      <div className="relative w-full">
+        <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+          <Search className="h-5 w-5 text-muted-foreground" />
+        </div>
+        <Input
+          ref={inputRef}
+          className="block w-full border-gray-300 bg-gray-50 py-3.5 pl-3 pr-12"
+          type="search"
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+        {value && (
+          <div className="absolute inset-y-0 right-9 flex items-center">
             <Button
               onClick={handleReset}
               variant="ghost"
-              className="absolute right-8 h-6 w-6 rounded-full p-0 text-muted-foreground duration-150"
+              className="p-0 text-muted-foreground duration-150"
             >
               <X size={16} />
             </Button>
-          )}
-          <Search
-            size={20}
-            className="absolute right-2 text-muted-foreground"
-          />
-        </div>
-      </form>
-    </div>
+          </div>
+        )}
+      </div>
+    </form>
   );
 };
 
@@ -76,11 +75,7 @@ const SearchBox = () => {
   return (
     <SearchBoxWrapper>
       {(props) => {
-        return (
-          <>
-            <ControlledSearchBox {...props} />
-          </>
-        );
+        return <ControlledSearchBox {...props} />;
       }}
     </SearchBoxWrapper>
   );

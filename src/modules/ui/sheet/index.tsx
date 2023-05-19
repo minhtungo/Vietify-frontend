@@ -3,8 +3,8 @@
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { VariantProps, cva } from 'class-variance-authority';
-import cn from '@lib/util/cn';
 import XMarkIcon from '@modules/common/icons/x';
+import cn from '@lib/util/cn';
 
 const Sheet = SheetPrimitive.Root;
 
@@ -135,8 +135,8 @@ const sheetVariants = cva(
       },
     ],
     defaultVariants: {
-      position: 'right',
-      size: 'default',
+      position: 'left',
+      size: 'full',
     },
   }
 );
