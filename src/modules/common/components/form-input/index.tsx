@@ -39,14 +39,14 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div>
-        <div className="relative">
+        <div className="group relative">
           <Input
             type={inputType}
             name={name}
             id={name}
             placeholder=" "
             className={cn(
-              'peer px-2.5 pb-2.5 pt-4',
+              'peer block px-2.5 pb-2.5 pt-4',
               hasError && 'border-destructive'
             )}
             {...props}
@@ -55,7 +55,7 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
           <Label
             htmlFor={name}
             className={cn(
-              'scale-80 absolute left-1 top-2 z-10 origin-[0] -translate-y-4 transform bg-white px-2 text-xs text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-[.95] peer-focus:px-2 peer-focus:text-primary',
+              'scale-80 absolute left-1 top-2 z-10 origin-[0] -translate-y-4 transform bg-white px-2 text-xs text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:px-2 peer-focus:text-primary',
               hasError && '!text-destructive'
             )}
           >
