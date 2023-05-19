@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { Separator } from '@ui/separator';
 import { TABS } from 'static/popular';
 import { book } from '@static/book';
+import repeat from '@lib/util/repeat';
 
 const Popular = () => {
   const { data } = useFeaturedProductsQuery();
@@ -58,8 +59,8 @@ const Popular = () => {
                     </>
                   ))
                 ) : (
-                  <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-4">
-                    {Array.from(Array(4).keys()).map((i) => (
+                  <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-5">
+                    {repeat(5).map((i) => (
                       <li key={i}>
                         <SkeletonProductPreview />
                       </li>

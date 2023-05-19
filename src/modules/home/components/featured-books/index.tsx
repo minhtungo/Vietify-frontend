@@ -1,4 +1,5 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
+import repeat from '@lib/util/repeat';
 import { SwiperSlide } from '@modules/carousels/components/slider';
 import Carousel from '@modules/carousels/templates';
 import ProductPreview from '@modules/products/components/product-preview';
@@ -37,8 +38,8 @@ const FeaturedBooks = () => {
               </div>
             ))
           ) : (
-            <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-4">
-              {Array.from(Array(4).keys()).map((i) => (
+            <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-5">
+              {repeat(5).map((i) => (
                 <div key={i}>
                   <SkeletonProductPreview />
                 </div>

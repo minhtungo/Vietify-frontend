@@ -39,7 +39,7 @@ const Deals = () => {
             </SwiperSlide>
           ))
         ) : (
-          <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-4">
+          <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-5">
             {repeat(5).map((i) => (
               <li key={i}>
                 <SkeletonProductPreview />
