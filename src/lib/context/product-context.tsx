@@ -1,5 +1,6 @@
 import { canBuy } from '@lib/util/can-buy';
 import { findCheapestPrice } from '@lib/util/prices';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import isEqual from 'lodash/isEqual';
 import { formatVariantPrice, useCart } from 'medusa-react';
 import React, {
@@ -9,9 +10,8 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Product, Variant } from 'types/medusa';
+import { Variant } from 'types/medusa';
 import { useStore } from './store-context';
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 interface ProductContext {
   formattedPrice: string;

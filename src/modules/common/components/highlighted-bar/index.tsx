@@ -1,6 +1,7 @@
 import cn from '@lib/util/cn';
 import X from '@icons/x';
 import { useState } from 'react';
+import Button from '@modules/ui/button';
 
 interface indexProps {
   children: React.ReactNode;
@@ -12,19 +13,20 @@ const HighlightedBar: React.FC<indexProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        'relative h-10 items-center justify-center bg-brand px-4 py-2 text-sm text-brand-light md:px-6 lg:px-8',
+        'relative items-center justify-center bg-brand px-6 py-2 text-sm text-primary-foreground sm:px-3.5',
         isOpen ? 'flex' : 'hidden',
         className
       )}
     >
       {children}
-      <button
+      <Button
+        variant="ghost"
         onClick={() => setIsOpen(false)}
         aria-label="Close Button"
-        className="absolute right-2 flex h-7 w-7 items-center justify-center rounded-full outline-none transition-colors duration-200 hover:bg-brand-light hover:bg-opacity-10 focus:bg-opacity-10 focus:text-brand-light md:right-3 md:h-8 md:w-8"
+        className="absolute right-2 h-6 w-6 rounded-full p-0 duration-150 hover:bg-accent/20 hover:text-primary-foreground md:right-3"
       >
         <X className="h-5 w-5" />
-      </button>
+      </Button>
     </div>
   );
 };

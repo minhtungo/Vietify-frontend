@@ -15,8 +15,8 @@ const Popular = () => {
 
   return (
     <div className="content-container py-8">
-      <div className="mb-1 flex items-center gap-2">
-        <AiOutlineFire size={32} className="text-primary" />
+      <div className="mb-1 flex items-center gap-1 sm:gap-2">
+        <AiOutlineFire className="h-6 w-6 text-primary sm:h-7 sm:w-7 medium:h-8 medium:w-8" />
         <Heading variant="heading">{book.popular}</Heading>
       </div>
 

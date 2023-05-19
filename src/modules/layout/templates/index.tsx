@@ -21,17 +21,17 @@ const inter = Inter({
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
+    <>
       <HighlightedBar>Get free delivery on orders over $50</HighlightedBar>
       <Nav />
       <main className={cn(inter.variable, 'relative font-sans')}>
         {children}
       </main>
-      <Separator  />
+      <Separator />
       <Incentives />
       <Separator />
       <Footer />
-    </div>
+    </>
   );
 };
 

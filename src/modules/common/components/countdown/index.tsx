@@ -9,22 +9,22 @@ const renderer = ({ hours, minutes, seconds, completed }: any) => {
     return null;
   } else {
     return (
-      <span className="flex items-center font-semibold ml-3 gap-1 text-brand-dark">
-        <span className="flex items-center justify-center min-w-[30px] md:min-w-[37px] min-h-[30px] bg-gray-100  rounded p-1">
-          {zeroPad(hours)}
-        </span>
+      <span className="flex items-center gap-1 text-xs font-semibold sm:text-sm md:text-base">
+        <TimeUnit value={hours} />
         :
-        <span className="flex items-center justify-center min-w-[30px] md:min-w-[37px] min-h-[30px] bg-gray-100  rounded p-1">
-          {zeroPad(minutes)}
-        </span>
+        <TimeUnit value={minutes} />
         :
-        <span className="flex items-center justify-center min-w-[30px] md:min-w-[37px] min-h-[30px] bg-gray-100  rounded p-1">
-          {zeroPad(seconds)}
-        </span>
+        <TimeUnit value={seconds} />
       </span>
     );
   }
 };
+
+const TimeUnit = ({ value }: { value: number }) => (
+  <span className="flex items-center justify-center rounded bg-primary/90 px-1.5 py-[2px] text-primary-foreground">
+    {zeroPad(value)}
+  </span>
+);
 
 const CountDown: React.FC<CountDownProps> = ({ date }) => {
   return <Countdown date={date} renderer={renderer} />;

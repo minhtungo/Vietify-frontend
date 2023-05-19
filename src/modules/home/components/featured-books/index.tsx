@@ -12,9 +12,9 @@ const FeaturedBooks = () => {
   return (
     <section id="featured-books" className="bg-primary/10">
       <div className="content-container py-16">
-        <div className="mb-8 flex items-center justify-center gap-2">
-          <SlBadge size={32} className="fill-brand" />
-          <Heading variant="heading">Featured Books</Heading>
+        <div className="mb-8 flex items-center justify-center gap-1 sm:gap-2">
+          <SlBadge className="h-6 w-6 text-primary sm:h-7 sm:w-7 medium:h-8 medium:w-8" />
+          <Heading variant="heading">Sách Nổi Bật</Heading>
         </div>
 
         <Carousel

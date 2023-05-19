@@ -4,6 +4,7 @@ import HeartIcon from '@icons/heart';
 import { useProductActions } from '@lib/context/product-context';
 import useProductPrice from '@lib/hooks/use-product-price';
 import cn from '@lib/util/cn';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import OptionSelect from '@modules/products/components/option-select';
 import ReviewRating from '@modules/review/components/review-rating';
 import { Separator } from '@modules/ui/separator';
@@ -14,8 +15,6 @@ import Text from '@ui/text';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { Product } from 'types/medusa';
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 import { book } from '@static/book';
 import AddedItem from './added-item';
