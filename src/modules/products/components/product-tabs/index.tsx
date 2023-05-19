@@ -1,6 +1,7 @@
 import { Product } from '@medusajs/medusa';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { useMemo } from 'react';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 import DescriptionTab from './description-tab';
 import ProductDetails from './product-details';
@@ -9,7 +10,7 @@ import { book } from '@static/book';
 
 import { Separator } from '@ui/separator';
 type ProductTabsProps = {
-  product: Product;
+  product: PricedProduct;
 };
 
 const ProductTabs = ({ product }: ProductTabsProps) => {

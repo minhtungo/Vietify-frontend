@@ -1,10 +1,10 @@
 import ProductActions from '@modules/products/components/product-actions';
-import { Product } from 'types/medusa';
 import { Toaster } from 'react-hot-toast';
-import cn from '@lib/util/cn';
+import { Product } from 'types/medusa';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 type ProductInfoProps = {
-  product: Product;
+  product: PricedProduct;
 };
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {

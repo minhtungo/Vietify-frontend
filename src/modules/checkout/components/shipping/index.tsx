@@ -12,8 +12,8 @@ import { Label } from '@ui/label';
 import Text from '@modules/ui/text';
 
 type ShippingOption = {
-  value: string;
-  label: string;
+  value?: string;
+  label?: string;
   price: string;
 };
 

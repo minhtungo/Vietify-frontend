@@ -6,9 +6,10 @@ import { TabsContent } from '@ui/tabs';
 import Text from '@ui/text';
 import { useRef } from 'react';
 import { book } from '@static/book';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 interface DescriptionTabProps {
-  product: Product;
+  product: PricedProduct;
 }
 
 const DescriptionTab = ({ product }: DescriptionTabProps) => {
@@ -37,7 +38,7 @@ const DescriptionTab = ({ product }: DescriptionTabProps) => {
           </Button>
         )}
       </div>
-      {product.tags.length ? (
+      {product.tags?.length ? (
         <div>
           <span className="font-semibold">Tags</span>
         </div>

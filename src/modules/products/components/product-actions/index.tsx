@@ -15,12 +15,13 @@ import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { Product } from 'types/medusa';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 import { book } from '@static/book';
 import AddedItem from './added-item';
 
 type ProductActionsProps = {
-  product: Product;
+  product: PricedProduct;
 };
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
@@ -41,7 +42,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
     resetQuantity,
   } = useProductActions();
 
-  const price = useProductPrice({ id: product?.id, variantId: variant?.id });
+  const price = useProductPrice({ id: product.id!, variantId: variant?.id });
 
   const selectedPrice = useMemo(() => {
     const { variantPrice, cheapestPrice } = price;
@@ -134,7 +135,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       {product?.variants.length > 1 && (
         <div className="flex flex-col gap-y-4">
-          {product.options.map((option) => {
+          {(product.options || []).map((option) => {
             return (
               <div key={option.id}>
                 <OptionSelect

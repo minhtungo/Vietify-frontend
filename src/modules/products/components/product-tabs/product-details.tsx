@@ -2,9 +2,10 @@ import { Product } from '@medusajs/medusa';
 import { book, bookDetails } from '@static/book';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@ui/table';
 import { TabsContent } from '@ui/tabs';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 interface AdditionalInfoTabProps {
-  product: Product;
+  product: PricedProduct;
 }
 
 const ProductDetails = ({ product }: AdditionalInfoTabProps) => {

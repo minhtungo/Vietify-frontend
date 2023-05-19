@@ -13,9 +13,10 @@ import Heading from '@ui/heading';
 import Carousel from '@modules/carousels/templates';
 import { SwiperSlide } from 'swiper/react';
 import { book } from '@static/book';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 type RelatedProductsProps = {
-  product: Product;
+  product: PricedProduct;
 };
 
 const RelatedProducts = ({ product }: RelatedProductsProps) => {
