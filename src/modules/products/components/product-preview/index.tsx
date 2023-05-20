@@ -6,6 +6,12 @@ import Button from '@modules/ui/button';
 import Heading from '@modules/ui/heading';
 import { Skeleton } from '@modules/ui/skeleton';
 import Text from '@modules/ui/text';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@ui/tooltip';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
 
@@ -24,34 +30,39 @@ const ProductPreview = ({
     id,
   };
   return (
-    <div>
-      <div className="group relative">
-        <Link href={`/products/${handle}`}>
-          <Thumbnail
-            thumbnail={thumbnail}
-            size="full"
-            rounded="md"
-            alt={`${title} photo`}
-          />
-        </Link>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div className="group relative">
+          <Link href={`/products/${handle}`}>
+            <Thumbnail
+              thumbnail={thumbnail}
+              size="full"
+              rounded="md"
+              alt={`${title} photo`}
+            />
+          </Link>
 
-        <div className="absolute bottom-3 right-2 flex flex-col gap-1 opacity-0 transition-all duration-200 group-hover:opacity-100">
-          <Button
-            variant="ghost"
-            className="h-8 w-8 rounded-full bg-secondary p-0 text-foreground/80 duration-150 hover:bg-primary hover:text-primary-foreground"
-          >
-            <HeartIcon />
-          </Button>
-          <ProductQuickView {...product} />
+          <div className="absolute right-2 top-2/3 flex flex-col gap-1 opacity-0 transition-all duration-200 group-hover:opacity-100">
+            <Button
+              variant="ghost"
+              className="h-8 w-8 rounded-full bg-accent p-0 text-foreground duration-150 hover:bg-primary hover:text-primary-foreground"
+            >
+              <HeartIcon />
+            </Button>
+            <ProductQuickView {...product} />
+          </div>
+          <Link href={`/products/${handle}`}>
+            <Heading
+              variant="sm"
+              className="mt-3 line-clamp-2 !text-[13px] hover:text-primary md:!text-sm"
+            >
+              {title}
+            </Heading>
+          </Link>
         </div>
-      </div>
-      <div className="text-base-regular mt-2 transition-colors duration-150">
-        <Link href={`/products/${handle}`}>
-          <Heading variant="sm" className="hover:text-primary">
-            {title}
-          </Heading>
-        </Link>
+      </TooltipTrigger>
 
+      <div className="text-base-regular mt-2 transition-colors duration-150">
         <ReviewRating className="mt-2" />
         <div className="mt-2 text-xs font-light text-gray-700 small:text-[13px]">
           Author
@@ -73,7 +84,10 @@ const ProductPreview = ({
           )}
         </div>
       </div>
-    </div>
+      <TooltipContent>
+        <p>{title}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
