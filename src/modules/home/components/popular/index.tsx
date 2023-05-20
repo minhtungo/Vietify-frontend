@@ -31,15 +31,15 @@ const Popular = () => {
               </TabsTrigger>
             );
           })}
-          <Separator />
         </TabsList>
+        <Separator />
+
         {TABS.map((tab) => {
           return (
             <TabsContent value={tab.label} key={tab.label} className="mt-8">
               <ProductCarousel
                 products={data}
                 isLoading={isLoading}
-                center
                 prevActivateId={`prev-popular-button-${tab.label}`}
                 nextActivateId={`next-popular-button-${tab.label}`}
               />

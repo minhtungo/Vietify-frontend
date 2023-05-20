@@ -23,9 +23,9 @@ const ProductQuickView = ({
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="h-8 w-8 rounded-full bg-secondary p-0 text-foreground/80 duration-150 hover:bg-primary hover:text-primary-foreground"
+          className="h-8 w-8 rounded-full bg-border p-0 text-foreground/80 shadow-sm duration-150 hover:bg-primary hover:text-primary-foreground"
         >
-          <Eye />
+          <Eye size={18} />
         </Button>
       </DialogTrigger>
       <DialogContent className="md:max-w-2xl lg:max-w-3xl">

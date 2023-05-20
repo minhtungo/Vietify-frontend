@@ -1,4 +1,3 @@
-import { Product } from '@medusajs/medusa';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { useMemo } from 'react';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
@@ -45,8 +44,8 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
             </TabsTrigger>
           );
         })}
-        <Separator />
       </TabsList>
+      <Separator />
       {tabs.map((tab, i) => {
         return (
           <TabsContent value={tab.label} key={i}>

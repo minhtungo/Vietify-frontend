@@ -6,12 +6,7 @@ import Button from '@modules/ui/button';
 import Heading from '@modules/ui/heading';
 import { Skeleton } from '@modules/ui/skeleton';
 import Text from '@modules/ui/text';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ui/tooltip';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
 
@@ -42,12 +37,12 @@ const ProductPreview = ({
             />
           </Link>
 
-          <div className="absolute right-2 top-2/3 flex flex-col gap-1 opacity-0 transition-all duration-200 group-hover:opacity-100">
+          <div className="absolute right-2 top-2/3 flex flex-col gap-2 opacity-0 transition-all duration-200 group-hover:opacity-100">
             <Button
               variant="ghost"
-              className="h-8 w-8 rounded-full bg-accent p-0 text-foreground duration-150 hover:bg-primary hover:text-primary-foreground"
+              className="h-8 w-8 rounded-full bg-border p-0 text-foreground shadow-sm duration-150 hover:bg-primary hover:text-primary-foreground"
             >
-              <HeartIcon />
+              <HeartIcon size={18} />
             </Button>
             <ProductQuickView {...product} />
           </div>

@@ -10,7 +10,7 @@ import { useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import ProductPreview from '../product-preview';
 import Heading from '@ui/heading';
-import Carousel from '@modules/carousels/templates';
+import Carousel from '@modules/carousel/templates';
 import { SwiperSlide } from 'swiper/react';
 import { book } from '@static/book';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
