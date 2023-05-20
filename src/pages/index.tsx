@@ -27,7 +27,7 @@ const Home: NextPageWithLayout = () => {
       <FeaturedBooks />
       <Trending />
       <Popular />
-      <TheMonth />
+      {/* <TheMonth /> */}
       {/* <FeatureGrid className="content-container my-3 md:my-4" /> */}
     </>
   );

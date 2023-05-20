@@ -1,7 +1,3 @@
-import 'swiper/css/autoplay';
-import 'swiper/css/grid';
-import 'swiper/css/pagination';
-
 import cn from '@lib/util/cn';
 import {
   Autoplay,
@@ -10,10 +6,13 @@ import {
   Pagination,
   Swiper,
   SwiperOptions,
-} from '@modules/carousels/components/slider';
-import React, { FC, useRef } from 'react';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { BREAKPOINTS, FEATURED_BREAKPOINTS } from 'static/breakpoints';
+} from '@modules/carousel/components/slider';
+import ArrowBack from '@modules/common/icons/arrow-back';
+import ArrowForward from '@modules/common/icons/arrow-forward';
+import React, { useRef } from 'react';
+import 'swiper/css/autoplay';
+import 'swiper/css/grid';
+import 'swiper/css/pagination';
 
 export interface CarouselProps extends SwiperOptions {
   className?: string;
@@ -23,11 +22,14 @@ export interface CarouselProps extends SwiperOptions {
   nextButtonClassName?: string;
   prevActivateId?: string;
   nextActivateId?: string;
-  banner?: boolean;
-  featured?:boolean;
+  pagination?: {} | any;
+  breakpoints?: {} | any;
+  autoplay?: {} | any;
+  grid?: {} | any;
+  loop?: boolean;
 }
 
-const Carousel: FC<CarouselProps> = ({
+const Carousel: React.FC<CarouselProps> = ({
   className,
   children,
   buttonGroupClassName,
@@ -36,18 +38,25 @@ const Carousel: FC<CarouselProps> = ({
   nextActivateId = '',
   prevButtonClassName = 'left-2 lg:left-2.5',
   nextButtonClassName = 'right-2 lg:right-2.5',
-  banner,
-  featured,
+  breakpoints,
+  autoplay,
+  grid,
+  loop = false,
+  pagination = false,
   ...props
 }) => {
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn('carouselWrapper relative', className)}>
       <Swiper
         modules={[Navigation, Autoplay, Pagination, Grid]}
-        breakpoints={banner ? undefined : featured ? FEATURED_BREAKPOINTS : BREAKPOINTS}
+        autoplay={autoplay}
+        breakpoints={breakpoints}
+        loop={loop}
+        pagination={pagination}
+        grid={grid}
         navigation={
           navigation
             ? {
@@ -57,7 +66,7 @@ const Carousel: FC<CarouselProps> = ({
                 nextEl: nextActivateId.length
                   ? `#${nextActivateId}`
                   : nextRef.current!,
-                disabledClass: 'opacity-50',
+                disabledClass: 'hidden',
               }
             : {}
         }
@@ -76,13 +85,13 @@ const Carousel: FC<CarouselProps> = ({
             className={cn('carousel-button', prevButtonClassName)}
             id={prevActivateId}
           >
-            <IoIosArrowBack />
+            <ArrowBack />
           </div>
           <div
             className={cn('carousel-button', nextButtonClassName)}
             id={nextActivateId}
           >
-            <IoIosArrowForward />
+            <ArrowForward />
           </div>
         </div>
       )}

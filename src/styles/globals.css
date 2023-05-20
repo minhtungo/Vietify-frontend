@@ -35,9 +35,6 @@
 
     --radius: 0.5rem;
   }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
@@ -96,7 +93,7 @@
 
 @layer components {
   .carousel-button {
-    @apply absolute flex h-7 w-7 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base shadow-sm transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl;
+    @apply absolute flex h-7 w-7 transform cursor-pointer items-center justify-center rounded-full bg-accent/90 text-base shadow-sm transition duration-300 hover:bg-primary hover:text-primary-foreground focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl;
   }
 
   .content-container {

@@ -1,4 +1,4 @@
-const BREAKPOINTS = {
+const PRODUCT_BREAKPOINTS = {
   '1024': {
     slidesPerView: 5,
     spaceBetween: 10,
@@ -7,12 +7,13 @@ const BREAKPOINTS = {
     slidesPerView: 4,
     spaceBetween: 10,
   },
-  '680': {
+  '640': {
     slidesPerView: 3,
-    spaceBetween: 8,
+    spaceBetween: 10,
   },
   '0': {
     slidesPerView: 2,
+    spaceBetween: 10,
   },
 };
 
@@ -73,6 +74,6 @@ const CATEGORY_BREAKPOINTS = {
 export {
   GRID_BREAKPOINTS,
   FEATURED_BREAKPOINTS,
-  BREAKPOINTS,
+  PRODUCT_BREAKPOINTS,
   CATEGORY_BREAKPOINTS,
 };

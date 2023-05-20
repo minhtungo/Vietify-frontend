@@ -8,9 +8,10 @@ import React, { useRef } from 'react';
 import MobileActions from '../components/mobile-actions';
 import ThumbnailCarousel from '../components/thumbnail-carousel';
 import Breadcrumb from '@common/breadcrumb';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 type ProductTemplateProps = {
-  product: Product;
+  product: PricedProduct;
 };
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {

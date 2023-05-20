@@ -7,7 +7,6 @@ import ChevronDown from '@icons/chevron-down';
 import X from '@icons/x';
 import clsx from 'clsx';
 import React, { Fragment, useMemo } from 'react';
-import { Product } from 'types/medusa';
 import OptionSelect from '../option-select';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 

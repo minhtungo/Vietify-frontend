@@ -24,10 +24,7 @@ const TheMonth = () => {
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4  2xl:gap-5">
             {data &&
               data.map((product) => (
-                <>
-                  <ProductPreview {...product} key={product.id} />
-                  <ProductPreview {...product} key={product.id} />
-                </>
+                <ProductPreview {...product} key={product.id} />
               ))}
           </div>
         </div>
