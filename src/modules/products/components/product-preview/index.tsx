@@ -28,11 +28,10 @@ const ProductPreview = ({
       <div className="group relative">
         <Link href={`/products/${handle}`}>
           <Thumbnail
-            thumbnail={
-              'https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/26.jpg'
-            }
+            thumbnail={thumbnail}
             size="full"
             rounded="md"
+            alt={`${title} photo`}
           />
         </Link>
 
@@ -48,7 +47,7 @@ const ProductPreview = ({
       </div>
       <div className="text-base-regular mt-2 transition-colors duration-150">
         <Link href={`/products/${handle}`}>
-          <Heading variant="small" className="hover:text-primary">
+          <Heading variant="sm" className="hover:text-primary">
             {title}
           </Heading>
         </Link>

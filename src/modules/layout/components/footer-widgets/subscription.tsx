@@ -46,7 +46,7 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={cn('flex flex-col sm:-mt-[6px]', className)}>
-      <Heading variant="small" className="mb-3 lg:mb-4">
+      <Heading variant="sm" className="mb-3 lg:mb-4">
         Subscribe Now
       </Heading>
 

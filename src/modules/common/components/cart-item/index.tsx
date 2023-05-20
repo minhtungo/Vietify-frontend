@@ -3,12 +3,10 @@ import Heading from '@ui/heading';
 import Text from '@ui/text';
 import React from 'react';
 
-import Thumbnail from '@modules/products/components/thumbnail';
 import { type LineItem, type Region } from '@medusajs/medusa';
-import { formatAmount } from 'medusa-react';
 import XMarkIcon from '@modules/common/icons/x';
-import _ from 'lodash';
-import LineItemOptions from '../line-item-options';
+import Thumbnail from '@modules/products/components/thumbnail';
+import { formatAmount } from 'medusa-react';
 
 interface CartItemProps {
   className?: string;
@@ -35,11 +33,11 @@ const CartItem: React.FC<CartItemProps> = React.memo(
       <div className={cn('flex justify-between', className)}>
         <div className="flex gap-x-2">
           <div className="w-[55px]">
-            <Thumbnail thumbnail={thumbnail} size="full" />
+            <Thumbnail thumbnail={thumbnail} size="full" alt={`${title}`} />
           </div>
           <div>
             <Heading
-              variant="small"
+              variant="sm"
               className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm"
             >
               {title}

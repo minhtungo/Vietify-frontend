@@ -43,9 +43,7 @@ const BundleCard: React.FC<Props> = ({
           />
         </div>
         <div className="py-3 ltr:pr-4 rtl:pl-4 lg:py-5 lg:ltr:pr-3 lg:rtl:pl-3 xl:ltr:pr-4 xl:rtl:pl-4">
-          <Heading variant="default" className="mb-[5px]">
-            {title}
-          </Heading>
+          <Heading className="mb-[5px]">{title}</Heading>
           <p className="lg:text-13px text-sm leading-6 xl:text-sm">
             {description}
           </p>

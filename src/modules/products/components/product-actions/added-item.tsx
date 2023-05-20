@@ -20,7 +20,7 @@ const AddedItem: React.FC<cartItemProps> = ({ item, className, t }) => {
   return (
     <div className={cn(className)}>
       <div className="flex items-center justify-between border-b border-border">
-        <Heading variant="small" className="text-sm">
+        <Heading variant="sm" className="text-sm">
           Added to cart!
         </Heading>
         <Button

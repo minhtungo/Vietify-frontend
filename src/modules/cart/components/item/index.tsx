@@ -35,7 +35,7 @@ const Item = ({ item, region }: ItemProps) => {
       <div className="text-base-regular flex flex-col justify-between">
         <div>
           <div className="flex flex-1 items-center justify-between">
-            <Heading variant="small" className="mb-1 whitespace-normal">
+            <Heading variant="sm" className="mb-1 whitespace-normal">
               {item.title}
             </Heading>
             <Button

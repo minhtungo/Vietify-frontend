@@ -12,7 +12,7 @@ const AddressesTemplate = () => {
   return (
     <div className="w-full">
       <div className="mb-8 flex flex-col gap-y-4">
-        <Heading variant="heading">Shipping Addresses</Heading>
+        <Heading variant="md">Shipping Addresses</Heading>
         <p className="text-base-regular">
           View and update your shipping addresses, you can add as many as you
           like. Saving your addresses will make them available during checkout.

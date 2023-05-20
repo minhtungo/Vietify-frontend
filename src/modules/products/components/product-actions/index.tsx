@@ -70,7 +70,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           {product.collection.title}
         </Link>
       )} */}
-      <Heading variant="large">{product?.title}</Heading>
+      <Heading variant="md">{product?.title}</Heading>
       <div className="mt-1 flex w-full flex-wrap justify-between">
         <span className="w-1/2">
           <Text variant="info" className="font-semibold" as="span">

@@ -10,7 +10,7 @@ const LogInPrompt = () => {
         variant: 'link',
       })}
     >
-      <Heading variant="title">Login and checkout faster</Heading>
+      <Heading variant="md">Login and checkout faster</Heading>
     </Link>
   );
 };

@@ -2,23 +2,17 @@ import cn from '@lib/util/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 import { forwardRef, HTMLAttributes } from 'react';
 
-export const headingVariants = cva('text-foreground', {
+export const headingVariants = cva('text-foreground font-semibold', {
   variants: {
     variant: {
-      heading: 'text-lg sm:text-xl md:text-2xl lg:text-2xl',
-      title: 'text-base xl:text-lg xl:leading-7',
-      medium: 'font-semibold text-xl',
-      small: 'text-base font-medium',
-      large: 'text-xl md:text-2xl lg:text-3xl xl:leading-7',
-    },
-    weight: {
-      semibold: 'font-semibold',
-      bold: 'font-bold',
+      sm: 'text-sm md:text-base font-medium',
+      md: 'text-lg sm:text-xl md:text-2xl',
+      lg: 'text-xl md:text-2xl lg:text-3xl xl:leading-7',
+      default: 'text-base lg:text-lg xl:leading-7',
     },
   },
   defaultVariants: {
-    variant: 'title',
-    weight: 'semibold',
+    variant: 'default',
   },
 });
 
@@ -29,13 +23,13 @@ interface HeadingProps
 }
 
 const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, variant, weight, as, children, ...props }, ref) => {
+  ({ className, variant, as, children, ...props }, ref) => {
     if (as === 'h1') {
       return (
         <h1
           ref={ref}
           {...props}
-          className={cn(headingVariants({ variant, weight, className }))}
+          className={cn(headingVariants({ variant, className }))}
         >
           {children}
         </h1>
@@ -46,7 +40,7 @@ const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
         <h2
           ref={ref}
           {...props}
-          className={cn(headingVariants({ variant, weight, className }))}
+          className={cn(headingVariants({ variant, className }))}
         >
           {children}
         </h2>
@@ -56,7 +50,7 @@ const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
       <h3
         ref={ref}
         {...props}
-        className={cn(headingVariants({ variant, weight, className }))}
+        className={cn(headingVariants({ variant, className }))}
       >
         {children}
       </h3>

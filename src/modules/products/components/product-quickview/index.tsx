@@ -41,7 +41,7 @@ const ProductQuickView = ({
             />
           </div>
           <div className="sm:col-span-8 lg:col-span-7">
-            <Heading variant="large">{title}</Heading>
+            <Heading variant="md">{title}</Heading>
             <div className="mt-1 flex w-full flex-wrap justify-between">
               <span className="w-1/2">
                 <Text variant="info" className="font-semibold" as="span">

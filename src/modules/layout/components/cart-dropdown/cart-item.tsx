@@ -22,14 +22,14 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
   return (
     <div className={cn('flex gap-x-4', className)} key={item.id}>
       <div className="w-[80px]">
-        <Thumbnail thumbnail={item.thumbnail} size="full" />
+        <Thumbnail thumbnail={item.thumbnail} size="full" alt={item.title} />
       </div>
       <div className="flex flex-1 flex-col justify-between">
         <div className="flex items-start justify-between">
           <div>
             <Link href={`/products/${item.variant.product.handle}`}>
               <Heading
-                variant="small"
+                variant="sm"
                 className="w-[195px] overflow-hidden overflow-ellipsis whitespace-nowrap"
               >
                 {item.title}

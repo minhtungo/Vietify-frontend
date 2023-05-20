@@ -19,7 +19,7 @@ const WidgetLink: React.FC<Props> = ({ className, data }) => {
   const { title, lists } = data;
   return (
     <div className={cn(className)}>
-      <Heading variant="small" className="mb-3 lg:mb-4">
+      <Heading variant="sm" className="mb-3 lg:mb-4">
         {title}
       </Heading>
       <ul className="flex flex-col space-y-2">
