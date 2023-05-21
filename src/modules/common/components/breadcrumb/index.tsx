@@ -1,8 +1,8 @@
-import { FC } from 'react';
 import Link from '@common/link';
 import ArrowForwardIcon from '@icons/arrow-forward';
 import cn from '@lib/util/cn';
-import { useRouter } from 'next/router';
+import { FC } from 'react';
+
 import useCrumb from '@lib/hooks/use-crumb';
 
 interface CrumbProps {

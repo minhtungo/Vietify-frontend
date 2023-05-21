@@ -31,7 +31,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   }, [product]);
 
   return (
-    <Tabs defaultValue="Description">
+    <Tabs defaultValue={book.description}>
       <TabsList className="flex flex-col flex-wrap justify-start gap-x-7 lg:flex-row">
         {tabs.map((tab, i) => {
           return (
