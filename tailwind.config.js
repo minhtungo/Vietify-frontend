@@ -71,6 +71,7 @@ module.exports = {
         large: '1440px',
         xlarge: '1680px',
         '2xlarge': '1920px',
+        '3xl': '1600px',
       },
       fontFamily: {
         sans: [

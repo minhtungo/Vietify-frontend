@@ -25,7 +25,7 @@ export default function Nav() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full bg-white shadow-md transition-all duration-300',
+        'sticky top-0 z-50 w-full bg-white shadow-sm transition-all duration-300',
         scrollDirection === 'down' ? '-top-16' : 'top-0'
       )}
     >
@@ -40,14 +40,12 @@ export default function Nav() {
           <HeaderList />
         </div>
 
-        <div className="3xl:max-w-[700px] flex w-full max-w-[550px] items-center gap-2 md:gap-3">
+        <div className="flex w-full items-center">
           <DesktopSearchModal />
-          <div className="flex items-center">
-            <div className="hidden md:block">
-              <User />
-            </div>
-            <CartDropdown />
+          <div className="ml-2 hidden md:block">
+            <User />
           </div>
+          <CartDropdown className="ml-1" />
         </div>
       </div>
     </header>

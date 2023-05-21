@@ -43,7 +43,7 @@ const ControlledSearchBox = ({
 
   return (
     <form noValidate onSubmit={handleSubmit} onReset={handleReset}>
-      <div className="relative w-full">
+      <div className="relative  ml-auto w-full md:max-w-[550px] 3xl:max-w-[700px]">
         <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
           <Search className="h-5 w-5 text-muted-foreground" />
         </div>

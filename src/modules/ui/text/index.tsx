@@ -6,7 +6,7 @@ export const textVariants = cva('', {
   variants: {
     variant: {
       default: '!text-muted-foreground',
-      dark: '!text-secondary-foreground',
+      dark: '!text-foreground',
       light: '!text-primary-foreground',
       brand: '!text-primary',
       error: '!text-destructive-foreground',
@@ -14,9 +14,10 @@ export const textVariants = cva('', {
     },
     size: {
       default: 'text-base-regular',
-      xs: '!text-xsmall-regular',
-      sm: '!text-small-regular',
-      md: 'text-sm lg:text-[15px] ',
+      xs: 'text-xsmall-regular',
+      sm: 'text-small-regular',
+      md: 'text-sm lg:!text-[15px]',
+      lg: 'text-large-regular',
     },
   },
   defaultVariants: {
@@ -32,11 +33,11 @@ interface TextProps
 }
 
 const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ className, variant, children, span = false, ...props }, ref) => {
+  ({ className, variant, size, children, span = false, ...props }, ref) => {
     if (span) {
       return (
         <span
-          className={cn(textVariants({ variant, className }))}
+          className={cn(textVariants({ variant, size, className }))}
           ref={ref}
           {...props}
         >
@@ -47,7 +48,7 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>(
 
     return (
       <p
-        className={cn(textVariants({ variant, className }))}
+        className={cn(textVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       >

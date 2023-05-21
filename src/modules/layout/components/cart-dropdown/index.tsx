@@ -13,29 +13,40 @@ import Text from '@ui/text';
 import { formatAmount, useCart } from 'medusa-react';
 import Link from 'next/link';
 
+import cn from '@lib/util/cn';
 import CartItem from './cart-item';
 import Indicator from './indicator';
 
-const CartDropdown = () => {
+import { FC } from 'react';
+
+interface CartDropdownProps {
+  className?: string;
+}
+
+const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
   const { cart, totalItems } = useCart();
   const items = useEnrichedLineItems();
 
   return (
-    <div className="relative z-50">
+    <div className={cn('relative z-50', className)}>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             variant="ghost"
             className="relative h-10 w-10 rounded-full p-0 duration-150"
           >
-            <CartIcon className="text-gray-600" size={25} aria-hidden="true" />
+            <CartIcon
+              className="text-foreground"
+              size={25}
+              aria-hidden="true"
+            />
             <Indicator
               className="absolute right-[2px] top-0"
               totalItems={totalItems}
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="mt-[2px] hidden w-full space-y-4 px-0 py-5 small:block">
+        <PopoverContent className="hidden w-full space-y-4 small:block">
           {cart && items?.length ? (
             <>
               <Heading className="px-4">Shopping Cart</Heading>
@@ -95,8 +106,8 @@ const CartDropdown = () => {
               </div>
             </>
           ) : (
-            <div className="flex w-[290px] flex-col items-center justify-center gap-y-4 px-4">
-              <Text variant="label" as="span" className="text-lg">
+            <div className="flex flex-col items-center justify-center gap-y-4 px-4">
+              <Text variant="dark" size="lg">
                 Your cart is empty.
               </Text>
               <PopoverClose asChild>
