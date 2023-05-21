@@ -48,7 +48,7 @@ const ProductPreview = ({
           </div>
           <Link href={`/products/${handle}`}>
             <Heading
-              variant="sm"
+              size="sm"
               className="mt-3 line-clamp-2 !text-[13px] hover:text-primary md:!text-sm"
             >
               {title}

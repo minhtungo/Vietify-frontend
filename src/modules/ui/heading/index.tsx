@@ -5,14 +5,21 @@ import { forwardRef, HTMLAttributes } from 'react';
 export const headingVariants = cva('text-foreground font-semibold', {
   variants: {
     variant: {
+      default: 'text-foreground',
+      light: 'text-primary-foreground',
+      brand: 'text-primary',
+    },
+    size: {
       sm: 'text-sm md:text-base font-medium',
       md: 'text-lg sm:text-xl md:text-2xl',
       lg: 'text-xl md:text-2xl lg:text-3xl xl:leading-7',
+      xl: 'text-3xl md:text-4xl xl:text-5xl',
       default: 'text-base lg:text-lg xl:leading-7',
     },
   },
   defaultVariants: {
     variant: 'default',
+    size: 'default',
   },
 });
 
@@ -23,13 +30,13 @@ interface HeadingProps
 }
 
 const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, variant, as, children, ...props }, ref) => {
+  ({ className, variant, size, as, children, ...props }, ref) => {
     if (as === 'h1') {
       return (
         <h1
           ref={ref}
           {...props}
-          className={cn(headingVariants({ variant, className }))}
+          className={cn(headingVariants({ variant, size, className }))}
         >
           {children}
         </h1>
@@ -40,7 +47,7 @@ const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
         <h2
           ref={ref}
           {...props}
-          className={cn(headingVariants({ variant, className }))}
+          className={cn(headingVariants({ variant, size, className }))}
         >
           {children}
         </h2>
@@ -50,7 +57,7 @@ const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
       <h3
         ref={ref}
         {...props}
-        className={cn(headingVariants({ variant, className }))}
+        className={cn(headingVariants({ variant, size, className }))}
       >
         {children}
       </h3>

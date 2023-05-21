@@ -20,7 +20,7 @@ const WidgetAbout: React.FC<AboutProps> = ({ social, className }) => {
     <div className={cn('pb-10 sm:pb-0', className)}>
       <div className="mx-auto flex max-w-[300px] flex-col pb-6 text-center sm:ml-0 sm:pb-5 sm:text-left">
         <Logo className="mx-auto mb-3 select-none sm:ml-0 lg:mb-4" />
-        <p className="text-sm text-brand-muted lg:text-[15px]">
+        <p className="text-primary-muted text-sm lg:text-[15px]">
           Where the Viet never sleeps.
         </p>
       </div>

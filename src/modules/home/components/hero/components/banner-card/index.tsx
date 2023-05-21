@@ -3,6 +3,8 @@ import Button from '@ui/button';
 import Link from '@common/link';
 import { FC } from 'react';
 import { Banner } from 'types/global';
+import Heading from '@modules/ui/heading';
+import Text from '@modules/ui/text';
 
 interface BannerCardProps {
   className?: string;
@@ -29,15 +31,15 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
         )}
       >
         <div className="text-center">
-          <h2 className="font-manrope text-3xl font-extrabold text-secondary-foreground md:text-4xl xl:text-5xl 2xl:text-[55px]">
+          <Heading as="h2" variant="light" size="xl">
             {title}
-          </h2>
-          <p className="text-base leading-7 text-brand-light md:text-[17px] md:leading-8 xl:px-16 xl:text-lg xl:leading-[1.92em] 2xl:px-32">
+          </Heading>
+          <Text variant="light" size="lg" className="mt-2 xl:px-16 2xl:px-32">
             {description}
-          </p>
+          </Text>
           {banner.btnText && (
             <Link href={banner.btnUrl}>
-              <Button variant="secondary" className="mt-7 md:mt-8">
+              <Button variant="secondary" className="mt-4 md:mt-5">
                 {banner.btnText}
               </Button>
             </Link>

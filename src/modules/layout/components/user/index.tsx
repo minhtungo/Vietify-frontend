@@ -26,11 +26,11 @@ const User: React.FC<UserProps> = () => {
           <UserIcon
             size={23.5}
             aria-hidden="true"
-            className="text-foreground"
+            className="text-foreground/90"
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="hidden w-full min-w-[150px] space-y-0 p-0 small:block">
+      <PopoverContent className="hidden w-full space-y-0 p-0 small:block">
         {!customer ? (
           <>
             <PopoverClose asChild>

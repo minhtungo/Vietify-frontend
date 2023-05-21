@@ -18,7 +18,7 @@ const ReviewCard: FC<reviewCardProps> = ({ className }) => {
           <AvatarFallback>TM</AvatarFallback>
         </Avatar>
         <div className="">
-          <Heading variant="sm">Minh Tu Ngo</Heading>
+          <Heading size="sm">Minh Tu Ngo</Heading>
           <Text size="sm" span>
             July 16, 2021
           </Text>

@@ -45,11 +45,11 @@ const ControlledSearchBox = ({
     <form noValidate onSubmit={handleSubmit} onReset={handleReset}>
       <div className="relative  ml-auto w-full md:max-w-[550px] 3xl:max-w-[700px]">
         <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-          <Search className="h-5 w-5 text-muted-foreground" />
+          <Search className="h-[21px] w-[21px] text-foreground/90" />
         </div>
         <Input
           ref={inputRef}
-          className="block w-full border-gray-300 bg-gray-50 py-3.5 pl-3 pr-12"
+          className="block w-full border-gray-300 bg-gray-50 py-3 pl-3 pr-12"
           type="search"
           value={value}
           onChange={onChange}

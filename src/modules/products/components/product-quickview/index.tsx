@@ -40,7 +40,7 @@ const ProductQuickView = ({
             />
           </div>
           <div className="sm:col-span-8 lg:col-span-7">
-            <Heading variant="md">{title}</Heading>
+            <Heading size="md">{title}</Heading>
             <div className="mt-1 flex w-full flex-wrap justify-between">
               <span className="w-1/2">
                 <Text className="font-semibold" span>
@@ -70,7 +70,7 @@ const ProductQuickView = ({
 
             <div className="my-4 flex gap-2">
               {selectedPrice ? (
-                <div className="flex items-center gap-2 text-brand">
+                <div className="flex items-center gap-2 text-primary">
                   <span
                     className={cn('text-xl-semi', {
                       'text-rose-600': selectedPrice.price_type === 'sale',

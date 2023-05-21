@@ -112,17 +112,23 @@ const Register = () => {
         <CardFooter className="flex flex-col gap-3 text-center">
           <Text size="xs">
             Bằng việc đăng ký, bạn đã đồng ý với Vietify về{' '}
-            <Link href="/terms-of-use" className="text-brand hover:underline">
+            <Link href="/terms-of-use" className="text-primary hover:underline">
               Điều khoản dịch vụ
             </Link>
             {' & '}
-            <Link href="/privacy-policy" className="text-brand hover:underline">
+            <Link
+              href="/privacy-policy"
+              className="text-primary hover:underline"
+            >
               Chính sách bảo mật
             </Link>
           </Text>
           <Text size="xs">
             Bạn đã có tài khoản?{' '}
-            <Link href="/account/login" className="text-brand hover:underline">
+            <Link
+              href="/account/login"
+              className="text-primary hover:underline"
+            >
               Đăng nhập
             </Link>
           </Text>

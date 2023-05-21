@@ -56,7 +56,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
   return (
     <div className="product-page-constraint">
       <div className="mb-8 flex items-center justify-center">
-        <Heading variant="md">{book.relatedBooks}</Heading>
+        <Heading size="md">{book.relatedBooks}</Heading>
       </div>
 
       {previews && previews.length > 0 && (

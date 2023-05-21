@@ -19,10 +19,10 @@ const Copyright: React.FC<CopyrightProps> = ({ payment }) => {
   return (
     <div className="pb-16 lg:py-7">
       <div className="flex flex-col text-center md:flex-row md:justify-between">
-        <p className="lg:text-15px text-sm leading-7 text-brand-muted lg:leading-[27px]">
+        <p className="lg:text-15px text-primary-muted text-sm leading-7 lg:leading-[27px]">
           &copy;&nbsp; Copyright {year}&nbsp;
           <Link
-            className="text-brand-dark transition-colors duration-200 ease-in-out hover:text-brand"
+            className="text-primary transition-colors duration-200 ease-in-out hover:text-primary"
             href="/"
           >
             Vietify

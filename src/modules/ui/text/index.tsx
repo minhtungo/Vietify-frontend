@@ -10,14 +10,14 @@ export const textVariants = cva('', {
       light: '!text-primary-foreground',
       brand: '!text-primary',
       error: '!text-destructive-foreground',
-      link: '!transition-colors duration-200 hover:text-primary',
+      link: 'transition-colors duration-200 hover:text-primary',
     },
     size: {
       default: 'text-base-regular',
       xs: 'text-xsmall-regular',
       sm: 'text-small-regular',
       md: 'text-sm lg:!text-[15px]',
-      lg: 'text-large-regular',
+      lg: 'text-base leading-7 md:text-[17px] md:leading-8 xl:px-16 xl:text-lg',
     },
   },
   defaultVariants: {

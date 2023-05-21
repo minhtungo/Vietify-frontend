@@ -34,7 +34,7 @@ export default function Nav() {
           <MobileMenu />
         </div>
         <div className="flex items-center gap-7">
-          <Link href="/" className="hidden md:block">
+          <Link href="/" className="hidden w-full md:block">
             <Logo />
           </Link>
           <HeaderList />

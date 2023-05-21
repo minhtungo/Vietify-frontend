@@ -86,7 +86,7 @@ const Login = () => {
               </div>
               <Link
                 href="/terms-of-use"
-                className="text-[13px] text-brand hover:underline"
+                className="text-[13px] text-primary hover:underline"
               >
                 Quên mật khẩu?
               </Link>
@@ -116,11 +116,14 @@ const Login = () => {
         <CardFooter className="flex flex-col gap-3 text-center">
           <Text size="xs">
             Bằng việc đăng nhập, bạn đã đồng ý với Vietify về{' '}
-            <Link href="/terms-of-use" className="text-brand hover:underline">
+            <Link href="/terms-of-use" className="text-primary hover:underline">
               Điều khoản dịch vụ
             </Link>
             {' & '}
-            <Link href="/privacy-policy" className="text-brand hover:underline">
+            <Link
+              href="/privacy-policy"
+              className="text-primary hover:underline"
+            >
               Chính sách bảo mật
             </Link>
           </Text>
@@ -128,7 +131,7 @@ const Login = () => {
             Thành viên mới?{' '}
             <Link
               href="/account/register"
-              className="text-brand hover:underline"
+              className="text-primary hover:underline"
             >
               Đăng kí
             </Link>

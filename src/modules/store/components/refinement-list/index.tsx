@@ -109,7 +109,7 @@ const RefinementList = ({
     <>
       <main className="content-container">
         <div className="flex items-baseline justify-between">
-          <Heading variant="md">New Arrivals</Heading>
+          <Heading size="md">New Arrivals</Heading>
 
           <div className="flex items-center">
             <SortBy />

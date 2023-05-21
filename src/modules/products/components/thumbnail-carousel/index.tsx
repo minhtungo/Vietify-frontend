@@ -74,13 +74,13 @@ const ThumbnailCarousel: React.FC<Props> = ({
         <div className="absolute top-2/4 z-10 flex w-full items-center justify-between px-2.5">
           <div
             ref={prevRef}
-            className="shadow-navigation flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
+            className="shadow-navigation hover:text-primary-light flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
           >
             <IoIosArrowBack />
           </div>
           <div
             ref={nextRef}
-            className="shadow-navigation flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand hover:text-brand-light focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
+            className="shadow-navigation hover:text-primary-light flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
           >
             <IoIosArrowForward />
           </div>

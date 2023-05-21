@@ -16,7 +16,7 @@ const Trending = () => {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-1 sm:gap-2">
         <Fire className="h-6 w-6 text-primary sm:h-7 sm:w-7 medium:h-8 medium:w-8" />
-        <Heading variant="md">{book.trending}</Heading>
+        <Heading size="md">{book.trending}</Heading>
       </div>
       <ProductCarousel
         products={data}

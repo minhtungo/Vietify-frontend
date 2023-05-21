@@ -15,7 +15,7 @@ const Popular = () => {
     <div className="content-container py-8">
       <div className="mb-1 flex items-center gap-1 sm:gap-2">
         <Fire className="h-6 w-6 text-primary sm:h-7 sm:w-7 medium:h-8 medium:w-8" />
-        <Heading variant="md">{book.popular}</Heading>
+        <Heading size="md">{book.popular}</Heading>
       </div>
 
       <Tabs defaultValue={TABS[0].label}>

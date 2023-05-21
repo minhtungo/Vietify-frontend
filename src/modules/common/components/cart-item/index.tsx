@@ -37,7 +37,7 @@ const CartItem: React.FC<CartItemProps> = React.memo(
           </div>
           <div>
             <Heading
-              variant="sm"
+              size="sm"
               className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm"
             >
               {title}

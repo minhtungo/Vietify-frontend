@@ -46,11 +46,11 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={cn('flex flex-col sm:-mt-[6px]', className)}>
-      <Heading variant="sm" className="mb-3 lg:mb-4">
+      <Heading size="sm" className="mb-3 lg:mb-4">
         Subscribe Now
       </Heading>
 
-      <p className="text-sm text-brand-muted lg:text-[15px]">
+      <p className="text-primary-muted text-sm lg:text-[15px]">
         Subscribe your email for newsletter and get notification about new
       </p>
       <form noValidate className="mt-5" onSubmit={handleSubmit(onSubmit)}>
@@ -73,7 +73,7 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
           />
           <Button
             variant="fade"
-            className="absolute right-0 top-0 h-full text-brand-muted"
+            className="text-primary-muted absolute right-0 top-0 h-full"
             aria-label="Subscribe Button"
             type="submit"
           >
@@ -81,7 +81,7 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
           </Button>
         </div>
         {!errors.email && subscriptionSuccess && (
-          <p className="my-2 text-brand">Subscribed</p>
+          <p className="my-2 text-primary">Subscribed</p>
         )}
       </form>
     </div>

@@ -36,7 +36,7 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
             className="relative h-10 w-10 rounded-full p-0 duration-150"
           >
             <CartIcon
-              className="text-foreground"
+              className="text-foreground/90"
               size={25}
               aria-hidden="true"
             />

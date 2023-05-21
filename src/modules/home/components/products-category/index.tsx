@@ -16,7 +16,7 @@ export default function ProductsCategory() {
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-2">
         <CategoryIcon size={32} className="text-primary" />
-        <Heading variant="md">{book.category}</Heading>
+        <Heading size="md">{book.category}</Heading>
       </div>
       <Carousel
         breakpoints={CATEGORY_BREAKPOINTS}

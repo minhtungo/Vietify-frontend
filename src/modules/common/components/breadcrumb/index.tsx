@@ -42,7 +42,7 @@ const Crumb: FC<CrumbProps> = ({ title, href, last = false }) => {
 
   return (
     <li className="flex items-center space-x-1">
-      <Link href={href} className="hover:text-brand">
+      <Link href={href} className="hover:text-primary">
         {title}
       </Link>
       <ArrowForwardIcon size={12} className="text-gray-700" />

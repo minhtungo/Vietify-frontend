@@ -70,7 +70,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           {product.collection.title}
         </Link>
       )} */}
-      <Heading variant="md">{product?.title}</Heading>
+      <Heading size="md">{product?.title}</Heading>
       <div className="mt-1 flex w-full flex-wrap justify-between">
         <span className="w-1/2">
           <Text className="font-semibold" span>
@@ -99,7 +99,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div>
         {selectedPrice ? (
-          <div className="flex items-center gap-2 text-brand">
+          <div className="flex items-center gap-2 text-primary">
             <span
               className={cn('text-xl-semi', {
                 'text-rose-600': selectedPrice.price_type === 'sale',

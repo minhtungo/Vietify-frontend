@@ -8,9 +8,9 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
-    <div className={cn('w-28 items-center ', className)}>
+    <div className={cn('w-24 flex-shrink-0 md:w-28', className)}>
       <span className="sr-only">Vietify</span>
-      <Image src={SVGLogo} alt="" className="" />
+      <Image src={SVGLogo} alt="Vietify logo" className="h-auto max-w-full" />
     </div>
   );
 };
