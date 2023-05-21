@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react';
 export function convertBreadcrumbTitle(string: string) {
   return string.replace(/-/g, ' ').toLowerCase();
 }
-
+export type breadCrumbType = {
+  breadcrumb: string;
+  href: string;
+};
 export default function useBreadcrumb() {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState<any>(null);

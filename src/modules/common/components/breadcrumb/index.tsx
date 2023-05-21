@@ -2,6 +2,7 @@ import Link from '@common/link';
 import React, { FC } from 'react';
 
 import useBreadcrumb, {
+  breadCrumbType,
   convertBreadcrumbTitle,
 } from '@lib/hooks/use-bread-crumb';
 import ArrowForward from '@modules/common/icons/arrow-forward';
@@ -9,12 +10,18 @@ import Home from '@modules/common/icons/home';
 import { ROUTES } from '@static/routes';
 import cn from '@lib/util/cn';
 
-interface Props {
+interface BreadcrumbItemProps {
   children: React.ReactNode;
   last?: boolean;
+}
+interface BreadcrumbProps {
   title?: string;
 }
-const BreadcrumbItem: FC<Props> = ({ children, last = false, title }) => {
+
+const BreadcrumbItem: FC<BreadcrumbItemProps> = ({
+  children,
+  last = false,
+}) => {
   return (
     <li
       className={cn(
@@ -22,7 +29,7 @@ const BreadcrumbItem: FC<Props> = ({ children, last = false, title }) => {
         last && 'font-semibold text-foreground'
       )}
     >
-      {title && last ? title : children}
+      {children}
       {!last && (
         <ArrowForward className="text-15px mx-1.5 text-muted-foreground" />
       )}
@@ -30,52 +37,30 @@ const BreadcrumbItem: FC<Props> = ({ children, last = false, title }) => {
   );
 };
 
-export const BreadcrumbItems = ({
-  children,
-  title,
-}: {
-  children: React.ReactNode;
-  title?: string;
-}) => {
-  const items: any = React.Children.toArray(children);
-
-  const breadcrumbItems = items.map((item: string, index: number) => (
-    <BreadcrumbItem
-      key={`breadcrumb_item${index}`}
-      last={index === items.length - 1}
-      title={title}
-    >
-      {item}
-    </BreadcrumbItem>
-  ));
-
-  return (
-    <ol className="flex w-full items-center overflow-hidden">
-      {breadcrumbItems}
-    </ol>
-  );
-};
-
-const Breadcrumb = ({ title }: { title: string }) => {
+const Breadcrumb: FC<BreadcrumbProps> = ({ title }) => {
   const breadcrumbs = useBreadcrumb();
 
   return (
-    <BreadcrumbItems title={title}>
-      <Link href={ROUTES.HOME} className="inline-flex items-center gap-1.5">
-        <Home className="text-15px text-foreground" />
-        Home
-      </Link>
-
-      {breadcrumbs?.map((breadcrumb: any) => (
-        <Link
-          href={breadcrumb.href}
-          key={breadcrumb.href}
-          className="capitalize"
-        >
-          {convertBreadcrumbTitle(breadcrumb.breadcrumb)}
+    <ol className="flex w-full items-center overflow-hidden">
+      <BreadcrumbItem key="breadcrumb-home">
+        <Link href={ROUTES.HOME} className="inline-flex items-center gap-1.5">
+          <Home className="text-15px text-foreground" />
+          Home
         </Link>
+      </BreadcrumbItem>
+      {breadcrumbs?.map((breadcrumb: breadCrumbType, i: number) => (
+        <BreadcrumbItem
+          key={breadcrumb.href}
+          last={i === breadcrumbs.length - 1}
+        >
+          <Link href={breadcrumb.href} className="capitalize">
+            {title && i === breadcrumbs.length - 1
+              ? title
+              : convertBreadcrumbTitle(breadcrumb.breadcrumb)}
+          </Link>
+        </BreadcrumbItem>
       ))}
-    </BreadcrumbItems>
+    </ol>
   );
 };
 
