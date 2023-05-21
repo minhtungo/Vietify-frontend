@@ -22,8 +22,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
   return (
     <ProductProvider product={product}>
       <div className="content-container pt-6">
-        <Breadcrumb className="mb-5" />
-        <div className="grid-cols-7 gap-2 lg:grid">
+        <Breadcrumb />
+        <div className="mt-4 grid-cols-7 gap-2 lg:grid">
           <div className="col-span-3 mb-6 overflow-hidden md:mb-8 lg:mb-0">
             <ThumbnailCarousel
               gallery={[

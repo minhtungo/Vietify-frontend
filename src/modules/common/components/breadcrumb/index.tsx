@@ -1,52 +1,79 @@
 import Link from '@common/link';
-import ArrowForwardIcon from '@icons/arrow-forward';
+import React, { FC } from 'react';
+
+import useBreadcrumb, {
+  convertBreadcrumbTitle,
+} from '@lib/hooks/use-bread-crumb';
+import ArrowForward from '@modules/common/icons/arrow-forward';
+import Home from '@modules/common/icons/home';
+import { ROUTES } from '@static/routes';
 import cn from '@lib/util/cn';
-import { FC } from 'react';
 
-import useCrumb from '@lib/hooks/use-crumb';
+interface Props {
+  children: React.ReactNode;
+}
 
-interface CrumbProps {
-  title: string;
-  href: string;
+interface Props {
+  children: React.ReactNode;
   last?: boolean;
 }
-
-interface BreadcrumbProps {
-  className?: string;
-}
-
-const Breadcrumb: FC<BreadcrumbProps> = ({ className }) => {
-  const breadcrumbs = useCrumb();
-
+const BreadcrumbItem: FC<Props> = ({ children, last = false }) => {
   return (
-    <nav className={cn('flex', className)} aria-label="Breadcrumb">
-      <ol className="inline-flex items-center space-x-1 text-sm font-medium capitalize text-muted-foreground">
-        {breadcrumbs.map((crumb, idx) => {
-          return (
-            <Crumb
-              key={`crumb-${crumb.title}`}
-              {...crumb}
-              last={idx === breadcrumbs.length - 1}
-            />
-          );
-        })}
-      </ol>
-    </nav>
+    <li
+      className={cn(
+        'inline-flex items-center text-sm text-muted-foreground hover:text-foreground',
+        last && 'font-semibold'
+      )}
+    >
+      {children}
+      {!last && <ArrowForward className="text-15px text-muted-foreground" />}
+    </li>
   );
 };
 
-const Crumb: FC<CrumbProps> = ({ title, href, last = false }) => {
-  if (last) {
-    return <li className="font-semibold text-foreground/80">{title}</li>;
-  }
+export const BreadcrumbItems = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const items: any = React.Children.toArray(children);
+
+  const breadcrumbItems = items.map((item: string, index: number) => (
+    <BreadcrumbItem
+      key={`breadcrumb_item${index}`}
+      last={index === items.length - 1}
+    >
+      {item}
+    </BreadcrumbItem>
+  ));
 
   return (
-    <li className="flex items-center space-x-1">
-      <Link href={href} className="hover:text-primary">
-        {title}
+    <ol className="flex w-full items-center overflow-hidden">
+      {breadcrumbItems}
+    </ol>
+  );
+};
+
+const Breadcrumb = () => {
+  const breadcrumbs = useBreadcrumb();
+
+  return (
+    <BreadcrumbItems>
+      <Link href={ROUTES.HOME} className="inline-flex items-center gap-1.5">
+        <Home className="text-15px text-foreground" />
+        Home
       </Link>
-      <ArrowForwardIcon size={12} className="text-gray-700" />
-    </li>
+
+      {breadcrumbs?.map((breadcrumb: any) => (
+        <Link
+          href={breadcrumb.href}
+          key={breadcrumb.href}
+          className="capitalize"
+        >
+          {convertBreadcrumbTitle(breadcrumb.breadcrumb)}
+        </Link>
+      ))}
+    </BreadcrumbItems>
   );
 };
 
