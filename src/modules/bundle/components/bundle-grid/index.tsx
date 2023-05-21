@@ -1,9 +1,9 @@
 import useWindowSize from '@lib/hooks/use-window-size';
 import cn from '@lib/util/cn';
-import { SwiperSlide } from '@modules/carousels/components/slider';
+import { SwiperSlide } from '@modules/carousel/components/slider';
 import dynamic from 'next/dynamic';
 import BundleCard from '../bundle-card';
-const Carousel = dynamic(() => import('@modules/carousels/templates'), {
+const Carousel = dynamic(() => import('@modules/carousel/templates'), {
   ssr: false,
 });
 

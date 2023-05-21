@@ -1,11 +1,11 @@
 import useWindowSize from '@lib/hooks/use-window-size';
-import { SwiperSlide } from '@modules/carousels/components/slider';
+import { SwiperSlide } from '@modules/carousel/components/slider';
 import dynamic from 'next/dynamic';
 import FeaturedCard from './featured-card';
 import { GRID_BREAKPOINTS } from 'static/breakpoints';
 import data from 'static/features';
 
-const Carousel = dynamic(() => import('@modules/carousels/templates'), {
+const Carousel = dynamic(() => import('@modules/carousel/templates'), {
   ssr: false,
 });
 

@@ -1,14 +1,13 @@
+import cn from '@lib/util/cn';
+import {
+  Navigation,
+  Swiper,
+  SwiperOptions,
+  SwiperSlide,
+  Thumbs,
+} from '@modules/carousel/components/slider';
 import { useRef, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import {
-  Swiper,
-  SwiperSlide,
-  SwiperOptions,
-  Navigation,
-  Thumbs,
-} from '@modules/carousels/components/slider';
-import cn from '@lib/util/cn';
-import Image from 'next/image';
 import Thumbnail from '../thumbnail';
 
 interface Props {
