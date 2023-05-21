@@ -35,7 +35,7 @@ export default function ProductsCategory() {
                 width="150"
                 height="150"
               />
-              <Text variant="description">{name}</Text>
+              <Text span>{name}</Text>
             </div>
           </SwiperSlide>
         ))}

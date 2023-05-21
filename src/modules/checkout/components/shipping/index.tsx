@@ -128,7 +128,7 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                       >
                         <div>
                           <RadioGroupItem
-                            value={option.value}
+                            value={option.value!}
                             id={option.value}
                           />
                           <Label
@@ -138,7 +138,7 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                             {option.label}
                           </Label>
                         </div>
-                        <Text variant="label">{option.price}</Text>
+                        <Text size='md'>{option.price}</Text>
                       </div>
                     );
                   })

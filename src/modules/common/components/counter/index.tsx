@@ -25,7 +25,7 @@ const Counter: React.FC<CounterProps> = ({
         <span className="sr-only">Minus Button</span>
         <MinusIcon width={20} height={20} />
       </button>
-      <Text variant="label" className="px-1">
+      <Text size='md' className="px-1">
         {value}
       </Text>
       <button

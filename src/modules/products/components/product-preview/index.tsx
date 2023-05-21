@@ -66,11 +66,11 @@ const ProductPreview = ({
           {price ? (
             <>
               {price.price_type === 'sale' && (
-                <span className="text-gray-500 line-through">
+                <Text span className="line-through">
                   {price.original_price}
-                </span>
+                </Text>
               )}
-              <Text variant="label" as="span" className="text-brand">
+              <Text variant="brand" span>
                 {price.calculated_price}
               </Text>
             </>

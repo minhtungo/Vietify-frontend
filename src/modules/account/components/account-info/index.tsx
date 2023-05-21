@@ -61,10 +61,12 @@ const AccountInfo = ({
         <AccordionItem value={label}>
           <div className="flex items-start justify-between">
             <div>
-              <span className="uppercase text-gray-700">{label}</span>
+              <Text className="uppercase">{label}</Text>
               <div className="flex flex-1 basis-0 items-center justify-end gap-x-4">
                 {typeof currentInfo === 'string' ? (
-                  <Text variant="label">{currentInfo}</Text>
+                  <Text size="sm" className="font-semibold">
+                    {currentInfo}
+                  </Text>
                 ) : (
                   currentInfo
                 )}

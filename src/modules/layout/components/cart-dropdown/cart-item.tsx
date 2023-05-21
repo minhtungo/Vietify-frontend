@@ -43,9 +43,7 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
         </div>
 
         <div className="flex items-baseline justify-between">
-          <Text variant="info" size="sm">
-            Qty: {item.quantity}
-          </Text>
+          <Text size="sm">Qty: {item.quantity}</Text>
           <Button
             onClick={() => deleteItem(item.id)}
             variant="fade"

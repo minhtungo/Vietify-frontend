@@ -110,7 +110,7 @@ const Register = () => {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col gap-3 text-center">
-          <Text variant="info" className="text-[11px]">
+          <Text size="xs">
             Bằng việc đăng ký, bạn đã đồng ý với Vietify về{' '}
             <Link href="/terms-of-use" className="text-brand hover:underline">
               Điều khoản dịch vụ
@@ -120,7 +120,7 @@ const Register = () => {
               Chính sách bảo mật
             </Link>
           </Text>
-          <Text variant="info" className="text-[13px]">
+          <Text size="xs">
             Bạn đã có tài khoản?{' '}
             <Link href="/account/login" className="text-brand hover:underline">
               Đăng nhập

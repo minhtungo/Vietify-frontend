@@ -33,39 +33,32 @@ const ProductQuickView = ({
         <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
           <div className="sm:col-span-4 lg:col-span-5">
             <Thumbnail
-              thumbnail={
-                'https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/26.jpg'
-              }
+              thumbnail={thumbnail}
               size="full"
               rounded="md"
+              alt={title}
             />
           </div>
           <div className="sm:col-span-8 lg:col-span-7">
             <Heading variant="md">{title}</Heading>
             <div className="mt-1 flex w-full flex-wrap justify-between">
               <span className="w-1/2">
-                <Text variant="info" className="font-semibold" as="span">
+                <Text className="font-semibold" span>
                   Author:{' '}
                 </Text>
-                <Text variant="info" as="span">
-                  Nguyễn Nhật Ánh
-                </Text>
+                <Text span>Nguyễn Nhật Ánh</Text>
               </span>
               <span className="">
-                <Text variant="info" className="font-semibold" as="span">
+                <Text className="font-semibold" span>
                   Publisher:{' '}
                 </Text>
-                <Text variant="info" as="span">
-                  Nguyễn Nhật Ánh
-                </Text>
+                <Text span>Nguyễn Nhật Ánh</Text>
               </span>
               <span>
-                <Text variant="info" className="font-semibold" as="span">
+                <Text className="font-semibold" span>
                   SKU:{' '}
                 </Text>
-                <Text variant="info" as="span">
-                  123456789
-                </Text>
+                <Text span>123456789</Text>
               </span>
             </div>
             <div className="flex items-center space-x-1">
@@ -103,7 +96,7 @@ const ProductQuickView = ({
                 <></>
               )}
             </div>
-            <Text variant="description" size="sm" className="line-clamp-3">
+            <Text size="sm" className="line-clamp-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
               praesentium ipsum tempora, reprehenderit voluptatibus sunt unde.
               Officia aut quis impedit molestiae. Magni doloremque excepturi

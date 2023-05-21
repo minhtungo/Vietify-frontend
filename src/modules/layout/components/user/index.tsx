@@ -48,10 +48,7 @@ const User: React.FC<UserProps> = ({}) => {
                 className="w-full select-none px-4 py-3 text-left transition-colors hover:bg-accent focus:bg-accent"
                 onClick={handleLogout}
               >
-                <Text
-                  className="text-sm font-medium leading-none text-foreground"
-                  as="span"
-                >
+                <Text size="sm" variant="dark" span>
                   Đăng xuất
                 </Text>
               </button>

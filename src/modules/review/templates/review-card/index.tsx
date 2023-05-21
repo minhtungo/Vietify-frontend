@@ -18,15 +18,15 @@ const ReviewCard: FC<reviewCardProps> = ({ className }) => {
           <AvatarFallback>TM</AvatarFallback>
         </Avatar>
         <div className="">
-          <Heading variant="sm" className="text-sm">
-            Minh Tu Ngo
-          </Heading>
-          <Text variant="info">July 16, 2021</Text>
+          <Heading variant="sm">Minh Tu Ngo</Heading>
+          <Text size="sm" span>
+            July 16, 2021
+          </Text>
         </div>
       </div>
 
       <ReviewRating className="pt-2" />
-      <Text variant="info" className="pt-2">
+      <Text className="pt-2">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum tempore
         optio velit asperiores exercitationem repellendus dolore accusamus cum
         fugiat ullam? Obcaecati labore quidem maiores dolor fugiat, amet

@@ -73,28 +73,22 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       <Heading variant="md">{product?.title}</Heading>
       <div className="mt-1 flex w-full flex-wrap justify-between">
         <span className="w-1/2">
-          <Text variant="info" className="font-semibold" as="span">
+          <Text className="font-semibold" span>
             {`${book.author}: `}
           </Text>
-          <Text variant="info" as="span">
-            Nguyễn Nhật Ánh
-          </Text>
+          <Text span>Nguyễn Nhật Ánh</Text>
         </span>
         <span className="">
-          <Text variant="info" className="font-semibold" as="span">
+          <Text className="font-semibold" span>
             {`${book.publisher}: `}
           </Text>
-          <Text variant="info" as="span">
-            Nguyễn Nhật Ánh
-          </Text>
+          <Text span>Nguyễn Nhật Ánh</Text>
         </span>
         <span>
-          <Text variant="info" className="font-semibold" as="span">
+          <Text className="font-semibold" span>
             {`${book.sku}: `}
           </Text>
-          <Text variant="info" as="span">
-            123456789
-          </Text>
+          <Text span>123456789</Text>
         </span>
       </div>
 
@@ -168,7 +162,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <Separator className="mb-2 mt-4" />
       <div>
-        <Text variant="label" className="text-sm">
+        <Text className="font-semibold" size="sm">
           Share
         </Text>
         <SocialShare

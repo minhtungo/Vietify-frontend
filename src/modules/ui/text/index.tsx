@@ -5,31 +5,35 @@ import { forwardRef, HTMLAttributes } from 'react';
 export const textVariants = cva('', {
   variants: {
     variant: {
-      description: 'text-base-regular text-muted-foreground',
-      info: '!text-small-regular text-muted-foreground',
-      label: 'text-[15px] text-secondary-foreground font-semibold',
-      link: 'text-sm lg:text-[15px] text-muted-foreground transition-colors duration-200 hover:text-brand',
+      default: '!text-muted-foreground',
+      dark: '!text-secondary-foreground',
+      light: '!text-primary-foreground',
+      brand: '!text-primary',
+      error: '!text-destructive-foreground',
+      link: '!transition-colors duration-200 hover:text-primary',
     },
     size: {
       default: 'text-base-regular',
+      xs: '!text-xsmall-regular',
       sm: '!text-small-regular',
-      md: 'text-[15px]',
+      md: 'text-sm lg:text-[15px] ',
     },
   },
   defaultVariants: {
-    variant: 'description',
+    variant: 'default',
+    size: 'default',
   },
 });
 
 interface TextProps
   extends HTMLAttributes<HTMLParagraphElement>,
     VariantProps<typeof textVariants> {
-  as?: 'p' | 'span';
+  span?: boolean;
 }
 
 const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ className, variant, children, as, ...props }, ref) => {
-    if (as === 'span') {
+  ({ className, variant, children, span = false, ...props }, ref) => {
+    if (span) {
       return (
         <span
           className={cn(textVariants({ variant, className }))}

@@ -29,13 +29,13 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
   return (
     <div className="text-small-regular flex flex-col gap-y-2 text-foreground">
       <div className="flex items-center justify-between">
-        <Text as="span" className="text-sm text-secondary-foreground">
+        <Text size="sm" span>
           Subtotal
         </Text>
         <span>{getAmount(subtotal)}</span>
       </div>
       <div className="flex items-center justify-between">
-        <Text as="span" className="text-sm text-secondary-foreground">
+        <Text size="sm" span>
           Taxes
         </Text>
         <span>{getAmount(tax_total)}</span>
@@ -43,7 +43,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
       <div className="flex flex-col gap-y-2">
         {!!discount_total && (
           <div className="flex items-center justify-between">
-            <Text variant="label" as="span" className="text-sm">
+            <Text size="sm" span>
               Discount
             </Text>
             <span>- {getAmount(discount_total)}</span>
@@ -51,14 +51,14 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
         )}
         {!!gift_card_total && (
           <div className="flex items-center justify-between">
-            <Text variant="label" as="span" className="text-sm">
+            <Text size="sm" span>
               Gift card
             </Text>
             <span>- {getAmount(gift_card_total)}</span>
           </div>
         )}
         <div className="flex items-center justify-between">
-          <Text as="span" className="text-sm text-secondary-foreground">
+          <Text size="sm" span>
             Shipping
           </Text>
           <span>{getAmount(shipping_total)}</span>
@@ -66,10 +66,10 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
       </div>
       <Separator className="my-1" />
       <div className="mb-1 flex items-center justify-between">
-        <Text variant="label" as="span" className="text-sm">
+        <Text size="sm" span>
           Total
         </Text>
-        <Text variant="label" as="span" className="text-sm">
+        <Text size="sm" span>
           {getAmount(total)}
         </Text>
       </div>

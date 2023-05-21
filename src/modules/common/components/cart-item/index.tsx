@@ -42,7 +42,7 @@ const CartItem: React.FC<CartItemProps> = React.memo(
             >
               {title}
             </Heading>
-            <Text variant="info" className="flex items-center text-xs">
+            <Text size="sm" className="flex items-center">
               {quantity}
               <XMarkIcon />
               {getAmount(unit_price)}
@@ -51,7 +51,7 @@ const CartItem: React.FC<CartItemProps> = React.memo(
           </div>
         </div>
 
-        <Text variant="label" as="span" className="text-sm">
+        <Text size="sm" span>
           {getAmount(unit_price * quantity)}
         </Text>
       </div>

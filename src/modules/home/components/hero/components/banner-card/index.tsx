@@ -29,7 +29,7 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
         )}
       >
         <div className="text-center">
-          <h2 className="font-manrope text-3xl font-extrabold text-brand-light md:text-4xl xl:text-5xl 2xl:text-[55px]">
+          <h2 className="font-manrope text-3xl font-extrabold text-secondary-foreground md:text-4xl xl:text-5xl 2xl:text-[55px]">
             {title}
           </h2>
           <p className="text-base leading-7 text-brand-light md:text-[17px] md:leading-8 xl:px-16 xl:text-lg xl:leading-[1.92em] 2xl:px-32">

@@ -59,15 +59,11 @@ const CartDropdown = () => {
               <div className="text-small-regular flex flex-col gap-y-4 px-4">
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col">
-                    <Text variant="label" as="span">
-                      Subtotal
-                    </Text>
-                    <Text variant="description" as="span">
-                      Shipping and taxes calculated at checkout.
-                    </Text>
+                    <Text span>Subtotal</Text>
+                    <Text span>Shipping and taxes calculated at checkout.</Text>
                   </div>
 
-                  <Text variant="label" as="span">
+                  <Text className="font-semibold" span>
                     {formatAmount({
                       amount: cart.subtotal || 0,
                       region: cart.region,

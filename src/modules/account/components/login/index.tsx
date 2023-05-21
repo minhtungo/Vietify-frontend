@@ -73,7 +73,7 @@ const Login = () => {
               errors={errors}
             />
             {authError && (
-              <Text variant="description" className="text-rose-500">
+              <Text variant="error" size="sm">
                 Incorrect email or password.
               </Text>
             )}
@@ -96,7 +96,9 @@ const Login = () => {
 
           <div className="flex items-center">
             <div className="h-[0.5px] flex-grow bg-border" />
-            <Text className="mx-3 text-[12px]">hoặc tiếp tục với</Text>
+            <Text size="xs" className="mx-3">
+              hoặc tiếp tục với
+            </Text>
             <div className="h-[0.5px] flex-grow bg-border" />
           </div>
           <div className="flex w-full justify-between gap-3">
@@ -112,7 +114,7 @@ const Login = () => {
         </CardContent>
 
         <CardFooter className="flex flex-col gap-3 text-center">
-          <Text variant="info" className="text-[11px]">
+          <Text size="xs">
             Bằng việc đăng nhập, bạn đã đồng ý với Vietify về{' '}
             <Link href="/terms-of-use" className="text-brand hover:underline">
               Điều khoản dịch vụ
@@ -122,7 +124,7 @@ const Login = () => {
               Chính sách bảo mật
             </Link>
           </Text>
-          <Text variant="info" className="text-[13px]">
+          <Text size="xs">
             Thành viên mới?{' '}
             <Link
               href="/account/register"

@@ -17,10 +17,7 @@ const ListItem = React.forwardRef<
       )}
       {...props}
     >
-      <Text
-        className="text-sm font-medium leading-none text-foreground"
-        as="span"
-      >
+      <Text variant="dark" className="font-medium leading-none" span>
         {children}
       </Text>
     </Link>

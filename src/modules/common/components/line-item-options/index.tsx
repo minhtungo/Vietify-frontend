@@ -12,16 +12,12 @@ const LineItemOptions = ({ variant }: LineItemOptionsProps) => {
         //   variant.product.options.find((opt) => opt.id === option.option_id)
         //     ?.title || 'Option';
         return (
-          <>
-            <div>
-              <Text className="" key={option.id} variant="info" size="sm">
-                {option.value}
-              </Text>
-            </div>
+          <div key={option.id}>
+            <Text size="md">{option.value}</Text>
             {index !== variant.options.length - 1 && (
               <Separator orientation="vertical" />
             )}
-          </>
+          </div>
         );
       })}
     </div>
