@@ -2,24 +2,25 @@ import { fetchProductsList } from '@lib/data';
 import usePreviews from '@lib/hooks/use-previews';
 import getNumberOfSkeletons from '@lib/util/get-number-of-skeletons';
 import repeat from '@lib/util/repeat';
-import { Product, StoreGetProductsParams } from '@medusajs/medusa';
-import Button from '@ui/button';
+import { StoreGetProductsParams } from '@medusajs/medusa';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import Button from '@ui/button';
 import { useCart } from 'medusa-react';
 import { useMemo } from 'react';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import ProductPreview from '../product-preview';
-import Heading from '@ui/heading';
-import Carousel from '@modules/carousel/templates';
-import { SwiperSlide } from 'swiper/react';
-import { book } from '@static/book';
+
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import { book } from '@static/book';
+import Heading from '@ui/heading';
+import ProductCarousel from '../product-carousel';
+import cn from '@lib/util/cn';
 
 type RelatedProductsProps = {
   product: PricedProduct;
+  className?: string;
 };
 
-const RelatedProducts = ({ product }: RelatedProductsProps) => {
+const RelatedProducts = ({ product, className }: RelatedProductsProps) => {
   const { cart } = useCart();
 
   const queryParams: StoreGetProductsParams = useMemo(() => {
@@ -54,32 +55,20 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
   const previews = usePreviews({ pages: data?.pages, region: cart?.region });
 
   return (
-    <div className="product-page-constraint">
+    <div className={cn('product-page-constraint', className)}>
       <div className="mb-8 flex items-center justify-center">
         <Heading size="md">{book.relatedBooks}</Heading>
       </div>
 
       {previews && previews.length > 0 && (
-        <Carousel
-          spaceBetween={10}
-          slidesPerView={5}
-          prevActivateId="prev-related-carousel-button"
-          nextActivateId="next-related-carousel-button"
-          centeredSlides={true}
-          centeredSlidesBounds={true}
-          prevButtonClassName="left-2 lg:left-2.5"
-          nextButtonClassName="right-2 lg:right-2.5"
-        >
-          {previews.map((product) => (
-            <>
-              <SwiperSlide key={`related--key-${product.id}`}>
-                <ProductPreview {...product} />
-              </SwiperSlide>
-            </>
-          ))}
-        </Carousel>
+        <ProductCarousel
+          products={previews}
+          isLoading={isLoading && !previews.length}
+          prevActivateId={`prev-related-products-button`}
+          nextActivateId={`next-related-products-button`}
+        />
       )}
-
+      {/* 
       <ul className="grid grid-cols-2 gap-x-4 gap-y-8 small:grid-cols-3 medium:grid-cols-5">
         {isLoading && !previews.length && (
           <>
@@ -96,7 +85,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
               <SkeletonProductPreview />
             </li>
           ))}
-      </ul>
+      </ul> */}
       {hasNextPage && (
         <div className="mt-8 flex items-center justify-center">
           <Button

@@ -2,17 +2,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { useMemo } from 'react';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
-import DescriptionTab from './description-tab';
-import ProductDetails from './product-details';
-import ReviewsTab from './reviews';
+import DescriptionTab from '../product-info/description';
+import ProductDetails from '../product-info/product-details';
+import ReviewsTab from '../product-info/reviews';
 import { book } from '@static/book';
 
 import { Separator } from '@ui/separator';
+import cn from '@lib/util/cn';
 type ProductTabsProps = {
   product: PricedProduct;
+  className?: string;
 };
 
-const ProductTabs = ({ product }: ProductTabsProps) => {
+const ProductTabs = ({ product, className }: ProductTabsProps) => {
   const tabs = useMemo(() => {
     return [
       {
@@ -31,7 +33,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   }, [product]);
 
   return (
-    <Tabs defaultValue={book.description}>
+    <Tabs defaultValue={book.description} className={cn(className)}>
       <TabsList className="flex flex-col flex-wrap justify-start gap-x-7 lg:flex-row">
         {tabs.map((tab, i) => {
           return (
@@ -48,7 +50,11 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       <Separator />
       {tabs.map((tab, i) => {
         return (
-          <TabsContent value={tab.label} key={i} className="pt-2">
+          <TabsContent
+            value={tab.label}
+            key={`${tab.label}-tab`}
+            className="pt-2"
+          >
             {tab.component}
           </TabsContent>
         );

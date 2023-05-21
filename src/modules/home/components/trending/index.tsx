@@ -1,11 +1,6 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
-import repeat from '@lib/util/repeat';
-import { SwiperSlide } from '@modules/carousel/components/slider';
-import Carousel from '@modules/carousel/templates';
 import Fire from '@modules/common/icons/fire';
 import ProductCarousel from '@modules/products/components/product-carousel';
-import ProductPreview from '@modules/products/components/product-preview';
-import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { book } from '@static/book';
 import Heading from '@ui/heading';
 

@@ -9,8 +9,8 @@ interface AdditionalInfoTabProps {
 
 const ProductDetails = ({ product }: AdditionalInfoTabProps) => {
   return (
-    <TabsContent value={book.details} className="text-medium-regular">
-      <Table className="mx-auto w-2/3">
+    <>
+      <Table className="mx-auto w-full md:w-2/3">
         <TableBody>
           {bookDetails.map((book) => (
             <TableRow key={book.label}>
@@ -20,7 +20,7 @@ const ProductDetails = ({ product }: AdditionalInfoTabProps) => {
           ))}
         </TableBody>
       </Table>
-    </TabsContent>
+    </>
   );
 };
 

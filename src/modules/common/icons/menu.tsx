@@ -1,5 +1,5 @@
 import cn from '@lib/util/cn';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { IoIosMenu } from 'react-icons/io';
 import { IconProps } from 'types/icon';
 
 interface BadgeProps extends IconProps {
@@ -7,7 +7,7 @@ interface BadgeProps extends IconProps {
 }
 
 const Menu: React.FC<BadgeProps> = ({ className, ...props }) => {
-  return <AiOutlineMenu className={cn(className)} {...props} />;
+  return <IoIosMenu className={cn(className)} {...props} />;
 };
 
 export default Menu;

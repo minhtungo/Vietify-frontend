@@ -9,19 +9,13 @@ import {
 import { useRef, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Thumbnail from '../thumbnail';
+import { THUMB_BREAKPOINTS } from '@static/breakpoints';
 
 interface Props {
   gallery: any[];
   thumbnailClassName?: string;
   galleryClassName?: string;
 }
-
-// product gallery breakpoints
-const galleryCarouselBreakpoints = {
-  '0': {
-    slidesPerView: 4,
-  },
-};
 
 const swiperParams: SwiperOptions = {
   slidesPerView: 1,
@@ -41,7 +35,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
     <div className="w-full xl:flex xl:flex-row-reverse">
       <div
         className={cn(
-          'relative mb-2.5 w-full overflow-hidden rounded-md border border-gray-100 md:mb-3 xl:ml-5',
+          'relative mb-2.5 w-full overflow-hidden rounded-md md:mb-3 xl:ml-5',
           thumbnailClassName
         )}
       >
@@ -97,7 +91,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
           freeMode={true}
           observer={true}
           observeParents={true}
-          breakpoints={galleryCarouselBreakpoints}
+          breakpoints={THUMB_BREAKPOINTS}
         >
           {gallery?.map((item: any) => (
             <SwiperSlide

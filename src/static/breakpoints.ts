@@ -17,6 +17,12 @@ const PRODUCT_BREAKPOINTS = {
   },
 };
 
+const THUMB_BREAKPOINTS = {
+  '0': {
+    slidesPerView: 4,
+  },
+};
+
 const FEATURED_BREAKPOINTS = {
   '1024': {
     slidesPerView: 5,
@@ -76,4 +82,5 @@ export {
   FEATURED_BREAKPOINTS,
   PRODUCT_BREAKPOINTS,
   CATEGORY_BREAKPOINTS,
+  THUMB_BREAKPOINTS,
 };
