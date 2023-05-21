@@ -13,7 +13,7 @@ export const textVariants = cva('', {
       link: 'transition-colors duration-200 hover:text-primary',
     },
     size: {
-      default: 'text-base-regular',
+      default: 'text-base-regular md:text-large-regular',
       xs: 'text-xsmall-regular',
       sm: 'text-small-regular',
       md: 'text-sm lg:!text-[15px]',

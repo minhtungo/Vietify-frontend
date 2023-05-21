@@ -18,6 +18,7 @@ import toast from 'react-hot-toast';
 
 import { book } from '@static/book';
 import AddedItem from './added-item';
+import { ROUTES } from '@static/routes';
 
 type ProductActionsProps = {
   product: PricedProduct;
@@ -28,7 +29,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   const {
     query: { slug },
   } = router;
-
+  const shareUrl = `${process.env.NEXT_PUBLIC_HOST_NAME}${ROUTES.PRODUCTS}/${slug}`;
   const {
     updateOptions,
     addToCart,
@@ -166,7 +167,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           Share
         </Text>
         <SocialShare
-          shareUrl="vietify.shop"
+          shareUrl={shareUrl}
           className="mt-2.5 flex flex-row gap-2"
         />
       </div>

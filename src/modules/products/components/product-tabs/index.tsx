@@ -48,7 +48,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       <Separator />
       {tabs.map((tab, i) => {
         return (
-          <TabsContent value={tab.label} key={i}>
+          <TabsContent value={tab.label} key={i} className="pt-2">
             {tab.component}
           </TabsContent>
         );
