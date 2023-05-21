@@ -1,14 +1,13 @@
+import Breadcrumb from '@common/breadcrumb';
 import { ProductProvider } from '@lib/context/product-context';
 import { useIntersection } from '@lib/hooks/use-in-view';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import ProductTabs from '@modules/products/components/product-tabs';
 import RelatedProducts from '@modules/products/components/related-products';
 import ProductInfo from '@modules/products/templates/product-info';
 import React, { useRef } from 'react';
-import MobileActions from '../components/mobile-actions';
-import ThumbnailCarousel from '../components/thumbnail-carousel';
-import Breadcrumb from '@common/breadcrumb';
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import ProductAccordion from '../components/product-accordion';
+import ThumbnailCarousel from '../components/thumbnail-carousel';
 
 type ProductTemplateProps = {
   product: PricedProduct;
@@ -22,7 +21,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
   return (
     <ProductProvider product={product}>
       <div className="content-container pt-6">
-        <Breadcrumb />
+        <Breadcrumb title={product.title!} />
         <div className="mt-4 grid-cols-7 gap-2 lg:grid">
           <div className="col-span-3 mb-6 overflow-hidden md:mb-8 lg:mb-0">
             <ThumbnailCarousel

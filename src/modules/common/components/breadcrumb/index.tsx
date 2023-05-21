@@ -11,30 +11,31 @@ import cn from '@lib/util/cn';
 
 interface Props {
   children: React.ReactNode;
-}
-
-interface Props {
-  children: React.ReactNode;
   last?: boolean;
+  title?: string;
 }
-const BreadcrumbItem: FC<Props> = ({ children, last = false }) => {
+const BreadcrumbItem: FC<Props> = ({ children, last = false, title }) => {
   return (
     <li
       className={cn(
         'inline-flex items-center text-sm text-muted-foreground hover:text-foreground',
-        last && 'font-semibold'
+        last && 'font-semibold text-foreground'
       )}
     >
-      {children}
-      {!last && <ArrowForward className="text-15px text-muted-foreground" />}
+      {title && last ? title : children}
+      {!last && (
+        <ArrowForward className="text-15px mx-1.5 text-muted-foreground" />
+      )}
     </li>
   );
 };
 
 export const BreadcrumbItems = ({
   children,
+  title,
 }: {
   children: React.ReactNode;
+  title?: string;
 }) => {
   const items: any = React.Children.toArray(children);
 
@@ -42,6 +43,7 @@ export const BreadcrumbItems = ({
     <BreadcrumbItem
       key={`breadcrumb_item${index}`}
       last={index === items.length - 1}
+      title={title}
     >
       {item}
     </BreadcrumbItem>
@@ -54,11 +56,11 @@ export const BreadcrumbItems = ({
   );
 };
 
-const Breadcrumb = () => {
+const Breadcrumb = ({ title }: { title: string }) => {
   const breadcrumbs = useBreadcrumb();
 
   return (
-    <BreadcrumbItems>
+    <BreadcrumbItems title={title}>
       <Link href={ROUTES.HOME} className="inline-flex items-center gap-1.5">
         <Home className="text-15px text-foreground" />
         Home
