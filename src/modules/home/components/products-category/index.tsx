@@ -1,6 +1,7 @@
 import CategoryIcon from '@icons/category';
 import { SwiperSlide } from '@modules/carousel/components/slider';
 import Carousel from '@modules/carousel/templates';
+import Thumbnail from '@modules/products/components/thumbnail';
 import { book } from '@static/book';
 import Heading from '@ui/heading';
 import Text from '@ui/text';
@@ -26,15 +27,9 @@ export default function ProductsCategory() {
         nextButtonClassName="right-2"
       >
         {CATEGORIES.map(({ id, imgSrc, altImg, name }) => (
-          <SwiperSlide key={`categories--key${id}`}>
+          <SwiperSlide key={`category-${id}`}>
             <div className="flex flex-col items-center justify-center">
-              <Image
-                className="aspect-[3/4] w-full rounded-lg object-cover object-center"
-                src={imgSrc}
-                alt={altImg}
-                width="150"
-                height="150"
-              />
+              <Thumbnail thumbnail={imgSrc} alt={altImg} size="full" />
               <Text span>{name}</Text>
             </div>
           </SwiperSlide>

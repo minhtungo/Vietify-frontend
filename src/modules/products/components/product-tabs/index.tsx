@@ -34,11 +34,11 @@ const ProductTabs = ({ product, className }: ProductTabsProps) => {
 
   return (
     <Tabs defaultValue={book.description} className={cn(className)}>
-      <TabsList className="flex flex-col flex-wrap justify-start gap-x-7 lg:flex-row">
+      <TabsList className="gap-x-7">
         {tabs.map((tab, i) => {
           return (
             <TabsTrigger
-              key={i}
+              key={`${tab.label}-trigger`}
               value={tab.label}
               className="text-md px-0 hover:border-gray-400 hover:text-foreground/80"
             >
@@ -47,7 +47,7 @@ const ProductTabs = ({ product, className }: ProductTabsProps) => {
           );
         })}
       </TabsList>
-      <Separator />
+
       {tabs.map((tab, i) => {
         return (
           <TabsContent

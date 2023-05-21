@@ -46,6 +46,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                 thumbnail={order.items[0].thumbnail}
                 images={[]}
                 size="full"
+                alt={order.items[0].thumbnail!}
               />
               <div className="text-small-regular flex items-center text-gray-700">
                 <span className="font-semibold text-gray-900">{i.title}</span>

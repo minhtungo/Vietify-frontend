@@ -4,7 +4,6 @@ import Heading from '@ui/heading';
 import Fire from '@modules/common/icons/fire';
 import ProductCarousel from '@modules/products/components/product-carousel';
 import { book } from '@static/book';
-import { Separator } from '@ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { TABS } from 'static/popular';
 
@@ -19,20 +18,19 @@ const Popular = () => {
       </div>
 
       <Tabs defaultValue={TABS[0].label}>
-        <TabsList className="flex flex-col flex-wrap justify-start gap-x-7 lg:flex-row">
+        <TabsList className="gap-x-7">
           {TABS.map((tab, i) => {
             return (
               <TabsTrigger
                 key={i}
                 value={tab.label}
-                className="text-md px-0 hover:border-gray-400 hover:text-foreground/80"
+                className="text-md px-1 hover:border-gray-400 hover:text-foreground/80"
               >
                 {tab.label}
               </TabsTrigger>
             );
           })}
         </TabsList>
-        <Separator />
 
         {TABS.map((tab) => {
           return (
