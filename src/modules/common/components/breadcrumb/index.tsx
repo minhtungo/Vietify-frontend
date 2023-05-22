@@ -5,10 +5,10 @@ import useBreadcrumb, {
   breadCrumbType,
   convertBreadcrumbTitle,
 } from '@lib/hooks/use-bread-crumb';
+import cn from '@lib/util/cn';
 import ArrowForward from '@modules/common/icons/arrow-forward';
 import Home from '@modules/common/icons/home';
 import { ROUTES } from '@static/routes';
-import cn from '@lib/util/cn';
 
 interface BreadcrumbItemProps {
   children: React.ReactNode;

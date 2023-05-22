@@ -1,132 +1,87 @@
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
-import { useStore } from '@lib/context/store-context';
-import useCountryOptions from '@lib/hooks/use-country-options';
-import ChevronDown from '@icons/chevron-down';
-import Search from '@icons/search';
-import X from '@icons/x';
+import ArrowForward from '@modules/common/icons/arrow-forward';
+import { Separator } from '@modules/ui/separator';
+import Text from '@modules/ui/text';
+import { SITE_HEADER } from '@static/header';
 import { useCollections, useMeCustomer } from 'medusa-react';
 import Link from 'next/link';
-import ReactCountryFlag from 'react-country-flag';
 
 const MainMenu = () => {
   const { collections } = useCollections();
   const { customer } = useMeCustomer();
-  const { countryCode } = useStore();
-
-  const countries = useCountryOptions();
 
   const {
     close,
     screen: [_, setScreen],
   } = useMobileMenu();
 
-  const setScreenCountry = () => setScreen('country');
-  const setScreenSearch = () => setScreen('search');
-
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col justify-between space-y-6 p-6">
-        {process.env.FEATURE_SEARCH_ENABLED && (
-          <button
-            className="flex items-center gap-x-2 bg-gray-50 px-4 py-2 text-gray-500"
-            onClick={setScreenSearch}
-          >
-            <Search size={24} />
-            <span placeholder="Search products" className="text-base-regular">
-              Search products
-            </span>
-          </button>
-        )}
-
-        <div className="text-large-regular flex flex-1 flex-col text-gray-900">
-          <ul className="flex flex-col gap-y-2">
-            <li className="bg-gray-50 p-4">
-              <Link href="/shop">
-                <button
-                  className="flex w-full items-center justify-between"
-                  onClick={close}
-                >
-                  <span className="sr-only">Go to Store</span>
-                  <span>Store</span>
-                  <ChevronDown className="-rotate-90" />
-                </button>
-              </Link>
-            </li>
-            {collections ? (
-              <>
-                {collections.map((collection) => (
-                  <li key={collection.id} className="bg-gray-50 p-4">
-                    <Link href={`/collections/${collection.id}`}>
-                      <button
-                        className="flex w-full items-center justify-between"
-                        onClick={close}
-                      >
-                        <span className="sr-only">
-                          Go to {collection.title} collection
-                        </span>
-                        <span>{collection.title}</span>
-                        <ChevronDown className="-rotate-90" />
-                      </button>
-                    </Link>
-                  </li>
-                ))}
-              </>
-            ) : null}
-          </ul>
-        </div>
-
-        <div className="flex flex-col">
-          <div className="text-small-regular flex flex-col gap-y-8">
-            {!customer ? (
-              <div className="flex flex-col gap-y-4">
-                <span className="uppercase text-gray-700">Account</span>
-                <Link href={`/account/login`} passHref>
-                  <button
-                    className="flex w-full items-center justify-between border-b border-gray-200 py-2"
-                    onClick={close}
+    <div className="flex flex-1 flex-col justify-between space-y-4 pb-6 pt-12">
+      <div className="flex flex-1 flex-col">
+        <ul className="flex flex-col gap-y-2">
+          {collections ? (
+            <>
+              {collections.map((collection) => (
+                <li key={collection.id} className="py-1">
+                  <Link
+                    href={`/collections/${collection.id}`}
+                    className="flex w-full items-center justify-between"
                   >
-                    <span className="sr-only">Go to sign in page</span>
-                    <span className="normal-case">Sign in</span>
-                    <ChevronDown className="-rotate-90" />
-                  </button>
-                </Link>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-y-4">
-                <span className="uppercase text-gray-700">Signed in as</span>
-                <Link href={`/account`} passHref>
-                  <button
-                    className="flex w-full items-center justify-between border-b border-gray-200 py-2"
-                    onClick={close}
-                  >
-                    <span className="sr-only">Go to account page</span>
-                    <span className="normal-case">{customer.email}</span>
-                    <ChevronDown className="-rotate-90" />
-                  </button>
-                </Link>
-              </div>
-            )}
-            <div className="flex flex-col gap-y-4">
-              <span className="uppercase text-gray-700">Delivery</span>
-              <button
-                className="flex items-center justify-between border-b border-gray-200 py-2"
-                onClick={setScreenCountry}
-              >
-                <span className="sr-only">
-                  Click to select shipping country
-                </span>
-                <div className="flex items-center gap-x-2">
-                  <ReactCountryFlag countryCode={countryCode || 'us'} svg />
-                  <span className="normal-case">
-                    Shipping to{' '}
-                    {countries?.find((c) => c.country === countryCode)?.label}
-                  </span>
-                </div>
-                <ChevronDown className="-rotate-90" />
-              </button>
-            </div>
+                    <Text variant="dark" span sr={`Go to ${collection.title}`}>
+                      {collection.title}
+                    </Text>
+                    <ArrowForward className="text-foreground/90" />
+                  </Link>
+                </li>
+              ))}
+            </>
+          ) : null}
+        </ul>
+      </div>
+      <Separator />
+      <div className="flex flex-col gap-y-2">
+        {!customer ? (
+          <>
+            {/* <Link
+              href={`/account/login`}
+              className="inline-flex w-full items-center justify-between py-1"
+            >
+              <Text variant="dark" span sr="Go to sign in page">
+                Sign in
+              </Text>
+              <ArrowForward className="text-foreground/90" />
+            </Link> */}
+          </>
+        ) : (
+          <div className="flex flex-col gap-y-4">
+            <span className="uppercase text-gray-700">Signed in as</span>
+            <Text span variant="dark">
+              Account
+            </Text>
+            <Link
+              href={`/account`}
+              className="inline-flex w-full items-center justify-between py-1"
+            >
+              <span className="sr-only">Go to account page</span>
+              <span className="normal-case">{customer.first_name}</span>
+              <ArrowForward className="text-foreground/90" />
+            </Link>
           </div>
-        </div>
+        )}
+        {SITE_HEADER.map((item) => {
+          return (
+            <Link
+              href={item.path}
+              key={item.label}
+              className="inline-flex w-full items-center gap-2 py-1"
+            >
+              {item.icon}
+              <Text variant="dark" span sr={`Go to ${item.label}`}>
+                {item.label}
+              </Text>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

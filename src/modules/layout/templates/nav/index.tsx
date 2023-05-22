@@ -1,4 +1,3 @@
-import Hamburger from '@common/hamburger';
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import useScrollDirection from '@lib/hooks/use-scroll-direction';
 import cn from '@lib/util/cn';

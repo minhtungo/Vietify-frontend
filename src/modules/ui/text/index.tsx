@@ -30,30 +30,37 @@ interface TextProps
   extends HTMLAttributes<HTMLParagraphElement>,
     VariantProps<typeof textVariants> {
   span?: boolean;
+  sr?: string;
 }
 
 const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ className, variant, size, children, span = false, ...props }, ref) => {
+  ({ className, variant, size, children, span = false, sr, ...props }, ref) => {
     if (span) {
       return (
-        <span
+        <>
+          {sr && <span className="sr-only">{sr}</span>}
+          <span
+            className={cn(textVariants({ variant, size, className }))}
+            ref={ref}
+            {...props}
+          >
+            {children}
+          </span>
+        </>
+      );
+    }
+
+    return (
+      <>
+        {sr && <p className="sr-only">{sr}</p>}
+        <p
           className={cn(textVariants({ variant, size, className }))}
           ref={ref}
           {...props}
         >
           {children}
-        </span>
-      );
-    }
-
-    return (
-      <p
-        className={cn(textVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </p>
+        </p>
+      </>
     );
   }
 );
