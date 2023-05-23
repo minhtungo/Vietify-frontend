@@ -15,7 +15,7 @@ const HeaderList = () => {
   const { collections } = useCollections();
 
   return (
-    <NavigationMenu className="hidden md:flex">
+    <NavigationMenu className="hidden lg:flex">
       <NavigationMenuList className="gap-8">
         {HEADER_LIST.map((item) => (
           <NavigationMenuItem key={item.id}>

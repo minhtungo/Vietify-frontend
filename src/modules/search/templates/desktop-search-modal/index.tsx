@@ -7,7 +7,7 @@ import { InstantSearch } from 'react-instantsearch-hooks-web';
 const DesktopSearchModal = () => {
   return (
     <InstantSearch indexName={SEARCH_INDEX_NAME} searchClient={searchClient}>
-      <div className="relative flex w-full flex-col">
+      <div className="relative flex flex-1 shrink flex-grow flex-col">
         <SearchBox />
         <DesktopHits hitComponent={DesktopHit} />
       </div>

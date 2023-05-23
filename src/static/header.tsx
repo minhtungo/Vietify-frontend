@@ -61,12 +61,6 @@ export const HEADER_LIST = [
 
 export const SITE_HEADER = [
   {
-    id: 1,
-    label: 'My Account',
-    path: '/account',
-    icon: <User size={22} />,
-  },
-  {
     id: 2,
     label: 'Favorites',
     path: '/account/favorites',

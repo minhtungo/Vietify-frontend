@@ -11,7 +11,7 @@ import {
   useState,
 } from 'react';
 
-type ScreenType = 'main' | 'country' | 'search';
+type ScreenType = 'main' | 'categoryMenu' ;
 
 interface MobileMenuContext {
   state: boolean;
