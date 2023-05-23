@@ -28,7 +28,9 @@ const CartTemplate = () => {
 
       {cart.items.length ? (
         <div className="grid grid-cols-1 gap-x-12 small:grid-cols-[1fr_380px]">
-          <ItemsTemplate region={cart?.region} items={items} />
+          <div>
+            <ItemsTemplate region={cart?.region} items={items} />
+          </div>
 
           <div className="relative">
             <div className="sticky top-12 flex flex-col gap-y-6">

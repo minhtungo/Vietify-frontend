@@ -1,19 +1,26 @@
+import cn from '@lib/util/cn';
 import { ProductVariant } from '@medusajs/medusa';
 import { Separator } from '@ui/separator';
 import Text from '@ui/text';
 
-type LineItemOptionsProps = { variant: ProductVariant };
+interface LineItemOptionsProps {
+  variant: ProductVariant;
+  className?: string;
+}
 
-const LineItemOptions = ({ variant }: LineItemOptionsProps) => {
+const LineItemOptions: React.FC<LineItemOptionsProps> = ({
+  variant,
+  className,
+}) => {
   return (
-    <div className="text-small-regular flex h-4 items-center space-x-2.5 text-gray-700 ">
+    <div className={cn('flex h-4 items-center space-x-2.5', className)}>
       {variant.options.map((option, index) => {
         // const optionName =
         //   variant.product.options.find((opt) => opt.id === option.option_id)
         //     ?.title || 'Option';
         return (
           <div key={option.id}>
-            <Text size="md">{option.value}</Text>
+            <Text size="sm">{option.value}</Text>
             {index !== variant.options.length - 1 && (
               <Separator orientation="vertical" />
             )}

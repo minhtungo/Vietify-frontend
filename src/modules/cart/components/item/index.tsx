@@ -1,12 +1,11 @@
-import { useStore } from '@lib/context/store-context';
-import { LineItem, Region } from '@medusajs/medusa';
-import Heading from '@ui/heading';
 import LineItemOptions from '@common/line-item-options';
 import LineItemPrice from '@common/line-item-price';
-import NativeSelect from '@common/native-select';
 import Trash from '@icons/trash';
+import { useStore } from '@lib/context/store-context';
+import { LineItem, Region } from '@medusajs/medusa';
 import Thumbnail from '@modules/products/components/thumbnail';
 import Button from '@modules/ui/button';
+import Heading from '@ui/heading';
 import {
   Select,
   SelectContent,
@@ -24,19 +23,20 @@ const Item = ({ item, region }: ItemProps) => {
   const { updateItem, deleteItem } = useStore();
 
   return (
-    <div className="grid grid-cols-[120px_1fr] gap-x-4">
+    <div className="grid grid-cols-[100px_1fr] gap-x-6">
       <Thumbnail
         thumbnail={item.thumbnail}
         size="full"
         alt={`Product thumbnail ${item.id}`}
       />
+
       <div className="flex flex-1 flex-col justify-between">
         <div>
           <div className="flex items-center justify-between">
             <Heading>{item.title}</Heading>
             <LineItemPrice item={item} region={region} />
           </div>
-          <LineItemOptions variant={item.variant} />
+          <LineItemOptions variant={item.variant} className="mt-[2px]" />
         </div>
         <div className="flex items-center justify-between">
           <Select

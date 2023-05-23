@@ -17,11 +17,13 @@ const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
             .sort((a, b) => {
               return a.created_at > b.created_at ? -1 : 1;
             })
-            .map((item) => {
+            .map((item, i) => {
               return (
                 <>
                   <Item key={item.id} item={item} region={region} />
-                  <Separator className="last:hidden" />
+                  {i !== items.length - 1 && (
+                    <Separator className="last:hidden" />
+                  )}
                 </>
               );
             })

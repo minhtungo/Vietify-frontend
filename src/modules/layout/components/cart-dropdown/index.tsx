@@ -66,15 +66,19 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
                     ))}
                 </div>
               </div>
-
-              <div className="text-small-regular flex flex-col gap-y-4 px-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex flex-col">
-                    <Text span>Subtotal</Text>
-                    <Text span>Shipping and taxes calculated at checkout.</Text>
+              <div className="flex flex-col gap-y-4 px-4">
+                <Separator />
+                <div className="flex justify-between">
+                  <div>
+                    <Text size="md" className="!font-semibold">
+                      Thành tiền
+                    </Text>
+                    <Text size="sm">
+                      Phí vận chuyển và thuế được tính khi thanh toán.
+                    </Text>
                   </div>
 
-                  <Text className="font-semibold" span>
+                  <Text size="md" className="!font-semibold" span>
                     {formatAmount({
                       amount: cart.subtotal || 0,
                       region: cart.region,
