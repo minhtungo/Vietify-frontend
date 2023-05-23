@@ -109,9 +109,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit(onApply)} className="w-full">
-            <div className="grid grid-cols-[1fr_80px] gap-x-2">
+            <div className="grid grid-cols-[1fr_85px] gap-x-2">
               <Input
-                label="Enter your promo code"
+                label="Nhập mã khuyến mãi/Quà tặng"
                 {...register('discount_code', {
                   required: 'Code is required',
                 })}
@@ -119,11 +119,11 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
               />
 
               <Button
-                className="h-full w-full"
+                className="h-full w-full text-xs"
                 disabled={isLoading}
                 isLoading={isLoading}
               >
-                Apply
+                Áp dụng
               </Button>
             </div>
           </form>

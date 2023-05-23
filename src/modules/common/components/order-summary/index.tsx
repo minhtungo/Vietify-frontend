@@ -23,9 +23,9 @@ const OrderSummary = ({ cart }: OrderSummaryProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Order Summary</CardTitle>
+        <CardTitle>Tóm tắt đơn hàng</CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-2 pb-4">
+      <CardContent>
         <CartTotals cart={cart} />
       </CardContent>
       <CardFooter>
@@ -44,7 +44,7 @@ const OrderSummary = ({ cart }: OrderSummaryProps) => {
               })
             )}
           >
-            Go to checkout
+            Thanh Toán
           </Link>
         )}
       </CardFooter>

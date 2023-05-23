@@ -17,7 +17,7 @@ export const textVariants = cva('', {
       xs: 'text-xsmall-regular',
       sm: 'text-small-regular',
       md: 'text-sm lg:!text-[15px]',
-      lg: 'text-base leading-7 md:text-[17px] md:leading-8 xl:px-16 xl:text-lg',
+      lg: 'text-base leading-7 md:text-[17px] md:leading-8  xl:text-lg',
     },
   },
   defaultVariants: {

@@ -16,6 +16,7 @@ module.exports = withStoreConfig({
       'i.ibb.co',
       'demo2.pavothemes.com',
       'cdn0.fahasa.com',
+      'images-us.bookshop.org',
     ],
   },
 });

@@ -27,49 +27,58 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
   };
 
   return (
-    <div className="text-small-regular flex flex-col gap-y-2 text-foreground">
+    <div className="text-small-regular flex flex-col gap-y-2">
       <div className="flex items-center justify-between">
-        <Text size="sm" span>
-          Subtotal
+        <Text variant="dark" size="sm" span>
+          Thành tiền
         </Text>
-        <span>{getAmount(subtotal)}</span>
+        <Text variant="dark" size="sm" span>
+          {getAmount(subtotal)}
+        </Text>
       </div>
       <div className="flex items-center justify-between">
-        <Text size="sm" span>
-          Taxes
+        <Text variant="dark" size="sm" span>
+          Thuế
         </Text>
-        <span>{getAmount(tax_total)}</span>
+        <Text variant="dark" size="sm" span>
+          {getAmount(tax_total)}
+        </Text>
       </div>
-      <div className="flex flex-col gap-y-2">
-        {!!discount_total && (
-          <div className="flex items-center justify-between">
-            <Text size="sm" span>
-              Discount
-            </Text>
-            <span>- {getAmount(discount_total)}</span>
-          </div>
-        )}
-        {!!gift_card_total && (
-          <div className="flex items-center justify-between">
-            <Text size="sm" span>
-              Gift card
-            </Text>
-            <span>- {getAmount(gift_card_total)}</span>
-          </div>
-        )}
+
+      {!!discount_total && (
+        <div className="flex items-center justify-between">
+          <Text size="sm" variant="dark" span>
+            Giảm giá
+          </Text>
+          <Text size="sm" variant="dark" span>
+            - {getAmount(discount_total)}
+          </Text>
+        </div>
+      )}
+      {!!gift_card_total && (
         <div className="flex items-center justify-between">
           <Text size="sm" span>
-            Shipping
+            Gift card
           </Text>
-          <span>{getAmount(shipping_total)}</span>
+          <Text size="sm" variant="dark" span>
+            - {getAmount(gift_card_total)}
+          </Text>
         </div>
+      )}
+      <div className="flex items-center justify-between">
+        <Text size="sm" variant="dark" span>
+          Shipping
+        </Text>
+        <Text size="sm" variant="dark" span>
+          {getAmount(shipping_total)}
+        </Text>
       </div>
       <Separator className="my-1" />
-      <div className="mb-1 flex items-center justify-between">
-        <Text size="sm" span>
-          Total
+      <div className="flex items-center justify-between">
+        <Text size="sm" variant="dark" span className="font-semibold">
+          Tổng số tiền
         </Text>
-        <Text size="sm" span>
+        <Text size="sm" variant="dark" span className="font-semibold">
           {getAmount(total)}
         </Text>
       </div>

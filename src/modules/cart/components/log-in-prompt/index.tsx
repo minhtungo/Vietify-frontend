@@ -1,5 +1,5 @@
 import Heading from '@modules/ui/heading';
-import Button, { buttonVariants } from '@ui/button';
+import { buttonVariants } from '@ui/button';
 import Link from 'next/link';
 
 const LogInPrompt = () => {

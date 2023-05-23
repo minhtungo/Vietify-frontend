@@ -49,7 +49,7 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
         <PopoverContent className="hidden w-full space-y-4 small:block">
           {cart && items?.length ? (
             <>
-              <Heading className="px-4">Shopping Cart</Heading>
+              <Heading className="px-4">Giỏ Hàng</Heading>
               <div className="max-h-[400px] w-[400px] overflow-y-auto">
                 <div className="flex flex-col gap-3.5 px-4">
                   {items
@@ -91,7 +91,7 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
                         className: 'w-full',
                       })}
                     >
-                      View cart
+                      Xem giỏ hàng
                     </Link>
                   </PopoverClose>
                   <PopoverClose asChild>
@@ -99,7 +99,7 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
                       href="/checkout"
                       className={buttonVariants({ className: 'w-full' })}
                     >
-                      Checkout
+                      Thanh toán
                     </Link>
                   </PopoverClose>
                 </div>
@@ -108,12 +108,12 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
           ) : (
             <div className="flex flex-col items-center justify-center gap-y-4 px-4">
               <Text variant="dark" size="lg">
-                Your cart is empty.
+                Chưa có sản phẩm trong giỏ hàng của bạn.
               </Text>
               <PopoverClose asChild>
                 <Link href="/shop" className={buttonVariants({})}>
                   <Text className="sr-only">Go to all products page</Text>
-                  Explore Books
+                  Mua sắm ngay
                 </Link>
               </PopoverClose>
             </div>

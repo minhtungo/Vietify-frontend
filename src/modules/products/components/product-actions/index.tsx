@@ -65,67 +65,69 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className="flex flex-col gap-y-1">
       {/* {product.collection && (
         <Link href={`/collections/${product.collection.id}`}>
           {product.collection.title}
         </Link>
       )} */}
       <Heading size="md">{product?.title}</Heading>
-      <div className="mt-1 flex w-full flex-wrap justify-between">
+      <div className="flex w-full flex-wrap justify-between">
         <span className="w-1/2">
-          <Text className="font-semibold" span>
+          <Text size="sm" className="font-semibold" span>
             {`${book.author}: `}
           </Text>
-          <Text span>Nguyễn Nhật Ánh</Text>
-        </span>
-        <span className="">
-          <Text className="font-semibold" span>
-            {`${book.publisher}: `}
+          <Text size="sm" span>
+            Nguyễn Nhật Ánh
           </Text>
-          <Text span>Nguyễn Nhật Ánh</Text>
         </span>
         <span>
-          <Text className="font-semibold" span>
+          <Text size="sm" className="font-semibold" span>
+            {`${book.publisher}: `}
+          </Text>
+          <Text size="sm" span>
+            Nguyễn Nhật Ánh
+          </Text>
+        </span>
+        <span>
+          <Text size="sm" className="font-semibold" span>
             {`${book.sku}: `}
           </Text>
-          <Text span>123456789</Text>
+          <Text size="sm" span>
+            123456789
+          </Text>
         </span>
       </div>
 
       <div className="flex items-center space-x-1">
-        <ReviewRating className="" />
-        <span className="text-xs text-muted-foreground">{'(25 reviews)'}</span>
+        <ReviewRating />
+        <Text span className="!text-xs">
+          (25 reviews)
+        </Text>
       </div>
 
-      <div>
-        {selectedPrice ? (
-          <div className="flex items-center gap-2 text-primary">
-            <span
-              className={cn('text-xl-semi', {
-                'text-rose-600': selectedPrice.price_type === 'sale',
-              })}
-            >
-              {selectedPrice.calculated_price}
-            </span>
-            {selectedPrice.price_type === 'sale' && (
-              <>
-                <p>
-                  <span className="text-gray-500">Original: </span>
-                  <span className="line-through">
-                    {selectedPrice.original_price}
-                  </span>
-                </p>
-                <span className="text-rose-600">
-                  -{selectedPrice.percentage_diff}%
+      {selectedPrice ? (
+        <div className="mt-2 flex items-center gap-2 text-primary">
+          <Text variant="brand" span className={cn('!text-2xl font-semibold')}>
+            {selectedPrice.calculated_price}
+          </Text>
+          {selectedPrice.price_type === 'sale' && (
+            <>
+              <p>
+                <span className="text-gray-500">Original: </span>
+                <span className="line-through">
+                  {selectedPrice.original_price}
                 </span>
-              </>
-            )}
-          </div>
-        ) : (
-          <Skeleton className="h-9 w-16" />
-        )}
-      </div>
+              </p>
+              <span className="text-rose-600">
+                -{selectedPrice.percentage_diff}%
+              </span>
+            </>
+          )}
+        </div>
+      ) : (
+        <Skeleton className="mt-2 h-9 w-16 " />
+      )}
 
       {product?.variants.length > 1 && (
         <div className="flex flex-col gap-y-4">
@@ -157,7 +159,8 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           {!inStock ? book.outOfStock : book.addToCart}
         </Button>
         <Button variant="outline" className="gap-1">
-          <HeartIcon size={18} /> Wishlist
+          <HeartIcon size={18} />
+          <span className="hidden md:inline">Wishlist</span>
         </Button>
       </div>
 

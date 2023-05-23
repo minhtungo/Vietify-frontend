@@ -38,7 +38,7 @@ const ProductAccordion: FC<productAccordionProps> = ({
     ];
   }, [product]);
   return (
-    <Accordion type="single" collapsible className={className}>
+    <Accordion type="multiple" className={className}>
       {tabs.map(({ label, component }) => {
         return (
           <AccordionItem value={label} key={`${label}-accordion`}>

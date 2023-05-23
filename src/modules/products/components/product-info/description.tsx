@@ -21,7 +21,6 @@ const DescriptionTab = ({ product }: DescriptionTabProps) => {
       <Text
         ref={ref}
         className={cn('break-words', !isShowingMore && 'line-clamp-[5]')}
-        variant="dark"
       >
         {product.description}
       </Text>

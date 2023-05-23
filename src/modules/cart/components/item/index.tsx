@@ -24,31 +24,21 @@ const Item = ({ item, region }: ItemProps) => {
   const { updateItem, deleteItem } = useStore();
 
   return (
-    <div className="grid grid-cols-[122px_1fr] gap-x-4">
-      <div className="w-[122px]">
-        <Thumbnail
-          thumbnail={item.thumbnail}
-          size="full"
-          alt={`Product thumbnail ${item.id}`}
-        />
-      </div>
-      <div className="text-base-regular flex flex-col justify-between">
+    <div className="grid grid-cols-[120px_1fr] gap-x-4">
+      <Thumbnail
+        thumbnail={item.thumbnail}
+        size="full"
+        alt={`Product thumbnail ${item.id}`}
+      />
+      <div className="flex flex-1 flex-col justify-between">
         <div>
-          <div className="flex flex-1 items-center justify-between">
-            <Heading size="sm" className="mb-1 whitespace-normal">
-              {item.title}
-            </Heading>
-            <Button
-              onClick={() => deleteItem(item.id)}
-              variant="fade"
-              className="text-muted-foreground hover:text-secondary-foreground"
-            >
-              <Trash size={22} />
-            </Button>
+          <div className="flex items-center justify-between">
+            <Heading>{item.title}</Heading>
+            <LineItemPrice item={item} region={region} />
           </div>
           <LineItemOptions variant={item.variant} />
         </div>
-        <div className="text-small-regular flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <Select
             onValueChange={(value) =>
               updateItem({
@@ -81,8 +71,9 @@ const Item = ({ item, region }: ItemProps) => {
                 })}
             </SelectContent>
           </Select>
-
-          <LineItemPrice item={item} region={region} />
+          <Button onClick={() => deleteItem(item.id)} variant="fade">
+            <Trash size={20} className="text-muted-foreground/80" />
+          </Button>
         </div>
       </div>
     </div>

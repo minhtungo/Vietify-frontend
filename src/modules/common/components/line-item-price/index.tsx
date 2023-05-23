@@ -22,9 +22,8 @@ const LineItemPrice = ({
   return (
     <div className="flex flex-col text-right">
       <Text
-        size="md"
         span
-        className="font-semibold"
+        className="!font-semibold"
         variant={hasReducedPrice ? 'brand' : 'dark'}
       >
         {formatAmount({
