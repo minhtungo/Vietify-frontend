@@ -36,8 +36,8 @@ const Carousel: React.FC<CarouselProps> = ({
   navigation = true,
   prevActivateId = '',
   nextActivateId = '',
-  prevButtonClassName = 'left-2 lg:left-2.5',
-  nextButtonClassName = 'right-2 lg:right-2.5',
+  prevButtonClassName,
+  nextButtonClassName,
   breakpoints,
   autoplay,
   grid,
@@ -82,13 +82,17 @@ const Carousel: React.FC<CarouselProps> = ({
           )}
         >
           <div
-            className={cn('carousel-button', prevButtonClassName)}
+            className={cn(
+              prevButtonClassName || 'carousel-button left-2 lg:left-2.5'
+            )}
             id={prevActivateId}
           >
             <ArrowBack />
           </div>
           <div
-            className={cn('carousel-button', nextButtonClassName)}
+            className={cn(
+              nextButtonClassName || 'carousel-button right-2 lg:right-2.5'
+            )}
             id={nextActivateId}
           >
             <ArrowForward />

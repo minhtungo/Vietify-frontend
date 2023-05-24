@@ -14,8 +14,6 @@ const Hero = () => {
       speed={1100}
       prevActivateId="prev-banner"
       nextActivateId="next-banner"
-      prevButtonClassName="left-2 lg:left-2.5"
-      nextButtonClassName="right-2 lg:right-2.5"
     >
       {BANNERS.map((banner) => (
         <SwiperSlide key={`banner-${banner.id}`}>
