@@ -6,6 +6,7 @@ import Button from '@ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
 import { useMeCustomer } from 'medusa-react';
 import BillingAddress from '../billing_address';
+import SavedAddress from '../saved-address';
 import ShippingAddress from '../shipping-address';
 
 const Addresses = () => {
@@ -50,78 +51,29 @@ const Addresses = () => {
           </>
         ) : (
           <>
-            <div className="text-small-regular bg-accent/50 px-8 py-6">
+            <div className="bg-accent/30 px-6 py-4">
               {cart && cart.shipping_address ? (
-                <div className="flex w-full items-start justify-between">
-                  <div className="flex flex-col">
-                    <span>{`${cart.shipping_address.first_name} ${cart.shipping_address.last_name}`}</span>
-                    <span>{`${cart.shipping_address.address_1} ${cart.shipping_address.address_2}`}</span>
-                    <span>{`${cart.shipping_address.postal_code}, ${cart.shipping_address.city}`}</span>
-                    {/* <span>
-                      {cart.shipping_address.country_code?.toUpperCase()}
-                    </span> */}
-
-                    <span>{cart.shipping_address.phone}</span>
-                    <span>{cart.email}</span>
-                  </div>
-
-                  <Button variant="link" onClick={setEdit}>
-                    Edit
-                  </Button>
-                </div>
+                <SavedAddress
+                  address={cart.shipping_address}
+                  email={cart.email}
+                  title="Giao tới"
+                />
               ) : (
                 <Spinner />
               )}
             </div>
             {!checked && (
-              <>
-                <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 font-mono text-sm text-white">
-                    2
-                  </div>
-                  <h2>Billing address</h2>
-                </div>
-                <div className="text-small-regular bg-gray-50 px-8 py-6">
-                  {cart && cart.billing_address ? (
-                    <div className="flex items-start gap-x-8">
-                      <div className="text-small-regular flex h-6 min-w-[24px] items-center justify-center rounded-full bg-green-400 text-white">
-                        ✓
-                      </div>
-                      <div className="flex w-full items-start justify-between">
-                        <div className="flex flex-col">
-                          <span>
-                            {cart.billing_address.first_name}{' '}
-                            {cart.billing_address.last_name}
-                          </span>
-                          <span>
-                            {cart.billing_address.address_1}{' '}
-                            {cart.billing_address.address_2}
-                          </span>
-                          <span>
-                            {cart.billing_address.postal_code},{' '}
-                            {cart.billing_address.city}
-                          </span>
-                          <span>
-                            {cart.billing_address.country_code?.toUpperCase()}
-                          </span>
-
-                          <div className="mt-4 flex flex-col">
-                            <span>{cart.billing_address.phone}</span>
-                          </div>
-                        </div>
-
-                        <Button variant="link" onClick={setEdit}>
-                          Edit
-                        </Button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="">
-                      <Spinner />
-                    </div>
-                  )}
-                </div>
-              </>
+              <div className="mt-4 bg-accent/30 px-6 py-4">
+                {cart && cart.billing_address ? (
+                  <SavedAddress
+                    address={cart.billing_address}
+                    email={cart.email}
+                    title="Địa chỉ thanh toán"
+                  />
+                ) : (
+                  <Spinner />
+                )}
+              </div>
             )}
           </>
         )}

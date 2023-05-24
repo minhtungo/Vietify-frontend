@@ -75,7 +75,7 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
                       className="mb-1 !font-semibold"
                       variant="dark"
                     >
-                      Thành tiền
+                      Tạm tính
                     </Text>
                     <Text size="sm">
                       Phí vận chuyển và thuế được tính khi thanh toán.

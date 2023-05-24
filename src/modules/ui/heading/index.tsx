@@ -30,37 +30,26 @@ interface HeadingProps
 }
 
 const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, variant, size, as, children, ...props }, ref) => {
-    if (as === 'h1') {
-      return (
-        <h1
-          ref={ref}
-          {...props}
-          className={cn(headingVariants({ variant, size, className }))}
-        >
-          {children}
-        </h1>
-      );
-    }
-    if (as === 'h2') {
-      return (
-        <h2
-          ref={ref}
-          {...props}
-          className={cn(headingVariants({ variant, size, className }))}
-        >
-          {children}
-        </h2>
-      );
-    }
+  ({ className, variant, size, as = 'h3', children, ...props }, ref) => {
+    const headingComponents: any = {
+      h1: 'h1',
+      h2: 'h2',
+      h3: 'h3',
+      h4: 'h4',
+      h5: 'h5',
+      h6: 'h6',
+    };
+
+    const HeadingComponent = headingComponents[as] || 'h3';
+
     return (
-      <h3
+      <HeadingComponent
         ref={ref}
         {...props}
         className={cn(headingVariants({ variant, size, className }))}
       >
         {children}
-      </h3>
+      </HeadingComponent>
     );
   }
 );

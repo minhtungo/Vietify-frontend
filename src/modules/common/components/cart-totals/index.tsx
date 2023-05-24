@@ -30,7 +30,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     <div className="text-small-regular flex flex-col gap-y-2">
       <div className="flex items-center justify-between">
         <Text variant="dark" size="md" span>
-          Thành tiền
+          Tạm tính
         </Text>
         <Text variant="dark" size="md" span>
           {getAmount(subtotal)}

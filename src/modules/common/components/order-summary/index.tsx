@@ -51,7 +51,7 @@ const OrderSummary = ({ cart }: OrderSummaryProps) => {
           </Link>
         )}
         {pathname === '/cart' && (
-          <div className="mt-6">
+          <div className="mt-6 hidden md:block">
             <Text variant="dark" size="lg" className="mb-2 font-semibold">
               Phương thức thanh toán
             </Text>

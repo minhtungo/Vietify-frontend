@@ -21,7 +21,7 @@ const HeaderList = () => {
           <NavigationMenuItem key={item.id}>
             <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="flex min-w-[150px] flex-col">
+              <ul className="min-w-[150px]">
                 {item.subMenu.map((c) => (
                   <li key={c.id}>
                     <ListItem href={`/category/${item.path}`}>

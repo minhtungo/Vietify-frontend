@@ -1,5 +1,3 @@
-import Hamburger from '@common/hamburger';
-import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import useScrollDirection from '@lib/hooks/use-scroll-direction';
 import cn from '@lib/util/cn';
 import Logo from '@modules/common/components/logo';
@@ -19,8 +17,6 @@ export default function Nav() {
   // }, [pathname]);
 
   const scrollDirection = useScrollDirection();
-
-  const { toggle } = useMobileMenu();
 
   return (
     <header

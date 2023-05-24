@@ -33,7 +33,7 @@ const CartTemplate = () => {
           </div>
 
           <div className="relative">
-            <div className="sticky top-12 flex flex-col gap-y-6">
+            <div className="sticky top-12 mt-6 flex flex-col gap-y-6 lg:mt-0">
               {cart && cart.region && (
                 <>
                   <OrderSummary cart={cart} />

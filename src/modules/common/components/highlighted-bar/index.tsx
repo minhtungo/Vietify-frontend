@@ -24,7 +24,7 @@ const HighlightedBar: React.FC<indexProps> = ({ className }) => {
         {ANNOUNCEMENTS.length > 1 ? (
           <Carousel
             autoplay={{ delay: 4000 }}
-            className="max-w-3xl text-center"
+            className="w-full max-w-3xl text-center"
             loop
             speed={1000}
             prevActivateId="prev-announcement"

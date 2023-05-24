@@ -12,14 +12,12 @@ const ListItem = React.forwardRef<
       href={href!}
       ref={ref}
       className={cn(
-        'block select-none px-4 py-2 transition-colors hover:bg-accent focus:bg-accent',
+        'block select-none px-4 py-2 text-sm font-medium transition-colors hover:bg-accent focus:bg-accent',
         className
       )}
       {...props}
     >
-      <Text variant="dark" className="font-medium leading-none" span>
-        {children}
-      </Text>
+      {children}
     </Link>
   );
 });

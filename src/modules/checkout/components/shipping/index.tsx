@@ -138,7 +138,7 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                             {option.label}
                           </Label>
                         </div>
-                        <Text size='md'>{option.price}</Text>
+                        <Text size="md">{option.price}</Text>
                       </div>
                     );
                   })
