@@ -1,13 +1,12 @@
 import Spinner from '@icons/spinner';
 import { useCheckout } from '@lib/context/checkout-context';
-import Button from '@ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
-import BillingAddress from '../billing_address';
-import ShippingAddress from '../shipping-address';
 import { Checkbox } from '@modules/ui/checkbox';
 import { Label } from '@modules/ui/label';
+import Button from '@ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
 import { useMeCustomer } from 'medusa-react';
-import Heading from '@modules/ui/heading';
+import BillingAddress from '../billing_address';
+import ShippingAddress from '../shipping-address';
 
 const Addresses = () => {
   const {
@@ -17,14 +16,15 @@ const Addresses = () => {
     handleSubmit,
     cart,
   } = useCheckout();
-const { customer } = useMeCustomer();
+  const { customer } = useMeCustomer();
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Shipping address</CardTitle>
+      <CardHeader className="mb-2">
+        <CardTitle>Địa Chỉ Giao Hàng</CardTitle>
       </CardHeader>
-      <CardContent>
-        {isEdit || (customer && (customer.billing_addresses?.length || 0) > 0) ? (
+      <CardContent className="pb-6">
+        {isEdit ||
+        (customer && (customer.billing_addresses?.length || 0) > 0) ? (
           <>
             <ShippingAddress />
             <div className="mt-6 flex items-center space-x-2">

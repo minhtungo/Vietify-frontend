@@ -45,7 +45,7 @@ const ShippingAddress = () => {
               required
             />
             <Input
-              label="Phone"
+              label="Phone number"
               {...register('shipping_address.phone')}
               autoComplete="tel"
               errors={errors}
@@ -61,6 +61,7 @@ const ShippingAddress = () => {
             autoComplete="address-line1"
             errors={errors}
             touched={touchedFields}
+            required
           />
           <Input
             label="Apartments/Unit"

@@ -20,12 +20,8 @@ const LineItemPrice = ({
   const hasReducedPrice = (item.total || 0) < originalPrice;
 
   return (
-    <div className="flex flex-col text-right">
-      <Text
-        span
-        className="!font-semibold"
-        variant={hasReducedPrice ? 'brand' : 'dark'}
-      >
+    <div className="flex flex-col">
+      <Text span className="!font-semibold" variant="brand" size="lg">
         {formatAmount({
           amount: item.total || 0,
           region: region,

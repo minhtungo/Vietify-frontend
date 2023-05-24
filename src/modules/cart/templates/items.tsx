@@ -11,7 +11,7 @@ type ItemsTemplateProps = {
 
 const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
   return (
-    <div className="grid grid-cols-1 gap-y-6">
+    <div className="grid grid-cols-1 gap-y-4">
       {items && region
         ? items
             .sort((a, b) => {

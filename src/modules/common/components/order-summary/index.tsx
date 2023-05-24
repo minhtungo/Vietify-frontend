@@ -8,6 +8,9 @@ import { useEffect, useState } from 'react';
 import cn from '@lib/util/cn';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
 import { useRouter } from 'next/router';
+import Text from '@modules/ui/text';
+import { PAYMENTS } from '@static/payment,';
+import Image from 'next/image';
 
 interface OrderSummaryProps {
   cart: Omit<Cart, 'refundable_amount' | 'refunded_total'>;
@@ -28,7 +31,7 @@ const OrderSummary = ({ cart }: OrderSummaryProps) => {
       <CardContent>
         <CartTotals cart={cart} />
       </CardContent>
-      <CardFooter>
+      <CardFooter className="grid">
         {isCheckout ? (
           <PaymentButton
             paymentSession={cart?.payment_session}
@@ -46,6 +49,26 @@ const OrderSummary = ({ cart }: OrderSummaryProps) => {
           >
             Thanh Toán
           </Link>
+        )}
+        {pathname === '/cart' && (
+          <div className="mt-6">
+            <Text variant="dark" size="lg" className="mb-2 font-semibold">
+              Phương thức thanh toán
+            </Text>
+            <ul className="flex flex-wrap items-center gap-4">
+              {PAYMENTS.map((item) => (
+                <li key={`payment-${item.id}`}>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    height={item.height}
+                    width={item.width}
+                    className="h-full w-12"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </CardFooter>
     </Card>

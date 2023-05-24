@@ -3,11 +3,7 @@ import { BsBagCheck } from 'react-icons/bs';
 
 import { IconProps } from 'types/icon';
 
-interface Props extends IconProps {
-  className?: string;
-}
-
-const Order: React.FC<Props> = ({ className, ...props }) => {
+const Order: React.FC<IconProps> = ({ className, ...props }) => {
   return <BsBagCheck className={cn(className)} {...props} />;
 };
 

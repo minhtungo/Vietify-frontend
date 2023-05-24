@@ -19,7 +19,7 @@ const Widgets: React.FC<WidgetsProps> = ({ widgets }) => {
     <div className="grid grid-cols-2 gap-5 pb-[50px] sm:gap-9 md:grid-cols-7 lg:gap-11 xl:grid-cols-12 xl:gap-7">
       <WidgetAbout
         social={social}
-        className="col-span-full mb-4 border-b border-gray-400/20 sm:col-span-1 sm:mb-0 sm:border-b-0 md:col-span-3"
+        className="col-span-full mb-4 border-b border-border sm:col-span-1 sm:mb-0 sm:border-b-0 md:col-span-3"
       />
       {widgets?.map((widget) => (
         <WidgetLink

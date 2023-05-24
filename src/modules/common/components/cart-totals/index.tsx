@@ -29,56 +29,56 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
   return (
     <div className="text-small-regular flex flex-col gap-y-2">
       <div className="flex items-center justify-between">
-        <Text variant="dark" size="sm" span>
+        <Text variant="dark" size="md" span>
           Thành tiền
         </Text>
-        <Text variant="dark" size="sm" span>
+        <Text variant="dark" size="md" span>
           {getAmount(subtotal)}
         </Text>
       </div>
       <div className="flex items-center justify-between">
-        <Text variant="dark" size="sm" span>
+        <Text variant="dark" size="md" span>
           Thuế
         </Text>
-        <Text variant="dark" size="sm" span>
+        <Text variant="dark" size="md" span>
           {getAmount(tax_total)}
         </Text>
       </div>
 
       {!!discount_total && (
         <div className="flex items-center justify-between">
-          <Text size="sm" variant="dark" span>
+          <Text size="md" variant="dark" span>
             Giảm giá
           </Text>
-          <Text size="sm" variant="dark" span>
+          <Text size="md" variant="dark" span>
             - {getAmount(discount_total)}
           </Text>
         </div>
       )}
       {!!gift_card_total && (
         <div className="flex items-center justify-between">
-          <Text size="sm" span>
+          <Text size="md" span>
             Gift card
           </Text>
-          <Text size="sm" variant="dark" span>
+          <Text size="md" variant="dark" span>
             - {getAmount(gift_card_total)}
           </Text>
         </div>
       )}
       <div className="flex items-center justify-between">
-        <Text size="sm" variant="dark" span>
+        <Text size="md" variant="dark" span>
           Shipping
         </Text>
-        <Text size="sm" variant="dark" span>
+        <Text size="md" variant="dark" span>
           {getAmount(shipping_total)}
         </Text>
       </div>
       <Separator className="my-1" />
       <div className="flex items-center justify-between">
-        <Text size="sm" variant="dark" span className="font-semibold">
+        <Text size="md" variant="dark" span className="font-semibold">
           Tổng số tiền
         </Text>
-        <Text size="sm" variant="dark" span className="font-semibold">
+        <Text size="md" variant="dark" span className="font-semibold">
           {getAmount(total)}
         </Text>
       </div>

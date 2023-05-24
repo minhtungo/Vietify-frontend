@@ -17,6 +17,7 @@ const BillingAddress = () => {
               autoComplete="given-name"
               errors={errors}
               touched={touchedFields}
+              required
             />
             <Input
               label="Last name"
@@ -26,6 +27,7 @@ const BillingAddress = () => {
               autoComplete="family-name"
               errors={errors}
               touched={touchedFields}
+              required
             />
           </div>
           <div className="grid grid-cols-2 gap-x-3">
@@ -35,6 +37,7 @@ const BillingAddress = () => {
               autoComplete="tel"
               errors={errors}
               touched={touchedFields}
+              required
             />
           </div>
           <Input
@@ -45,6 +48,7 @@ const BillingAddress = () => {
             autoComplete="address-line1"
             errors={errors}
             touched={touchedFields}
+            required
           />
           <Input
             label="Apartments/Unit"
@@ -62,6 +66,7 @@ const BillingAddress = () => {
               autoComplete="address-level2"
               errors={errors}
               touched={touchedFields}
+              required
             />
             <Input
               label="Postal code"
@@ -71,6 +76,7 @@ const BillingAddress = () => {
               autoComplete="postal-code"
               errors={errors}
               touched={touchedFields}
+              required
             />
           </div>
 
@@ -80,6 +86,7 @@ const BillingAddress = () => {
             autoComplete="address-level1"
             errors={errors}
             touched={touchedFields}
+            required
           />
         </div>
       )}

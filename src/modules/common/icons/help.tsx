@@ -3,14 +3,7 @@ import { IoIosHelpCircleOutline } from 'react-icons/io';
 
 import { IconProps } from 'types/icon';
 
-interface IoIosHelpCircleOutlineProps extends IconProps {
-  className?: string;
-}
-
-const Help: React.FC<IoIosHelpCircleOutlineProps> = ({
-  className,
-  ...props
-}) => {
+const Help: React.FC<IconProps> = ({ className, ...props }) => {
   return <IoIosHelpCircleOutline className={cn(className)} {...props} />;
 };
 

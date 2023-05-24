@@ -51,7 +51,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     default:
       return (
         <Button className={cn(className)} disabled>
-          Select a payment method
+          Chọn phương thức thanh toán
         </Button>
       );
   }

@@ -49,7 +49,7 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
         <PopoverContent className="hidden w-full space-y-4 small:block">
           {cart && items?.length ? (
             <>
-              <Heading className="px-4">Giỏ Hàng</Heading>
+              <Heading className="px-4 !text-xl">Giỏ Hàng</Heading>
               <div className="max-h-[400px] w-[400px] overflow-y-auto">
                 <div className="flex flex-col gap-3.5 px-4">
                   {items
@@ -70,7 +70,11 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
                 <Separator />
                 <div className="flex justify-between">
                   <div>
-                    <Text size="md" className="!font-semibold">
+                    <Text
+                      size="md"
+                      className="mb-1 !font-semibold"
+                      variant="dark"
+                    >
                       Thành tiền
                     </Text>
                     <Text size="sm">
@@ -78,7 +82,12 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
                     </Text>
                   </div>
 
-                  <Text size="md" className="!font-semibold" span>
+                  <Text
+                    size="md"
+                    className="!font-semibold"
+                    span
+                    variant="dark"
+                  >
                     {formatAmount({
                       amount: cart.subtotal || 0,
                       region: cart.region,

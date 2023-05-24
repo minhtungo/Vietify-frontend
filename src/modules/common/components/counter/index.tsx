@@ -14,28 +14,32 @@ const Counter: React.FC<CounterProps> = ({
   return (
     <div
       className={cn(
-        'flex h-9 items-center gap-1 rounded bg-accent px-2',
+        'relative flex h-10 rounded-md border border-border bg-transparent',
         className
       )}
     >
       <button
         onClick={onDecrement}
-        className="scale-80 flex h-6 w-6 shrink-0 transform items-center justify-center rounded-full text-foreground transition-all duration-300 ease-in-out hover:bg-gray-300/60 lg:scale-100"
+        className="h-full rounded-l-md px-2 outline-none transition duration-200 ease-in-out hover:bg-accent"
       >
         <span className="sr-only">Minus Button</span>
-        <MinusIcon width={20} height={20} />
+        <MinusIcon className="m-auto h-5 w-5" />
       </button>
-      <Text size="md" variant="dark" className="px-1">
+      <Text
+        size="md"
+        variant="dark"
+        className="flex w-12 items-center justify-center border-x border-border font-semibold"
+      >
         {value}
       </Text>
       <button
         onClick={onIncrement}
         disabled={disabled}
-        className="scale-80 flex h-6 w-6 shrink-0 transform items-center justify-center rounded-full text-foreground transition-all duration-300 ease-in-out hover:bg-gray-300/60 lg:scale-100"
+        className="h-full rounded-r-md px-2 outline-none transition duration-200 ease-in-out hover:bg-accent"
         title={disabled ? 'Out of Stock' : ''}
       >
         <span className="sr-only">Plus button</span>
-        <PlusIcon width={20} height={20} />
+        <PlusIcon className="m-auto h-5 w-5" />
       </button>
     </div>
   );

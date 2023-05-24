@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from '@modules/ui/input';
 import Button from '@modules/ui/button';
+import { emailRegex } from '@lib/util/regex';
 
 interface Props {
   className?: string;
@@ -64,13 +65,14 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
             {...register('email', {
               required: 'Email required',
               pattern: {
-                value:
-                  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: `Error`,
+                value: emailRegex,
+                message: 'Must be a valid email',
               },
             })}
-            // error={errors.email?.message}
           />
+          {errors.email?.message && (
+            <p className="my-2 text-primary">{errors.email?.message}</p>
+          )}
           <Button
             variant="fade"
             className="text-primary-muted absolute right-0 top-0 h-full"

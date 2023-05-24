@@ -1,8 +1,8 @@
 import cn from '@lib/util/cn';
 import { onlyUnique } from '@lib/util/only-unique';
 import { ProductOption } from '@medusajs/medusa';
+import Text from '@modules/ui/text';
 import Button from '@ui/button';
-import clsx from 'clsx';
 import React from 'react';
 
 type OptionSelectProps = {
@@ -22,7 +22,9 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
 
   return (
     <div className="flex flex-col gap-y-2">
-      <span className="text-base-regular">Select {title}</span>
+      <Text span size="sm">
+        Select {title}
+      </Text>
       <div className="flex gap-2">
         {filteredOptions.map((v) => {
           return (
@@ -31,8 +33,9 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               variant="outline"
               key={v}
               className={cn(
-                'text-xsmall-regular h-[35px] w-fit border !font-medium ',
-                v === current && 'border-brand bg-accent text-accent-foreground'
+                'h-8 w-fit border !font-medium ',
+                v === current &&
+                  'border-muted-foreground/30 bg-accent text-accent-foreground'
               )}
             >
               {v}

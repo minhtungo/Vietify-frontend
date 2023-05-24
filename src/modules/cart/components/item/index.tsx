@@ -3,16 +3,10 @@ import LineItemPrice from '@common/line-item-price';
 import Trash from '@icons/trash';
 import { useStore } from '@lib/context/store-context';
 import { LineItem, Region } from '@medusajs/medusa';
+import Counter from '@modules/common/components/counter';
 import Thumbnail from '@modules/products/components/thumbnail';
 import Button from '@modules/ui/button';
 import Heading from '@ui/heading';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@ui/select';
 
 type ItemProps = {
   item: Omit<LineItem, 'beforeInsert'>;
@@ -21,6 +15,20 @@ type ItemProps = {
 
 const Item = ({ item, region }: ItemProps) => {
   const { updateItem, deleteItem } = useStore();
+
+  const decreaseQuantity = () => {
+    if (item.quantity === 1) return;
+    updateItem({
+      lineId: item.id,
+      quantity: item.quantity - 1,
+    });
+  };
+  const increaseQuantity = () => {
+    updateItem({
+      lineId: item.id,
+      quantity: item.quantity + 1,
+    });
+  };
 
   return (
     <div className="grid grid-cols-[100px_1fr] gap-x-6">
@@ -39,7 +47,14 @@ const Item = ({ item, region }: ItemProps) => {
           <LineItemOptions variant={item.variant} className="mt-[2px]" />
         </div>
         <div className="flex items-center justify-between">
-          <Select
+          <Counter
+            value={item.quantity}
+            className=""
+            onIncrement={increaseQuantity}
+            onDecrement={decreaseQuantity}
+            disabled={item.variant.inventory_quantity <= item.quantity}
+          />
+          {/* <Select
             onValueChange={(value) =>
               updateItem({
                 lineId: item.id,
@@ -70,9 +85,9 @@ const Item = ({ item, region }: ItemProps) => {
                   );
                 })}
             </SelectContent>
-          </Select>
+          </Select> */}
           <Button onClick={() => deleteItem(item.id)} variant="fade">
-            <Trash size={20} className="text-muted-foreground/80" />
+            <Trash size={21} className="text-muted-foreground/80" />
           </Button>
         </div>
       </div>
