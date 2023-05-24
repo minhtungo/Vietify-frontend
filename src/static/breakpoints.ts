@@ -65,15 +65,15 @@ const CATEGORY_BREAKPOINTS = {
     spaceBetween: 15,
   },
   '768': {
-    slidesPerView: 4,
+    slidesPerView: 6,
     spaceBetween: 10,
   },
   '680': {
-    slidesPerView: 3,
+    slidesPerView: 4,
     spaceBetween: 8,
   },
   '0': {
-    slidesPerView: 2,
+    slidesPerView: 3,
   },
 };
 

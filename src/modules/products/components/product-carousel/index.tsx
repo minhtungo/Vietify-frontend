@@ -40,8 +40,8 @@ const ProductCarousel: FC<ProductCarouselProps> = ({
       prevActivateId={prevActivateId}
       nextActivateId={nextActivateId}
       className={cn(className)}
-      prevButtonClassName="-left-2 md:-left-1 lg:-left-2 xl:-left-2.5 2xl:left-5 -top-12 3xl:top-auto 3xl:-translate-y-2 4xl:-translate-y-10"
-      nextButtonClassName="-right-2 md:-right-1 lg:-right-2 xl:-right-2.5 2xl:right-5 -top-12 3xl:top-auto 3xl:-translate-y-2 4xl:-translate-y-10"
+      prevButtonClassName="-left-2 md:-left-1 lg:-left-2 xl:-left-0 -top-12 3xl:top-auto 3xl:-translate-y-2 carousel-button"
+      nextButtonClassName="-right-2 md:-right-1 lg:-right-2 xl:-right-0 -top-12 3xl:top-auto 3xl:-translate-y-2 carousel-button"
     >
       {isLoading ? (
         <ul className="grid grid-cols-2 gap-x-2 small:grid-cols-5">

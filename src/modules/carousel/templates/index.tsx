@@ -83,7 +83,7 @@ const Carousel: React.FC<CarouselProps> = ({
         >
           <div
             className={cn(
-              prevButtonClassName || 'carousel-button left-2 lg:left-2.5'
+              prevButtonClassName || 'carousel-button left-2 lg:left-1'
             )}
             id={prevActivateId}
           >
@@ -91,7 +91,7 @@ const Carousel: React.FC<CarouselProps> = ({
           </div>
           <div
             className={cn(
-              nextButtonClassName || 'carousel-button right-2 lg:right-2.5'
+              nextButtonClassName || 'carousel-button right-2 lg:right-1'
             )}
             id={nextActivateId}
           >

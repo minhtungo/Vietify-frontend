@@ -17,20 +17,17 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
   return (
     <div
       className={cn(
-        'flex w-full items-center bg-cover bg-center bg-no-repeat',
+        'flex h-full w-full items-center bg-cover bg-center bg-no-repeat',
         'min-h-[420px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[550px]',
+        '',
         className
       )}
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1604361709763-44f7fc6dd075?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'`,
+        backgroundImage: `url('${image.desktop.url}')`,
       }}
     >
-      <div
-        className={cn(
-          'mx-auto flex h-full max-w-[480px] flex-col px-6 text-center md:max-w-[550px] xl:max-w-[750px] 2xl:max-w-[850px]'
-        )}
-      >
-        <div className="text-center">
+      <div className="flex h-full w-full justify-center">
+        <div className="max-w-[480px] px-6 text-center md:max-w-[550px] xl:max-w-[750px] 2xl:max-w-[850px]">
           <Heading as="h2" variant="light" size="xl">
             {title}
           </Heading>
