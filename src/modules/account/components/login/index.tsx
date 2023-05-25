@@ -4,10 +4,11 @@ import Google from '@icons/google';
 import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
+import cn from '@lib/util/cn';
 import Link from '@modules/common/components/link';
 import { Checkbox } from '@modules/ui/checkbox';
 import Text from '@modules/ui/text';
-import Button from '@ui//button';
+import Button, { buttonVariants } from '@ui//button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -102,14 +103,32 @@ const Login = () => {
             <div className="h-[0.5px] flex-grow bg-border" />
           </div>
           <div className="flex w-full justify-between gap-3">
-            <Button variant="outline" className="w-full">
+            <a
+              href={`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/auth/google`}
+              type="button"
+              className={cn(
+                buttonVariants({
+                  variant: 'outline',
+                  className: 'w-full',
+                })
+              )}
+            >
               <Google className="mr-2 h-4 w-4" />
               Google
-            </Button>
-            <Button variant="outline" className="w-full">
+            </a>
+            <a
+              href={`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/auth/facebook`}
+              type="button"
+              className={cn(
+                buttonVariants({
+                  variant: 'outline',
+                  className: 'w-full',
+                })
+              )}
+            >
               <Facebook className="mr-2 h-4 w-4" />
               Facebook
-            </Button>
+            </a>
           </div>
         </CardContent>
 
