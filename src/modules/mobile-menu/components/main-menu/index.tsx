@@ -1,20 +1,17 @@
-import { useMobileMenu } from '@lib/context/mobile-menu-context';
-import ArrowForward from '@modules/common/icons/arrow-forward';
 import User from '@modules/common/icons/user';
 import { Separator } from '@modules/ui/separator';
 import { SheetClose } from '@modules/ui/sheet';
 import Text from '@modules/ui/text';
 import { SITE_HEADER } from '@static/header';
-import { useCollections, useMeCustomer } from 'medusa-react';
+import { useMeCustomer, useProductCategories } from 'medusa-react';
 import Link from 'next/link';
 
-const MainMenu = () => {
-  const { collections } = useCollections();
-  const { customer } = useMeCustomer();
+import { ProductCategory } from '@medusajs/medusa';
+import ListItem from '../list-item';
 
-  const {
-    screen: [_, setScreen],
-  } = useMobileMenu();
+const MainMenu = () => {
+  const { customer } = useMeCustomer();
+  const { product_categories, isLoading } = useProductCategories();
 
   return (
     <div className="flex flex-1 flex-col justify-between gap-y-3 py-6">
@@ -37,26 +34,11 @@ const MainMenu = () => {
         </Text>
       )}
       <Separator />
-      <ul className="flex flex-col gap-y-2">
-        {collections ? (
+      <ul className="flex flex-col gap-y-2 ">
+        {product_categories && product_categories.length > 0 ? (
           <>
-            {collections.map((collection) => (
-              <li key={collection.id} className="py-1">
-                <button
-                  onClick={() => setScreen('categoryMenu')}
-                  className="group inline-flex w-full items-center justify-between"
-                >
-                  <Text
-                    variant="dark"
-                    span
-                    sr={`Go to ${collection.title}`}
-                    className="transition duration-100 ease-in-out group-hover:font-semibold"
-                  >
-                    {collection.title}
-                  </Text>
-                  <ArrowForward className="text-foreground/90" />
-                </button>
-              </li>
+            {product_categories.map((category: ProductCategory) => (
+              <ListItem category={category} key={category.id} />
             ))}
           </>
         ) : null}

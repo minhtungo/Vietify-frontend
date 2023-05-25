@@ -66,26 +66,6 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
           )}
         </div>
       </RadioGroup>
-      {/* <button
-        className={'grid grid-cols-[12px_1fr] gap-x-4 px-8 py-4'}
-        onClick={setSelected}
-        disabled={disabled}
-      >
-        <Radio checked={selected} />
-        <div className="flex flex-col text-left">
-          <Heading className="text-base-semi leading-none text-gray-900">
-            {PaymentInfoMap[paymentSession.provider_id].title}
-          </Heading>
-          <span className="text-small-regular mt-2 text-gray-700">
-            {PaymentInfoMap[paymentSession.provider_id].description}
-          </span>
-          {selected && (
-            <div className="mt-4 w-full">
-              <PaymentElement paymentSession={paymentSession} />
-            </div>
-          )}
-        </div>
-      </button> */}
     </div>
   );
 };

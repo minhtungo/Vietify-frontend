@@ -1,19 +1,19 @@
-import MinusIcon from '@icons/minus';
-import PlusIcon from '@icons/plus';
 import { ProductCollection, StoreGetProductsParams } from '@medusajs/medusa';
 import PriceSelector from '@modules/common/components/price-selector';
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@ui/collapsible';
-import { Separator } from '@ui/separator';
-import { useCollections } from 'medusa-react';
-import { Dispatch, FC, SetStateAction, ChangeEvent } from 'react';
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@modules/ui/accordion';
+import { Checkbox } from '@modules/ui/checkbox';
+import { Label } from '@modules/ui/label';
+import Text from '@modules/ui/text';
+
+import { useProductCategories } from 'medusa-react';
+import { ChangeEvent, FC } from 'react';
 
 interface FilterProps {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
   handleCollectionChange: (
     e: ChangeEvent<HTMLInputElement>,
     collection: ProductCollection
@@ -22,48 +22,61 @@ interface FilterProps {
 }
 
 const Filter: FC<FilterProps> = ({
-  isOpen,
-  setIsOpen,
   handleCollectionChange,
   refinementList,
 }) => {
-  const { collections, isLoading } = useCollections();
+  const { product_categories: categories } = useProductCategories();
 
   return (
     <form className="hidden lg:block">
-      <Collapsible open={isOpen} onOpenChange={setIsOpen} className="space-y-2">
-        <CollapsibleTrigger asChild>
-          <div className="flex w-full cursor-pointer items-center justify-between text-sm text-gray-400 hover:text-gray-500">
-            <span className="font-medium text-gray-900">Genres</span>
+      <Accordion type="multiple">
+        <AccordionItem value="genre">
+          <AccordionTrigger>
+            <Text span variant="dark" size="md">
+              Thể loại
+            </Text>
+          </AccordionTrigger>
+          <AccordionContent asChild>
+            <ul className="flex flex-col gap-y-2.5">
+              {categories?.map((c) => (
+                <li key={c.id}>
+                  <Label
+                    htmlFor={c.name}
+                    className="flex items-center gap-x-2.5"
+                  >
+                    <Checkbox
+                      id={c.name}
+                      name={c.name}
+                      value={c.name}
+                      defaultChecked={refinementList.collection_id?.includes(
+                        c.id
+                      )}
+                      onCheckedChange={(checked) =>
+                        handleCollectionChange(checked, c)
+                      }
+                    />
+                    <Text span size="md">
+                      {c.name}
+                    </Text>
+                  </Label>
+                  {/* <label className="flex items-center gap-x-2">
+                    <input
+                      type="checkbox"
+                      defaultChecked={refinementList.collection_id?.includes(
+                        c.id
+                      )}
+                      onChange={(e) => handleCollectionChange(e, c)}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <span className="text-sm text-gray-600">{c.name}</span>
+                  </label> */}
+                </li>
+              ))}
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
 
-            {isOpen ? (
-              <MinusIcon className="h-5 w-5" aria-hidden="true" />
-            ) : (
-              <PlusIcon className="h-5 w-5" aria-hidden="true" />
-            )}
-          </div>
-        </CollapsibleTrigger>
-        <CollapsibleContent className="pt-3">
-          <ul className="flex flex-col gap-y-2">
-            {collections?.map((c) => (
-              <li key={c.id} className="flex items-center space-x-2">
-                <label className="flex items-center gap-x-2">
-                  <input
-                    type="checkbox"
-                    defaultChecked={refinementList.collection_id?.includes(
-                      c.id
-                    )}
-                    onChange={(e) => handleCollectionChange(e, c)}
-                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                  />
-                  <span className="text-sm text-gray-600">{c.title}</span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </CollapsibleContent>
-      </Collapsible>
-      <Separator className="my-4" />
       <PriceSelector defaultValue={[0, 100]} />
     </form>
   );

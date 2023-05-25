@@ -8,7 +8,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@ui/collapsible';
-import Heading from '@ui/heading';
 import { Separator } from '@ui/separator';
 import {
   Sheet,
@@ -53,11 +52,9 @@ const RefinementList = ({
   );
 
   const handleCollectionChange = (
-    e: ChangeEvent<HTMLInputElement>,
+    checked: boolean,
     collection: ProductCollection
   ) => {
-    const { checked } = e.target;
-
     const { id, title } = collection;
 
     const collectionIds = refinementList.collection_id || [];
@@ -106,91 +103,83 @@ const RefinementList = ({
   };
 
   return (
-    <>
-      <main className="content-container">
-        <div className="flex items-baseline justify-between">
-          <Heading size="md">New Arrivals</Heading>
-
-          <div className="flex items-center">
-            <SortBy />
-            {/* Mobile filter dialog */}
-            <Sheet>
-              <SheetTrigger
-                asChild
-                className="ml-4 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+    <main className="content-container">
+      <div className="flex items-baseline justify-end">
+        <div className="flex items-center">
+          <SortBy />
+          {/* Mobile filter dialog */}
+          <Sheet>
+            <SheetTrigger
+              asChild
+              className="ml-4 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+            >
+              <FunnelIcon className="h-5 w-5" aria-hidden="true" />
+            </SheetTrigger>
+            <SheetContent position="right" size="lg">
+              <SheetHeader>
+                <SheetTitle>Filters</SheetTitle>
+              </SheetHeader>
+              <div className="gap-4 py-4">
+                <h3 className="sr-only">Categories</h3>
+              </div>
+              <Collapsible
+                open={isOpen}
+                onOpenChange={setIsOpen}
+                className="space-y-2 py-6"
               >
-                <FunnelIcon className="h-5 w-5" aria-hidden="true" />
-              </SheetTrigger>
-              <SheetContent position="right" size="lg">
-                <SheetHeader>
-                  <SheetTitle>Filters</SheetTitle>
-                </SheetHeader>
-                <div className="gap-4 py-4">
-                  <h3 className="sr-only">Categories</h3>
-                </div>
-                <Collapsible
-                  open={isOpen}
-                  onOpenChange={setIsOpen}
-                  className="space-y-2 py-6"
-                >
-                  <CollapsibleTrigger asChild>
-                    <div className="flow-root">
-                      <div className="flex w-full items-center justify-between text-sm text-gray-400 hover:text-gray-500">
-                        <span className="font-medium text-gray-900">
-                          Genres
-                        </span>
-                        {isOpen ? (
-                          <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                        ) : (
-                          <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                        )}
-                      </div>
+                <CollapsibleTrigger asChild>
+                  <div className="flow-root">
+                    <div className="flex w-full items-center justify-between text-sm text-gray-400 hover:text-gray-500">
+                      <span className="font-medium text-gray-900">Genres</span>
+                      {isOpen ? (
+                        <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                      ) : (
+                        <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                      )}
                     </div>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="pt-3">
-                    <ul className="flex flex-col gap-y-2">
-                      {collections?.map((c) => (
-                        <li key={c.id} className="flex items-center space-x-2">
-                          <label className="flex items-center gap-x-2">
-                            <input
-                              type="checkbox"
-                              defaultChecked={refinementList.collection_id?.includes(
-                                c.id
-                              )}
-                              onChange={(e) => handleCollectionChange(e, c)}
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <span className="text-sm text-gray-600">
-                              {c.title}
-                            </span>
-                          </label>
-                        </li>
-                      ))}
-                    </ul>
-                  </CollapsibleContent>
-                </Collapsible>
-              </SheetContent>
-            </Sheet>
-          </div>
+                  </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="pt-3">
+                  <ul className="flex flex-col gap-y-2">
+                    {collections?.map((c) => (
+                      <li key={c.id} className="flex items-center space-x-2">
+                        <label className="flex items-center gap-x-2">
+                          <input
+                            type="checkbox"
+                            defaultChecked={refinementList.collection_id?.includes(
+                              c.id
+                            )}
+                            onChange={(e) => handleCollectionChange(e, c)}
+                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          />
+                          <span className="text-sm text-gray-600">
+                            {c.title}
+                          </span>
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </CollapsibleContent>
+              </Collapsible>
+            </SheetContent>
+          </Sheet>
         </div>
-        <Separator className="my-4" />
+      </div>
+      <Separator className="my-4" />
 
-        <section aria-labelledby="filter-products" className="pt-6">
-          <h2 id="filter-products" className="sr-only">
-            Genres
-          </h2>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-            <Filter
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              handleCollectionChange={handleCollectionChange}
-              refinementList={refinementList}
-            />
-            <div className="lg:col-span-3">{children}</div>
-          </div>
-        </section>
-      </main>
-    </>
+      <section aria-labelledby="filter-products" className="pt-6">
+        <h2 id="filter-products" className="sr-only">
+          Genres
+        </h2>
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
+          <Filter
+            handleCollectionChange={handleCollectionChange}
+            refinementList={refinementList}
+          />
+          <div className="lg:col-span-4">{children}</div>
+        </div>
+      </section>
+    </main>
   );
 };
 

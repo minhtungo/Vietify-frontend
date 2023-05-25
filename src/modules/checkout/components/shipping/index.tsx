@@ -122,7 +122,7 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                       <div
                         className={cn(
                           'flex w-full cursor-pointer items-center justify-between space-x-2 border-b border-border px-8 py-4 last:border-b-0',
-                          option.value === value && 'bg-accent/50'
+                          option.value === value && 'bg-accent/30'
                         )}
                         key={option.value}
                       >

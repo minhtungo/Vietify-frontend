@@ -1,7 +1,7 @@
 import ArrowForward from '@icons/arrow-forward';
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import { SheetClose } from '@modules/ui/sheet';
-import Text from '@modules/ui/text';
+import Text, { textVariants } from '@modules/ui/text';
 import { useCollections } from 'medusa-react';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -24,17 +24,15 @@ const CategoryMenu: FC<categoryMenuProps> = ({}) => {
               <SheetClose asChild key={collection.id}>
                 <li className="py-1">
                   <Link
-                    href={`/collections/${collection.id}`}
-                    className="group inline-flex w-full items-center justify-between"
+                    href={`/c/${collection.title}`}
+                    className={textVariants({
+                      variant: 'dark',
+                      className:
+                        'inline-flex w-full items-center justify-between transition duration-100 ease-in-out hover:font-semibold',
+                    })}
                   >
-                    <Text
-                      variant="dark"
-                      span
-                      sr={`Go to ${collection.title}`}
-                      className="transition duration-100 ease-in-out group-hover:font-semibold"
-                    >
-                      {collection.title}
-                    </Text>
+                    {collection.title}
+
                     <ArrowForward className="text-foreground/90" />
                   </Link>
                 </li>

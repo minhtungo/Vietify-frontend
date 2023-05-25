@@ -32,6 +32,7 @@ const SavedAddress: FC<savedAddressProps> = ({
     city,
     phone,
     postal_code,
+    province,
   } = address;
 
   return (
@@ -63,14 +64,14 @@ const SavedAddress: FC<savedAddressProps> = ({
           <Edit className="block md:hidden" size={16} />
         </button>
       </div>
-      <Text size="sm" variant="dark">
-        {phone}
-      </Text>
+      <Text size="sm" variant="dark">{`${address_1} ${address_2}`}</Text>
       <Text
         size="sm"
         variant="dark"
-      >{`${address_1} ${address_2}, ${city}`}</Text>
-      <Text size="sm" variant="dark">{`${postal_code}`}</Text>
+      >{`${city} ${postal_code}, ${province}`}</Text>
+      <Text size="sm" variant="dark">
+        {phone}
+      </Text>
     </div>
   );
 };
