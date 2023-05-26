@@ -1,3 +1,4 @@
+import cn from '@lib/util/cn';
 import { ProductHit } from '@modules/search/components/hit';
 import React from 'react';
 import {
@@ -25,10 +26,7 @@ const MobileHits = ({
   }
 
   return (
-    <div className={className}>
-      <span className="text-small-regular uppercase text-gray-700">
-        Results
-      </span>
+    <div className={cn(className)}>
       <div className="grid grid-cols-1 py-4">
         {hits.map((hit, index) => (
           <li key={index} className="list-none">

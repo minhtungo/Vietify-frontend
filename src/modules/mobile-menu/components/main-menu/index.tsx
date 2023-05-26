@@ -46,7 +46,7 @@ const MainMenu = () => {
       <Separator />
       <div className="flex flex-col gap-y-2">
         {customer && (
-          <SheetClose asChild>
+           <SheetClose asChild>
             <Link
               href="/account/login"
               className="group inline-flex w-full items-center gap-2 py-1"

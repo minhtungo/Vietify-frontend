@@ -31,7 +31,7 @@ const DesktopHits = ({
   }
 
   return (
-    <Popover defaultOpen={true}>
+    <Popover defaultOpen={hitsLength > 0}>
       <PopoverAnchor />
       <PopoverContent
         className="max-h-[400px] w-full max-w-[500px] overflow-y-auto"
