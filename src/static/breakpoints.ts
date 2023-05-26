@@ -17,6 +17,25 @@ const PRODUCT_BREAKPOINTS = {
   },
 };
 
+const PUBLISHERS_BREAKPOINTS = {
+  '1024': {
+    slidesPerView: 8,
+    spaceBetween: 10,
+  },
+  '768': {
+    slidesPerView: 6,
+    spaceBetween: 10,
+  },
+  '640': {
+    slidesPerView: 4,
+    spaceBetween: 10,
+  },
+  '0': {
+    slidesPerView: 3,
+    spaceBetween: 10,
+  },
+};
+
 const THUMB_BREAKPOINTS = {
   '0': {
     slidesPerView: 4,
@@ -74,6 +93,7 @@ const CATEGORY_BREAKPOINTS = {
   },
   '0': {
     slidesPerView: 3,
+    spaceBetween: 6,
   },
 };
 
@@ -83,4 +103,5 @@ export {
   PRODUCT_BREAKPOINTS,
   CATEGORY_BREAKPOINTS,
   THUMB_BREAKPOINTS,
+  PUBLISHERS_BREAKPOINTS,
 };
