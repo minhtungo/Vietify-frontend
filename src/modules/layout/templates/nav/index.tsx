@@ -4,9 +4,10 @@ import Logo from '@modules/common/components/logo';
 import CartDropdown from '@modules/layout/components/cart-dropdown';
 import User from '@modules/layout/components/user';
 import MobileMenu from '@modules/mobile-menu/templates';
-import DesktopSearchModal from '@modules/search/templates/desktop-search-modal';
+import DesktopSearch from '@modules/search/templates/desktop-search';
 import Link from 'next/link';
 import HeaderList from './header-list';
+import MobileSearch from '@modules/search/templates/mobile-search';
 
 export default function Nav() {
   // const { pathname } = useRouter();
@@ -25,23 +26,24 @@ export default function Nav() {
         scrollDirection === 'down' ? '-top-16' : 'top-0'
       )}
     >
-      <div className="mx-auto flex h-16 max-w-8xl items-center justify-between gap-2 px-6 xl:px-4">
-        <div className="flex h-full basis-0 items-center md:hidden">
+      <div className="mx-auto flex h-16 max-w-8xl items-center justify-evenly gap-2 px-6 xl:px-4">
+        <div className="flex w-full items-center gap-6 lg:w-fit">
           <MobileMenu />
-        </div>
-        <div className="flex items-center gap-7">
-          <Link href="/" className="hidden w-full md:block">
+          <Link href="/" className="hidden lg:block">
             <Logo />
           </Link>
           <HeaderList />
         </div>
-
-        <div className="flex w-full items-center">
-          <DesktopSearchModal />
-          <div className="ml-2 hidden md:block">
+        <Link href="/" className="block w-full lg:hidden">
+          <Logo />
+        </Link>
+        <div className="flex lg:w-full">
+          <DesktopSearch />
+          <div className="ml-auto flex items-center lg:ml-2">
+            <MobileSearch />
             <User />
+            <CartDropdown />
           </div>
-          <CartDropdown className="ml-1" />
         </div>
       </div>
     </header>

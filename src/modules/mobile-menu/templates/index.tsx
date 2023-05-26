@@ -15,7 +15,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
   } = useMobileMenu();
   return (
     <Sheet onOpenChange={() => setScreen('main')}>
-      <SheetTrigger>
+      <SheetTrigger className="block lg:hidden">
         <Menu size={24} />
       </SheetTrigger>
       <SheetContent>

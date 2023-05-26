@@ -21,7 +21,7 @@ const User: React.FC<UserProps> = () => {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-10 w-10 rounded-full p-0 duration-150"
+          className="relative h-9 w-9 rounded-full p-0 duration-150"
         >
           <UserIcon
             size={23.5}

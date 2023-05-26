@@ -104,7 +104,7 @@ const Login = () => {
           </div>
           <div className="flex w-full justify-between gap-3">
             <a
-              href={`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/auth/google`}
+              href={`http://localhost:9000/store/auth/google`}
               type="button"
               className={cn(
                 buttonVariants({

@@ -1,2 +1,2 @@
 [template.environment]
-NEXT_PUBLIC_MEDUSA_BACKEND_URL="URL of your Medusa Server"
+NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000

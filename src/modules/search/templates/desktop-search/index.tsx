@@ -4,10 +4,10 @@ import DesktopHits from '@modules/search/components/desktop-hits';
 import SearchBox from '@modules/search/components/search-box';
 import { InstantSearch } from 'react-instantsearch-hooks-web';
 
-const DesktopSearchModal = () => {
+const DesktopSearch = () => {
   return (
     <InstantSearch indexName={SEARCH_INDEX_NAME} searchClient={searchClient}>
-      <div className="relative flex flex-1 shrink flex-grow flex-col">
+      <div className="relative hidden w-full lg:block">
         <SearchBox />
         <DesktopHits hitComponent={DesktopHit} />
       </div>
@@ -15,4 +15,4 @@ const DesktopSearchModal = () => {
   );
 };
 
-export default DesktopSearchModal;
+export default DesktopSearch;
