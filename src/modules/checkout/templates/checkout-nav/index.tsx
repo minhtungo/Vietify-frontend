@@ -1,7 +1,7 @@
 import Logo from '@modules/common/components/logo';
+import ArrowBack from '@modules/common/icons/arrow-back';
 import Help from '@modules/common/icons/help';
 import Link from 'next/link';
-import { IoArrowBackOutline } from 'react-icons/io5';
 
 const CheckoutNav = () => {
   return (
@@ -11,7 +11,7 @@ const CheckoutNav = () => {
           href="/cart"
           className="text-small-semi flex items-center gap-x-1 uppercase text-foreground"
         >
-          <IoArrowBackOutline size={24} />
+          <ArrowBack size={24} />
         </Link>
 
         <Link href="/">
