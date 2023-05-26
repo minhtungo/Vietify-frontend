@@ -8,8 +8,11 @@ import Heading from '@ui/heading';
 import Text from '@ui/text';
 import { CATEGORY_BREAKPOINTS } from 'static/breakpoints';
 import { CATEGORIES } from 'static/categories';
+import { useProductCategories } from 'medusa-react';
+import { ProductCategory } from '@medusajs/medusa';
 
 export default function ProductsCategory() {
+  const { product_categories: categories } = useProductCategories();
   return (
     <div className="content-container py-12">
       <div className="mb-8 flex items-center gap-2">
@@ -21,11 +24,15 @@ export default function ProductsCategory() {
         prevActivateId="prev-category-carousel"
         nextActivateId="next-category-carousel"
       >
-        {CATEGORIES.map(({ id, imgSrc, altImg, name }) => (
-          <SwiperSlide key={`category-${id}`} className="h-full">
+        {categories?.map((category: ProductCategory) => (
+          <SwiperSlide key={`category-${category.id}`} className="h-full">
             <Card className="">
               <CardContent className="bg-brand/[0.05] py-2">
-                <Thumbnail thumbnail={imgSrc} alt={altImg} size="full" />
+                <Thumbnail
+                  thumbnail={CATEGORIES[0].imgSrc}
+                  alt={CATEGORIES[0].altImg}
+                  size="full"
+                />
               </CardContent>
               <CardFooter className="justify-center px-2 py-2">
                 <Text
@@ -34,7 +41,7 @@ export default function ProductsCategory() {
                   className="line-clamp-1 !font-semibold"
                   span
                 >
-                  {name}
+                  {category.name}
                 </Text>
               </CardFooter>
             </Card>
