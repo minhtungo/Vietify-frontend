@@ -3,10 +3,23 @@ import ProductQuickView from '@modules/products/components/product-quickview';
 import Thumbnail from '@modules/products/components/thumbnail';
 import ReviewRating from '@modules/review/components/review-rating';
 import Button from '@modules/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@modules/ui/card';
 import Heading from '@modules/ui/heading';
 import { Skeleton } from '@modules/ui/skeleton';
 import Text from '@modules/ui/text';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@ui/tooltip';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
 
@@ -25,64 +38,70 @@ const ProductPreview = ({
     id,
   };
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <div className="group relative">
-          <Link href={`/products/${handle}`}>
-            <Thumbnail
-              thumbnail={thumbnail}
-              size="full"
-              rounded="md"
-              alt={`${title} photo`}
-            />
-          </Link>
-
-          <div className="absolute right-2 top-2/3 flex flex-col gap-2 opacity-0 transition-all duration-200 group-hover:opacity-100">
-            <Button
-              variant="ghost"
-              className="h-8 w-8 rounded-full bg-border p-0 text-foreground shadow-sm duration-150 hover:bg-primary hover:text-primary-foreground"
-            >
-              <HeartIcon size={18} />
-            </Button>
-            <ProductQuickView {...product} />
-          </div>
-          <Link href={`/products/${handle}`}>
-            <Heading
-              size="sm"
-              className="mt-3 line-clamp-2 !text-[13px] hover:text-primary md:!text-sm"
-            >
-              {title}
-            </Heading>
-          </Link>
+    <Card className="group relative">
+      <CardHeader className="p-4 pb-2">
+        <Link href={`/products/${handle}`}>
+          <Thumbnail
+            thumbnail={thumbnail}
+            size="full"
+            rounded="md"
+            alt={`${title} photo`}
+          />
+        </Link>
+      </CardHeader>
+      <CardContent className="p-4 pt-0">
+        <div className="absolute right-2 top-[48%] flex flex-col gap-2 opacity-0 transition-all duration-200 group-hover:opacity-100">
+          <Button
+            variant="ghost"
+            className="h-8 w-8 rounded-full bg-brand/80 p-0 text-primary-foreground shadow-sm duration-150 hover:bg-primary hover:text-primary-foreground"
+          >
+            <HeartIcon size={18} />
+          </Button>
+          <ProductQuickView {...product} />
         </div>
-      </TooltipTrigger>
-
-      <div className="text-base-regular mt-2 transition-colors duration-150">
-        <ReviewRating className="mt-2" />
-        <div className="mt-2 text-xs font-light text-gray-700 small:text-[13px]">
+        <TooltipProvider delayDuration={300}>
+          <Tooltip>
+            <TooltipTrigger>
+              <Link href={`/products/${handle}`}>
+                <Heading
+                  size="sm"
+                  className="mt-3 line-clamp-2 !text-[13px] hover:text-primary md:!text-sm"
+                >
+                  {title}
+                </Heading>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{title}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <ReviewRating className="my-2" />
+        <Text span size="sm">
           Author
-        </div>
+        </Text>
         <div className="mt-2 flex items-center gap-x-2 text-base">
           {price ? (
             <>
-              {price.price_type === 'sale' && (
-                <Text span className="line-through">
-                  {price.original_price}
-                </Text>
-              )}
-              <Text variant="brand" span>
+              <Text
+                variant={price.price_type === 'sale' ? 'brand' : 'dark'}
+                span
+                className="!font-semibold"
+              >
                 {price.calculated_price}
               </Text>
+              {price.price_type === 'sale' && (
+                <Text span variant="brand">
+                  -{price.difference}%
+                </Text>
+              )}
             </>
           ) : (
             <Skeleton className="h-6 w-20" />
           )}
         </div>
-      </div>
-      <TooltipContent>
-        <p>{title}</p>
-      </TooltipContent>
-    </Tooltip>
+      </CardContent>
+    </Card>
   );
 };
 

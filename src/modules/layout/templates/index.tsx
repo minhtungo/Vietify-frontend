@@ -7,7 +7,6 @@ import { Separator } from '@ui/separator';
 import { Inter } from 'next/font/google';
 import cn from '@lib/util/cn';
 import HighlightedBar from '@common/highlighted-bar';
-import { TooltipProvider } from '@ui/tooltip';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -26,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <HighlightedBar />
       <Nav />
       <main className={cn(inter.variable, 'relative font-sans')}>
-        <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+        {children}
       </main>
       <Separator />
       <Incentives />
