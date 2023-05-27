@@ -9,6 +9,7 @@ import cn from '@lib/util/cn';
 import ArrowForward from '@modules/common/icons/arrow-forward';
 import Home from '@modules/common/icons/home';
 import { ROUTES } from '@static/routes';
+import Text from '@modules/ui/text';
 
 interface BreadcrumbItemProps {
   children: React.ReactNode;
@@ -25,11 +26,11 @@ const BreadcrumbItem: FC<BreadcrumbItemProps> = ({
   return (
     <li
       className={cn(
-        'inline-flex items-center text-sm text-muted-foreground hover:text-foreground',
-        last && 'font-semibold text-foreground'
+        'inline-flex items-center text-xs text-muted-foreground hover:text-foreground sm:text-sm',
+        last && 'overflow-hidden font-semibold text-foreground'
       )}
     >
-      {children}
+      <span className="last:truncate">{children}</span>
       {!last && (
         <ArrowForward className="text-15px mx-1.5 text-muted-foreground" />
       )}
@@ -44,7 +45,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ title }) => {
     <ol className="flex w-full items-center overflow-hidden">
       <BreadcrumbItem key="breadcrumb-home">
         <Link href={ROUTES.HOME} className="inline-flex items-center gap-1.5">
-          <Home className="text-15px text-foreground" />
+          <Home className="text-15px hidden text-foreground md:block" />
           Home
         </Link>
       </BreadcrumbItem>
