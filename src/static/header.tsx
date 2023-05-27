@@ -17,14 +17,14 @@ interface HeaderListProps {
 
 export const HEADER_LIST = [
   {
-    id: 'home',
-    label: 'Home',
+    id: 'featured',
+    label: 'Featured',
     path: '/',
     subMenu: [
       {
-        id: 'about',
-        label: 'About',
-        path: '/about',
+        id: 'sale',
+        label: 'Sale',
+        path: '/sale',
       },
       {
         id: 'contact',
@@ -34,8 +34,25 @@ export const HEADER_LIST = [
     ],
   },
   {
-    id: 'blog',
-    label: 'Blog',
+    id: 'books',
+    label: 'Books',
+    path: '/',
+    subMenu: [
+      {
+        id: 'sale',
+        label: 'Sale',
+        path: '/sale',
+      },
+      {
+        id: 'contact',
+        label: 'Contact',
+        path: '/contact',
+      },
+    ],
+  },
+  {
+    id: 'manga',
+    label: 'Manga',
     path: '/blog',
     subMenu: [
       {
@@ -46,8 +63,8 @@ export const HEADER_LIST = [
     ],
   },
   {
-    id: 'portfolio',
-    label: 'Portfolio',
+    id: 'new-books',
+    label: 'New Books',
     path: '/portfolio',
     subMenu: [
       {

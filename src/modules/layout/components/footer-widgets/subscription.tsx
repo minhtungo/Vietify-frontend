@@ -42,7 +42,6 @@ const WidgetSubscription: React.FC<Props> = ({ className }) => {
 
     // reset form after submit
     e.target.reset();
-    console.log(values, 'News letter');
   };
 
   return (

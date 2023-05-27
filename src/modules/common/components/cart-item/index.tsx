@@ -17,7 +17,6 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = React.memo(
   ({ className, item, region }) => {
     const { thumbnail, title, quantity, unit_price, variant } = item;
-    console.log(variant);
     const getAmount = (amount: number | string) => {
       if (typeof unit_price === 'string') {
         return amount;

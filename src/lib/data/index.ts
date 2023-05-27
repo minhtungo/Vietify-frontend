@@ -1,6 +1,7 @@
 import { medusaClient } from '@lib/config';
 import { StoreGetProductsParams } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import { ProductHit } from '@modules/search/components/hit';
 
 const COL_LIMIT = 15;
 
@@ -130,4 +131,12 @@ export const fetchProductsList = async ({
     response: { products, count },
     nextPage: count > offset + 12 ? offset + 12 : null,
   };
+};
+
+export const searchProducts = async (query: string): Promise<ProductHit[]> => {
+  const results: ProductHit[] = await medusaClient.products
+    .search({ q: query })
+    .then(({ hits }) => hits);
+
+  return results as ProductHit[];
 };

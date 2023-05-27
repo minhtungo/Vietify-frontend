@@ -7,13 +7,13 @@ import {
   NavigationMenuTrigger,
 } from '@ui/navigation-menu';
 
-import { useCollections } from 'medusa-react';
+import { useProductCategories } from 'medusa-react';
+import { ProductCategory } from '@medusajs/medusa';
 
 import { HEADER_LIST } from 'static/header';
 
 const HeaderList = () => {
-  const { collections } = useCollections();
-
+  const { product_categories: categories } = useProductCategories();
   return (
     <NavigationMenu className="hidden lg:flex">
       <NavigationMenuList className="gap-8">

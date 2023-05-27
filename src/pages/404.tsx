@@ -1,7 +1,6 @@
 import Head from '@common/head';
 import EmptyState from '@modules/common/components/empty-state';
 import Layout from '@modules/layout/templates';
-import Link from 'next/link';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'types/global';
 

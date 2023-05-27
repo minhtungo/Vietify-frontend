@@ -33,12 +33,13 @@ const DesktopHits = ({
   if (!hitsLength) {
     return null;
   }
+  console.log(hits);
 
   return (
     <Popover open={!!value && hitsLength > 0}>
       <PopoverAnchor />
       <PopoverContent
-        className="max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[470px] 3xl:min-w-[620px]"
+        className="hidden max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[470px] lg:block 3xl:min-w-[620px]"
         asChild
         onInteractOutside={() => setValue('')}
       >

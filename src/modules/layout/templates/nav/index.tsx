@@ -37,7 +37,7 @@ export default function Nav() {
         <Link href="/" className="block lg:hidden">
           <Logo />
         </Link>
-        <div className="flex w-full md:max-w-[550px] 3xl:max-w-[700px]">
+        <div className="flex w-full">
           <DesktopSearch />
           <div className="ml-auto flex items-center lg:ml-2">
             <MobileSearch />

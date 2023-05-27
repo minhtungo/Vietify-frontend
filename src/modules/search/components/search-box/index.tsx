@@ -43,9 +43,9 @@ const ControlledSearchBox = ({
       inputRef.current.focus();
     }
   };
-console.log(placeholder)
+
   return (
-    <div className="relative hidden w-full lg:block">
+    <div className="relative w-full">
       <form
         noValidate
         onSubmit={handleSubmit}
@@ -73,7 +73,8 @@ console.log(placeholder)
           </Button>
         )}
       </form>
-      <DesktopHits hitComponent={HitItem} value={value} setValue={setValue}/>
+
+      <DesktopHits hitComponent={HitItem} value={value} setValue={setValue} />
     </div>
   );
 };

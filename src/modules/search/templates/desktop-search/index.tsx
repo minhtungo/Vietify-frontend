@@ -6,7 +6,9 @@ import { InstantSearch } from 'react-instantsearch-hooks-web';
 const DesktopSearch = () => {
   return (
     <InstantSearch indexName={SEARCH_INDEX_NAME} searchClient={searchClient}>
-      <SearchBox />
+      <div className="ml-auto hidden w-full md:max-w-[550px] lg:block 3xl:max-w-[700px]">
+        <SearchBox />
+      </div>
     </InstantSearch>
   );
 };
