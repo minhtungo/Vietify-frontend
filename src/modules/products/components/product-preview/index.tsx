@@ -1,16 +1,9 @@
-import HeartIcon from '@icons/heart';
+import Heart from '@icons/heart';
 import ProductQuickView from '@modules/products/components/product-quickview';
 import Thumbnail from '@modules/products/components/thumbnail';
 import ReviewRating from '@modules/review/components/review-rating';
 import Button from '@modules/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@modules/ui/card';
+import { Card, CardContent, CardHeader } from '@modules/ui/card';
 import Heading from '@modules/ui/heading';
 import { Skeleton } from '@modules/ui/skeleton';
 import Text from '@modules/ui/text';
@@ -55,7 +48,7 @@ const ProductPreview = ({
             variant="ghost"
             className="h-8 w-8 rounded-full bg-brand/80 p-0 text-primary-foreground shadow-sm duration-150 hover:bg-primary hover:text-primary-foreground"
           >
-            <HeartIcon size={18} />
+            <Heart size={18} />
           </Button>
           <ProductQuickView {...product} />
         </div>

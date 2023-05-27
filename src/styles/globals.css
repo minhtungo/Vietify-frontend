@@ -109,7 +109,7 @@
   }
 
   .text-xsmall-regular {
-    @apply text-[12px] font-normal leading-4;
+    @apply text-[12.5px] font-normal leading-4;
   }
 
   .text-small-regular {

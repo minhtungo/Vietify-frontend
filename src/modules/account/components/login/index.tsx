@@ -7,6 +7,7 @@ import { useAccount } from '@lib/context/account-context';
 import cn from '@lib/util/cn';
 import Link from '@modules/common/components/link';
 import { Checkbox } from '@modules/ui/checkbox';
+import { Label } from '@modules/ui/label';
 import Text from '@modules/ui/text';
 import Button, { buttonVariants } from '@ui//button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
@@ -53,8 +54,8 @@ const Login = () => {
         </div>
       )}
       <Card className="max-w-sm">
-        <CardHeader className="pb-4 text-center">
-          <CardTitle>Chào mừng đến với Vietify!</CardTitle>
+        <CardHeader className="pb-6 text-center">
+          <CardTitle className="!text-xl">Chào mừng đến với Vietify!</CardTitle>
           {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
         </CardHeader>
 
@@ -80,16 +81,20 @@ const Login = () => {
             )}
             <div className="mt-1 flex justify-between">
               <div className="flex items-center space-x-2">
-                <Checkbox id="remember" />
-                <span className="text-[13px] text-muted-foreground">
-                  Nhớ mật khẩu
-                </span>
+                <Label
+                  htmlFor="remember-password"
+                  className="flex items-center gap-2 text-muted-foreground"
+                >
+                  <Checkbox id="remember-password" />
+                  <Text size="xs" span>
+                    Nhớ mật khẩu
+                  </Text>
+                </Label>
               </div>
-              <Link
-                href="/terms-of-use"
-                className="text-[13px] text-primary hover:underline"
-              >
-                Quên mật khẩu?
+              <Link href="/terms-of-use">
+                <Text size="xs" span className="!text-primary hover:underline">
+                  Quên mật khẩu?
+                </Text>
               </Link>
             </div>
             <Button className="mt-2 w-full">Đăng nhập</Button>

@@ -2,6 +2,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import Eye from '@icons/eye';
 import EyeOff from '@icons/eye-off';
 import cn from '@lib/util/cn';
+import Text from '@modules/ui/text';
 import { Input } from '@ui/input';
 import { Label } from '@ui/label';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
@@ -46,7 +47,7 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
             id={name}
             placeholder=" "
             className={cn(
-              'peer block px-2.5 pb-2.5 pt-4',
+              'peer block h-11 px-2.5 pb-2.5 pt-4',
               hasError && 'border-destructive'
             )}
             {...props}
@@ -55,14 +56,13 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
           <Label
             htmlFor={name}
             className={cn(
-              'scale-80 absolute left-1 top-2 z-10 origin-[0] -translate-y-4 transform bg-white px-2 text-xs text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:px-2 peer-focus:text-primary',
+              'scale-80 absolute left-2 top-2 z-10 origin-[0] -translate-y-4 transform bg-white px-2.5 text-sm text-muted-foreground/70 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:left-2 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:px-1 peer-focus:text-primary',
               hasError && '!text-destructive'
             )}
           >
             {label}
             {required && <span>*</span>}
           </Label>
-
           {type === 'password' && (
             <button
               type="button"
@@ -79,9 +79,9 @@ const FormInput = React.forwardRef<HTMLInputElement, InputProps>(
             name={name}
             render={({ message }) => {
               return (
-                <p className="text-xsmall-regular ml-2.5 pt-1 text-destructive">
+                <Text size="sm" className="ml-2.5 pt-1" variant="error">
                   {message}
-                </p>
+                </Text>
               );
             }}
           />

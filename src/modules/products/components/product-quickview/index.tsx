@@ -1,7 +1,7 @@
 import Eye from '@icons/eye';
 import Thumbnail from '@modules/products/components/thumbnail';
 import Button, { buttonVariants } from '@ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@ui/dialog';
 import Heading from '@ui/heading';
 import Link from 'next/link';
 import { ProductPreviewType } from 'types/global';
@@ -10,13 +10,14 @@ import cn from '@lib/util/cn';
 import Counter from '@modules/common/components/counter';
 import ReviewRating from '@modules/review/components/review-rating';
 import Text from '@ui/text';
+import { book } from '@static/book';
+import { Skeleton } from '@modules/ui/skeleton';
 
 const ProductQuickView = ({
   title,
   handle,
   thumbnail,
   price: selectedPrice,
-  id,
 }: ProductPreviewType) => {
   return (
     <Dialog>
@@ -29,7 +30,6 @@ const ProductQuickView = ({
         </Button>
       </DialogTrigger>
       <DialogContent className="md:max-w-2xl lg:max-w-3xl">
-        <DialogHeader></DialogHeader>
         <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
           <div className="sm:col-span-4 lg:col-span-5">
             <Thumbnail
@@ -41,25 +41,43 @@ const ProductQuickView = ({
           </div>
           <div className="sm:col-span-8 lg:col-span-7">
             <Heading size="md">{title}</Heading>
-            <div className="mt-1 flex w-full flex-wrap justify-between">
-              <span className="w-1/2">
-                <Text className="font-semibold" span>
-                  Author:{' '}
-                </Text>
-                <Text span>Nguyễn Nhật Ánh</Text>
-              </span>
-              <span className="">
-                <Text className="font-semibold" span>
-                  Publisher:{' '}
-                </Text>
-                <Text span>Nguyễn Nhật Ánh</Text>
-              </span>
-              <span>
-                <Text className="font-semibold" span>
-                  SKU:{' '}
-                </Text>
-                <Text span>123456789</Text>
-              </span>
+            <div className="mt-1">
+              <div className="flex w-full justify-between">
+                <div className="w-3/5">
+                  <Text size="sm" span>
+                    {`${book.author}: `}
+                  </Text>
+                  <Text className="font-semibold" size="sm" span>
+                    Nguyễn Nhật Ánh
+                  </Text>
+                </div>
+                <div className="w-2/5">
+                  <Text size="sm" span>
+                    Hình thức bìa:{' '}
+                  </Text>
+                  <Text className="font-semibold" size="sm" span>
+                    Bìa mềm
+                  </Text>
+                </div>
+              </div>
+              <div className="flex w-full justify-between">
+                <div className="w-3/5">
+                  <Text size="sm" span>
+                    {`${book.publisher}: `}
+                  </Text>
+                  <Text className="font-semibold" size="sm" span>
+                    Nguyễn Nhật Ánh
+                  </Text>
+                </div>
+                <div className="w-2/5">
+                  <Text size="sm" span>
+                    {`${book.sku}: `}
+                  </Text>
+                  <Text className="font-semibold" size="sm" span>
+                    123456789
+                  </Text>
+                </div>
+              </div>
             </div>
             <div className="flex items-center space-x-1">
               <ReviewRating className="" />
@@ -68,35 +86,29 @@ const ProductQuickView = ({
               </span>
             </div>
 
-            <div className="my-4 flex gap-2">
+            <div className="mt-4 flex gap-2">
               {selectedPrice ? (
                 <div className="flex items-center gap-2 text-primary">
-                  <span
-                    className={cn('text-xl-semi', {
-                      'text-rose-600': selectedPrice.price_type === 'sale',
-                    })}
+                  <Text
+                    variant={
+                      selectedPrice.price_type === 'sale' ? 'brand' : 'dark'
+                    }
+                    span
+                    className="!font-semibold"
                   >
                     {selectedPrice.calculated_price}
-                  </span>
+                  </Text>
                   {selectedPrice.price_type === 'sale' && (
-                    <>
-                      <p>
-                        <span className="text-gray-500">Original: </span>
-                        <span className="line-through">
-                          {selectedPrice.original_price}
-                        </span>
-                      </p>
-                      {/* <span className="text-rose-600">
-                        -{selectedPrice.percentage_diff}%
-                      </span> */}
-                    </>
+                    <Text span variant="brand">
+                      -{selectedPrice?.difference}%
+                    </Text>
                   )}
                 </div>
               ) : (
-                <></>
+                <Skeleton className="mt-2 h-9 w-16 " />
               )}
             </div>
-            <Text size="sm" className="line-clamp-3">
+            <Text size="sm" className="mt-1 line-clamp-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
               praesentium ipsum tempora, reprehenderit voluptatibus sunt unde.
               Officia aut quis impedit molestiae. Magni doloremque excepturi

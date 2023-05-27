@@ -66,7 +66,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   return (
     <div className="flex flex-col gap-y-1">
       <Heading size="md">{product?.title}</Heading>
-      <div className="text-left">
+      <div>
         <div className="flex w-full justify-between">
           <div className="w-3/5">
             <Text size="sm" span>

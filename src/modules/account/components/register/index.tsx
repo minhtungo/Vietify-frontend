@@ -1,18 +1,15 @@
 import Input from '@common/form-input';
 import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
-import { LOGIN_VIEW, useAccount } from '@lib/context/account-context';
-import cn from '@lib/util/cn';
+import { useAccount } from '@lib/context/account-context';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from '@modules/ui/card';
-import Heading from '@modules/ui/heading';
-import Text, { textVariants } from '@modules/ui/text';
+import Text from '@modules/ui/text';
 import Button from '@ui/button';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -54,16 +51,15 @@ const Register = () => {
   });
 
   return (
-    <div className="flex w-full justify-center py-12">
+    <div className="content-container flex justify-center py-12">
       {isSubmitting && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
         </div>
       )}
       <Card className="max-w-sm">
-        <CardHeader className="pb-4 text-center">
-          <CardTitle>Đăng ký</CardTitle>
-          {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
+        <CardHeader className="pb-6 text-center">
+          <CardTitle className="text-xl">Đăng ký</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
           <form onSubmit={onSubmit} className="grid gap-3">
