@@ -10,6 +10,7 @@ import { CATEGORY_BREAKPOINTS } from 'static/breakpoints';
 import { CATEGORIES } from 'static/categories';
 import { useProductCategories } from 'medusa-react';
 import { ProductCategory } from '@medusajs/medusa';
+import Link from 'next/link';
 
 export default function ProductsCategory() {
   const { product_categories: categories } = useProductCategories();
@@ -26,25 +27,27 @@ export default function ProductsCategory() {
       >
         {categories?.map((category: ProductCategory) => (
           <SwiperSlide key={`category-${category.id}`} className="h-full">
-            <Card className="">
-              <CardContent className="bg-brand/[0.05] py-2">
-                <Thumbnail
-                  thumbnail={CATEGORIES[0].imgSrc}
-                  alt={CATEGORIES[0].altImg}
-                  size="full"
-                />
-              </CardContent>
-              <CardFooter className="justify-center px-2 py-2">
-                <Text
-                  size="sm"
-                  variant="dark"
-                  className="line-clamp-1 !font-semibold"
-                  span
-                >
-                  {category.name}
-                </Text>
-              </CardFooter>
-            </Card>
+            <Link href={`/c/${category.handle}`}>
+              <Card>
+                <CardContent className="bg-brand/[0.05] py-2">
+                  <Thumbnail
+                    thumbnail={CATEGORIES[0].imgSrc}
+                    alt={CATEGORIES[0].altImg}
+                    size="full"
+                  />
+                </CardContent>
+                <CardFooter className="justify-center px-2 py-2">
+                  <Text
+                    size="sm"
+                    variant="dark"
+                    className="line-clamp-1 !font-semibold"
+                    span
+                  >
+                    {category.name}
+                  </Text>
+                </CardFooter>
+              </Card>
+            </Link>
           </SwiperSlide>
         ))}
       </Carousel>

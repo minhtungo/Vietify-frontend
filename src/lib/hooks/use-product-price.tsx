@@ -16,9 +16,9 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
       cart_id: cart?.id,
     },
     { enabled: !!cart?.id && !!cart?.region_id }
-  );
+  );//www.youtube.com/watch?v=sQlQpKpQOpc&list=RDsQlQpKpQOpc&start_radio=1
 
-  useEffect(() => {
+  https: useEffect(() => {
     if (cart?.region_id) {
       refetch();
     }

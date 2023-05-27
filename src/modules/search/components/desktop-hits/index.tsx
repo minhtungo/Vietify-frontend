@@ -39,7 +39,7 @@ const DesktopHits = ({
     <Popover open={!!value && hitsLength > 0}>
       <PopoverAnchor />
       <PopoverContent
-        className="hidden max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[470px] lg:block 3xl:min-w-[620px]"
+        className="hidden max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[500px] lg:block 3xl:min-w-[600px]"
         asChild
         onInteractOutside={() => setValue('')}
       >
