@@ -1,6 +1,6 @@
 import algoliasearch from 'algoliasearch/lite';
 
-const appId = process.env.NEXT_PUBLIC_SEARCH_APP_ID || '';
+const appId = process.env.NEXT_PUBLIC_SEARCH_APP_ID || 'test_app_id'; // You should add this to your environment variables
 
 const apiKey = process.env.NEXT_PUBLIC_SEARCH_API_KEY || 'test_key';
 

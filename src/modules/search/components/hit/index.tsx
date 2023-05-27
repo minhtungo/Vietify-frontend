@@ -24,17 +24,10 @@ const Hit = ({ hit }: HitProps) => {
       <Thumbnail thumbnail={hit.thumbnail} size="full" alt={hit.title} />
       <div className="flex flex-col justify-between">
         <div className="flex flex-col">
-          {hit.collection_id && (
-            <Link
-              href={`/collections/${hit.collection_id}`}
-              className="text-small-regular text-gray-500"
-            >
-              {hit.collection_handle}
-              {hit.title}
-            </Link>
-          )}
           <Text variant="dark">{hit.title}</Text>
-          <Text>{hit.description}</Text>
+          <Text size="sm" className="line-clamp-2">
+            {hit.description}
+          </Text>
         </div>
       </div>
     </div>

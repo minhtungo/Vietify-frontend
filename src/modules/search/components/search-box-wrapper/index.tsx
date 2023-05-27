@@ -65,14 +65,15 @@ const SearchBoxWrapper = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (inputRef.current) {
+  //     inputRef.current.focus();
+  //   }
+  // }, []);
 
   const state = {
     value,
+    setValue,
     inputRef,
     isSearchStalled,
     onChange,

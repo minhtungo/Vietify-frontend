@@ -12,11 +12,15 @@ import { ProductHit } from '../hit';
 type HitsProps<THit> = React.ComponentProps<'div'> &
   UseHitsProps & {
     hitComponent: (props: { hit: THit }) => JSX.Element;
+    value: string;
+    setValue: any;
   };
 
 const DesktopHits = ({
   hitComponent: Hit,
   className,
+  value,
+  setValue,
   ...props
 }: HitsProps<ProductHit>) => {
   const { hits } = useHits(props);
@@ -31,18 +35,21 @@ const DesktopHits = ({
   }
 
   return (
-    <Popover defaultOpen={hitsLength > 0}>
+    <Popover open={!!value && hitsLength > 0}>
       <PopoverAnchor />
       <PopoverContent
-        className="max-h-[400px] w-full max-w-[500px] overflow-y-auto"
-        // onInteractOutside={() => setHitsLength(0)}
+        className="max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[470px] 3xl:min-w-[620px]"
+        asChild
+        onInteractOutside={() => setValue('')}
       >
-        <ul>
-          {hits.map((hit, index) => (
-            <li key={index} className="list-none py-2 hover:bg-muted">
-              <PopoverClose asChild>
-                <Hit hit={hit as unknown as ProductHit} />
-              </PopoverClose>
+        <ul className="w-full">
+          {hits.map((hit) => (
+            <li
+              className="list-none py-2 hover:bg-muted"
+              key={hit.objectID}
+              onClick={() => setValue('')}
+            >
+              <Hit hit={hit as unknown as ProductHit} />
             </li>
           ))}
         </ul>
