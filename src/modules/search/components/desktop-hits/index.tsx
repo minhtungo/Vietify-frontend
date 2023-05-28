@@ -33,7 +33,6 @@ const DesktopHits = ({
   if (!hitsLength) {
     return null;
   }
-  console.log(hits);
 
   return (
     <Popover open={!!value && hitsLength > 0}>

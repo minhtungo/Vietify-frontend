@@ -1,13 +1,7 @@
 import FunnelIcon from '@icons/funnel';
-import MinusIcon from '@icons/minus';
-import PlusIcon from '@icons/plus';
-import { ProductCollection, StoreGetProductsParams } from '@medusajs/medusa';
-import SortBy from '@modules/store/components/sort-by';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@ui/collapsible';
+import { ProductCategory, StoreGetProductsParams } from '@medusajs/medusa';
+import Sorting from '@modules/store/components/sort-by';
+import { Accordion } from '@modules/ui/accordion';
 import { Separator } from '@ui/separator';
 import {
   Sheet,
@@ -16,10 +10,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@ui/sheet';
-import { useCollections } from 'medusa-react';
+import { useProductCategories } from 'medusa-react';
 import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
 import Filter from '../filter';
+import CategoriesFilter from '../filter/categories';
+import PriceFilter from '../filter/price';
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams;
@@ -40,9 +36,8 @@ const RefinementList = ({
   children,
 }: RefinementListProps) => {
   const [params, setParams] = useState<StoreGetProductsParams>({});
-  const [isOpen, setIsOpen] = useState(false);
 
-  const { collections, isLoading } = useCollections();
+  const { product_categories: categories } = useProductCategories();
 
   const router = useRouter();
   const { pathname, query } = router;
@@ -53,19 +48,19 @@ const RefinementList = ({
 
   const handleCollectionChange = (
     checked: boolean,
-    collection: ProductCollection
+    category: ProductCategory
   ) => {
-    const { id, title } = collection;
+    const { id, name } = category;
 
-    const collectionIds = refinementList.collection_id || [];
+    const categoryIds = refinementList.category_id || [];
 
-    const exists = collectionIds.includes(collection.id);
+    const exists = categoryIds.includes(category.id);
 
-    const { category, ...restQuery } = query;
+    const { c, ...restQuery } = query;
 
-    let currentFormState = selectedCategories.includes(title)
-      ? selectedCategories.filter((i) => i !== title)
-      : [...selectedCategories, title];
+    let currentFormState = selectedCategories.includes(name)
+      ? selectedCategories.filter((i) => i !== name)
+      : [...selectedCategories, name];
 
     router.push(
       {
@@ -73,7 +68,7 @@ const RefinementList = ({
         query: {
           ...restQuery,
           ...(!!currentFormState.length
-            ? { category: currentFormState.join(',') }
+            ? { c: currentFormState.join(',') }
             : {}),
         },
       },
@@ -84,7 +79,7 @@ const RefinementList = ({
     if (checked && !exists) {
       setRefinementList({
         ...refinementList,
-        collection_id: [...collectionIds, id],
+        category_id: [...categoryIds, id],
       });
 
       return;
@@ -93,7 +88,7 @@ const RefinementList = ({
     if (!checked && exists) {
       setRefinementList({
         ...refinementList,
-        collection_id: collectionIds.filter((c) => c !== id),
+        collection_id: categoryIds.filter((c) => c !== id),
       });
 
       return;
@@ -106,61 +101,25 @@ const RefinementList = ({
     <main className="content-container">
       <div className="flex items-baseline justify-end">
         <div className="flex items-center">
-          <SortBy />
+          <Sorting />
           {/* Mobile filter dialog */}
           <Sheet>
-            <SheetTrigger
-              asChild
-              className="ml-4 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
-            >
+            <SheetTrigger className="ml-4 text-muted-foreground hover:text-foreground lg:hidden">
               <FunnelIcon className="h-5 w-5" aria-hidden="true" />
             </SheetTrigger>
-            <SheetContent position="right" size="lg">
+            <SheetContent position="right">
               <SheetHeader>
-                <SheetTitle>Filters</SheetTitle>
+                <SheetTitle>Bộ Lọc</SheetTitle>
+                <h3 className="sr-only">Bộ Lọc</h3>
               </SheetHeader>
-              <div className="gap-4 py-4">
-                <h3 className="sr-only">Categories</h3>
-              </div>
-              <Collapsible
-                open={isOpen}
-                onOpenChange={setIsOpen}
-                className="space-y-2 py-6"
-              >
-                <CollapsibleTrigger asChild>
-                  <div className="flow-root">
-                    <div className="flex w-full items-center justify-between text-sm text-gray-400 hover:text-gray-500">
-                      <span className="font-medium text-gray-900">Genres</span>
-                      {isOpen ? (
-                        <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                      ) : (
-                        <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                      )}
-                    </div>
-                  </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="pt-3">
-                  <ul className="flex flex-col gap-y-2">
-                    {collections?.map((c) => (
-                      <li key={c.id} className="flex items-center space-x-2">
-                        <label className="flex items-center gap-x-2">
-                          <input
-                            type="checkbox"
-                            defaultChecked={refinementList.collection_id?.includes(
-                              c.id
-                            )}
-                            onChange={(e) => handleCollectionChange(e, c)}
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                          />
-                          <span className="text-sm text-gray-600">
-                            {c.title}
-                          </span>
-                        </label>
-                      </li>
-                    ))}
-                  </ul>
-                </CollapsibleContent>
-              </Collapsible>
+              <Accordion type="multiple" className="mt-4">
+                <CategoriesFilter
+                  categories={categories}
+                  handleCollectionChange={handleCollectionChange}
+                  refinementList={refinementList}
+                />
+                <PriceFilter defaultValue={[0, 100]} />
+              </Accordion>
             </SheetContent>
           </Sheet>
         </div>

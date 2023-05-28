@@ -12,7 +12,7 @@ import { FilterOption } from 'types/global';
 
 interface SortByProps {}
 
-const SortBy: React.FC<SortByProps> = ({}) => {
+const Sorting: React.FC<SortByProps> = ({}) => {
   const router = useRouter();
   const { pathname, query } = router;
   const currentSelectedItem = query.sort
@@ -61,4 +61,4 @@ const SortBy: React.FC<SortByProps> = ({}) => {
   );
 };
 
-export default SortBy;
+export default Sorting;

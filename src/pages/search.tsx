@@ -12,13 +12,12 @@ import { searchProducts } from '@lib/data';
 
 const Search: NextPageWithLayout = () => {
   const router = useRouter();
-  const { q } = router.query;
+  const { q: searchQuery } = router.query;
 
-  const { data, isError, isLoading } = useQuery([`search_products`, q], () =>
-    searchProducts(q as string)
+  const { data, isError, isLoading } = useQuery(
+    [`search_products`, searchQuery],
+    () => searchProducts(searchQuery as string)
   );
-
-  console.log(data);
 
   return (
     <div className="content-container pt-6">
