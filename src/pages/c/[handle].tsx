@@ -18,12 +18,6 @@ interface Params extends ParsedUrlQuery {
   handle: string;
 }
 
-const fetchProduct = async (handle: string) => {
-  return await medusaClient.products
-    .list({ handle })
-    .then(({ products }) => products[0]);
-};
-
 const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
   notFound,
 }) => {

@@ -18,7 +18,7 @@ import {
 } from '@ui/sheet';
 import { useCollections } from 'medusa-react';
 import { useRouter } from 'next/router';
-import { ChangeEvent, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Filter from '../filter';
 
 type RefinementListProps = {
