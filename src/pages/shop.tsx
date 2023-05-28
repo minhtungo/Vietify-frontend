@@ -6,8 +6,11 @@ import RefinementList from '@modules/store/components/refinement-list';
 import { useState } from 'react';
 import { NextPageWithLayout } from 'types/global';
 import InfiniteProducts from '@modules/products/components/infinite-products';
+import { useRouter } from 'next/router';
 
 const Store: NextPageWithLayout = () => {
+  const router = useRouter();
+  const { c: categoryQuery } = router.query;
   const [params, setParams] = useState<StoreGetProductsParams>({});
 
   return (

@@ -12,10 +12,11 @@ import {
 } from '@ui/sheet';
 import { useProductCategories } from 'medusa-react';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import Filter from '../filter';
 import CategoriesFilter from '../filter/categories';
 import PriceFilter from '../filter/price';
+import MobileFilter from '../mobile-filter';
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams;
@@ -35,46 +36,13 @@ const RefinementList = ({
   setRefinementList,
   children,
 }: RefinementListProps) => {
-  const [params, setParams] = useState<StoreGetProductsParams>({});
-
   const { product_categories: categories } = useProductCategories();
-
   const router = useRouter();
-  const { pathname, query } = router;
-  const selectedCategories = useMemo(
-    () => (query?.category ? (query.category as string).split(',') : []),
-    [query?.category]
-  );
 
-  const handleCollectionChange = (
-    checked: boolean,
-    category: ProductCategory
-  ) => {
-    const { id, name } = category;
-
+  const handleCategoryChange = (checked: boolean, id: string) => {
     const categoryIds = refinementList.category_id || [];
-
-    const exists = categoryIds.includes(category.id);
-
-    const { c, ...restQuery } = query;
-
-    let currentFormState = selectedCategories.includes(name)
-      ? selectedCategories.filter((i) => i !== name)
-      : [...selectedCategories, name];
-
-    router.push(
-      {
-        pathname,
-        query: {
-          ...restQuery,
-          ...(!!currentFormState.length
-            ? { c: currentFormState.join(',') }
-            : {}),
-        },
-      },
-      undefined,
-      { scroll: false }
-    );
+    const exists = categoryIds.includes(id);
+    console.log(exists);
 
     if (checked && !exists) {
       setRefinementList({
@@ -88,7 +56,7 @@ const RefinementList = ({
     if (!checked && exists) {
       setRefinementList({
         ...refinementList,
-        collection_id: categoryIds.filter((c) => c !== id),
+        category_id: categoryIds.filter((c) => c !== id),
       });
 
       return;
@@ -100,43 +68,27 @@ const RefinementList = ({
   return (
     <main className="content-container">
       <div className="flex items-baseline justify-end">
-        <div className="flex items-center">
-          <Sorting />
-          {/* Mobile filter dialog */}
-          <Sheet>
-            <SheetTrigger className="ml-4 text-muted-foreground hover:text-foreground lg:hidden">
-              <FunnelIcon className="h-5 w-5" aria-hidden="true" />
-            </SheetTrigger>
-            <SheetContent position="right">
-              <SheetHeader>
-                <SheetTitle>Bộ Lọc</SheetTitle>
-                <h3 className="sr-only">Bộ Lọc</h3>
-              </SheetHeader>
-              <Accordion type="multiple" className="mt-4">
-                <CategoriesFilter
-                  categories={categories}
-                  handleCollectionChange={handleCollectionChange}
-                  refinementList={refinementList}
-                />
-                <PriceFilter defaultValue={[0, 100]} />
-              </Accordion>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-      <Separator className="my-4" />
-
-      <section aria-labelledby="filter-products" className="pt-6">
-        <h2 id="filter-products" className="sr-only">
-          Genres
-        </h2>
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
-          <Filter
-            handleCollectionChange={handleCollectionChange}
+        <Sorting />
+        {/* Mobile filter dialog */}
+        <MobileFilter>
+          <CategoriesFilter
+            handleCategoryChange={handleCategoryChange}
             refinementList={refinementList}
           />
-          <div className="lg:col-span-4">{children}</div>
-        </div>
+          <PriceFilter defaultValue={[0, 100]} />
+        </MobileFilter>
+      </div>
+      <Separator className="mb-4 mt-3" />
+
+      <section
+        aria-labelledby="products"
+        className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5"
+      >
+        <Filter
+          handleCategoryChange={handleCategoryChange}
+          refinementList={refinementList}
+        />
+        <div className="lg:col-span-4">{children}</div>
       </section>
     </main>
   );

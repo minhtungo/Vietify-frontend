@@ -10,16 +10,14 @@ import Text from '@modules/ui/text';
 
 import { FC } from 'react';
 import { FilterProps } from '.';
+import { useProductCategories } from 'medusa-react';
 
-interface categoriesProps extends FilterProps {
-  categories: ProductCategory[] | undefined;
-}
-
-const CategoriesFilter: FC<categoriesProps> = ({
-  categories,
-  handleCollectionChange,
+const CategoriesFilter: FC<FilterProps> = ({
+  handleCategoryChange,
   refinementList,
 }) => {
+  const { product_categories: categories } = useProductCategories();
+
   return (
     <AccordionItem value="genre">
       <AccordionTrigger>
@@ -36,9 +34,9 @@ const CategoriesFilter: FC<categoriesProps> = ({
                   id={c.name}
                   name={c.name}
                   value={c.name}
-                  defaultChecked={refinementList.collection_id?.includes(c.id)}
+                  defaultChecked={refinementList.category_id?.includes(c.id)}
                   onCheckedChange={(checked) =>
-                    handleCollectionChange(checked as boolean, c)
+                    handleCategoryChange(checked as boolean, c.id)
                   }
                 />
                 <Text span size="md">
