@@ -1,22 +1,14 @@
-import FunnelIcon from '@icons/funnel';
-import { ProductCategory, StoreGetProductsParams } from '@medusajs/medusa';
-import Sorting from '@modules/store/components/sort-by';
-import { Accordion } from '@modules/ui/accordion';
+import { StoreGetProductsParams } from '@medusajs/medusa';
+import SortingList from '@modules/store/components/sorting-list';
+import Heading from '@modules/ui/heading';
 import { Separator } from '@ui/separator';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@ui/sheet';
 import { useProductCategories } from 'medusa-react';
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
 import Filter from '../filter';
 import CategoriesFilter from '../filter/categories';
 import PriceFilter from '../filter/price';
 import MobileFilter from '../mobile-filter';
+import { sorting } from '@static/sort-options';
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams;
@@ -37,7 +29,9 @@ const RefinementList = ({
   children,
 }: RefinementListProps) => {
   const { product_categories: categories } = useProductCategories();
+
   const router = useRouter();
+  const { c: categoryQuery } = router.query;
 
   const handleCategoryChange = (checked: boolean, id: string) => {
     const categoryIds = refinementList.category_id || [];
@@ -66,9 +60,10 @@ const RefinementList = ({
   };
 
   return (
-    <main className="content-container">
-      <div className="flex items-baseline justify-end">
-        <Sorting />
+    <main className="content-container py-6">
+      <div className="flex items-baseline justify-between">
+        <Heading>Tất cả sản phẩm</Heading>
+        <SortingList list={sorting}/>
         {/* Mobile filter dialog */}
         <MobileFilter>
           <CategoriesFilter

@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { useHits, UseHitsProps } from 'react-instantsearch-hooks-web';
 
 import { ProductHit } from '../hit';
+import Link from 'next/link';
 
 type HitsProps<THit> = React.ComponentProps<'div'> &
   UseHitsProps & {
@@ -39,7 +40,6 @@ const DesktopHits = ({
       <PopoverAnchor />
       <PopoverContent
         className="hidden max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[500px] lg:block 3xl:min-w-[600px]"
-        asChild
         onInteractOutside={() => setValue('')}
       >
         <ul className="w-full">
@@ -53,6 +53,9 @@ const DesktopHits = ({
             </li>
           ))}
         </ul>
+        <div className="w-full py-2 text-center text-sm hover:bg-accent">
+          <Link href={`/search?q=${value}`}>Xem tất cả kết quả</Link>
+        </div>
       </PopoverContent>
     </Popover>
   );

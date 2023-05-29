@@ -10,6 +10,7 @@ const Hero = () => {
       pagination={{
         clickable: true,
       }}
+      className="w-full"
       loop
       speed={1100}
       prevActivateId="prev-banner"

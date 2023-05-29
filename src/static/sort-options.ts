@@ -31,12 +31,6 @@ export const sorting: SortFilterItem[] = [
     reverse: false,
   }, // asc
   {
-    title: 'Latest arrivals',
-    slug: 'latest-desc',
-    sortKey: 'CREATED_AT',
-    reverse: true,
-  },
-  {
     title: 'Price: Low to high',
     slug: 'price-asc',
     sortKey: 'PRICE',
