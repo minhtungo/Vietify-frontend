@@ -20,12 +20,12 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
   const { deleteItem } = useStore();
 
   return (
-    <div className={cn('flex gap-x-4', className)} key={item.id}>
-      <div className="w-[80px]">
+    <div className={cn('flex gap-x-3', className)} key={item.id}>
+      <div className="w-[70px]">
         <Thumbnail thumbnail={item.thumbnail} size="full" alt={item.title} />
       </div>
       <div className="flex flex-1 flex-col justify-between">
-        <div className="flex items-start justify-between">
+        <div className="flex items-baseline justify-between">
           <div>
             <Link href={`/products/${item.variant.product.handle}`}>
               <Heading
@@ -37,13 +37,12 @@ const CartItem: React.FC<cartItemProps> = ({ item, cart, className }) => {
             </Link>
             <LineItemOptions variant={item.variant} />
           </div>
-          <div className="flex justify-end">
-            <LineItemPrice region={cart.region} item={item} style="tight" />
-          </div>
+
+          <LineItemPrice region={cart.region} item={item} style="tight" />
         </div>
 
         <div className="flex items-baseline justify-between">
-          <Text size="sm">Qty: {item.quantity}</Text>
+          <Text size="sm">SL: {item.quantity}</Text>
           <Button
             onClick={() => deleteItem(item.id)}
             variant="fade"

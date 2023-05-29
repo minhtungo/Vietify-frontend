@@ -46,7 +46,7 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="hidden w-full space-y-4 small:block">
+        <PopoverContent className="w-full space-y-4">
           {cart && items?.length ? (
             <>
               <Heading className="px-4 !text-xl">Giỏ Hàng</Heading>
@@ -120,11 +120,16 @@ const CartDropdown: FC<CartDropdownProps> = ({ className }) => {
             </>
           ) : (
             <div className="flex flex-col items-center justify-center gap-y-4 px-4">
-              <Text variant="dark" size="lg">
+              <Text variant="dark" size="md">
                 Chưa có sản phẩm trong giỏ hàng của bạn.
               </Text>
               <PopoverClose asChild>
-                <Link href="/shop" className={buttonVariants({})}>
+                <Link
+                  href="/shop"
+                  className={buttonVariants({
+                    size: 'sm',
+                  })}
+                >
                   <Text className="sr-only">Go to all products page</Text>
                   Mua sắm ngay
                 </Link>

@@ -1,4 +1,3 @@
-import UserIcon from '@icons/user';
 import ListItem from '@modules/common/components/list-item';
 import Button from '@ui/button';
 import {
@@ -10,6 +9,9 @@ import {
 import { useAccount } from '@lib/context/account-context';
 import Text from '@modules/ui/text';
 import { Separator } from '@modules/ui/separator';
+import UserIcon from '@icons/user';
+import Order from '@modules/common/icons/order';
+import LogOut from '@modules/common/icons/logout';
 
 interface UserProps {}
 
@@ -21,7 +23,7 @@ const User: React.FC<UserProps> = () => {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-9 w-9 rounded-full p-0 duration-150"
+          className="h-9 w-9 rounded-full p-0 duration-150"
         >
           <UserIcon
             size={23.5}
@@ -30,7 +32,7 @@ const User: React.FC<UserProps> = () => {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="hidden w-full space-y-0 p-0 small:block">
+      <PopoverContent className="hidden w-full space-y-0 p-1 small:block">
         {!customer ? (
           <>
             <PopoverClose asChild>
@@ -42,21 +44,36 @@ const User: React.FC<UserProps> = () => {
           </>
         ) : (
           <>
+            <div className="px-4 py-2">
+              <Text variant="dark" className="!font-semibold" size="sm">
+                {`${customer.first_name} ${customer.last_name}`}
+              </Text>
+              <Text size="xs">{customer.email}</Text>
+            </div>
+            <Separator />
             <PopoverClose asChild>
-              <ListItem href="/account">Thông tin của tôi</ListItem>
+              <ListItem href="/account" className="flex items-center gap-1">
+                <UserIcon size={18} className="text-foreground/90" />
+                Thông tin tài khoản
+              </ListItem>
             </PopoverClose>
             <PopoverClose asChild>
-              <ListItem href="/account/orders">Đơn hàng của tôi</ListItem>
+              <ListItem
+                href="/account/orders"
+                className="flex items-center gap-[5.2px]"
+              >
+                <Order size={18} className="text-foreground/90" />
+                Đơn hàng của tôi
+              </ListItem>
             </PopoverClose>
             <Separator className="my-2" />
             <PopoverClose asChild>
               <button
-                className="w-full select-none px-4 py-2 text-left transition-colors hover:bg-accent focus:bg-accent"
+                className="flex w-full select-none items-center gap-1 px-4 py-2 text-left text-sm font-medium text-foreground transition-colors hover:bg-accent focus:bg-accent"
                 onClick={handleLogout}
               >
-                <Text variant="dark" className="font-medium leading-none" span>
-                  Đăng xuất
-                </Text>
+                <LogOut size={19.5} />
+                Đăng xuất
               </button>
             </PopoverClose>
           </>

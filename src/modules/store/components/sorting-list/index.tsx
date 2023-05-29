@@ -36,7 +36,7 @@ const SortingList: React.FC<sortingListProps> = ({ list }) => {
       </SelectTrigger>
       <SelectContent>
         {list.map((item) => (
-          <SelectItem key={`${item.slug}`} value={item.title}>
+          <SelectItem key={`${item.slug}`} value={item.title} asChild>
             <FilterItem item={item} />
           </SelectItem>
         ))}

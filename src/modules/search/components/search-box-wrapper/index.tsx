@@ -16,7 +16,7 @@ export type ControlledSearchBoxProps = React.ComponentProps<'div'> & {
   onSubmit?(event: FormEvent): void;
   placeholder?: string;
   value: string;
-  setValue: any;
+  setValue?: any;
   className?: string;
 };
 

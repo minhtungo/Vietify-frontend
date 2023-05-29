@@ -21,7 +21,7 @@ const LineItemPrice = ({
 
   return (
     <div className="flex flex-col">
-      <Text span className="!font-semibold" variant="brand" size="lg">
+      <Text span className="!font-semibold" variant="brand" size="md">
         {formatAmount({
           amount: item.total || 0,
           region: region,

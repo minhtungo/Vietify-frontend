@@ -39,13 +39,13 @@ const DesktopHits = ({
     <Popover open={!!value && hitsLength > 0}>
       <PopoverAnchor />
       <PopoverContent
-        className="hidden max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[500px] lg:block 3xl:min-w-[600px]"
+        className="hidden max-h-[400px] w-full overflow-y-auto p-1 md:min-w-[350px] lg:block 2xl:min-w-[500px]"
         onInteractOutside={() => setValue('')}
       >
-        <ul className="w-full">
+        <ul className="flex flex-col gap-1">
           {hits.map((hit) => (
             <li
-              className="list-none py-2 hover:bg-muted"
+              className="list-none p-1.5 hover:bg-muted"
               key={hit.objectID}
               onClick={() => setValue('')}
             >
@@ -53,9 +53,12 @@ const DesktopHits = ({
             </li>
           ))}
         </ul>
-        <div className="w-full py-2 text-center text-sm hover:bg-accent">
+        <PopoverClose
+          className="w-full rounded-sm py-2 text-center text-sm hover:bg-accent"
+          asChild
+        >
           <Link href={`/search?q=${value}`}>Xem tất cả kết quả</Link>
-        </div>
+        </PopoverClose>
       </PopoverContent>
     </Popover>
   );

@@ -59,11 +59,13 @@ const RefinementList = ({
     return;
   };
 
+  console.log(refinementList);
+
   return (
     <main className="content-container py-6">
       <div className="flex items-baseline justify-between">
         <Heading>Tất cả sản phẩm</Heading>
-        <SortingList list={sorting}/>
+        <SortingList list={sorting} />
         {/* Mobile filter dialog */}
         <MobileFilter>
           <CategoriesFilter
