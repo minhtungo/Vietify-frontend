@@ -5,6 +5,9 @@ import ProfilePassword from '@modules/account/components/profile-password';
 import ProfileBillingAddress from '../components/profile-billing-address';
 import ProfilePhone from '../components/profile-phone';
 import { Separator } from '@modules/ui/separator';
+import Heading from '@modules/ui/heading';
+import Text from '@modules/ui/text';
+import Button from '@modules/ui/button';
 
 const ProfileTemplate = () => {
   const { customer, retrievingCustomer, refetchCustomer } = useAccount();
@@ -15,23 +18,26 @@ const ProfileTemplate = () => {
 
   return (
     <div className="w-full">
-      <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Profile</h1>
-        <p className="text-base-regular">
-          View and update your profile information, including your name, email,
-          and phone number. You can also update your billing address, or change
-          your password.
-        </p>
+      <div className="mb-8 flex flex-col gap-y-1">
+        <Heading>Thông tin tài khoản</Heading>
+        <Text size="sm">
+          Xem và cập nhật thông tin hồ sơ của bạn, bao gồm tên, email và số điện
+          thoại. Bạn cũng có thể cập nhật địa chỉ thanh toán hoặc thay đổi mật
+          khẩu của mình.
+        </Text>
       </div>
-      <div className="flex w-full flex-col gap-y-8">
+      <div className="flex w-full flex-col gap-y-6">
         <ProfileName customer={customer} />
-        <Separator className="my-1" />
         <ProfileEmail customer={customer} />
-        <Separator className="my-1" />
         <ProfilePhone customer={customer} />
-        <Separator className="my-1" />
+        <Button
+          // isLoading={isLoading}
+          className="ml-auto "
+          type="submit"
+        >
+          Lưu thay đổi
+        </Button>
         <ProfilePassword customer={customer} />
-        <Separator className="my-1" />
         <ProfileBillingAddress customer={customer} />
       </div>
     </div>

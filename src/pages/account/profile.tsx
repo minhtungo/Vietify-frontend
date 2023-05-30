@@ -8,7 +8,10 @@ import { NextPageWithLayout } from 'types/global';
 const Profile: NextPageWithLayout = () => {
   return (
     <>
-      <Head title="Profile" description="View and edit your ACME profile." />
+      <Head
+        title="Thông tin tài khoản"
+        description="Xem và chỉnh sửa thông tin tài khoản."
+      />
       <ProfileTemplate />
     </>
   );

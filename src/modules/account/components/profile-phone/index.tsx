@@ -1,10 +1,11 @@
 import { useAccount } from '@lib/context/account-context';
 import { Customer } from '@medusajs/medusa';
-import Input from '@common/form-input';
+
+import { Input } from '@modules/ui/input';
+import { Label } from '@modules/ui/label';
 import { useUpdateMe } from 'medusa-react';
 import React, { useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import AccountInfo from '../account-info';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
@@ -64,25 +65,16 @@ const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
 
   return (
     <form onSubmit={handleSubmit(updatePhone)} className="w-full">
-      <AccountInfo
-        label="Phone"
-        currentInfo={`${customer.phone}`}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        isError={isError}
-        clearState={clearState}
-      >
-        <div className="grid grid-cols-1 gap-y-2">
-          <Input
-            label="Phone"
-            {...register('phone', {
-              required: true,
-            })}
-            defaultValue={phone}
-            errors={errors}
-          />
-        </div>
-      </AccountInfo>
+      <div className="grid gap-y-1.5">
+        <Label htmlFor="phone">Số điện thoại</Label>
+        <Input
+          {...register('phone', {
+            required: true,
+          })}
+          defaultValue={phone}
+          id="phone"
+        />
+      </div>
     </form>
   );
 };

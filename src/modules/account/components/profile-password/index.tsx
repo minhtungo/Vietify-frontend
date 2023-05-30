@@ -1,10 +1,23 @@
 import { medusaClient } from '@lib/config';
 import { Customer } from '@medusajs/medusa';
-import Input from '@common/form-input';
+import Security from '@modules/common/icons/security';
+import Button from '@modules/ui/button';
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@modules/ui/dialog';
+import { Input } from '@modules/ui/input';
+import { Label } from '@modules/ui/label';
+import Text from '@modules/ui/text';
 import { useUpdateMe } from 'medusa-react';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import AccountInfo from '../account-info';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
@@ -16,7 +29,7 @@ type UpdateCustomerPasswordFormData = {
   confirm_password: string;
 };
 
-const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
+const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
   const [errorMessage, setErrorMessage] = React.useState<string | undefined>(
     undefined
   );
@@ -76,47 +89,63 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(updatePassword)}
-      onReset={() => reset()}
-      className="w-full"
-    >
-      <AccountInfo
-        label="Password"
-        currentInfo={
-          <span>The password is not shown for security reasons</span>
-        }
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        isError={isError}
-        errorMessage={errorMessage}
-        clearState={clearState}
-      >
-        <div className="grid grid-cols-2 gap-4">
-          <Input
-            label="Old password"
-            {...register('old_password', {
-              required: true,
-            })}
-            type="password"
-            errors={errors}
-          />
-          <Input
-            label="New password"
-            type="password"
-            {...register('new_password', { required: true })}
-            errors={errors}
-          />
-          <Input
-            label="Confirm password"
-            type="password"
-            {...register('confirm_password', { required: true })}
-            errors={errors}
-          />
-        </div>
-      </AccountInfo>
-    </form>
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-1.5">
+        <Security size={20} className="text-muted-foreground" />
+        <span className="text-sm font-medium">Đổi mật khẩu</span>
+      </div>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Cập nhật</Button>
+        </DialogTrigger>
+        <form onSubmit={handleSubmit(updatePassword)} onReset={() => reset()}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Đổi mật khẩu</DialogTitle>
+            </DialogHeader>
+            <div className="grid gap-4 py-1">
+              <div className="grid gap-y-1.5">
+                <Label htmlFor="old_password">Mật khẩu hiện tại</Label>
+                <Input
+                  {...register('old_password', {
+                    required: true,
+                  })}
+                  placeholder="Nhập mật khẩu hiện tại"
+                  type="password"
+                  id="old_password"
+                />
+              </div>
+              <div className="grid gap-y-1.5">
+                <Label htmlFor="new_password">Mật khẩu mới</Label>
+                <Input
+                  {...register('new_password', {
+                    required: true,
+                  })}
+                  placeholder="Nhập mật khẩu mới"
+                  type="password"
+                  id="new_password"
+                />
+              </div>
+              <div className="grid gap-y-1.5">
+                <Label htmlFor="confirm_password">Nhập lại mật khẩu mới</Label>
+                <Input
+                  {...register('confirm_password', {
+                    required: true,
+                  })}
+                  placeholder="Nhập lại mật khẩu mới"
+                  type="password"
+                  id="confirm_password"
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="submit">Save changes</Button>
+            </DialogFooter>
+          </DialogContent>
+        </form>
+      </Dialog>
+    </div>
   );
 };
 
-export default ProfileName;
+export default ProfilePassword;

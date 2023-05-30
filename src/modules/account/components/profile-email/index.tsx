@@ -1,10 +1,11 @@
 import { useAccount } from '@lib/context/account-context';
 import { Customer } from '@medusajs/medusa';
-import Input from '@common/form-input';
+
+import { Input } from '@modules/ui/input';
+import { Label } from '@modules/ui/label';
 import { useUpdateMe } from 'medusa-react';
 import React, { useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import AccountInfo from '../account-info';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
@@ -71,26 +72,23 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
 
   return (
     <form onSubmit={handleSubmit(updateEmail)} className="w-full">
-      <AccountInfo
-        label="Email"
-        currentInfo={`${customer.email}`}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        isError={isError}
-        errorMessage={errorMessage}
-        clearState={clearState}
-      >
-        <div className="grid grid-cols-1 gap-y-2">
-          <Input
-            label="Email"
-            {...register('email', {
-              required: true,
-            })}
-            defaultValue={email}
-            errors={errors}
-          />
-        </div>
-      </AccountInfo>
+      <div className="grid gap-y-1.5">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          {...register('email', {
+            required: true,
+          })}
+          defaultValue={email}
+          id="email"
+        />
+      </div>
+      {/* <Button
+          isLoading={isLoading}
+          className="ml-auto mt-2 w-full small:max-w-[140px]"
+          type="submit"
+        >
+          Save changes
+        </Button> */}
     </form>
   );
 };
