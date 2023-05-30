@@ -1,16 +1,24 @@
-import { useAccount } from '@lib/context/account-context';
-import UnderlineLink from '@common/underline-link';
 import Spinner from '@icons/spinner';
+import { useAccount } from '@lib/context/account-context';
+import { Separator } from '@modules/ui/separator';
+import { accountNavItems } from '@static/routes';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@ui/card';
 import React, { useEffect } from 'react';
 import AccountNav from '../components/account-nav';
-import Link from '@modules/common/components/link';
-import { buttonVariants } from '@modules/ui/button';
 
-const AccountLayout: React.FC = ({
-  children,
-}: {
+import { FC } from 'react';
+
+interface accountLayoutProps {
   children: React.ReactNode;
-}) => {
+}
+
+const AccountLayout: FC<accountLayoutProps> = ({ children }) => {
   const { customer, retrievingCustomer, checkSession } = useAccount();
 
   useEffect(() => {
@@ -26,32 +34,24 @@ const AccountLayout: React.FC = ({
   }
 
   return (
-    <div className="flex-1 small:bg-gray-50 small:py-12">
-      <div className="mx-auto flex h-full max-w-5xl flex-1 flex-col bg-white">
-        <div className="grid grid-cols-1 py-6 small:grid-cols-[240px_1fr] small:px-8 small:py-12 ">
-          <div>
-            <AccountNav />
-          </div>
+    <div className="content-container p-10 pb-16">
+      <Card className="p-6">
+        <CardHeader className="space-y-0.5">
+          <CardTitle className="text-2xl tracking-tight">
+            Quản lí tài khoản
+          </CardTitle>
+          <CardDescription className="text-base text-muted-foreground">
+            Manage your account settings and set e-mail preferences.
+          </CardDescription>
+          <Separator className="!my-6" />
+        </CardHeader>
+        <CardContent className="flex flex-col lg:flex-row lg:space-x-12">
+          <aside className="lg:w-1/5">
+            <AccountNav items={accountNavItems} />
+          </aside>
           <div className="flex-1">{children}</div>
-        </div>
-        <div className="flex flex-col items-end justify-between gap-x-8 border-gray-200 px-8 py-12 small:flex-row small:border-t">
-          <div>
-            <h3 className="text-xl-semi mb-4">Got questions?</h3>
-            <span className="text-small-regular">
-              You can find frequently asked questions and answers on our
-              customer service page.
-            </span>
-          </div>
-          <div>
-            <Link
-              className={buttonVariants({ variant: 'link' })}
-              href="/customer-service"
-            >
-              Customer Service
-            </Link>
-          </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

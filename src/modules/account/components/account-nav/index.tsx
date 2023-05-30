@@ -1,83 +1,66 @@
 import { useAccount } from '@lib/context/account-context';
 import ChevronDown from '@icons/chevron-down';
-import clsx from 'clsx';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Button, { buttonVariants } from '@modules/ui/button';
+import cn from '@lib/util/cn';
+import Text from '@modules/ui/text';
 
-const AccountNav = () => {
-  const { route } = useRouter();
+interface AccountNavProps {
+  items: {
+    href: string;
+    title: string;
+  }[];
+}
+
+const AccountNav: React.FC<AccountNavProps> = ({ items }) => {
+  const router = useRouter();
+
+  const { pathname, route } = router;
   const { handleLogout } = useAccount();
 
   return (
     <div>
-      <div className="small:hidden">
+      <div className="md:hidden">
         {route !== '/account' && (
           <Link
             href="/account"
-            className="text-small-regular flex items-center gap-x-2 py-2"
+            className={cn(
+              buttonVariants({
+                variant: 'ghost',
+              }),
+              'gap-1.5 p-0 hover:bg-transparent hover:underline'
+            )}
           >
             <ChevronDown className="rotate-90 transform" />
-            <span>Account</span>
+            <Text span variant="dark" size="lg">
+              Account
+            </Text>
           </Link>
         )}
       </div>
-      <div className="hidden small:block">
-        <div>
-          <div className="py-4">
-            <h3 className="text-base-semi">Account</h3>
-          </div>
-          <div className="text-base-regular">
-            <ul className="mb-0 flex flex-col items-start justify-start gap-y-4">
-              <li>
-                <AccountNavLink href="/account" route={route}>
-                  Overview
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink href="/account/profile" route={route}>
-                  Profile
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink href="/account/addresses" route={route}>
-                  Addresses
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink href="/account/orders" route={route}>
-                  Orderssony headphone1
-                </AccountNavLink>
-              </li>
-              <li className="text-grey-700">
-                <button type="button" onClick={handleLogout}>
-                  Log out
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <nav className="hidden flex-col space-y-1 md:flex">
+        {items.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              buttonVariants({ variant: 'ghost' }),
+              pathname === item.href
+                ? 'bg-muted hover:bg-muted'
+                : 'hover:bg-transparent hover:underline',
+              'justify-start'
+            )}
+          >
+            {item.title}
+          </Link>
+        ))}
+        <Button onClick={handleLogout} className="!mt-4">
+          Log out
+        </Button>
+      </nav>
     </div>
-  );
-};
-
-type AccountNavLinkProps = {
-  href: string;
-  route: string;
-  children: React.ReactNode;
-};
-
-const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
-  const active = route === href;
-  return (
-    <Link
-      href={href}
-      className={clsx('text-gray-700', {
-        'font-semibold text-gray-900': active,
-      })}
-    >
-      {children}
-    </Link>
   );
 };
 

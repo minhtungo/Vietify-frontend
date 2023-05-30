@@ -1,8 +1,11 @@
-import { Customer, Order } from '@medusajs/medusa';
 import ChevronDown from '@icons/chevron-down';
-import MapPin from '@icons/map-pin';
-import Package from '@icons/package';
 import User from '@icons/user';
+import { getProfileCompletion } from '@lib/util/get-profile-completion';
+import { Customer, Order } from '@medusajs/medusa';
+import Heading from '@modules/ui/heading';
+import { Separator } from '@modules/ui/separator';
+import Text from '@modules/ui/text';
+import { accountNavItems } from '@static/routes';
 import { formatAmount } from 'medusa-react';
 import Link from 'next/link';
 
@@ -14,169 +17,117 @@ type OverviewProps = {
 const Overview = ({ orders, customer }: OverviewProps) => {
   return (
     <div>
-      <div className="small:hidden">
-        <div className="text-xl-semi mb-4 px-8">
-          Hello {customer?.first_name}
+      <div className="md:hidden">
+        <div className="text-large-semi mb-3 px-6">
+          Xin chào {customer?.first_name}
         </div>
-        <div className="text-base-regular">
-          <ul>
-            <li>
-              <Link
-                href="/account/profile"
-                className="flex items-center justify-between border-b border-gray-200 px-8 py-4"
-              >
-                <div className="flex items-center gap-x-2">
-                  <User size={16} />
-                  <span>Profile</span>
-                </div>
-                <ChevronDown className="-rotate-90 transform" />
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/account/addresses"
-                className="flex items-center justify-between border-b border-gray-200 px-8 py-4"
-              >
-                <div className="flex items-center gap-x-2">
-                  <MapPin size={16} />
-                  <span>Addresses</span>
-                </div>
-                <ChevronDown className="-rotate-90 transform" />
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/account/orders"
-                className="flex items-center justify-between border-b border-gray-200 px-8 py-4"
-              >
-                <div className="flex items-center gap-x-2">
-                  <Package size={16} />
-                  <span>Orders</span>
-                </div>
-                <ChevronDown className="-rotate-90 transform" />
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <ul>
+          {accountNavItems.map((item) => {
+            // const Icon = item.icon;
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="flex items-center justify-between border-b border-border px-6 py-4"
+                >
+                  <div className="flex items-center gap-x-1.5">
+                    <User size={18} />
+                    <Text variant="dark" span>
+                      {item.title}
+                    </Text>
+                  </div>
+                  <ChevronDown className="-rotate-90 transform text-foreground/90" />
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-
-      <div className="hidden small:block">
-        <div className="text-xl-semi mb-4 flex items-start justify-between">
-          <span>Hello {customer?.first_name}</span>
-          <span className="text-small-regular text-gray-700">
-            Signed in as:{' '}
+      <div className="hidden md:block">
+        <div className="flex justify-between">
+          <Text size="lg" variant="dark" className="font-semibold" span>
+            Xin chào {customer?.first_name}
+          </Text>
+          <Text size="sm" span>
+            Đăng nhập bởi:{' '}
             <span className="font-semibold">{customer?.email}</span>
-          </span>
+          </Text>
         </div>
-        <div className="flex flex-col border-t border-gray-200 py-8">
-          <div className="col-span-1 row-span-2 flex h-full flex-1 flex-col gap-y-4">
-            <div className="mb-6 flex items-start gap-x-16">
-              <div className="flex flex-col gap-y-4">
-                <h3 className="text-large-semi">Profile</h3>
-                <div className="flex items-end gap-x-2">
-                  <span className="text-3xl-semi leading-none">
-                    {getProfileCompletion(customer)}%
-                  </span>
-                  <span className="text-base-regular uppercase text-gray-500">
-                    Completed
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-y-4">
-                <h3 className="text-large-semi">Addresses</h3>
-                <div className="flex items-end gap-x-2">
-                  <span className="text-3xl-semi leading-none">
-                    {customer?.shipping_addresses?.length || 0}
-                  </span>
-                  <span className="text-base-regular uppercase text-gray-500">
-                    Saved
-                  </span>
-                </div>
+        <Separator className="my-4" />
+        <div className="flex h-full flex-1 flex-col gap-y-6">
+          <div className="flex items-start gap-x-16">
+            <div className="flex flex-col gap-y-2">
+              <Heading size="sm">Profile</Heading>
+              <div className="flex items-end gap-x-2">
+                <Text span size="lg" variant="dark" className="font-semibold">
+                  {getProfileCompletion(customer)}%
+                </Text>
+                <Text span variant="dark">
+                  Completed
+                </Text>
               </div>
             </div>
-
-            <div className="flex flex-col gap-y-4">
-              <div className="flex items-center gap-x-2">
-                <h3 className="text-large-semi">Recent orders</h3>
+            <div className="flex flex-col gap-y-2">
+              <Heading size="sm">Addresses</Heading>
+              <div className="flex items-end gap-x-2">
+                <Text span size="lg" variant="dark" className="font-semibold">
+                  {customer?.shipping_addresses?.length || 0}
+                </Text>
+                <Text span variant="dark">
+                  Saved
+                </Text>
               </div>
-              <ul className="flex flex-col gap-y-4">
-                {orders ? (
-                  orders.slice(0, 5).map((order) => {
-                    return (
-                      <li key={order.id}>
-                        <Link href={`/order/details/${order.id}`}>
-                          <div className="flex items-center justify-between bg-gray-50 p-4">
-                            <div className="text-small-regular grid flex-1 grid-cols-3 grid-rows-2 gap-x-4">
-                              <span className="font-semibold">Date placed</span>
-                              <span className="font-semibold">
-                                Order number
-                              </span>
-                              <span className="font-semibold">
-                                Total amount
-                              </span>
-                              <span>
-                                {new Date(order.created_at).toDateString()}
-                              </span>
-                              <span>#{order.display_id}</span>
-                              <span>
-                                {formatAmount({
-                                  amount: order.total,
-                                  region: order.region,
-                                  includeTaxes: false,
-                                })}
-                              </span>
-                            </div>
-                            <button
-                              className="flex items-center justify-between"
-                              onClick={close}
-                            >
-                              <span className="sr-only">
-                                Go to order #{order.display_id}
-                              </span>
-                              <ChevronDown className="-rotate-90" />
-                            </button>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-y-4">
+            <Heading size="sm">Recent orders</Heading>
+            <ul className="flex flex-col gap-y-3">
+              {orders ? (
+                orders.slice(0, 5).map((order) => {
+                  return (
+                    <li key={order.id}>
+                      <Link href={`/order/details/${order.id}`}>
+                        <div className="flex items-center justify-between bg-accent/50 p-4">
+                          <div className="text-small-regular grid flex-1 grid-cols-3 grid-rows-2 gap-x-4">
+                            <span className="font-semibold">Date placed</span>
+                            <span className="font-semibold">Order number</span>
+                            <span className="font-semibold">Total amount</span>
+                            <span>
+                              {new Date(order.created_at).toDateString()}
+                            </span>
+                            <span>#{order.display_id}</span>
+                            <span>
+                              {formatAmount({
+                                amount: order.total,
+                                region: order.region,
+                                includeTaxes: false,
+                              })}
+                            </span>
                           </div>
-                        </Link>
-                      </li>
-                    );
-                  })
-                ) : (
-                  <span>No recent orders</span>
-                )}
-              </ul>
-            </div>
+                          <button
+                            className="flex items-center justify-between"
+                            onClick={close}
+                          >
+                            <span className="sr-only">
+                              Go to order #{order.display_id}
+                            </span>
+                            <ChevronDown className="-rotate-90" />
+                          </button>
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <Text span>No recent orders</Text>
+              )}
+            </ul>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-const getProfileCompletion = (customer?: Omit<Customer, 'password_hash'>) => {
-  let count = 0;
-
-  if (!customer) {
-    return 0;
-  }
-
-  if (customer.email) {
-    count++;
-  }
-
-  if (customer.first_name && customer.last_name) {
-    count++;
-  }
-
-  if (customer.phone) {
-    count++;
-  }
-
-  if (customer.billing_address) {
-    count++;
-  }
-
-  return (count / 4) * 100;
 };
 
 export default Overview;

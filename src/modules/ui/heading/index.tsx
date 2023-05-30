@@ -10,7 +10,7 @@ export const headingVariants = cva('text-foreground font-semibold', {
       brand: 'text-primary',
     },
     size: {
-      sm: 'text-sm md:text-base font-medium',
+      sm: 'text-sm md:text-base',
       md: 'text-lg sm:text-xl md:text-2xl',
       lg: 'text-xl md:text-2xl lg:text-3xl xl:leading-7',
       xl: 'text-3xl md:text-4xl xl:text-5xl',
