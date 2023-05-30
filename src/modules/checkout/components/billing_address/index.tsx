@@ -1,6 +1,7 @@
 import ConnectForm from '@common/connect-form';
 import Input from '@common/form-input';
 import { CheckoutFormValues } from '@lib/context/checkout-context';
+import CountrySelect from '../country-select';
 
 const BillingAddress = () => {
   return (
@@ -86,6 +87,21 @@ const BillingAddress = () => {
             errors={errors}
             touched={touchedFields}
             required
+          />
+          <Input
+            label="Company"
+            {...register('billing_address.company')}
+            autoComplete="organization"
+            errors={errors}
+            touched={touchedFields}
+          />
+          <CountrySelect
+            {...register('billing_address.country_code', {
+              required: 'Country is required',
+            })}
+            autoComplete="country"
+            errors={errors}
+            touched={touchedFields}
           />
         </div>
       )}

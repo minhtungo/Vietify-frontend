@@ -25,13 +25,13 @@ import { useStore } from './store-context';
 type AddressValues = {
   first_name: string;
   last_name: string;
-  company: string;
+  company?: string;
   address_1: string;
   address_2: string;
   city: string;
   province: string;
   postal_code: string;
-  country_code: string;
+  country_code?: string;
   phone: string;
 };
 
