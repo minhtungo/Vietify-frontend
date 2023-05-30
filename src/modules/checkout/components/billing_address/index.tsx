@@ -1,11 +1,11 @@
-import ConnectForm from '@common/connect-form';
 import Input from '@common/form-input';
-import { CheckoutFormValues } from '@lib/context/checkout-context';
-import CountrySelect from '../country-select';
+import ConnectForm from '@modules/common/components/connect-form';
+
+// <ConnectForm<CheckoutFormValues>>
 
 const BillingAddress = () => {
   return (
-    <ConnectForm<CheckoutFormValues>>
+    <ConnectForm>
       {({ register, formState: { errors, touchedFields } }) => (
         <div className="grid grid-cols-1 gap-y-4">
           <div className="grid grid-cols-2 gap-x-3">
@@ -87,21 +87,6 @@ const BillingAddress = () => {
             errors={errors}
             touched={touchedFields}
             required
-          />
-          <Input
-            label="Company"
-            {...register('billing_address.company')}
-            autoComplete="organization"
-            errors={errors}
-            touched={touchedFields}
-          />
-          <CountrySelect
-            {...register('billing_address.country_code', {
-              required: 'Country is required',
-            })}
-            autoComplete="country"
-            errors={errors}
-            touched={touchedFields}
           />
         </div>
       )}

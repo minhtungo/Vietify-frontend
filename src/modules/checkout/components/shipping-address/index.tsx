@@ -7,7 +7,7 @@ import { useMeCustomer } from 'medusa-react';
 const ShippingAddress = () => {
   const { customer } = useMeCustomer();
   return (
-    <ConnectForm<CheckoutFormValues>>
+    <ConnectForm>
       {({ register, formState: { errors, touchedFields } }) => (
         <div className="grid grid-cols-1 gap-y-4">
           <div className="grid grid-cols-2 gap-x-3">
