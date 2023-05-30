@@ -13,46 +13,35 @@ import { fetchProductsList } from '@lib/data';
 import usePreviews from '@lib/hooks/use-previews';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useCart } from 'medusa-react';
-import { useMemo } from 'react';
+
+import useQueryParams from '@lib/hooks/use-query-params';
 
 const Store: NextPageWithLayout = () => {
   const [params, setParams] = useState<StoreGetProductsParams>({});
+  const { cart } = useCart();
 
   const router = useRouter();
   const { sort } = router.query;
-  const {
-    sortKey,
-    title: initialOption,
-    reverse,
-  } = sorting.find((item) => item.slug === sort) || defaultSort;
 
-  const { cart } = useCart();
+  const { sortKey, reverse } =
+    sorting.find((item) => item.slug === sort) || defaultSort;
 
-  const queryParams = useMemo(() => {
-    const p: StoreGetProductsParams = {};
-
-    if (cart?.id) {
-      p.cart_id = cart.id;
-    }
-
-    p.is_giftcard = false;
-
-    return {
-      ...p,
-      ...params,
-    };
-  }, [cart?.id, params]);
+  const queryParams = useQueryParams(params);
 
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery(
       [`infinite-products-store`, queryParams, cart],
-      ({ pageParam }) => fetchProductsList({ pageParam, queryParams }),
+      ({ pageParam }) =>
+        fetchProductsList({ pageParam, queryParams, sortKey, reverse }),
       {
         getNextPageParam: (lastPage) => lastPage.nextPage,
       }
     );
 
-  const products = usePreviews({ pages: data?.pages, region: cart?.region });
+  const products = usePreviews({
+    pages: data?.pages,
+    region: cart?.region,
+  });
 
   return (
     <>

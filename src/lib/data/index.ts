@@ -115,17 +115,34 @@ export const getCollectionData = async (id: string) => {
 type FetchProductListParams = {
   pageParam?: number;
   queryParams: StoreGetProductsParams;
+  sortKey?: string;
+  reverse?: boolean;
 };
 
 export const fetchProductsList = async ({
   pageParam = 0,
   queryParams,
+  reverse,
+  sortKey,
 }: FetchProductListParams) => {
-  const { products, count, offset } = await medusaClient.products.list({
+  let { products, count, offset } = await medusaClient.products.list({
     limit: 12,
     offset: pageParam,
     ...queryParams,
   });
+
+  sortKey === 'PRICE' &&
+    products.sort(
+      (a, b) => a.variants[0].prices[0].amount - b.variants[0].prices[0].amount
+    );
+
+  sortKey === 'CREATED_AT' &&
+    products.sort(
+      (a, b) =>
+        new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime()
+    );
+
+  reverse && products.reverse();
 
   return {
     response: { products, count },

@@ -1,7 +1,6 @@
-import { CheckoutFormValues } from '@lib/context/checkout-context';
-import { emailRegex } from '@lib/util/regex';
 import ConnectForm from '@common/connect-form';
 import Input from '@common/form-input';
+import { emailRegex } from '@lib/util/regex';
 import { useMeCustomer } from 'medusa-react';
 
 const ShippingAddress = () => {

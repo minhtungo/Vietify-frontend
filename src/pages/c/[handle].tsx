@@ -1,18 +1,14 @@
 import Head from '@common/head';
-import { medusaClient } from '@lib/config';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import Layout from '@modules/layout/templates';
-import ProductTemplate from '@modules/products/templates';
-import { useQuery } from '@tanstack/react-query';
+import ProductPreview from '@modules/products/components/product-preview';
+import Heading from '@modules/ui/heading';
+import Text from '@modules/ui/text';
+import { useProductCategories, useProducts } from 'medusa-react';
 import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import { ReactElement } from 'react';
 import { NextPageWithLayout, PrefetchedPageProps } from 'types/global';
-import { useProductCategories, useProducts } from 'medusa-react';
-import { ProductCategory } from '@medusajs/medusa';
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
-import ProductPreview from '@modules/products/components/product-preview';
-import Heading from '@modules/ui/heading';
-import Text from '@modules/ui/text';
 
 interface Params extends ParsedUrlQuery {
   handle: string;
