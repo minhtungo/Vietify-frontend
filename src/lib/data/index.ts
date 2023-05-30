@@ -133,10 +133,18 @@ export const fetchProductsList = async ({
   };
 };
 
-export const searchProducts = async (query: string): Promise<ProductHit[]> => {
-  const results: ProductHit[] = await medusaClient.products
-    .search({ q: query })
-    .then(({ hits }) => hits);
+export const searchProducts = async ({
+  query,
+  pageParam = 0,
+}: {
+  query: string;
+  pageParam: number;
+}) => {
+  const { hits } = await medusaClient.products.search({
+    q: query,
+    limit: 12,
+    offset: pageParam,
+  });
 
-  return results as ProductHit[];
+  return hits;
 };

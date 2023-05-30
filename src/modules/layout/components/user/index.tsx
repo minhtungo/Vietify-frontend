@@ -50,7 +50,7 @@ const User: React.FC<UserProps> = () => {
               </Text>
               <Text size="xs">{customer.email}</Text>
             </div>
-            <Separator />
+            <Separator className="!mb-1" />
             <PopoverClose asChild>
               <ListItem href="/account" className="flex items-center gap-1">
                 <UserIcon size={18} className="text-foreground/90" />
@@ -66,7 +66,7 @@ const User: React.FC<UserProps> = () => {
                 Đơn hàng của tôi
               </ListItem>
             </PopoverClose>
-            <Separator className="my-2" />
+            <Separator className="!my-1" />
             <PopoverClose asChild>
               <button
                 className="flex w-full select-none items-center gap-1 px-4 py-2 text-left text-sm font-medium text-foreground transition-colors hover:bg-accent focus:bg-accent"

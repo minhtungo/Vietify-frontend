@@ -19,6 +19,7 @@ const useGetProducts = ({
   let { products, isLoading } = useProducts({
     q: query,
     region_id: cart?.region_id,
+    expand: 'categories',
   });
   // if (!products) {
   //   return undefined;

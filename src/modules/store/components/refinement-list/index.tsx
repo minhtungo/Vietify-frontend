@@ -16,27 +16,14 @@ type RefinementListProps = {
   children: React.ReactNode;
 };
 
-const checkIsActive = (arr: any, item: string) => {
-  if (arr.includes(item)) {
-    return true;
-  }
-  return false;
-};
-
 const RefinementList = ({
   refinementList,
   setRefinementList,
   children,
 }: RefinementListProps) => {
-  const { product_categories: categories } = useProductCategories();
-
-  const router = useRouter();
-  const { c: categoryQuery } = router.query;
-
   const handleCategoryChange = (checked: boolean, id: string) => {
     const categoryIds = refinementList.category_id || [];
     const exists = categoryIds.includes(id);
-    console.log(exists);
 
     if (checked && !exists) {
       setRefinementList({
@@ -55,11 +42,8 @@ const RefinementList = ({
 
       return;
     }
-
     return;
   };
-
-  console.log(refinementList);
 
   return (
     <main className="content-container py-6">
@@ -75,6 +59,7 @@ const RefinementList = ({
           <PriceFilter defaultValue={[0, 100]} />
         </MobileFilter>
       </div>
+
       <Separator className="mb-4 mt-3" />
 
       <section
