@@ -150,6 +150,44 @@ export const fetchProductsList = async ({
   };
 };
 
+type FetchCategoryProductsParams = {
+  pageParam?: number;
+  queryParams: StoreGetProductsParams;
+  sortKey?: string;
+  reverse?: boolean;
+};
+export const fetchCategoryProducts = async ({
+  pageParam = 0,
+  queryParams,
+  reverse,
+  sortKey,
+}: FetchCategoryProductsParams) => {
+  const { product_categories, count, offset } =
+    await medusaClient.productCategories.list({
+      limit: 12,
+      offset: pageParam,
+      ...queryParams,
+    });
+
+  let products = product_categories[0].products;
+
+  sortKey === 'PRICE' &&
+    products.sort(
+      (a, b) => a.variants[0].prices[0].amount - b.variants[0].prices[0].amount
+    );
+
+  sortKey === 'CREATED_AT' &&
+    products.sort(
+      (a, b) =>
+        new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime()
+    );
+
+  return {
+    response: { products, count },
+    nextPage: count > offset + 12 ? offset + 12 : null,
+  };
+};
+
 export const searchProducts = async ({
   query,
   pageParam = 0,

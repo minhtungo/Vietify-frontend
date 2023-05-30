@@ -16,6 +16,7 @@ import { useCart } from 'medusa-react';
 
 import useQueryParams from '@lib/hooks/use-query-params';
 
+
 const Store: NextPageWithLayout = () => {
   const [params, setParams] = useState<StoreGetProductsParams>({});
   const { cart } = useCart();

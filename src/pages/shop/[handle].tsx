@@ -1,14 +1,28 @@
 import Head from '@common/head';
+import { fetchCategoryProducts } from '@lib/data';
+import useQueryParams from '@lib/hooks/use-query-params';
+import { getProductHandles } from '@lib/util/get-product-handles';
+import { StoreGetProductsParams } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import Layout from '@modules/layout/templates';
 import ProductPreview from '@modules/products/components/product-preview';
 import Heading from '@modules/ui/heading';
 import Text from '@modules/ui/text';
-import { useProductCategories, useProducts } from 'medusa-react';
+import { defaultSort, sorting } from '@static/sort-options';
+import {
+  QueryClient,
+  dehydrate,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
+import { useCart, useProductCategories, useProducts } from 'medusa-react';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { NextPageWithLayout, PrefetchedPageProps } from 'types/global';
+import RefinementList from '@modules/store/components/refinement-list';
+import InfiniteProducts from '@modules/products/components/infinite-products';
+import usePreviews from '@lib/hooks/use-previews';
 
 interface Params extends ParsedUrlQuery {
   handle: string;
@@ -17,17 +31,55 @@ interface Params extends ParsedUrlQuery {
 const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
   notFound,
 }) => {
+  const [params, setParams] = useState<StoreGetProductsParams>({});
+  const { cart } = useCart();
+
   const { query } = useRouter();
   const handle = typeof query.handle === 'string' ? query.handle : '';
+
+  const { sort } = query;
+  const { sortKey, reverse } =
+    sorting.find((item) => item.slug === sort) || defaultSort;
+
+  const queryParams = useQueryParams(params);
+
   const { product_categories: categories } = useProductCategories({ handle });
   const categoryId =
     categories && categories.length > 0 ? categories[0].id : null;
+
+  // const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
+  //   useInfiniteQuery(
+  //     [`fetch-category-products`, queryParams, cart],
+  //     ({ pageParam }) =>
+  //       fetchCategoryProducts({ pageParam, queryParams, sortKey, reverse }),
+  //     {
+  //       getNextPageParam: (lastPage) => lastPage.nextPage,
+  //     }
+  //   );
+
+  // const products = usePreviews({
+  //   pages: data?.pages,
+  //   region: cart?.region,
+  // });
 
   const { products, isLoading } = useProducts({
     category_id: categoryId ? [categoryId] : [],
   });
 
   return (
+    // <>
+    //   <Head title="Shop" description="Explore all of our products." />
+    //   <RefinementList refinementList={params} setRefinementList={setParams}>
+    //     <InfiniteProducts
+    //       products={products}
+    //       isLoading={isLoading}
+    //       isFetchingNextPage={isFetchingNextPage}
+    //       pages={data?.pages}
+    //       fetchNextPage={fetchNextPage}
+    //       hasNextPage={hasNextPage}
+    //     />
+    //   </RefinementList>
+    // </>
     <>
       <Head description={handle} title={handle} />
       <div className="content-container py-6">
@@ -68,14 +120,17 @@ CategoryPage.getLayout = (page: ReactElement) => {
 // };
 
 // export const getStaticProps: GetStaticProps = async (context) => {
-//   const handle = context.params?.handle as string;
 //   const queryClient = new QueryClient();
+//   const handle = context.params?.handle as string;
 
-//   await queryClient.prefetchQuery([`get_product`, handle], () =>
-//     fetchProduct(handle)
+//   await queryClient.prefetchQuery([`get_category_products`, handle], () =>
+//     fetchCategoryProducts({ handle })
 //   );
 
-//   const queryData = await queryClient.getQueryData([`get_product`, handle]);
+//   const queryData = await queryClient.getQueryData([
+//     `get_category_products`,
+//     handle,
+//   ]);
 
 //   if (!queryData) {
 //     return {
