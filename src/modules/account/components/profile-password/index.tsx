@@ -98,12 +98,12 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
         <DialogTrigger asChild>
           <Button variant="outline">Cập nhật</Button>
         </DialogTrigger>
-        <form onSubmit={handleSubmit(updatePassword)} onReset={() => reset()}>
-          <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md">
+          <form onSubmit={handleSubmit(updatePassword)} onReset={() => reset()}>
             <DialogHeader>
               <DialogTitle>Đổi mật khẩu</DialogTitle>
             </DialogHeader>
-            <div className="grid gap-4 py-1">
+            <div className="grid gap-4 py-5">
               <div className="grid gap-y-1.5">
                 <Label htmlFor="old_password">Mật khẩu hiện tại</Label>
                 <Input
@@ -139,10 +139,10 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit">Lưu thay đổi</Button>
             </DialogFooter>
-          </DialogContent>
-        </form>
+          </form>
+        </DialogContent>
       </Dialog>
     </div>
   );
