@@ -1,4 +1,3 @@
-import Input from '@common/form-input';
 import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
@@ -7,7 +6,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from '@modules/ui/card';
 import Text from '@modules/ui/text';
 import Button from '@ui/button';
@@ -15,18 +14,36 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@ui/form';
+import { Input } from '@modules/ui/input';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { passwordSchema } from '@lib/util/schema';
 
-interface RegisterCredentials extends FieldValues {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
-  phone?: string;
-}
+const formSchema = z
+  .object({
+    first_name: z.string().min(2).max(50),
+    last_name: z.string().min(2).max(50),
+    email: z.string().email({
+      message: 'Định dạng email không hợp lệ.',
+    }),
+    password: passwordSchema,
+    confirm_password: passwordSchema,
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: 'Mật khẩu xác thực không khớp.',
+    path: ['confirm_password'],
+  });
 
 const Register = () => {
-  const { loginView, refetchCustomer } = useAccount();
-  const [_, setCurrentView] = loginView;
+  const { refetchCustomer } = useAccount();
   const [authError, setAuthError] = useState<string | undefined>(undefined);
   const router = useRouter();
 
@@ -34,13 +51,24 @@ const Register = () => {
     setAuthError('An error occured. Please try again.');
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<RegisterCredentials>();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+      confirm_password: '',
+      first_name: '',
+      last_name: '',
+    },
+  });
 
-  const onSubmit = handleSubmit(async (credentials) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    const credentials = {
+      email: data.email,
+      password: data.password,
+      first_name: data.first_name,
+      last_name: data.last_name,
+    };
     await medusaClient.customers
       .create(credentials)
       .then(() => {
@@ -48,11 +76,11 @@ const Register = () => {
         router.push('/account');
       })
       .catch(handleError);
-  });
+  };
 
   return (
     <div className="content-container flex justify-center py-12">
-      {isSubmitting && (
+      {form.formState.isSubmitting && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
         </div>
@@ -62,48 +90,94 @@ const Register = () => {
           <CardTitle className="text-xl">Đăng ký</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <form onSubmit={onSubmit} className="grid gap-3">
-            <Input
-              label="Họ"
-              {...register('last_name', {
-                required: 'Last name is required',
-              })}
-              autoComplete="family-name"
-              errors={errors}
-            />
-            <Input
-              label="Tên"
-              {...register('first_name', {
-                required: 'First name is required',
-              })}
-              autoComplete="given-name"
-              errors={errors}
-            />
-            <Input
-              label="Email"
-              {...register('email', { required: 'Email is required' })}
-              autoComplete="email"
-              errors={errors}
-            />
-            <Input
-              label="Mật khẩu"
-              {...register('password', {
-                required: 'Password is required',
-              })}
-              type="password"
-              autoComplete="new-password"
-              errors={errors}
-            />
-
-            {authError && (
-              <div>
-                <span className="text-small-regular w-full text-rose-500">
-                  Incorrect email or password.
-                </span>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-3">
+              <div className="grid grid-cols-2 gap-x-4">
+                <FormField
+                  control={form.control}
+                  name="first_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Tên</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Tên" {...field} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="last_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Họ</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Họ" {...field} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
-            )}
-            <Button className="mt-2 w-full">Tạo tài khoản</Button>
-          </form>
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Email" {...field} required />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Mật khẩu</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Mật khẩu"
+                        {...field}
+                        required
+                        type="password"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirm_password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nhập lại mật khẩu</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Nhập lại mật khẩu"
+                        {...field}
+                        required
+                        type="password"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {authError && (
+                <Text size="sm" variant="error">
+                  Incorrect email or password.
+                </Text>
+              )}
+              <Button className="mt-2 w-full">Tạo tài khoản</Button>
+            </form>
+          </Form>
         </CardContent>
         <CardFooter className="flex flex-col gap-3 text-center">
           <Text size="xs">

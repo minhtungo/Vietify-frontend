@@ -2,6 +2,13 @@ import ChevronDown from '@icons/chevron-down';
 import User from '@icons/user';
 import { getProfileCompletion } from '@lib/util/get-profile-completion';
 import { Customer, Order } from '@medusajs/medusa';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@modules/ui/card';
 import Heading from '@modules/ui/heading';
 import { Separator } from '@modules/ui/separator';
 import Text from '@modules/ui/text';
@@ -55,29 +62,31 @@ const Overview = ({ orders, customer }: OverviewProps) => {
         </div>
         <Separator className="my-4" />
         <div className="flex h-full flex-1 flex-col gap-y-6">
-          <div className="flex items-start gap-x-16">
-            <div className="flex flex-col gap-y-2">
-              <Heading size="sm">Profile</Heading>
-              <div className="flex items-end gap-x-2">
-                <Text span size="lg" variant="dark" className="font-semibold">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Profile</CardTitle>
+                <User className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">
                   {getProfileCompletion(customer)}%
-                </Text>
-                <Text span variant="dark">
-                  Completed
-                </Text>
-              </div>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <Heading size="sm">Addresses</Heading>
-              <div className="flex items-end gap-x-2">
-                <Text span size="lg" variant="dark" className="font-semibold">
+                </div>
+                <p className="text-xs text-muted-foreground">completed</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Addresses</CardTitle>
+                <User className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">
                   {customer?.shipping_addresses?.length || 0}
-                </Text>
-                <Text span variant="dark">
-                  Saved
-                </Text>
-              </div>
-            </div>
+                </div>
+                <p className="text-xs text-muted-foreground">saved</p>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="flex flex-col gap-y-4">

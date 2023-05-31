@@ -1,4 +1,4 @@
-import Input from '@common/form-input';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Facebook from '@icons/facebook';
 import Google from '@icons/google';
 import Spinner from '@icons/spinner';
@@ -7,36 +7,49 @@ import { useAccount } from '@lib/context/account-context';
 import cn from '@lib/util/cn';
 import Link from '@modules/common/components/link';
 import { Checkbox } from '@modules/ui/checkbox';
+import { Input } from '@modules/ui/input';
 import { Label } from '@modules/ui/label';
 import Text from '@modules/ui/text';
 import Button, { buttonVariants } from '@ui//button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@ui/form';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-interface SignInCredentials extends FieldValues {
-  email: string;
-  password: string;
-}
+const formSchema = z.object({
+  email: z.string().email({
+    message: 'Định dạng email không hợp lệ.',
+  }),
+  password: z.string().min(8),
+});
 
 const Login = () => {
-  const { loginView, refetchCustomer } = useAccount();
-  const [_, setCurrentView] = loginView;
+  const { refetchCustomer } = useAccount();
   const [authError, setAuthError] = useState<string | undefined>(undefined);
   const router = useRouter();
 
   const handleError = (_e: Error) => {
-    setAuthError('Invalid email or password');
+    setAuthError('Email hoặc mật khẩu không đúng.');
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<SignInCredentials>();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
-  const onSubmit = handleSubmit(async (credentials) => {
+  const onSubmit = async (credentials: z.infer<typeof formSchema>) => {
     await medusaClient.auth
       .authenticate(credentials)
       .then(() => {
@@ -44,11 +57,11 @@ const Login = () => {
         router.push('/account');
       })
       .catch(handleError);
-  });
+  };
 
   return (
     <div className="flex w-full justify-center py-12">
-      {isSubmitting && (
+      {form.formState.isSubmitting && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
           <Spinner size={24} />
         </div>
@@ -56,49 +69,72 @@ const Login = () => {
       <Card className="max-w-sm">
         <CardHeader className="pb-6 text-center">
           <CardTitle className="!text-xl">Chào mừng đến với Vietify!</CardTitle>
-          {/* <CardDescription>You have 3 unread messages.</CardDescription> */}
         </CardHeader>
 
         <CardContent className="grid gap-4">
-          <form onSubmit={onSubmit} className="grid gap-3">
-            <Input
-              label="Email"
-              {...register('email', { required: 'Email is required' })}
-              autoComplete="email"
-              errors={errors}
-            />
-            <Input
-              label="Mật khẩu"
-              {...register('password', { required: 'Password is required' })}
-              type="password"
-              autoComplete="current-password"
-              errors={errors}
-            />
-            {authError && (
-              <Text variant="error" size="sm">
-                Incorrect email or password.
-              </Text>
-            )}
-            <div className="mt-1 flex justify-between">
-              <div className="flex items-center space-x-2">
-                <Label
-                  htmlFor="remember-password"
-                  className="flex items-center gap-2 text-muted-foreground"
-                >
-                  <Checkbox id="remember-password" />
-                  <Text size="xs" span>
-                    Nhớ mật khẩu
-                  </Text>
-                </Label>
-              </div>
-              <Link href="/terms-of-use">
-                <Text size="xs" span className="!text-primary hover:underline">
-                  Quên mật khẩu?
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-3">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Email" {...field} required />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Mật khẩu</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Mật khẩu"
+                        {...field}
+                        required
+                        type="password"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {authError && (
+                <Text variant="error" size="sm">
+                  Incorrect email or password.
                 </Text>
-              </Link>
-            </div>
-            <Button className="mt-2 w-full">Đăng nhập</Button>
-          </form>
+              )}
+              <div className="mt-1 flex justify-between">
+                <div className="flex items-center space-x-2">
+                  <Label
+                    htmlFor="remember-password"
+                    className="flex items-center gap-2 text-muted-foreground"
+                  >
+                    <Checkbox id="remember-password" />
+                    <Text size="xs" span>
+                      Nhớ mật khẩu
+                    </Text>
+                  </Label>
+                </div>
+                <Link href="/terms-of-use">
+                  <Text
+                    size="xs"
+                    span
+                    className="!text-primary hover:underline"
+                  >
+                    Quên mật khẩu?
+                  </Text>
+                </Link>
+              </div>
+              <Button className="mt-2 w-full">Đăng nhập</Button>
+            </form>
+          </Form>
 
           <div className="flex items-center">
             <div className="h-[0.5px] flex-grow bg-border" />

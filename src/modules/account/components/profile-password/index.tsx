@@ -3,6 +3,10 @@ import { Customer } from '@medusajs/medusa';
 import Security from '@modules/common/icons/security';
 import Button from '@modules/ui/button';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import useToggleState from '@lib/hooks/use-toggle-state';
+import { passwordSchema } from '@lib/util/schema';
+import { Input } from '@modules/ui/input';
 import {
   Dialog,
   DialogContent,
@@ -11,10 +15,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui/dialog';
-import { Input } from '@modules/ui/input';
-import { useUpdateMe } from 'medusa-react';
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
@@ -23,24 +23,15 @@ import {
   FormLabel,
   FormMessage,
 } from '@ui/form';
-import * as z from 'zod';
-import { passwordRegex } from '@lib/util/regex';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useUpdateMe } from 'medusa-react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import useToggleState from '@lib/hooks/use-toggle-state';
+import * as z from 'zod';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
 };
-
-const passwordSchema = z
-  .string()
-  .min(8, 'Mật khẩu cần có ít nhất 8 ký tự.')
-  .max(50, 'Mật khẩu có thể có tối đa 50 ký tự.')
-  .regex(
-    passwordRegex,
-    'Mật khẩu phải có ít nhất 1 chữ hoa, 1 ký tự đặc biệt và 1 số.'
-  );
 
 const formSchema = z
   .object({

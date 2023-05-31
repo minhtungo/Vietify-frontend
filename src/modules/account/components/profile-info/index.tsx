@@ -80,7 +80,7 @@ const ProfileInfo: React.FC<MyInformationProps> = ({ customer }) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(updateUserIno)} className="space-y-4">
-        <div className="grid  gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2">
           <FormField
             control={form.control}
             name="first_name"

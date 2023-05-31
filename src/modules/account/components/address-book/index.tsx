@@ -1,6 +1,5 @@
 import { Customer } from '@medusajs/medusa';
 import React from 'react';
-import AddAddress from '../address-card/add-address';
 import EditAddress from '../address-card/edit-address-modal';
 
 type AddressBookProps = {
@@ -9,13 +8,10 @@ type AddressBookProps = {
 
 const AddressBook: React.FC<AddressBookProps> = ({ customer }) => {
   return (
-    <div className="flex-1">
-      <AddAddress />
-      <div className="mt-4 grid flex-1 grid-cols-1 gap-4 lg:grid-cols-2">
-        {customer.shipping_addresses.map((address) => {
-          return <EditAddress address={address} key={address.id} />;
-        })}
-      </div>
+    <div className="mt-4 grid flex-1 grid-cols-1 gap-4 lg:grid-cols-2">
+      {customer.shipping_addresses.map((address) => {
+        return <EditAddress address={address} key={address.id} />;
+      })}
     </div>
   );
 };

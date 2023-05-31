@@ -9,7 +9,7 @@ export const textVariants = cva('', {
       dark: '!text-foreground',
       light: '!text-primary-foreground',
       brand: '!text-primary',
-      error: '!text-destructive-foreground',
+      error: '!text-destructive',
       link: 'transition-colors duration-200 hover:text-primary',
     },
     size: {
