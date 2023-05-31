@@ -22,7 +22,7 @@ const AccountNav: React.FC<AccountNavProps> = ({ items }) => {
 
   return (
     <div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         {route !== '/account' && (
           <Link
             href="/account"

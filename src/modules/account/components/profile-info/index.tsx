@@ -39,6 +39,16 @@ const ProfileInfo: React.FC<MyInformationProps> = ({ customer }) => {
     undefined
   );
 
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: customer.email,
+      first_name: customer.first_name,
+      last_name: customer.last_name,
+      phone: customer.phone,
+    },
+  });
+
   const { refetchCustomer } = useAccount();
 
   useEffect(() => {
@@ -49,16 +59,6 @@ const ProfileInfo: React.FC<MyInformationProps> = ({ customer }) => {
       toast.error(`${errorMessage}`);
     }
   }, [isSuccess, isError, errorMessage]);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: customer.email,
-      first_name: customer.first_name,
-      last_name: customer.last_name,
-      phone: customer.phone,
-    },
-  });
 
   const updateUserIno = (data: z.infer<typeof formSchema>) => {
     return update(
@@ -135,11 +135,7 @@ const ProfileInfo: React.FC<MyInformationProps> = ({ customer }) => {
           />
         </div>
 
-        <Button
-          isLoading={isLoading}
-          type="submit"
-          className="ml-auto flex"
-        >
+        <Button isLoading={isLoading} type="submit" className="ml-auto flex">
           Lưu thay đổi
         </Button>
       </form>

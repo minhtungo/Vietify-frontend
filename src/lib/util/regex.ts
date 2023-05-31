@@ -3,3 +3,6 @@ export const emailRegex =
 
 export const phoneRegex =
   /^\+?1?[-.\s]?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/;
+
+export const passwordRegex =
+  /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9]).*$/;

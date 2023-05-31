@@ -6,54 +6,78 @@ import Button from '@modules/ui/button';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@modules/ui/dialog';
 import { Input } from '@modules/ui/input';
-import { Label } from '@modules/ui/label';
-import Text from '@modules/ui/text';
 import { useUpdateMe } from 'medusa-react';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@ui/form';
+import * as z from 'zod';
+import { passwordRegex } from '@lib/util/regex';
+import { zodResolver } from '@hookform/resolvers/zod';
+import toast from 'react-hot-toast';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
 };
 
-type UpdateCustomerPasswordFormData = {
-  old_password: string;
-  new_password: string;
-  confirm_password: string;
-};
+const passwordSchema = z
+  .string()
+  .min(8, 'Mật khẩu cần có ít nhất 8 ký tự.')
+  .max(50, 'Mật khẩu có thể có tối đa 50 ký tự.')
+  .regex(
+    passwordRegex,
+    'Mật khẩu phải có ít nhất 1 chữ hoa, 1 ký tự đặc biệt và 1 số.'
+  );
+
+const formSchema = z
+  .object({
+    old_password: z
+      .string()
+      .min(8, 'Mật khẩu cần có ít nhất 8 ký tự.')
+      .max(50, 'Mật khẩu có thể có tối đa 50 ký tự.'),
+    new_password: passwordSchema,
+    confirm_password: passwordSchema,
+  })
+  .refine((data) => data.new_password === data.confirm_password, {
+    message: 'Mật khẩu mới không khớp.',
+    path: ['confirm_password'],
+  });
 
 const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
-  const [errorMessage, setErrorMessage] = React.useState<string | undefined>(
-    undefined
-  );
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-    setError,
-  } = useForm<UpdateCustomerPasswordFormData>();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      old_password: '',
+      new_password: '',
+      confirm_password: '',
+    },
+  });
 
-  const {
-    mutate: update,
-    isLoading,
-    isSuccess,
-    isError,
-    reset: clearState,
-  } = useUpdateMe();
+  const { mutate: update, isLoading, isSuccess, isError } = useUpdateMe();
 
   useEffect(() => {
-    reset();
-  }, [customer, reset]);
+    form.reset();
+  }, [customer]);
 
-  const updatePassword = async (data: UpdateCustomerPasswordFormData) => {
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Thay đổi mật khẩu thành công!');
+    }
+  }, [isSuccess]);
+
+  const updatePassword = async (data: z.infer<typeof formSchema>) => {
     const isValid = await medusaClient.auth
       .authenticate({
         email: customer.email,
@@ -63,23 +87,10 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
       .catch(() => false);
 
     if (!isValid) {
-      setError('old_password', {
+      return form.setError('old_password', {
         type: 'validate',
-        message: 'Old password is incorrect',
+        message: 'Mật khẩu hiện tại không khớp.',
       });
-      setErrorMessage('Old password is incorrect');
-
-      return;
-    }
-
-    if (data.new_password !== data.confirm_password) {
-      setError('confirm_password', {
-        type: 'validate',
-        message: 'Passwords do not match',
-      });
-      setErrorMessage('Passwords do not match');
-
-      return;
     }
 
     return update({
@@ -99,49 +110,74 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
           <Button variant="outline">Cập nhật</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">
-          <form onSubmit={handleSubmit(updatePassword)} onReset={() => reset()}>
-            <DialogHeader>
-              <DialogTitle>Đổi mật khẩu</DialogTitle>
-            </DialogHeader>
-            <div className="grid gap-4 py-5">
-              <div className="grid gap-y-1.5">
-                <Label htmlFor="old_password">Mật khẩu hiện tại</Label>
-                <Input
-                  {...register('old_password', {
-                    required: true,
-                  })}
-                  placeholder="Nhập mật khẩu hiện tại"
-                  type="password"
-                  id="old_password"
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(updatePassword)}
+              onReset={() => form.reset()}
+            >
+              <DialogHeader>
+                <DialogTitle>Đổi mật khẩu</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-5">
+                <FormField
+                  control={form.control}
+                  name="old_password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Mật khẩu hiện tại</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Nhập mật khẩu hiện tại"
+                          {...field}
+                          required
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="new_password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Mật khẩu mới</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Nhập mật khẩu mới"
+                          {...field}
+                          required
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="confirm_password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nhập lại mật khẩu mới</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Nhập lại mật khẩu mới"
+                          {...field}
+                          required
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               </div>
-              <div className="grid gap-y-1.5">
-                <Label htmlFor="new_password">Mật khẩu mới</Label>
-                <Input
-                  {...register('new_password', {
-                    required: true,
-                  })}
-                  placeholder="Nhập mật khẩu mới"
-                  type="password"
-                  id="new_password"
-                />
-              </div>
-              <div className="grid gap-y-1.5">
-                <Label htmlFor="confirm_password">Nhập lại mật khẩu mới</Label>
-                <Input
-                  {...register('confirm_password', {
-                    required: true,
-                  })}
-                  placeholder="Nhập lại mật khẩu mới"
-                  type="password"
-                  id="confirm_password"
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="submit">Lưu thay đổi</Button>
-            </DialogFooter>
-          </form>
+              <DialogFooter>
+                <Button type="submit" isLoading={isLoading}>
+                  Lưu thay đổi
+                </Button>
+              </DialogFooter>
+            </form>
+          </Form>
         </DialogContent>
       </Dialog>
     </div>

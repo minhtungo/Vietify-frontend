@@ -41,7 +41,7 @@ const AccountLayout: FC<accountLayoutProps> = ({ children }) => {
             Quản lí tài khoản
           </CardTitle>
           <CardDescription className="text-base text-muted-foreground">
-            Manage your account settings and set e-mail preferences.
+            Quản lí tài khoản của bạn.
           </CardDescription>
           <Separator className="!my-6" />
         </CardHeader>
