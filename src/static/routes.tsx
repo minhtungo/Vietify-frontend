@@ -24,7 +24,7 @@ export const ROUTES = {
 
 export const accountNavItems = [
   {
-    title: 'Khái quát',
+    title: 'Tổng quan',
     href: '/account',
     icon: <User size={18} />,
   },

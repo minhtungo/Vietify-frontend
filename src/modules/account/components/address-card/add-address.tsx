@@ -107,11 +107,7 @@ const AddAddress: React.FC = () => {
           Thêm địa chỉ
         </Button>
       </DialogTrigger>
-      <DialogContent
-        className="sm:max-w-xl"
-        onInteractOutside={close}
-        customClose={close}
-      >
+      <DialogContent className="sm:max-w-xl" customClose={close}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onAddAddress)} className="w-full">
             <DialogHeader>

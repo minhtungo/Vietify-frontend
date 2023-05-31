@@ -14,7 +14,7 @@ const ProfileTemplate = () => {
 
   return (
     <div className="w-full">
-      <div className="mb-8 flex flex-col gap-y-1">
+      <div className="mb-6 flex flex-col gap-y-1">
         <Heading>Thông tin tài khoản</Heading>
         <Text size="sm">
           Xem và cập nhật thông tin hồ sơ của bạn, bao gồm tên, email và số điện
@@ -22,7 +22,7 @@ const ProfileTemplate = () => {
           khẩu của mình.
         </Text>
       </div>
-      <div className="flex w-full flex-col gap-y-6">
+      <div className="flex w-full flex-col gap-y-5">
         <ProfileInfo customer={customer} />
         <ProfilePassword customer={customer} />
         <ProfileBillingAddress customer={customer} />

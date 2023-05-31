@@ -13,9 +13,9 @@ const AddressesTemplate = () => {
 
   return (
     <div className="w-full">
-      <div className="mb-8 flex flex-col gap-y-2">
-        <div className="flex justify-between">
-          <Heading size="md">Địa Chỉ Giao Hàng</Heading>
+      <div className="mb-6 flex flex-col gap-y-2">
+        <div className="flex items-center justify-between">
+          <Heading>Địa Chỉ Giao Hàng</Heading>
           <AddAddress />
         </div>
         <Text size="sm">

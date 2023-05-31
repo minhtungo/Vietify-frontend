@@ -106,11 +106,7 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
             Cập nhật
           </Button>
         </DialogTrigger>
-        <DialogContent
-          className="sm:max-w-md"
-          onInteractOutside={close}
-          customClose={close}
-        >
+        <DialogContent className="sm:max-w-md" customClose={close}>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(updatePassword)}

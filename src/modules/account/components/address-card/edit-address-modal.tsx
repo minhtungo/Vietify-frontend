@@ -151,11 +151,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 Thay đổi
               </Button>
             </DialogTrigger>
-            <DialogContent
-              className="sm:max-w-xl"
-              onInteractOutside={close}
-              customClose={close}
-            >
+            <DialogContent className="sm:max-w-xl" customClose={close}>
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onEditAddress)}

@@ -158,11 +158,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
             Cập nhật
           </Button>
         </DialogTrigger>
-        <DialogContent
-          className="sm:max-w-lg"
-          onInteractOutside={close}
-          customClose={close}
-        >
+        <DialogContent className="sm:max-w-lg" customClose={close}>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(updateBillingAddress)}

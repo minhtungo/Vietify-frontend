@@ -3,16 +3,13 @@ import Spinner from '@icons/spinner';
 import { useCustomerOrders } from 'medusa-react';
 import Link from 'next/link';
 import OrderCard from '../order-card';
+import Loader from '@modules/common/components/loader';
 
 const OrderOverview = () => {
   const { orders, isLoading } = useCustomerOrders();
 
   if (isLoading) {
-    return (
-      <div className="flex w-full justify-center pt-12 text-gray-900">
-        <Spinner size={36} />
-      </div>
-    );
+    return <Loader open={isLoading} />;
   }
 
   if (orders?.length) {

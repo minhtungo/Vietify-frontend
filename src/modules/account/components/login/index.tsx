@@ -6,6 +6,7 @@ import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
 import cn from '@lib/util/cn';
 import Link from '@modules/common/components/link';
+import Loader from '@modules/common/components/loader';
 import { Checkbox } from '@modules/ui/checkbox';
 import { Input } from '@modules/ui/input';
 import { Label } from '@modules/ui/label';
@@ -61,12 +62,8 @@ const Login = () => {
 
   return (
     <div className="flex w-full justify-center py-12">
-      {form.formState.isSubmitting && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
-          <Spinner size={24} />
-        </div>
-      )}
-      <Card className="max-w-sm">
+      <Loader open={form.formState.isSubmitting} />
+      <Card className="max-w-md">
         <CardHeader className="pb-6 text-center">
           <CardTitle className="!text-xl">Chào mừng đến với Vietify!</CardTitle>
         </CardHeader>
@@ -132,7 +129,12 @@ const Login = () => {
                   </Text>
                 </Link>
               </div>
-              <Button className="mt-2 w-full">Đăng nhập</Button>
+              <Button
+                className="mt-2 w-full"
+                isLoading={form.formState.isSubmitting}
+              >
+                Đăng nhập
+              </Button>
             </form>
           </Form>
 

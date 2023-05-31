@@ -1,12 +1,14 @@
 import Spinner from '@icons/spinner';
-import { useCheckout } from '@lib/context/checkout-context';
 import { Dialog, DialogLoading } from '@modules/ui/dialog';
+import { FC } from 'react';
 
-const CheckoutLoader = () => {
-  const { isLoading } = useCheckout();
+interface loaderProps {
+  open: boolean;
+}
 
+const Loader: FC<loaderProps> = ({ open }) => {
   return (
-    <Dialog open={isLoading}>
+    <Dialog open={open}>
       <DialogLoading>
         <Spinner size={24} />
       </DialogLoading>
@@ -14,4 +16,4 @@ const CheckoutLoader = () => {
   );
 };
 
-export default CheckoutLoader;
+export default Loader;
