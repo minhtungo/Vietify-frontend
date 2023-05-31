@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@modules/ui/dialog';
+} from '@ui/dialog';
 import { Input } from '@modules/ui/input';
 import { useUpdateMe } from 'medusa-react';
 import React, { useEffect } from 'react';

@@ -1,41 +1,69 @@
 import { useAccount } from '@lib/context/account-context';
-import { Customer, StorePostCustomersCustomerReq } from '@medusajs/medusa';
-import Input from '@common/form-input';
-import NativeSelect from '@common/native-select';
+import { Customer } from '@medusajs/medusa';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@ui/dialog';
 import { useRegions, useUpdateMe } from 'medusa-react';
 import React, { useEffect, useMemo } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
-import AccountInfo from '../account-info';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@ui/form';
+import * as z from 'zod';
+import Button from '@modules/ui/button';
+import Security from '@modules/common/icons/security';
+import { postalCodeRegex } from '@lib/util/regex';
+import { Input } from '@modules/ui/input';
+import toast from 'react-hot-toast';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
 };
 
-type UpdateCustomerNameFormData = Pick<
-  StorePostCustomersCustomerReq,
-  'billing_address'
->;
+const formSchema = z.object({
+  billing_address: z.object({
+    last_name: z.string().min(2).max(50),
+    first_name: z.string().min(2).max(50),
+    company: z.string().optional(),
+    address_1: z.string().min(2),
+    address_2: z.string().optional(),
+    city: z.string().min(2, 'Thành phố cần có ít nhất 2 kí tự.'),
+    province: z.string().min(2, 'Province cần có ít nhất 2 kí tự.'),
+    postal_code: z.string().regex(postalCodeRegex, 'Invalid Postal Code'),
+    country_code: z.string().optional(),
+  }),
+});
 
 const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    formState: { errors },
-  } = useForm<UpdateCustomerNameFormData>({
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
-      ...mapBillingAddressToFormData({ customer }),
+      billing_address: {
+        last_name: '',
+        first_name: '',
+        company: '',
+        address_1: '',
+        address_2: '',
+        city: '',
+        province: '',
+        postal_code: '',
+        country_code: '',
+      },
     },
   });
 
-  const {
-    mutate: update,
-    isLoading,
-    isSuccess,
-    isError,
-    reset: clearState,
-  } = useUpdateMe();
+  const { mutate: update, isLoading, isSuccess, isError } = useUpdateMe();
 
   const { regions } = useRegions();
 
@@ -53,39 +81,23 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
   }, [regions]);
 
   useEffect(() => {
-    reset({
+    form.reset({
       ...mapBillingAddressToFormData({ customer }),
     });
-  }, [customer, reset]);
+  }, [customer, form.reset]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Thay đổi địa chỉ thành công!');
+    }
+    if (isError) {
+      toast.error('Có lỗi xảy ra, vui lòng thử lại.');
+    }
+  }, [isSuccess, isError]);
 
   const { refetchCustomer } = useAccount();
 
-  const [
-    firstName,
-    lastName,
-    company,
-    address1,
-    address2,
-    city,
-    province,
-    postalCode,
-    countryCode,
-  ] = useWatch({
-    control,
-    name: [
-      'billing_address.first_name',
-      'billing_address.last_name',
-      'billing_address.company',
-      'billing_address.address_1',
-      'billing_address.address_2',
-      'billing_address.city',
-      'billing_address.province',
-      'billing_address.postal_code',
-      'billing_address.country_code',
-    ],
-  });
-
-  const updateBillingAddress = (data: UpdateCustomerNameFormData) => {
+  const updateBillingAddress = (data: z.infer<typeof formSchema>) => {
     return update(
       {
         id: customer.id,
@@ -132,90 +144,142 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
   }, [customer, regionOptions]);
 
   return (
-    <form
-      onSubmit={handleSubmit(updateBillingAddress)}
-      onReset={() => reset(mapBillingAddressToFormData({ customer }))}
-      className="w-full"
-    >
-      <AccountInfo
-        label="Billing address"
-        currentInfo={currentInfo}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        isError={isError}
-        clearState={clearState}
-      >
-        <div className="grid grid-cols-1 gap-y-2">
-          <div className="grid grid-cols-2 gap-x-2">
-            <Input
-              label="First name"
-              {...register('billing_address.first_name', {
-                required: true,
-              })}
-              defaultValue={firstName}
-              errors={errors}
-            />
-            <Input
-              label="Last name"
-              {...register('billing_address.last_name', { required: true })}
-              defaultValue={lastName}
-              errors={errors}
-            />
-          </div>
-          <Input
-            label="Company"
-            {...register('billing_address.company')}
-            defaultValue={company}
-            errors={errors}
-          />
-          <Input
-            label="Address"
-            {...register('billing_address.address_1', { required: true })}
-            defaultValue={address1}
-            errors={errors}
-          />
-          <Input
-            label="Apartment, suite, etc."
-            {...register('billing_address.address_2')}
-            defaultValue={address2}
-            errors={errors}
-          />
-          <div className="grid grid-cols-[144px_1fr] gap-x-2">
-            <Input
-              label="Postal code"
-              {...register('billing_address.postal_code', { required: true })}
-              defaultValue={postalCode}
-              errors={errors}
-            />
-            <Input
-              label="City"
-              {...register('billing_address.city', { required: true })}
-              defaultValue={city}
-              errors={errors}
-            />
-          </div>
-          <Input
-            label="Province"
-            {...register('billing_address.province')}
-            defaultValue={province}
-            errors={errors}
-          />
-          <NativeSelect
-            {...register('billing_address.country_code', { required: true })}
-            defaultValue={countryCode}
-          >
-            <option value="">-</option>
-            {regionOptions.map((option, i) => {
-              return (
-                <option key={i} value={option.value}>
-                  {option.label}
-                </option>
-              );
-            })}
-          </NativeSelect>
-        </div>
-      </AccountInfo>
-    </form>
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-1.5">
+        <Security size={20} className="text-muted-foreground" />
+        <span className="text-sm font-medium">Đổi địa chỉ thanh toán</span>
+      </div>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Cập nhật</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-lg">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(updateBillingAddress)}
+              onReset={() =>
+                form.reset(mapBillingAddressToFormData({ customer }))
+              }
+              className="w-full"
+            >
+              <DialogHeader>
+                <DialogTitle>Thay đổi địa chỉ thanh toán</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-5">
+                <div className="grid grid-cols-2 gap-x-4">
+                  <FormField
+                    control={form.control}
+                    name="billing_address.first_name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Tên</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Tên" {...field} required />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="billing_address.last_name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Họ</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Họ" {...field} required />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name="billing_address.address_1"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Địa chỉ</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Địa chỉ" {...field} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="billing_address.address_2"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Apartment, suite, etc.</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Apartment, suite, etc."
+                          {...field}
+                          required
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid grid-cols-[144px_1fr] gap-x-4">
+                  <FormField
+                    control={form.control}
+                    name="billing_address.postal_code"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Postal Code</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Postal Code"
+                            {...field}
+                            required
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="billing_address.city"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Thành phố</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Thành phố" {...field} required />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name="billing_address.province"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Province</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Province" {...field} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <DialogFooter>
+                <Button type="submit" isLoading={isLoading}>
+                  Lưu thay đổi
+                </Button>
+              </DialogFooter>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 

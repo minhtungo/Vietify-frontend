@@ -71,7 +71,7 @@ const ProfileInfo: React.FC<MyInformationProps> = ({ customer }) => {
           refetchCustomer();
         },
         onError: () => {
-          setErrorMessage('Có lỗi xảy ra. Vui lòng thử lại');
+          setErrorMessage('Có lỗi xảy ra, vui lòng thử lại.');
         },
       }
     );

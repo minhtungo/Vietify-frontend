@@ -6,3 +6,5 @@ export const phoneRegex =
 
 export const passwordRegex =
   /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9]).*$/;
+
+export const postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
