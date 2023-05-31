@@ -7,6 +7,7 @@ import { phoneRegex, postalCodeRegex } from '@lib/util/regex';
 import { Input } from '@modules/ui/input';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -26,6 +27,7 @@ import { useForm } from 'react-hook-form';
 
 import * as z from 'zod';
 import Plus from '@modules/common/icons/plus';
+import useToggleState from '@lib/hooks/use-toggle-state';
 
 const formSchema = z.object({
   first_name: z.string().min(2).max(50),
@@ -42,6 +44,7 @@ const formSchema = z.object({
 
 const AddAddress: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
+  const { state, open, close } = useToggleState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -88,6 +91,7 @@ const AddAddress: React.FC = () => {
         setSubmitting(false);
         refetchCustomer();
         form.reset();
+        close();
       })
       .catch(() => {
         setSubmitting(false);
@@ -96,14 +100,18 @@ const AddAddress: React.FC = () => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={state}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="gap-1">
+        <Button variant="outline" className="gap-1" onClick={open}>
           <Plus size={22} />
           Thêm địa chỉ
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent
+        className="sm:max-w-xl"
+        onInteractOutside={close}
+        customClose={close}
+      >
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onAddAddress)} className="w-full">
             <DialogHeader>
@@ -230,7 +238,9 @@ const AddAddress: React.FC = () => {
               />
             </div>
             <DialogFooter>
-              <Button variant="outline">Đóng</Button>
+              <Button variant="outline" onClick={close}>
+                Đóng
+              </Button>
               <Button type="submit" isLoading={submitting}>
                 Lưu thay đổi
               </Button>

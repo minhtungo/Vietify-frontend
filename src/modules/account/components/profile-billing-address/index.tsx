@@ -26,6 +26,7 @@ import Security from '@modules/common/icons/security';
 import { postalCodeRegex } from '@lib/util/regex';
 import { Input } from '@modules/ui/input';
 import toast from 'react-hot-toast';
+import useToggleState from '@lib/hooks/use-toggle-state';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
@@ -64,6 +65,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
   });
 
   const { mutate: update, isLoading, isSuccess, isError } = useUpdateMe();
+  const { state, open, close } = useToggleState(false);
 
   const { regions } = useRegions();
 
@@ -88,6 +90,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
 
   useEffect(() => {
     if (isSuccess) {
+      close();
       toast.success('Thay đổi địa chỉ thành công!');
     }
     if (isError) {
@@ -149,11 +152,17 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
         <Security size={20} className="text-muted-foreground" />
         <span className="text-sm font-medium">Đổi địa chỉ thanh toán</span>
       </div>
-      <Dialog>
+      <Dialog open={state}>
         <DialogTrigger asChild>
-          <Button variant="outline">Cập nhật</Button>
+          <Button variant="outline" onClick={open}>
+            Cập nhật
+          </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent
+          className="sm:max-w-lg"
+          onInteractOutside={close}
+          customClose={close}
+        >
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(updateBillingAddress)}
@@ -271,6 +280,9 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
                 />
               </div>
               <DialogFooter>
+                <Button variant="outline" onClick={close}>
+                  Đóng
+                </Button>
                 <Button type="submit" isLoading={isLoading}>
                   Lưu thay đổi
                 </Button>

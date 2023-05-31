@@ -1,5 +1,6 @@
 import ArrowForward from '@icons/arrow-forward';
 import { useMobileMenu } from '@lib/context/mobile-menu-context';
+
 import { SheetClose } from '@modules/ui/sheet';
 import Text, { textVariants } from '@modules/ui/text';
 import { useCollections } from 'medusa-react';

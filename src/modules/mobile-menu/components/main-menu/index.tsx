@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 import { ProductCategory } from '@medusajs/medusa';
 import ListItem from '../list-item';
+import { ScrollArea } from '@modules/ui/scroll-area';
 
 const MainMenu = () => {
   const { customer } = useMeCustomer();
@@ -34,19 +35,22 @@ const MainMenu = () => {
         </Text>
       )}
       <Separator />
-      <ul className="flex flex-col gap-y-2 ">
-        {product_categories && product_categories.length > 0 ? (
-          <>
-            {product_categories.map((category: ProductCategory) => (
-              <ListItem category={category} key={category.id} />
-            ))}
-          </>
-        ) : null}
-      </ul>
+      <ScrollArea className="h-fit w-full">
+        <ul className="flex flex-col gap-y-2 ">
+          {product_categories && product_categories.length > 0 ? (
+            <>
+              {product_categories.map((category: ProductCategory) => (
+                <ListItem category={category} key={category.id} />
+              ))}
+            </>
+          ) : null}
+        </ul>
+      </ScrollArea>
+
       <Separator />
       <div className="flex flex-col gap-y-2">
         {customer && (
-           <SheetClose asChild>
+          <SheetClose asChild>
             <Link
               href="/account/login"
               className="group inline-flex w-full items-center gap-2 py-1"

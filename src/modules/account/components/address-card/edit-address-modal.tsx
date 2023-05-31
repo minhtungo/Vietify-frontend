@@ -2,12 +2,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Trash from '@icons/trash';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
+import useToggleState from '@lib/hooks/use-toggle-state';
 import { phoneRegex, postalCodeRegex } from '@lib/util/regex';
 import { Address } from '@medusajs/medusa';
 import { Input } from '@modules/ui/input';
 import Button from '@ui/button';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -26,6 +28,7 @@ import clsx from 'clsx';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import toast from 'react-hot-toast';
 
 const formSchema = z.object({
   first_name: z.string().min(2).max(50),
@@ -51,6 +54,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
 }) => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
+  const { state, open, close } = useToggleState(false);
 
   const { refetchCustomer } = useAccount();
 
@@ -92,6 +96,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
       .updateAddress(address.id, payload)
       .then(() => {
         setSubmitting(false);
+        toast.success('Thay đổi địa chỉ thành công!');
         refetchCustomer();
       })
       .catch(() => {
@@ -140,13 +145,17 @@ const EditAddress: React.FC<EditAddressProps> = ({
           </div>
         </div>
         <div className="flex items-center gap-x-4">
-          <Dialog>
+          <Dialog open={state}>
             <DialogTrigger asChild>
-              <Button variant="outline" className="gap-1">
+              <Button variant="outline" className="gap-1" onClick={open}>
                 Thay đổi
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-xl">
+            <DialogContent
+              className="sm:max-w-xl"
+              onInteractOutside={close}
+              customClose={close}
+            >
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onEditAddress)}
@@ -288,7 +297,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
                     />
                   </div>
                   <DialogFooter>
-                    <Button variant="outline">Đóng</Button>
+                    <Button variant="outline" onClick={close}>
+                      Đóng
+                    </Button>
                     <Button type="submit" isLoading={submitting}>
                       Lưu thay đổi
                     </Button>

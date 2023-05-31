@@ -9,11 +9,13 @@ type AddressBookProps = {
 
 const AddressBook: React.FC<AddressBookProps> = ({ customer }) => {
   return (
-    <div className="mt-4 grid flex-1 grid-cols-1 gap-4 lg:grid-cols-2">
+    <div className="flex-1">
       <AddAddress />
-      {customer.shipping_addresses.map((address) => {
-        return <EditAddress address={address} key={address.id} />;
-      })}
+      <div className="mt-4 grid flex-1 grid-cols-1 gap-4 lg:grid-cols-2">
+        {customer.shipping_addresses.map((address) => {
+          return <EditAddress address={address} key={address.id} />;
+        })}
+      </div>
     </div>
   );
 };

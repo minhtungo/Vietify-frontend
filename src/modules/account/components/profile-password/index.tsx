@@ -27,6 +27,7 @@ import * as z from 'zod';
 import { passwordRegex } from '@lib/util/regex';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
+import useToggleState from '@lib/hooks/use-toggle-state';
 
 type MyInformationProps = {
   customer: Omit<Customer, 'password_hash'>;
@@ -65,6 +66,8 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
     },
   });
 
+  const { state, open, close } = useToggleState(false);
+
   const { mutate: update, isLoading, isSuccess, isError } = useUpdateMe();
 
   useEffect(() => {
@@ -73,6 +76,7 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
 
   useEffect(() => {
     if (isSuccess) {
+      close();
       toast.success('Thay đổi mật khẩu thành công!');
     }
   }, [isSuccess]);
@@ -105,11 +109,17 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
         <Security size={20} className="text-muted-foreground" />
         <span className="text-sm font-medium">Đổi mật khẩu</span>
       </div>
-      <Dialog>
+      <Dialog open={state}>
         <DialogTrigger asChild>
-          <Button variant="outline">Cập nhật</Button>
+          <Button variant="outline" onClick={open}>
+            Cập nhật
+          </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent
+          className="sm:max-w-md"
+          onInteractOutside={close}
+          customClose={close}
+        >
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(updatePassword)}
@@ -172,6 +182,9 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
                 />
               </div>
               <DialogFooter>
+                <Button variant="outline" onClick={close}>
+                  Đóng
+                </Button>
                 <Button type="submit" isLoading={isLoading}>
                   Lưu thay đổi
                 </Button>
