@@ -95,7 +95,6 @@ const AccountInfo = ({
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <Toaster position="bottom-right" />
     </div>
   );
 };

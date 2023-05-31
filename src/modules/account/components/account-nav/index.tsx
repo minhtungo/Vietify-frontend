@@ -56,8 +56,12 @@ const AccountNav: React.FC<AccountNavProps> = ({ items }) => {
             {item.title}
           </Link>
         ))}
-        <Button onClick={handleLogout} className="!mt-4">
-          Log out
+        <Button
+          variant="ghost"
+          onClick={handleLogout}
+          className="justify-start hover:bg-transparent hover:underline"
+        >
+          Đăng xuất
         </Button>
       </nav>
     </div>

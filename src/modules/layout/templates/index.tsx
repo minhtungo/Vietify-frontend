@@ -7,6 +7,7 @@ import { Separator } from '@ui/separator';
 import { Inter } from 'next/font/google';
 import cn from '@lib/util/cn';
 import HighlightedBar from '@common/highlighted-bar';
+import { Toaster } from 'react-hot-toast';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,6 +32,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Incentives />
       <Separator />
       <Footer />
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          className: 'text-sm',
+        }}
+      />
     </>
   );
 };

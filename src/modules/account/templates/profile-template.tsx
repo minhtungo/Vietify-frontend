@@ -1,13 +1,12 @@
 import { useAccount } from '@lib/context/account-context';
-import ProfileEmail from '@modules/account/components/profile-email';
+import ProfileInfo from '@modules/account/components/profile-info';
 import ProfileName from '@modules/account/components/profile-name';
 import ProfilePassword from '@modules/account/components/profile-password';
-import ProfileBillingAddress from '../components/profile-billing-address';
-import ProfilePhone from '../components/profile-phone';
-import { Separator } from '@modules/ui/separator';
+import Button from '@modules/ui/button';
 import Heading from '@modules/ui/heading';
 import Text from '@modules/ui/text';
-import Button from '@modules/ui/button';
+import ProfileBillingAddress from '../components/profile-billing-address';
+import ProfilePhone from '../components/profile-phone';
 
 const ProfileTemplate = () => {
   const { customer, retrievingCustomer, refetchCustomer } = useAccount();
@@ -27,16 +26,8 @@ const ProfileTemplate = () => {
         </Text>
       </div>
       <div className="flex w-full flex-col gap-y-6">
-        <ProfileName customer={customer} />
-        <ProfileEmail customer={customer} />
-        <ProfilePhone customer={customer} />
-        <Button
-          // isLoading={isLoading}
-          className="ml-auto "
-          type="submit"
-        >
-          Lưu thay đổi
-        </Button>
+        <ProfileInfo customer={customer} />
+
         <ProfilePassword customer={customer} />
         <ProfileBillingAddress customer={customer} />
       </div>
