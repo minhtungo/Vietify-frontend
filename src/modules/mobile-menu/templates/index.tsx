@@ -18,16 +18,17 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
       <SheetTrigger className="block lg:hidden">
         <Menu size={24} />
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-auto">
         {currentScreen !== 'main' && (
           <button
             onClick={() => setScreen('main')}
-            className="opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+            className="absolute left-5 top-5 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
           >
             <ArrowBack size={22} />
           </button>
         )}
         <Logo className="mx-auto" />
+
         {(() => {
           switch (currentScreen) {
             case 'categoryMenu':

@@ -15,7 +15,7 @@ const MainMenu = () => {
   const { product_categories, isLoading } = useProductCategories();
 
   return (
-    <div className="flex flex-1 flex-col justify-between gap-y-3 py-6">
+    <div className="flex flex-1 flex-col justify-between gap-y-3 overflow-hidden py-6">
       {!customer ? (
         <SheetClose asChild>
           <Link href="/account/login" className="group py-1">
@@ -35,17 +35,16 @@ const MainMenu = () => {
         </Text>
       )}
       <Separator />
-      <ScrollArea className="h-fit w-full">
-        <ul className="flex flex-col gap-y-2 ">
-          {product_categories && product_categories.length > 0 ? (
-            <>
-              {product_categories.map((category: ProductCategory) => (
-                <ListItem category={category} key={category.id} />
-              ))}
-            </>
-          ) : null}
-        </ul>
-      </ScrollArea>
+
+      <ul className="flex flex-col gap-y-2 ">
+        {product_categories && product_categories.length > 0 ? (
+          <>
+            {product_categories.map((category: ProductCategory) => (
+              <ListItem category={category} key={category.id} />
+            ))}
+          </>
+        ) : null}
+      </ul>
 
       <Separator />
       <div className="flex flex-col gap-y-2">

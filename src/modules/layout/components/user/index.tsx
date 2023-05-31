@@ -1,26 +1,29 @@
-import ListItem from '@modules/common/components/list-item';
+import UserIcon from '@icons/user';
+import { useAccount } from '@lib/context/account-context';
+import LogOut from '@modules/common/icons/logout';
+import Order from '@modules/common/icons/order';
+import Text from '@modules/ui/text';
 import Button from '@ui/button';
 import {
-  Popover,
-  PopoverClose,
-  PopoverContent,
-  PopoverTrigger,
-} from '@ui/popover';
-import { useAccount } from '@lib/context/account-context';
-import Text from '@modules/ui/text';
-import { Separator } from '@modules/ui/separator';
-import UserIcon from '@icons/user';
-import Order from '@modules/common/icons/order';
-import LogOut from '@modules/common/icons/logout';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@ui/dropdown-menu';
+import { useRouter } from 'next/router';
 
 interface UserProps {}
 
 const User: React.FC<UserProps> = () => {
   const { customer, handleLogout } = useAccount();
+  const router = useRouter();
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
           className="h-9 w-9 rounded-full p-0 duration-150"
@@ -31,55 +34,45 @@ const User: React.FC<UserProps> = () => {
             className="text-foreground/90"
           />
         </Button>
-      </PopoverTrigger>
-      <PopoverContent className="hidden w-full space-y-0 p-1 small:block">
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="end">
         {!customer ? (
           <>
-            <PopoverClose asChild>
-              <ListItem href="/account/register">Đăng ký</ListItem>
-            </PopoverClose>
-            <PopoverClose asChild>
-              <ListItem href="/account/login">Đăng nhập</ListItem>
-            </PopoverClose>
+            <DropdownMenuItem onSelect={() => router.push('/account/register')}>
+              <span>Đăng kí</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => router.push('/account/login')}>
+              <span>Đăng nhập</span>
+            </DropdownMenuItem>
           </>
         ) : (
           <>
-            <div className="px-4 py-2">
+            <DropdownMenuLabel>
               <Text variant="dark" className="!font-semibold" size="sm">
-                {`${customer.first_name} ${customer.last_name}`}
+                {`${customer?.first_name} ${customer?.last_name}`}
               </Text>
-              <Text size="xs">{customer.email}</Text>
-            </div>
-            <Separator className="!mb-1" />
-            <PopoverClose asChild>
-              <ListItem href="/account" className="flex items-center gap-1">
-                <UserIcon size={18} className="text-foreground/90" />
-                Thông tin tài khoản
-              </ListItem>
-            </PopoverClose>
-            <PopoverClose asChild>
-              <ListItem
-                href="/account/orders"
-                className="flex items-center gap-[5.2px]"
-              >
-                <Order size={18} className="text-foreground/90" />
-                Đơn hàng của tôi
-              </ListItem>
-            </PopoverClose>
-            <Separator className="!my-1" />
-            <PopoverClose asChild>
-              <button
-                className="flex w-full select-none items-center gap-1 px-4 py-2 text-left text-sm font-medium text-foreground transition-colors hover:bg-accent focus:bg-accent"
-                onClick={handleLogout}
-              >
-                <LogOut size={19.5} />
-                Đăng xuất
-              </button>
-            </PopoverClose>
+              <Text size="xs">{customer?.email}</Text>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem onSelect={() => router.push('/account')}>
+                <UserIcon className="mr-2 h-4 w-4 text-foreground/90" />
+                <span>Thông tin tài khoản</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onSelect={() => router.push('/account/orders')}>
+                <Order className="mr-2 h-4 w-4 text-foreground/90" />
+                <span>Đơn hàng của tôi</span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={handleLogout}>
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Đăng xuất</span>
+            </DropdownMenuItem>
           </>
         )}
-      </PopoverContent>
-    </Popover>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
