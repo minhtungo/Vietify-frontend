@@ -45,6 +45,17 @@ type ExtendedDialogContentProps = React.ComponentPropsWithoutRef<
   customClose?: () => void;
 };
 
+const DialogLoading = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DialogPortal>
+    <DialogOverlay />
+    <div className="z-50">{children}</div>
+  </DialogPortal>
+));
+DialogLoading.displayName = 'Dialog Loading';
+
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   ExtendedDialogContentProps
@@ -143,4 +154,5 @@ export {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  DialogLoading,
 };
