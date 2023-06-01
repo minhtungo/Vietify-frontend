@@ -28,6 +28,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import Plus from '@modules/common/icons/plus';
 import useToggleState from '@lib/hooks/use-toggle-state';
+import Text from '@modules/ui/text';
 
 const formSchema = z.object({
   first_name: z.string().min(2).max(50),
@@ -102,9 +103,15 @@ const AddAddress: React.FC = () => {
   return (
     <Dialog open={state}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="gap-1" onClick={open}>
-          <Plus size={22} />
-          Thêm địa chỉ
+        <Button
+          variant="outline"
+          className="flex h-full w-full flex-col gap-y-1"
+          onClick={open}
+        >
+          <Plus className="h-8 w-8 text-muted-foreground" />
+          <Text variant="dark" span className="font-medium">
+            Thêm địa chỉ
+          </Text>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl" customClose={close}>

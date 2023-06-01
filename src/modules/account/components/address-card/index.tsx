@@ -1,11 +1,11 @@
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
 import { Address } from '@medusajs/medusa';
-import Button from '@modules/ui/button';
 import Text from '@modules/ui/text';
 import { Card, CardContent, CardFooter } from '@ui/card';
 import { FC } from 'react';
 import EditAddress from './edit-address-modal';
+import RemoveAddress from './remove-address';
 
 interface addressCardProps {
   address: Address;
@@ -39,9 +39,7 @@ const AddressCard: FC<addressCardProps> = ({ address, isActive }) => {
       </CardContent>
       <CardFooter className="gap-x-3 p-5 pt-0">
         <EditAddress address={address} />
-        <Button variant="link" onClick={removeAddress}>
-          Xóa
-        </Button>
+        <RemoveAddress removeAddress={removeAddress} />
       </CardFooter>
     </Card>
   );
