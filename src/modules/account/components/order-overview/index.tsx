@@ -3,23 +3,29 @@ import Loader from '@modules/common/components/loader';
 import { useCustomerOrders } from 'medusa-react';
 import OrderCard from '../order-card';
 
-const OrderOverview = () => {
+import { FC } from 'react';
+
+interface OrderOverviewProps {
+  orderStatus?: string | undefined;
+}
+
+const OrderOverview: FC<OrderOverviewProps> = ({ orderStatus }) => {
   const { orders, isLoading } = useCustomerOrders();
+
+  const filteredOrders =
+    orderStatus && orders
+      ? orders.filter((order) => order.status === orderStatus)
+      : orders;
 
   if (isLoading) {
     return <Loader open={isLoading} />;
   }
 
-  if (orders?.length) {
+  if (filteredOrders?.length) {
     return (
       <div className="flex w-full flex-col gap-y-8">
-        {orders.map((o) => (
-          <div
-            key={o.status}
-            className="border-b border-gray-200 pb-6 last:border-none last:pb-0"
-          >
-            <OrderCard order={o} />
-          </div>
+        {filteredOrders.map((o) => (
+          <OrderCard order={o} key={o.status} />
         ))}
       </div>
     );

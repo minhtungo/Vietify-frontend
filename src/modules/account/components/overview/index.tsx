@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@modules/ui/card';
+import Heading from '@modules/ui/heading';
 import { Separator } from '@modules/ui/separator';
 import Text from '@modules/ui/text';
 import { accountNavItems } from '@static/routes';
@@ -51,16 +52,8 @@ const Overview = ({ orders, customer }: OverviewProps) => {
         </ul>
       </div>
       <div className="hidden md:block">
-        <div className="flex justify-between">
-          <Text size="lg" variant="dark" className="font-semibold" span>
-            Xin chào {customer?.first_name}
-          </Text>
-          <Text size="sm" span>
-            Đăng nhập bởi:{' '}
-            <span className="font-semibold">{customer?.email}</span>
-          </Text>
-        </div>
-        <Separator className="my-4" />
+        <Heading className="mb-4">Tổng quan</Heading>
+
         <div className="flex h-full flex-1 flex-col gap-y-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Card>

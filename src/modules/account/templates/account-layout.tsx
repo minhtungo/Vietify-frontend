@@ -35,21 +35,25 @@ const AccountLayout: FC<accountLayoutProps> = ({ children }) => {
 
   return (
     <div className="content-container p-10 pb-16">
-      <Card className="p-6">
-        <CardHeader className="space-y-0.5">
-          <CardTitle className="text-2xl tracking-tight">
-            Quản lí tài khoản
-          </CardTitle>
-          <CardDescription className="text-base text-muted-foreground">
-            Quản lí tài khoản của bạn.
-          </CardDescription>
-          <Separator className="!my-6" />
-        </CardHeader>
-        <CardContent className="flex flex-col lg:flex-row lg:space-x-12">
-          <aside className="lg:w-1/5">
-            <AccountNav items={accountNavItems} />
-          </aside>
-          <div className="flex-1">{children}</div>
+      <Card className="p-10">
+        <CardContent className="flex flex-col p-0 lg:flex-row lg:space-x-10">
+          <div className="flex flex-col gap-5 lg:w-1/5">
+            <CardHeader className="space-y-0.5 p-0">
+              <CardTitle className="text-2xl normal-case tracking-tight">
+                Xin chào {customer?.first_name}
+              </CardTitle>
+              <CardDescription className="text-base text-muted-foreground">
+                {customer?.email}
+              </CardDescription>
+            </CardHeader>
+            <aside>
+              <AccountNav items={accountNavItems} />
+            </aside>
+          </div>
+
+          <Card className="flex-1">
+            <CardContent className="p-6">{children}</CardContent>
+          </Card>
         </CardContent>
       </Card>
     </div>

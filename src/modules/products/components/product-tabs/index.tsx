@@ -1,13 +1,12 @@
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { useMemo } from 'react';
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
+import { book } from '@static/book';
 import DescriptionTab from '../product-info/description';
 import ProductDetails from '../product-info/product-details';
 import ReviewsTab from '../product-info/reviews';
-import { book } from '@static/book';
 
-import { Separator } from '@ui/separator';
 import cn from '@lib/util/cn';
 type ProductTabsProps = {
   product: PricedProduct;
