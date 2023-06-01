@@ -57,7 +57,7 @@ const AccountNav: React.FC<AccountNavProps> = ({ items }) => {
         <Button
           variant="ghost"
           onClick={handleLogout}
-          className="justify-start hover:bg-transparent hover:underline"
+          className="justify-start hover:bg-muted"
         >
           Đăng xuất
         </Button>

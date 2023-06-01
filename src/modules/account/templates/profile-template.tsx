@@ -6,7 +6,7 @@ import Text from '@modules/ui/text';
 import ProfileBillingAddress from '../components/profile-billing-address';
 
 const ProfileTemplate = () => {
-  const { customer, retrievingCustomer, refetchCustomer } = useAccount();
+  const { customer, retrievingCustomer } = useAccount();
 
   if (retrievingCustomer || !customer) {
     return null;

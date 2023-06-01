@@ -85,7 +85,7 @@ const Register = () => {
           <Spinner size={24} />
         </div>
       )}
-      <Card className="max-w-sm">
+      <Card className="max-w-md">
         <CardHeader className="pb-6 text-center">
           <CardTitle className="text-xl">Đăng ký</CardTitle>
         </CardHeader>
