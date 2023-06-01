@@ -9,12 +9,9 @@ type ProductInfoProps = {
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   return (
-    <>
-      <div className="mx-auto flex flex-col gap-y-12 lg:max-w-[500px]">
-        <ProductActions product={product} />
-      </div>
-      <Toaster position="top-right" />
-    </>
+    <div className="mx-auto flex flex-col gap-y-12 lg:max-w-[500px]">
+      <ProductActions product={product} />
+    </div>
   );
 };
 

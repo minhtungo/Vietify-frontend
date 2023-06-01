@@ -24,8 +24,7 @@ const Addresses = () => {
         <CardTitle>Địa Chỉ Giao Hàng</CardTitle>
       </CardHeader>
       <CardContent className="pb-6">
-        {isEdit ||
-        (customer && (customer.billing_addresses?.length || 0) > 0) ? (
+        {isEdit ? (
           <>
             <ShippingAddress />
             <div className="mt-6 flex items-center space-x-2">
@@ -38,7 +37,7 @@ const Addresses = () => {
             </div>
             {!checked && (
               <>
-                <CardTitle className="pb-6 pt-8">Billing address</CardTitle>
+                <CardTitle className="pb-6 pt-8">Địa chỉ Thanh Toán</CardTitle>
                 <BillingAddress />
               </>
             )}

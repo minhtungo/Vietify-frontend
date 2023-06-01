@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Facebook from '@icons/facebook';
 import Google from '@icons/google';
-import Spinner from '@icons/spinner';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
 import cn from '@lib/util/cn';

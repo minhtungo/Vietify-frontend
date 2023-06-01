@@ -47,9 +47,7 @@ const AccountNav: React.FC<AccountNavProps> = ({ items }) => {
             href={item.href}
             className={cn(
               buttonVariants({ variant: 'ghost' }),
-              pathname === item.href
-                ? 'bg-muted hover:bg-muted'
-                : 'hover:bg-transparent hover:underline',
+              pathname === item.href && 'bg-muted',
               'justify-start'
             )}
           >
