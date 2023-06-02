@@ -60,11 +60,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-full justify-center py-6 md:py-12">
+    <>
       <Loader open={form.formState.isSubmitting} />
-      <Card className="max-w-md">
-        <CardHeader className="pb-6 text-center">
-          <CardTitle className="!text-xl">Chào mừng đến với Vietify!</CardTitle>
+      <Card className="w-full border-none shadow-none md:max-w-md md:border md:border-accent md:shadow-sm">
+        <CardHeader className="py-8 pb-5 text-center md:pb-6">
+          <CardTitle className="text-xl">Chào mừng đến với Vietify!</CardTitle>
         </CardHeader>
 
         <CardContent className="grid gap-4">
@@ -144,7 +144,7 @@ const Login = () => {
             </Text>
             <div className="h-[0.5px] flex-grow bg-border" />
           </div>
-          <div className="flex w-full justify-between gap-3">
+          <div className="flex w-full flex-col justify-between gap-2 sm:flex-row sm:gap-3">
             <a
               href={`http://localhost:9000/store/auth/google`}
               type="button"
@@ -174,7 +174,7 @@ const Login = () => {
           </div>
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-3 text-center">
+        <CardFooter className="flex flex-col gap-3 pt-3 text-center sm:pt-0">
           <Text size="xs">
             Bằng việc đăng nhập, bạn đã đồng ý với Vietify về{' '}
             <Link href="/terms-of-use" className="text-primary hover:underline">
@@ -199,7 +199,7 @@ const Login = () => {
           </Text>
         </CardFooter>
       </Card>
-    </div>
+    </>
   );
 };
 

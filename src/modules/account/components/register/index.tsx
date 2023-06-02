@@ -1,6 +1,8 @@
-import Spinner from '@icons/spinner';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
+import { passwordSchema } from '@lib/util/schema';
+import Loader from '@modules/common/components/loader';
 import {
   Card,
   CardContent,
@@ -8,13 +10,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@modules/ui/card';
+import { Input } from '@modules/ui/input';
 import Text from '@modules/ui/text';
 import Button from '@ui/button';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -23,9 +21,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@ui/form';
-import { Input } from '@modules/ui/input';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { passwordSchema } from '@lib/util/schema';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 const formSchema = z
   .object({
@@ -79,48 +79,15 @@ const Register = () => {
   };
 
   return (
-    <div className="content-container flex justify-center py-12">
-      {form.formState.isSubmitting && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
-          <Spinner size={24} />
-        </div>
-      )}
-      <Card className="max-w-md">
-        <CardHeader className="pb-6 text-center">
+    <div>
+      <Loader open={form.formState.isSubmitting} />
+      <Card className="w-full border-none shadow-none md:max-w-md md:border md:border-accent md:shadow-sm">
+        <CardHeader className="py-8 pb-5 text-center md:pb-6">
           <CardTitle className="text-xl">Đăng ký</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-3">
-              <div className="grid grid-cols-2 gap-x-4">
-                <FormField
-                  control={form.control}
-                  name="first_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Tên</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Tên" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="last_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Họ</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Họ" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
               <FormField
                 control={form.control}
                 name="email"
@@ -170,6 +137,34 @@ const Register = () => {
                   </FormItem>
                 )}
               />
+              <div className="grid grid-cols-2 gap-x-4">
+                <FormField
+                  control={form.control}
+                  name="first_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Tên</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Tên" {...field} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="last_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Họ</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Họ" {...field} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               {authError && (
                 <Text size="sm" variant="error">
                   Incorrect email or password.
@@ -179,7 +174,7 @@ const Register = () => {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="flex flex-col gap-3 text-center">
+        <CardFooter className="flex flex-col gap-3 pt-3 text-center sm:pt-0">
           <Text size="xs">
             Bằng việc đăng ký, bạn đã đồng ý với Vietify về{' '}
             <Link href="/terms-of-use" className="text-primary hover:underline">

@@ -1,6 +1,5 @@
 import Spinner from '@icons/spinner';
 import { useAccount } from '@lib/context/account-context';
-import { Separator } from '@modules/ui/separator';
 import { accountNavItems } from '@static/routes';
 import {
   Card,

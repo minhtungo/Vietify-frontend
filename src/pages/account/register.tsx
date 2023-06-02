@@ -1,8 +1,7 @@
-import LoginTemplate from '@modules/account/templates/login-template';
 import Head from '@common/head';
-import Layout from '@modules/layout/templates';
-import { NextPageWithLayout } from 'types/global';
 import Register from '@modules/account/components/register';
+import AuthenticationLayout from '@modules/account/templates/authentication-layout';
+import { NextPageWithLayout } from 'types/global';
 
 const RegisterPage: NextPageWithLayout = () => {
   return (
@@ -17,7 +16,7 @@ const RegisterPage: NextPageWithLayout = () => {
 };
 
 RegisterPage.getLayout = (page) => {
-  return <Layout>{page}</Layout>;
+  return <AuthenticationLayout>{page}</AuthenticationLayout>;
 };
 
 export default RegisterPage;
