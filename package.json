@@ -20,7 +20,7 @@
     "@types/react": "17.0.40"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.14",
+    "@headlessui/react": "^1.7.15",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.1.0",
     "@medusajs/medusa-js": "^6.0.0",
@@ -59,17 +59,17 @@
     "react-countdown": "^2.3.5",
     "react-country-flag": "^3.1.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.44.2",
+    "react-hook-form": "^7.44.3",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.9.0",
     "react-instantsearch-hooks-web": "^6.44.1",
-    "react-intersection-observer": "^9.4.3",
+    "react-intersection-observer": "^9.4.4",
     "react-share": "^4.4.1",
     "sharp": "^0.32.1",
     "swiper": "^9.3.2",
-    "tailwind-merge": "^1.12.0",
+    "tailwind-merge": "^1.13.0",
     "tailwindcss-animate": "^1.0.5",
-    "webpack": "^5.84.1",
+    "webpack": "^5.85.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
@@ -77,7 +77,7 @@
     "@medusajs/medusa": "^1.12.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/node": "20.2.5",
-    "@types/react": "18.2.7",
+    "@types/react": "18.2.8",
     "@types/react-instantsearch-dom": "^6.12.3",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
@@ -88,6 +88,6 @@
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.1.3"
   }
 }

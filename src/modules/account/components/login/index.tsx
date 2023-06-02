@@ -60,7 +60,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-full justify-center py-12">
+    <div className="flex w-full justify-center py-6 md:py-12">
       <Loader open={form.formState.isSubmitting} />
       <Card className="max-w-md">
         <CardHeader className="pb-6 text-center">

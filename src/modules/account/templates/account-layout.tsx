@@ -50,7 +50,6 @@ const AccountLayout: FC<accountLayoutProps> = ({ children }) => {
               <AccountNav items={accountNavItems} />
             </aside>
           </div>
-
           <Card className="flex-1">
             <CardContent className="p-6">{children}</CardContent>
           </Card>
