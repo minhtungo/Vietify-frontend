@@ -10,7 +10,7 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        'w-20 flex-shrink-0 select-none sm:w-24 md:w-28',
+        'w-24 flex-shrink-0 select-none sm:w-24 md:w-28',
         className
       )}
     >

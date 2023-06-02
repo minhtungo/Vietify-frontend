@@ -7,62 +7,92 @@ import { useMeCustomer, useProductCategories } from 'medusa-react';
 import Link from 'next/link';
 
 import { ProductCategory } from '@medusajs/medusa';
+import ArrowBack from '@modules/common/icons/arrow-back';
+import { useState } from 'react';
 import ListItem from '../list-item';
-import { ScrollArea } from '@modules/ui/scroll-area';
 
 const MainMenu = () => {
   const { customer } = useMeCustomer();
-  const { product_categories, isLoading } = useProductCategories();
+  const { product_categories: categories } = useProductCategories();
+
+  const [submenuItems, setSubmenuItems] = useState<ProductCategory[]>([]);
+
+  const menuContent = (
+    <ul className="space-y-2">
+      {submenuItems.length > 0
+        ? submenuItems.map((item) => (
+            <ListItem
+              category={item}
+              key={item.id}
+              setSubmenuItems={setSubmenuItems}
+            />
+          ))
+        : categories && categories.length > 0
+        ? categories.map((category) => (
+            <ListItem
+              category={category}
+              key={category.id}
+              setSubmenuItems={setSubmenuItems}
+            />
+          ))
+        : null}
+    </ul>
+  );
 
   return (
-    <div className="flex flex-1 flex-col justify-between gap-y-3 overflow-hidden py-6">
-      {!customer ? (
-        <SheetClose asChild>
-          <Link href="/account/login" className="group py-1">
-            <Text
-              variant="dark"
-              span
-              sr="Go to sign in page"
-              className="transition duration-100 ease-in-out group-hover:font-semibold"
-            >
-              Login / Sign Up
-            </Text>
-          </Link>
-        </SheetClose>
-      ) : (
-        <Text span variant="dark">
-          Hi, {customer.first_name}
-        </Text>
+    <div className="flex flex-1 flex-col justify-between gap-y-3 overflow-hidden pb-0 pt-12">
+      {submenuItems && submenuItems.length > 0 && (
+        <button
+          onClick={() => setSubmenuItems([])}
+          className="absolute left-5 top-[21px] opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+        >
+          <ArrowBack size={22} />
+        </button>
       )}
-      <Separator />
 
-      <ul className="flex flex-col gap-y-2 ">
-        {product_categories && product_categories.length > 0 ? (
-          <>
-            {product_categories.map((category: ProductCategory) => (
-              <ListItem category={category} key={category.id} />
-            ))}
-          </>
-        ) : null}
-      </ul>
+      {!submenuItems || submenuItems.length === 0 ? (
+        <>
+          {!customer ? (
+            <SheetClose asChild>
+              <Link href="/account/login" className="group py-1">
+                <Text
+                  variant="dark"
+                  span
+                  sr="Go to sign in page"
+                  className="transition duration-100 ease-in-out group-hover:font-semibold"
+                >
+                  Login / Sign Up
+                </Text>
+              </Link>
+            </SheetClose>
+          ) : (
+            <Text span variant="dark">
+              Hi, {customer.first_name}
+            </Text>
+          )}
+          <Separator />
+        </>
+      ) : null}
 
-      <Separator />
-      <div className="flex flex-col gap-y-2">
-        {customer && (
-          <SheetClose asChild>
-            <Link
-              href="/account/login"
-              className="group inline-flex w-full items-center gap-2 py-1"
-            >
-              <User size={22} />
-              <Text variant="dark" span sr="Go to Account">
-                My Account
-              </Text>
-            </Link>
-          </SheetClose>
-        )}
-        {SITE_HEADER.map((item) => {
-          return (
+      {menuContent}
+
+      {submenuItems.length === 0 && (
+        <div className="flex flex-col gap-y-2">
+          <Separator />
+          {customer && (
+            <SheetClose asChild>
+              <Link
+                href="/account/login"
+                className="group inline-flex w-full items-center gap-2 py-1"
+              >
+                <User size={22} />
+                <Text variant="dark" span sr="Go to Account">
+                  My Account
+                </Text>
+              </Link>
+            </SheetClose>
+          )}
+          {SITE_HEADER.map((item) => (
             <SheetClose asChild key={item.label}>
               <Link
                 href={item.path}
@@ -79,9 +109,9 @@ const MainMenu = () => {
                 </Text>
               </Link>
             </SheetClose>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

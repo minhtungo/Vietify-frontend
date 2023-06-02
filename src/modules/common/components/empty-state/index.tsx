@@ -27,7 +27,13 @@ const EmptyState: FC<EmptyStateProps> = ({
         className
       )}
     >
-      <div className={headingVariants({})}>{title}</div>
+      <div
+        className={headingVariants({
+          size: 'md',
+        })}
+      >
+        {title}
+      </div>
 
       {subtitle && (
         <p

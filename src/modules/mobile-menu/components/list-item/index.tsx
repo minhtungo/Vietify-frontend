@@ -1,4 +1,3 @@
-import { useMobileMenu } from '@lib/context/mobile-menu-context';
 import Text, { textVariants } from '@modules/ui/text';
 
 import { ProductCategory } from '@medusajs/medusa';
@@ -7,17 +6,15 @@ import Link from 'next/link';
 
 interface listItemProps {
   category: ProductCategory;
+  setSubmenuItems: React.Dispatch<React.SetStateAction<ProductCategory[]>>;
 }
 
-const ListItem: React.FC<listItemProps> = ({ category }) => {
-  const {
-    screen: [_, setScreen],
-  } = useMobileMenu();
+const ListItem: React.FC<listItemProps> = ({ category, setSubmenuItems }) => {
   return (
     <li className="py-1">
-      {category.category_children.length > 0 ? (
+      {category.category_children && category.category_children.length > 0 ? (
         <button
-          onClick={() => setScreen('categoryMenu')}
+          onClick={() => setSubmenuItems(category.category_children || [])}
           className="group inline-flex w-full items-center justify-between"
         >
           <Text

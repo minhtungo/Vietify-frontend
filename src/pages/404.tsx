@@ -7,14 +7,14 @@ import { NextPageWithLayout } from 'types/global';
 const NotFound: NextPageWithLayout = () => {
   return (
     <>
-      <Head title="404" description="Something went wrong" />
-      <main>
+      <Head title="404" description="Không thể tìm thấy trang bạn yêu cầu." />
+      <div className="flex h-full w-full items-center justify-center py-24 lg:py-32">
         <EmptyState
           title="Trang không tìm thấy"
           subtitle="Không thể tìm thấy trang bạn yêu cầu."
           showButton
         />
-      </main>
+      </div>
     </>
   );
 };
