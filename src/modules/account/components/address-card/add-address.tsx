@@ -7,7 +7,6 @@ import { phoneRegex, postalCodeRegex } from '@lib/util/regex';
 import { Input } from '@modules/ui/input';
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -25,10 +24,10 @@ import {
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import * as z from 'zod';
-import Plus from '@modules/common/icons/plus';
 import useToggleState from '@lib/hooks/use-toggle-state';
+import Plus from '@modules/common/icons/plus';
 import Text from '@modules/ui/text';
+import * as z from 'zod';
 
 const formSchema = z.object({
   first_name: z.string().min(2).max(50),

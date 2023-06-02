@@ -20,7 +20,7 @@ const buttonVariants = cva(
         fade: 'scale-90 px-3 hover:opacity-80 2xl:scale-100 !p-0',
       },
       size: {
-        default: 'h-10 py-2 px-4',
+        default: 'h-10 py-2 px-5',
         sm: 'h-9 px-3 rounded-md',
         lg: 'h-11 px-8 rounded-md',
       },
