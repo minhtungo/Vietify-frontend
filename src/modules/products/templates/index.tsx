@@ -1,6 +1,5 @@
 import Breadcrumb from '@common/breadcrumb';
 import { ProductProvider } from '@lib/context/product-context';
-import { useIntersection } from '@lib/hooks/use-in-view';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import ProductTabs from '@modules/products/components/product-tabs';
 import RelatedProducts from '@modules/products/components/related-products';
@@ -16,34 +15,28 @@ type ProductTemplateProps = {
 const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
   const info = useRef<HTMLDivElement>(null);
 
-  const inView = useIntersection(info, '0px');
-
   return (
     <ProductProvider product={product}>
-      <div className="content-container pt-6">
+      <div className="content-container px-6 pt-6 md:px-12 lg:px-6 xl:px-4">
         <Breadcrumb title={product.title!} />
-        <div className="mt-4 grid-cols-7 gap-2 lg:grid">
+        <div className="mt-6 grid-cols-7 gap-x-12 lg:grid">
           <div className="col-span-3 mb-6 overflow-hidden md:mb-8 lg:mb-0">
-            <ThumbnailCarousel
-              gallery={[
-                'https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/26.jpg',
-              ]}
-            />
-            {/* <ThumbnailCarousel gallery={product.images} /> */}
+            <ThumbnailCarousel gallery={product.images} />
           </div>
-          <div className="col-span-4" ref={info} id="product-info">
-            <ProductInfo product={product} />
-          </div>
+          <ProductInfo product={product} className="col-span-4" ref={info} />
         </div>
 
         <ProductTabs product={product} className="my-12 hidden md:block" />
         <ProductAccordion product={product} className="my-12 block md:hidden" />
         <RelatedProducts product={product} className="my-16" />
-
-        {/* <MobileActions product={product} show={!inView} /> */}
       </div>
     </ProductProvider>
   );
 };
 
 export default ProductTemplate;
+
+{
+  /* <MobileActions product={product} show={!inView} /> */
+}
+// const inView = useIntersection(info, '0px');

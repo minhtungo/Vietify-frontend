@@ -10,53 +10,40 @@ import { useRef, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Thumbnail from '../thumbnail';
 import { THUMB_BREAKPOINTS } from '@static/breakpoints';
+import { Image } from '@medusajs/medusa';
 
 interface Props {
-  gallery: any[];
+  gallery: Image[] | undefined;
   thumbnailClassName?: string;
   galleryClassName?: string;
 }
 
-const swiperParams: SwiperOptions = {
-  slidesPerView: 1,
-  spaceBetween: 0,
-};
-
 const ThumbnailCarousel: React.FC<Props> = ({
   gallery,
-  thumbnailClassName = 'xl:w-[700px] 2xl:w-[800px]',
-  galleryClassName = 'xl:w-[80px] 2xl:w-[100px]',
+  thumbnailClassName = 'lg:w-[76px]',
+  galleryClassName = '',
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const prevRef = useRef<HTMLDivElement>(null);
-  const nextRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="w-full xl:flex xl:flex-row-reverse">
+    <div className="flex w-full flex-col lg:flex-row-reverse">
       <div
         className={cn(
-          'relative mb-2.5 w-full overflow-hidden rounded-md md:mb-3 xl:ml-5',
-          thumbnailClassName
+          'relative mx-auto  w-[50%] overflow-hidden lg:ml-3 lg:w-full',
+          galleryClassName
         )}
       >
         <Swiper
-          id="productGallery"
           thumbs={{
             swiper:
               thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
-          modules={[Navigation, Thumbs]}
-          navigation={{
-            prevEl: prevRef.current!,
-            nextEl: nextRef.current!,
-          }}
-          {...swiperParams}
+          modules={[Thumbs]}
+          slidesPerView={1}
+          spaceBetween={0}
         >
           {gallery?.map((item: any) => (
-            <SwiperSlide
-              key={`product-gallery-${item.id}`}
-              className="flex items-center justify-center"
-            >
+            <SwiperSlide key={`product-${item.id}`}>
               <Thumbnail
                 thumbnail={item?.url}
                 size="full"
@@ -65,28 +52,12 @@ const ThumbnailCarousel: React.FC<Props> = ({
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="absolute top-2/4 z-10 flex w-full items-center justify-between px-2.5">
-          <div
-            ref={prevRef}
-            className="shadow-navigation hover:text-primary-light flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
-          >
-            <IoIosArrowBack />
-          </div>
-          <div
-            ref={nextRef}
-            className="shadow-navigation hover:text-primary-light flex h-7 w-7 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-brand-light text-base transition duration-300 hover:bg-brand focus:outline-none md:h-8 md:w-8 lg:h-9 lg:w-9 lg:text-lg xl:h-10 xl:w-10 xl:text-xl"
-          >
-            <IoIosArrowForward />
-          </div>
-        </div>
       </div>
-      {/* End of product main slider */}
 
-      <div className={`shrink-0 ${galleryClassName}`}>
+      <div className={cn(thumbnailClassName, 'hidden shrink-0 lg:block')}>
         <Swiper
           id="productGalleryThumbs"
           onSwiper={setThumbsSwiper}
-          spaceBetween={0}
           watchSlidesProgress={true}
           freeMode={true}
           observer={true}
@@ -95,8 +66,8 @@ const ThumbnailCarousel: React.FC<Props> = ({
         >
           {gallery?.map((item: any) => (
             <SwiperSlide
-              key={`product-thumb-gallery-${item.id}`}
-              className="flex cursor-pointer items-center justify-center overflow-hidden rounded-md border !border-muted transition hover:opacity-75"
+              key={`product-thumb-${item.id}`}
+              className="flex cursor-pointer items-center justify-center overflow-hidden rounded-md border transition hover:opacity-80"
             >
               <Thumbnail
                 thumbnail={item?.url}

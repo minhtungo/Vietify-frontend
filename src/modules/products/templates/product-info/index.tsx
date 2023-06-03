@@ -2,14 +2,21 @@ import ProductActions from '@modules/products/components/product-actions';
 import { Toaster } from 'react-hot-toast';
 import { Product } from 'types/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import cn from '@lib/util/cn';
 
 type ProductInfoProps = {
   product: PricedProduct;
+  className?: string;
+  ref: any;
 };
 
-const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
+const ProductInfo: React.FC<ProductInfoProps> = ({
+  product,
+  className,
+  ref,
+}) => {
   return (
-    <div className="mx-auto flex flex-col gap-y-12 lg:max-w-[500px]">
+    <div className={cn(className)} ref={ref}>
       <ProductActions product={product} />
     </div>
   );

@@ -38,19 +38,21 @@
 }
 #productGalleryThumbs .swiper-wrapper .swiper-slide {
   margin: 5px 5px 6px;
-}
-#productGalleryThumbs .swiper-wrapper .swiper-slide.swiper-slide-thumb-active {
-  border-color: #80d8c7;
+  width: 76px !important;
 }
 
-@media screen and (min-width: 1280px) {
+#productGalleryThumbs .swiper-wrapper .swiper-slide.swiper-slide-thumb-active {
+  border-color: rgb(254 115 29);
+}
+
+@media screen and (min-width: 1024px) {
   #productGalleryThumbs .swiper-wrapper {
     flex-flow: column;
     margin: 0;
   }
   #productGalleryThumbs .swiper-wrapper .swiper-slide {
     width: 100% !important;
-    margin: 0 0 12px;
+    margin: 0 0 8px;
   }
 }
 

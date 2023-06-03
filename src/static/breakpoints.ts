@@ -38,7 +38,7 @@ const PUBLISHERS_BREAKPOINTS = {
 
 const THUMB_BREAKPOINTS = {
   '0': {
-    slidesPerView: 4,
+    slidesPerView: 5,
   },
 };
 

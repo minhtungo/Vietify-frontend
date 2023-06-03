@@ -44,7 +44,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 
   return (
     <div className={cn('relative', thumbnailVariants({ size }))}>
-      <AspectRatio ratio={3 / 4}>
+      <AspectRatio ratio={1 / 1}>
         {initialImage ? (
           <Image
             src={initialImage}
