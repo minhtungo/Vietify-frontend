@@ -26,8 +26,9 @@ const BreadcrumbItem: FC<BreadcrumbItemProps> = ({
   return (
     <li
       className={cn(
-        'inline-flex items-center text-xs text-muted-foreground hover:text-foreground sm:text-sm',
-        last && 'overflow-hidden font-semibold text-foreground'
+        'inline-flex items-center text-xs text-muted-foreground hover:text-brand sm:text-sm',
+        last &&
+          'overflow-hidden font-semibold text-foreground hover:text-foreground'
       )}
     >
       <span className="last:truncate">{children}</span>
@@ -44,9 +45,8 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ title }) => {
   return (
     <ol className="flex w-full items-center overflow-hidden">
       <BreadcrumbItem key="breadcrumb-home">
-        <Link href={ROUTES.HOME} className="inline-flex items-center gap-1.5">
-          <Home className="text-15px hidden text-foreground md:block" />
-          Home
+        <Link href={ROUTES.HOME}>
+          <Home className="text-[15px] text-foreground" />
         </Link>
       </BreadcrumbItem>
       {breadcrumbs?.map((breadcrumb: breadCrumbType, i: number) => (
@@ -54,11 +54,15 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ title }) => {
           key={breadcrumb.href}
           last={i === breadcrumbs.length - 1}
         >
-          <Link href={breadcrumb.href} className="capitalize">
-            {title && i === breadcrumbs.length - 1
-              ? title
-              : convertBreadcrumbTitle(breadcrumb.breadcrumb)}
-          </Link>
+          {i !== breadcrumbs.length - 1 ? (
+            <Link href={breadcrumb.href} className="capitalize">
+              {convertBreadcrumbTitle(breadcrumb.breadcrumb)}
+            </Link>
+          ) : (
+            <span className="capitalize">
+              {title || convertBreadcrumbTitle(breadcrumb.breadcrumb)}
+            </span>
+          )}
         </BreadcrumbItem>
       ))}
     </ol>

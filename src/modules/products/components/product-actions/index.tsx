@@ -166,8 +166,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </Button>
       </div>
 
-      <Separator className="my-4" />
-      <div className="flex items-center gap-2">
+      <div className="mt-4 flex items-center gap-2">
         <Text variant="dark" className="font-semibold" size="md" span>
           Chia sẻ sản phẩm này:
         </Text>
