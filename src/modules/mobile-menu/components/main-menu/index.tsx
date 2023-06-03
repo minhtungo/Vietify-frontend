@@ -18,7 +18,7 @@ const MainMenu = () => {
   const [submenuItems, setSubmenuItems] = useState<ProductCategory[]>([]);
 
   const menuContent = (
-    <ul className="space-y-2">
+    <ul className="space-y-1">
       {submenuItems.length > 0
         ? submenuItems.map((item) => (
             <ListItem
@@ -40,7 +40,7 @@ const MainMenu = () => {
   );
 
   return (
-    <div className="flex flex-1 flex-col justify-between gap-y-3 overflow-hidden pb-0 pt-12">
+    <div className="flex flex-1 flex-col justify-between gap-y-2 pt-12">
       {submenuItems && submenuItems.length > 0 && (
         <button
           onClick={() => setSubmenuItems([])}
@@ -55,14 +55,7 @@ const MainMenu = () => {
           {!customer ? (
             <SheetClose asChild>
               <Link href="/account/login" className="group py-1">
-                <Text
-                  variant="dark"
-                  span
-                  sr="Go to sign in page"
-                  className="transition duration-100 ease-in-out group-hover:font-semibold"
-                >
-                  Login / Sign Up
-                </Text>
+                <TextLink title="Login / Sign Up" />
               </Link>
             </SheetClose>
           ) : (
@@ -86,9 +79,7 @@ const MainMenu = () => {
                 className="group inline-flex w-full items-center gap-2 py-1"
               >
                 <User size={22} />
-                <Text variant="dark" span sr="Go to Account">
-                  My Account
-                </Text>
+                <TextLink title="My Account" />
               </Link>
             </SheetClose>
           )}
@@ -99,14 +90,7 @@ const MainMenu = () => {
                 className="group inline-flex w-full items-center gap-2 py-1"
               >
                 {item.icon}
-                <Text
-                  variant="dark"
-                  className="transition duration-100 ease-in-out group-hover:font-semibold"
-                  span
-                  sr={`Go to ${item.label}`}
-                >
-                  {item.label}
-                </Text>
+                <TextLink title={item.label} />
               </Link>
             </SheetClose>
           ))}
@@ -115,5 +99,16 @@ const MainMenu = () => {
     </div>
   );
 };
+
+export const TextLink = ({ title }: { title: string }) => (
+  <Text
+    variant="dark"
+    className="text-[15px] transition ease-in-out group-hover:font-semibold"
+    span
+    sr={`Go to ${title}`}
+  >
+    {title}
+  </Text>
+);
 
 export default MainMenu;
