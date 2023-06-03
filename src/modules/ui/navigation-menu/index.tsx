@@ -39,7 +39,18 @@ const NavigationMenuList = React.forwardRef<
 
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 
-const NavigationMenuItem = NavigationMenuPrimitive.Item;
+const NavigationMenuItem = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <NavigationMenuPrimitive.Item
+    ref={ref}
+    className={cn('relative', className)}
+    {...props}
+  />
+));
+
+NavigationMenuItem.displayName = NavigationMenuPrimitive.List.displayName;
 
 const navigationMenuTriggerStyle = cva(
   'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:text-primary disabled:opacity-50 disabled:pointer-events-none data-[state=open]:text-primary data-[active]:text-primary group w-max'
@@ -51,12 +62,16 @@ const NavigationMenuTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Trigger
     ref={ref}
-    className={cn(navigationMenuTriggerStyle(), 'group', className)}
+    className={cn(
+      navigationMenuTriggerStyle(),
+      'group py-2 pl-4 pr-[26px] text-[15px] font-medium hover:bg-secondary',
+      className
+    )}
     {...props}
   >
     {children}
     <ChevronDown
-      className="relative top-[1px] ml-1 text-muted-foreground transition duration-200 group-data-[state=open]:rotate-180 group-data-[state=open]:text-primary"
+      className="absolute right-2.5 hidden h-[13px] w-[13px] text-muted-foreground transition duration-200 group-data-[state=open]:block group-data-[state=open]:text-primary"
       aria-hidden="true"
     />
   </NavigationMenuPrimitive.Trigger>

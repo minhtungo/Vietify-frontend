@@ -11,7 +11,8 @@ import MobileSearch from '@modules/search/templates/mobile-search';
 import useWindowSize from '@lib/hooks/use-window-size';
 import User from '@modules/common/icons/user';
 import Cart from '@modules/common/icons/cart';
-import { buttonVariants } from '@modules/ui/button';
+import Button, { buttonVariants } from '@modules/ui/button';
+import Heart from '@modules/common/icons/heart';
 
 export default function Nav() {
   // const { pathname } = useRouter();
@@ -32,7 +33,7 @@ export default function Nav() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-8xl items-center justify-evenly gap-2 px-6 lg:justify-between xl:px-4">
-        <div className="flex w-full items-center gap-6 lg:w-fit">
+        <div className="flex w-full items-center justify-start gap-5">
           <MobileMenu />
           <Link href="/" className="hidden lg:block">
             <Logo />
@@ -44,7 +45,7 @@ export default function Nav() {
         </Link>
         <div className="flex w-full">
           <DesktopSearch />
-          <div className="ml-auto flex items-center gap-1 lg:ml-3 lg:gap-0">
+          <div className="ml-auto flex items-center gap-1 lg:ml-3 lg:gap-2">
             <MobileSearch />
             {width && width < 1024 ? (
               <>
@@ -77,6 +78,19 @@ export default function Nav() {
               </>
             ) : (
               <>
+                <Link
+                  href="/wishlist"
+                  className={buttonVariants({
+                    variant: 'ghost',
+                    className: 'h-9 w-9 !rounded-full !p-0 !duration-150',
+                  })}
+                >
+                  <Heart
+                    className="text-foreground/90"
+                    size={25}
+                    aria-hidden="true"
+                  />
+                </Link>
                 <Account />
                 <CartDropdown />
               </>

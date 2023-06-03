@@ -46,18 +46,13 @@ const ControlledSearchBox = ({
 
   return (
     <div className="relative w-full">
-      <form
-        noValidate
-        onSubmit={handleSubmit}
-        onReset={handleReset}
-        className="relative ml-auto"
-      >
+      <form noValidate onSubmit={handleSubmit} onReset={handleReset}>
         <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-          <Search className="h-[21px] w-[21px] text-foreground/90" />
+          <Search className="h-5 w-5 text-muted-foreground" />
         </div>
         <Input
           ref={inputRef}
-          className="flex w-full flex-1 border-gray-300 bg-gray-50 py-3 pl-3 pr-12"
+          className="flex w-full border-border/50 bg-accent py-3 pl-3.5 pr-12"
           type="search"
           value={value}
           onChange={onChange}
