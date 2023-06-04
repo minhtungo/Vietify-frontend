@@ -55,7 +55,7 @@ const MainMenu = () => {
           {!customer ? (
             <SheetClose asChild>
               <Link href="/account/login" className="group py-1">
-                <TextLink title="Login / Sign Up" />
+                <TextLink title="Đăng nhập / Đăng xuất" />
               </Link>
             </SheetClose>
           ) : (

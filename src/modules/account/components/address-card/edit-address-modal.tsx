@@ -4,24 +4,7 @@ import { useAccount } from '@lib/context/account-context';
 import useToggleState from '@lib/hooks/use-toggle-state';
 import { phoneRegex, postalCodeRegex } from '@lib/util/regex';
 import { Address } from '@medusajs/medusa';
-import { Input } from '@modules/ui/input';
-import Button from '@ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@ui/form';
+import ShippingAddressModal from '@modules/modal/shipping-address';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -100,150 +83,16 @@ const EditAddress: React.FC<EditAddressProps> = ({ address }) => {
   };
 
   return (
-    <Dialog open={state}>
-      <DialogTrigger asChild>
-        <Button variant="link" onClick={open}>
-          Thay đổi
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-xl" customClose={close}>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onEditAddress)} className="w-full">
-            <DialogHeader>
-              <DialogTitle>Thay đổi địa chỉ</DialogTitle>
-            </DialogHeader>
-            <div className="grid gap-4 py-5">
-              <div className="grid grid-cols-2 gap-x-4">
-                <FormField
-                  control={form.control}
-                  name="first_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Tên</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Tên" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="last_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Họ</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Họ" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Số điện thoại</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Số điện thoại" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="address_1"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Địa chỉ</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Địa chỉ" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="address_2"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Apartment, suite, etc.</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Apartment, suite, etc."
-                        {...field}
-                        required
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="grid grid-cols-[144px_1fr] gap-x-4">
-                <FormField
-                  control={form.control}
-                  name="postal_code"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Postal Code</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Postal Code" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Thành phố</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Thành phố" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              {error && (
-                <div className="text-small-regular py-2 text-destructive">
-                  {error}
-                </div>
-              )}
-              <FormField
-                control={form.control}
-                name="province"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Province</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Province" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <DialogFooter>
-              <Button variant="outline" onClick={close}>
-                Đóng
-              </Button>
-              <Button type="submit" isLoading={submitting}>
-                Lưu thay đổi
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
-      </DialogContent>
-    </Dialog>
+    <ShippingAddressModal
+      onSubmit={onEditAddress}
+      state={state}
+      close={close}
+      error={error}
+      open={open}
+      submitting={submitting}
+      form={form}
+      isEdit
+    />
   );
 };
 

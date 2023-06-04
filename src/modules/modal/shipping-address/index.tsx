@@ -1,7 +1,8 @@
 import Button from '@ui/button';
 
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@modules/ui/input';
+import { ScrollArea } from '@modules/ui/scroll-area';
+import { states } from '@static/content';
 import {
   Dialog,
   DialogContent,
@@ -18,64 +19,69 @@ import {
   FormLabel,
   FormMessage,
 } from '@ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@ui/select';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 import { shippingAddressSchema } from '@lib/schemas/shipping-address';
 import Plus from '@modules/common/icons/plus';
 import Text from '@modules/ui/text';
 import * as z from 'zod';
 
-interface AddShippingAddressProps {
+interface ShippingAddressProps {
   onSubmit: (data: z.infer<typeof shippingAddressSchema>) => void;
   state: boolean;
   error: string | undefined;
   open: () => void;
   close: () => void;
   submitting: boolean;
+  isEdit?: boolean;
+  form: UseFormReturn<z.infer<typeof shippingAddressSchema>>;
 }
 
-const AddAddressModal: React.FC<AddShippingAddressProps> = ({
+const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
   onSubmit,
   state,
   error,
   open,
   close,
   submitting,
+  isEdit,
+  form,
 }) => {
-  const form = useForm<z.infer<typeof shippingAddressSchema>>({
-    resolver: zodResolver(shippingAddressSchema),
-    defaultValues: {
-      last_name: '',
-      first_name: '',
-      company: '',
-      address_1: '',
-      address_2: '',
-      phone: '',
-      city: '',
-      province: '',
-      postal_code: '',
-      country_code: '',
-    },
-  });
-
   return (
-    <Dialog open={state}>
+    <Dialog open={state} modal={false}>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="flex h-full w-full flex-col gap-y-1"
-          onClick={open}
-        >
-          <Plus className="h-8 w-8 text-muted-foreground" />
-          <Text variant="dark" span className="font-medium">
-            Thêm địa chỉ
-          </Text>
-        </Button>
+        {isEdit ? (
+          <Button variant="link" onClick={open}>
+            Thay đổi
+          </Button>
+        ) : (
+          <Button
+            variant="outline"
+            className="flex h-full w-full flex-col gap-y-1"
+            onClick={open}
+          >
+            <Plus className="h-8 w-8 text-muted-foreground" />
+            <Text variant="dark" span className="font-medium">
+              Thêm địa chỉ
+            </Text>
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl" customClose={close}>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full"
+            id="shipping-address-form"
+          >
             <DialogHeader>
               <DialogTitle>Thay đổi địa chỉ</DialogTitle>
             </DialogHeader>
@@ -148,20 +154,7 @@ const AddAddressModal: React.FC<AddShippingAddressProps> = ({
                   </FormItem>
                 )}
               />
-              <div className="grid grid-cols-[144px_1fr] gap-x-4">
-                <FormField
-                  control={form.control}
-                  name="postal_code"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Postal Code</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Postal Code" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <div className="grid grid-cols-[1fr_144px] gap-x-4">
                 <FormField
                   control={form.control}
                   name="city"
@@ -175,20 +168,50 @@ const AddAddressModal: React.FC<AddShippingAddressProps> = ({
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="province"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>State</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a state" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <ScrollArea className="h-[300px]">
+                            {states.map((state) => (
+                              <SelectItem value={state.name} key={state.code}>
+                                {state.name}
+                              </SelectItem>
+                            ))}
+                          </ScrollArea>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
               <FormField
                 control={form.control}
-                name="province"
+                name="postal_code"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Province</FormLabel>
+                    <FormLabel>Postal Code</FormLabel>
                     <FormControl>
-                      <Input placeholder="Province" {...field} required />
+                      <Input placeholder="Postal Code" {...field} required />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               {error && (
                 <div className="text-small-regular py-2 text-destructive">
                   {error}
@@ -210,4 +233,4 @@ const AddAddressModal: React.FC<AddShippingAddressProps> = ({
   );
 };
 
-export default AddAddressModal;
+export default ShippingAddressModal;

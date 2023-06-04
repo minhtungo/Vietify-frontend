@@ -5,13 +5,30 @@ import React, { useState } from 'react';
 
 import useToggleState from '@lib/hooks/use-toggle-state';
 import { shippingAddressSchema } from '@lib/schemas/shipping-address';
-import AddAddressModal from '@modules/modal/add-address';
+import ShippingAddressModal from '@modules/modal/shipping-address';
 import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const AddAddress: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const { state, open, close } = useToggleState(false);
   const [error, setError] = useState<string | undefined>(undefined);
+
+  const form = useForm<z.infer<typeof shippingAddressSchema>>({
+    resolver: zodResolver(shippingAddressSchema),
+    defaultValues: {
+      last_name: '',
+      first_name: '',
+      address_1: '',
+      address_2: '',
+      phone: '',
+      city: '',
+      province: '',
+      postal_code: '',
+      country_code: '',
+    },
+  });
 
   const { refetchCustomer } = useAccount();
 
@@ -50,13 +67,14 @@ const AddAddress: React.FC = () => {
   };
 
   return (
-    <AddAddressModal
+    <ShippingAddressModal
       onSubmit={onAddAddress}
       state={state}
       close={close}
       error={error}
       open={open}
       submitting={submitting}
+      form={form}
     />
   );
 };
