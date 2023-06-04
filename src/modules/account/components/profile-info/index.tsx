@@ -18,6 +18,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
+import ProfilePassword from '../profile-password';
 
 const formSchema = z.object({
   last_name: z.string().min(2).max(50),
@@ -79,7 +80,7 @@ const ProfileInfo: React.FC<MyInformationProps> = ({ customer }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(updateUserIno)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(updateUserIno)} className="space-y-6">
         <div className="grid gap-4 md:grid-cols-2">
           <FormField
             control={form.control}
@@ -134,10 +135,12 @@ const ProfileInfo: React.FC<MyInformationProps> = ({ customer }) => {
             )}
           />
         </div>
-
-        <Button isLoading={isLoading} type="submit" className="ml-auto flex">
-          Lưu thay đổi
-        </Button>
+        <div className="flex justify-end gap-3">
+          <ProfilePassword customer={customer} />
+          <Button isLoading={isLoading} type="submit">
+            Lưu thay đổi
+          </Button>
+        </div>
       </form>
     </Form>
   );

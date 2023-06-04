@@ -1,5 +1,5 @@
 import { useAccount } from '@lib/context/account-context';
-import Register from '@modules/account/components/register';
+import SignUp from '@modules/account/components/signup';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Login from '../components/login';
@@ -18,7 +18,7 @@ const LoginTemplate = () => {
 
   return (
     <div className="flex w-full justify-center py-16">
-      {currentView === 'sign-in' ? <Login /> : <Register />}
+      {currentView === 'sign-in' ? <Login /> : <SignUp />}
     </div>
   );
 };

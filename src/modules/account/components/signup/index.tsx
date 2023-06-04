@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
-import { passwordSchema } from '@lib/util/schema';
+import { signupFormSchema } from '@lib/schemas/signup';
 import Loader from '@modules/common/components/loader';
 import {
   Card,
@@ -27,22 +27,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const formSchema = z
-  .object({
-    first_name: z.string().min(2).max(50),
-    last_name: z.string().min(2).max(50),
-    email: z.string().email({
-      message: 'Định dạng email không hợp lệ.',
-    }),
-    password: passwordSchema,
-    confirm_password: passwordSchema,
-  })
-  .refine((data) => data.password === data.confirm_password, {
-    message: 'Mật khẩu xác thực không khớp.',
-    path: ['confirm_password'],
-  });
-
-const Register = () => {
+const SignUp = () => {
   const { refetchCustomer } = useAccount();
   const [authError, setAuthError] = useState<string | undefined>(undefined);
   const router = useRouter();
@@ -51,8 +36,8 @@ const Register = () => {
     setAuthError('An error occured. Please try again.');
   };
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof signupFormSchema>>({
+    resolver: zodResolver(signupFormSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -62,7 +47,7 @@ const Register = () => {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof signupFormSchema>) => {
     const credentials = {
       email: data.email,
       password: data.password,
@@ -203,4 +188,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;

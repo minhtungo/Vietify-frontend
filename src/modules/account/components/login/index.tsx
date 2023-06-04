@@ -3,6 +3,7 @@ import Facebook from '@icons/facebook';
 import Google from '@icons/google';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
+import { loginFormSchema } from '@lib/schemas/login';
 import cn from '@lib/util/cn';
 import Link from '@modules/common/components/link';
 import Loader from '@modules/common/components/loader';
@@ -25,13 +26,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const formSchema = z.object({
-  email: z.string().email({
-    message: 'Định dạng email không hợp lệ.',
-  }),
-  password: z.string().min(8),
-});
-
 const Login = () => {
   const { refetchCustomer } = useAccount();
   const [authError, setAuthError] = useState<string | undefined>(undefined);
@@ -41,15 +35,15 @@ const Login = () => {
     setAuthError('Email hoặc mật khẩu không đúng.');
   };
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginFormSchema>>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const onSubmit = async (credentials: z.infer<typeof formSchema>) => {
+  const onSubmit = async (credentials: z.infer<typeof loginFormSchema>) => {
     await medusaClient.auth
       .authenticate(credentials)
       .then(() => {
