@@ -6,12 +6,13 @@ import ProductCarousel from '@modules/products/components/product-carousel';
 import { book } from '@static/book';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/tabs';
 import { TABS } from 'static/popular';
+import Container from '@modules/layout/components/container';
 
 const Popular = () => {
   const { data, isLoading } = useFeaturedProductsQuery();
 
   return (
-    <div className="content-container py-8">
+    <Container>
       <div className="mb-1 flex items-center gap-1 sm:gap-2">
         <Fire className="h-6 w-6 text-primary sm:h-7 sm:w-7 medium:h-8 medium:w-8" />
         <Heading size="md">{book.popular}</Heading>
@@ -45,7 +46,7 @@ const Popular = () => {
           );
         })}
       </Tabs>
-    </div>
+    </Container>
   );
 };
 

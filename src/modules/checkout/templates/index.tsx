@@ -5,20 +5,21 @@ import CheckoutForm from './checkout-form';
 import CheckoutNav from './checkout-nav';
 import CheckoutSummary from './checkout-summary';
 import CheckoutLoader from '../components/checkout-loader';
+import Container from '@modules/layout/components/container';
 
 const CheckoutTemplate = () => {
   return (
     <CheckoutProvider>
       <div className="relative bg-accent small:min-h-screen">
         <CheckoutNav />
-        <div className="content-container relative">
+        <Container className="relative">
           <CheckoutLoader />
           <Stepper />
           <div className="grid grid-cols-1 gap-x-8 gap-y-8 py-6 small:grid-cols-[1fr_416px]">
             <CheckoutForm />
             <CheckoutSummary />
           </div>
-        </div>
+        </Container>
       </div>
     </CheckoutProvider>
   );

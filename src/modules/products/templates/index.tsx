@@ -7,6 +7,7 @@ import ProductInfo from '@modules/products/templates/product-info';
 import React, { useRef } from 'react';
 import ProductAccordion from '../components/product-accordion';
 import ThumbnailCarousel from '../components/thumbnail-carousel';
+import Container from '@modules/layout/components/container';
 
 type ProductTemplateProps = {
   product: PricedProduct;
@@ -17,7 +18,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
 
   return (
     <ProductProvider product={product}>
-      <div className="content-container px-6 pt-6 md:px-12 lg:px-6 xl:px-4">
+      <Container>
         <Breadcrumb title={product.title!} />
         <div className="mt-6 grid-cols-7 gap-x-12 lg:grid">
           <div className="col-span-3 mb-6 overflow-hidden md:mb-8 lg:mb-0">
@@ -29,7 +30,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
         <ProductTabs product={product} className="my-12 hidden md:block" />
         <ProductAccordion product={product} className="my-12 block md:hidden" />
         <RelatedProducts product={product} className="my-16" />
-      </div>
+      </Container>
     </ProductProvider>
   );
 };

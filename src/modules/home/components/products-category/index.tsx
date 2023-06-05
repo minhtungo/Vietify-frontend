@@ -11,11 +11,12 @@ import { CATEGORIES } from 'static/categories';
 import { useProductCategories } from 'medusa-react';
 import { ProductCategory } from '@medusajs/medusa';
 import Link from 'next/link';
+import Container from '@modules/layout/components/container';
 
 export default function ProductsCategory() {
   const { product_categories: categories } = useProductCategories();
   return (
-    <div className="content-container py-12">
+    <Container>
       <div className="mb-8 flex items-center gap-2">
         <CategoryIcon size={32} className="text-primary" />
         <Heading size="md">{book.category}</Heading>
@@ -51,6 +52,6 @@ export default function ProductsCategory() {
           </SwiperSlide>
         ))}
       </Carousel>
-    </div>
+    </Container>
   );
 }

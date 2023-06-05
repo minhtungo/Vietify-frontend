@@ -1,14 +1,13 @@
 import { StoreGetProductsParams } from '@medusajs/medusa';
+import Container from '@modules/layout/components/container';
 import SortingList from '@modules/store/components/sorting-list';
 import Heading from '@modules/ui/heading';
+import { sorting } from '@static/sort-options';
 import { Separator } from '@ui/separator';
-import { useProductCategories } from 'medusa-react';
-import { useRouter } from 'next/router';
 import Filter from '../filter';
 import CategoriesFilter from '../filter/categories';
 import PriceFilter from '../filter/price';
 import MobileFilter from '../mobile-filter';
-import { sorting } from '@static/sort-options';
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams;
@@ -46,7 +45,7 @@ const RefinementList = ({
   };
 
   return (
-    <main className="content-container py-6">
+    <Container>
       <div className="flex items-baseline justify-between">
         <Heading>Tất cả sản phẩm</Heading>
         <SortingList list={sorting} />
@@ -72,7 +71,7 @@ const RefinementList = ({
         />
         <div className="lg:col-span-4">{children}</div>
       </section>
-    </main>
+    </Container>
   );
 };
 

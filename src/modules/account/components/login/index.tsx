@@ -185,7 +185,7 @@ const Login = () => {
           <Text size="xs">
             Thành viên mới?{' '}
             <Link
-              href="/account/register"
+              href="/account/signup"
               className="text-primary hover:underline"
             >
               Đăng kí

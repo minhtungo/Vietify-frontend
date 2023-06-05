@@ -7,6 +7,7 @@ import Text from '@modules/ui/text';
 import { useCart, useMeCustomer } from 'medusa-react';
 import EmptyCartMessage from '../components/empty-cart-message';
 import ItemsTemplate from './items';
+import Container from '@modules/layout/components/container';
 
 const CartTemplate = () => {
   const { cart, totalItems } = useCart();
@@ -18,7 +19,7 @@ const CartTemplate = () => {
   }
 
   return (
-    <div className="content-container py-8">
+    <Container>
       <div className="mb-6 flex items-center gap-1">
         <Heading size="md">Giỏ Hàng</Heading>
         <Text variant="dark" size="lg" span>
@@ -28,10 +29,7 @@ const CartTemplate = () => {
 
       {cart.items.length ? (
         <div className="grid grid-cols-1 gap-x-12 small:grid-cols-[1fr_380px]">
-          <div>
-            <ItemsTemplate region={cart?.region} items={items} />
-          </div>
-
+          <ItemsTemplate region={cart?.region} items={items} />
           <div className="relative">
             <div className="sticky top-12 mt-6 flex flex-col gap-y-6 lg:mt-0">
               {cart && cart.region && (
@@ -46,7 +44,7 @@ const CartTemplate = () => {
       ) : (
         <EmptyCartMessage />
       )}
-    </div>
+    </Container>
   );
 };
 

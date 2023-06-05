@@ -11,6 +11,7 @@ import {
 import React, { useEffect } from 'react';
 import AccountNav from '../components/account-nav';
 
+import Container from '@modules/layout/components/container';
 import { FC } from 'react';
 
 interface accountLayoutProps {
@@ -33,7 +34,7 @@ const AccountLayout: FC<accountLayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="content-container p-10 pb-16">
+    <Container>
       <Card className="p-10">
         <CardContent className="flex flex-col p-0 lg:flex-row lg:space-x-10">
           <div className="flex flex-col gap-5 lg:w-1/5">
@@ -54,7 +55,7 @@ const AccountLayout: FC<accountLayoutProps> = ({ children }) => {
           </Card>
         </CardContent>
       </Card>
-    </div>
+    </Container>
   );
 };
 

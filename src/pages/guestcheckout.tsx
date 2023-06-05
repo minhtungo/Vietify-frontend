@@ -51,7 +51,7 @@ const Checkout = () => {
             Bạn chưa có tài khoản?{' '}
             <Link
               className="text-primary hover:underline"
-              href="/account/register"
+              href="/account/signup"
             >
               Tạo tài khoản
             </Link>

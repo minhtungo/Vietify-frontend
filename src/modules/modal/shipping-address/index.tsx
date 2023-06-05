@@ -56,7 +56,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
   form,
 }) => {
   return (
-    <Dialog open={state} modal={false}>
+    <Dialog open={state}>
       <DialogTrigger asChild>
         {isEdit ? (
           <Button variant="link" onClick={open}>
@@ -140,7 +140,6 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="address_2"
@@ -154,7 +153,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                   </FormItem>
                 )}
               />
-              <div className="grid grid-cols-[1fr_144px] gap-x-4">
+              <div className="grid grid-cols-[1fr_150px] gap-x-4">
                 <FormField
                   control={form.control}
                   name="city"
@@ -183,7 +182,11 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                             <SelectValue placeholder="Select a state" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent
+                          container={document.getElementById(
+                            'shipping-address-form'
+                          )}
+                        >
                           <ScrollArea className="h-[300px]">
                             {states.map((state) => (
                               <SelectItem value={state.name} key={state.code}>

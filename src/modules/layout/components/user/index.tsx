@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@ui/dropdown-menu';
 import { useRouter } from 'next/router';
 
@@ -38,7 +38,7 @@ const User: React.FC<UserProps> = () => {
       <DropdownMenuContent className="w-56" align="end">
         {!customer ? (
           <>
-            <DropdownMenuItem onSelect={() => router.push('/account/register')}>
+            <DropdownMenuItem onSelect={() => router.push('/account/signup')}>
               <span>Đăng kí</span>
             </DropdownMenuItem>
             <DropdownMenuItem onSelect={() => router.push('/account/login')}>

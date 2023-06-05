@@ -1,4 +1,5 @@
 import Carousel from '@modules/carousel/templates';
+import Container from '@modules/layout/components/container';
 import { PUBLISHERS_BREAKPOINTS } from '@static/breakpoints';
 import { PUBLISHERS } from '@static/publisher';
 import Image from 'next/image';
@@ -9,7 +10,7 @@ interface publishersProps {}
 
 const Publishers: FC<publishersProps> = ({}) => {
   return (
-    <div className="content-container w-full py-12">
+    <Container>
       <Carousel
         autoplay={{ delay: 4000 }}
         loop
@@ -31,7 +32,7 @@ const Publishers: FC<publishersProps> = ({}) => {
           </SwiperSlide>
         ))}
       </Carousel>
-    </div>
+    </Container>
   );
 };
 

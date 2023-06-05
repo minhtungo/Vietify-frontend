@@ -13,6 +13,7 @@ import SortingList from '@modules/store/components/sorting-list';
 import { Separator } from '@modules/ui/separator';
 import Text from '@modules/ui/text';
 import { useCart } from 'medusa-react';
+import Container from '@modules/layout/components/container';
 
 const Search: NextPageWithLayout = () => {
   const router = useRouter();
@@ -37,7 +38,7 @@ const Search: NextPageWithLayout = () => {
         title={`Kết quả tìm kiếm với: ${searchValue}`}
         description="Trang tìm kiếm."
       />
-      <div className="content-container pb-16 pt-6">
+      <Container>
         <div className="flex items-baseline justify-between">
           {products?.length === 0 ? (
             <Text variant="dark" size="sm">
@@ -77,7 +78,7 @@ const Search: NextPageWithLayout = () => {
               </li>
             ))}
         </ul>
-      </div>
+      </Container>
       {/* <RefinementList refinementList={params} setRefinementList={setParams}>
         <InfiniteProducts products={products} isLoading={isLoading} />
       </RefinementList> */}

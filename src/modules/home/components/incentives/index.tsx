@@ -1,4 +1,5 @@
 import FastDelivery from '@modules/common/icons/fast-delivery';
+import Container from '@modules/layout/components/container';
 import Text from '@modules/ui/text';
 import { FC } from 'react';
 
@@ -6,7 +7,7 @@ interface IncentivesProps {}
 
 const Incentives: FC<IncentivesProps> = ({}) => {
   return (
-    <div className="content-container flex flex-col items-center justify-evenly gap-y-6 py-6 md:flex-row md:py-8">
+    <Container className="flex flex-col items-center justify-evenly gap-y-4 md:flex-row">
       <div className="flex items-center gap-2 md:flex-row">
         <FastDelivery className="text-primary" size={40} />
         <Text variant="dark" className="font-semibold">
@@ -25,7 +26,7 @@ const Incentives: FC<IncentivesProps> = ({}) => {
           Free, contactless delivery
         </Text>
       </div>
-    </div>
+    </Container>
   );
 };
 

@@ -23,6 +23,7 @@ import { NextPageWithLayout, PrefetchedPageProps } from 'types/global';
 import RefinementList from '@modules/store/components/refinement-list';
 import InfiniteProducts from '@modules/products/components/infinite-products';
 import usePreviews from '@lib/hooks/use-previews';
+import Container from '@modules/layout/components/container';
 
 interface Params extends ParsedUrlQuery {
   handle: string;
@@ -82,7 +83,7 @@ const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
     // </>
     <>
       <Head description={handle} title={handle} />
-      <div className="content-container py-6">
+      <Container>
         {categories && <Heading size="md">{categories[0]?.name}</Heading>}
         {products && !products.length && (
           <Text span>Không tìm thấy sản phẩm nào.</Text>
@@ -102,7 +103,7 @@ const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
             ))}
           </ul>
         )}
-      </div>
+      </Container>
     </>
   );
 };

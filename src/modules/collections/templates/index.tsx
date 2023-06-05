@@ -1,6 +1,7 @@
 import usePreviews from '@lib/hooks/use-previews';
 import getNumberOfSkeletons from '@lib/util/get-number-of-skeletons';
 import repeat from '@lib/util/repeat';
+import Container from '@modules/layout/components/container';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import { fetchCollectionProducts } from '@pages/collections/[id]';
@@ -61,7 +62,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
   }, [inView, hasNextPage]);
 
   return (
-    <div className="content-container py-6">
+    <Container>
       <div className="text-2xl-semi mb-8">
         <h1>{collection.title}</h1>
       </div>
@@ -91,7 +92,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
       >
         <span ref={ref}></span>
       </div>
-    </div>
+    </Container>
   );
 };
 

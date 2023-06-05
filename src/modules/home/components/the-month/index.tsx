@@ -1,4 +1,5 @@
 import { useFeaturedProductsQuery } from '@lib/hooks/use-layout-data';
+import Container from '@modules/layout/components/container';
 import ProductPreview from '@modules/products/components/product-preview';
 import Heading from '@ui/heading';
 import { AiOutlineFire } from 'react-icons/ai';
@@ -9,7 +10,7 @@ const TheMonth = () => {
   const featuredProducts = data ? data[0] : null;
 
   return (
-    <div className="content-container py-8">
+    <Container>
       <div className="mb-8 flex items-center gap-2">
         <AiOutlineFire size={32} className="text-primary" />
         <Heading size="md">The Month</Heading>
@@ -29,7 +30,7 @@ const TheMonth = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
