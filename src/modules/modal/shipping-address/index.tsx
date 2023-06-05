@@ -1,4 +1,4 @@
-import Button from '@ui/button';
+import Button, { buttonVariants } from '@ui/button';
 
 import { Input } from '@modules/ui/input';
 import { ScrollArea } from '@modules/ui/scroll-area';
@@ -33,6 +33,8 @@ import { shippingAddressSchema } from '@lib/schemas/shipping-address';
 import Plus from '@modules/common/icons/plus';
 import Text from '@modules/ui/text';
 import * as z from 'zod';
+import cn from '@lib/util/cn';
+import ChevronDownIcon from '@modules/common/icons/chevron-down';
 
 interface ShippingAddressProps {
   onSubmit: (data: z.infer<typeof shippingAddressSchema>) => void;
@@ -56,7 +58,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
   form,
 }) => {
   return (
-    <Dialog open={state} modal={false}>
+    <Dialog open={state}>
       <DialogTrigger asChild>
         {isEdit ? (
           <Button variant="link" onClick={open}>
@@ -173,29 +175,26 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>State</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+                      <div className="relative w-max">
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a state" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent
-                          container={document.getElementById(
-                            'shipping-address-form'
-                          )}
-                        >
-                          <ScrollArea className="h-[300px]">
+                          <select
+                            className={cn(
+                              buttonVariants({ variant: 'outline' }),
+                              'appearance-none bg-transparent text-sm font-normal text-muted-foreground'
+                            )}
+                            {...field}
+                          >
                             {states.map((state) => (
-                              <SelectItem value={state.name} key={state.code}>
+                              <option value={state.name} key={state.code}>
                                 {state.name}
-                              </SelectItem>
+                              </option>
                             ))}
-                          </ScrollArea>
-                        </SelectContent>
-                      </Select>
+                            <option value="manrope">Manrope</option>
+                            <option value="system">System</option>
+                          </select>
+                        </FormControl>
+                        <ChevronDownIcon className="absolute right-3 top-3 h-4 w-4 opacity-50" />
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
