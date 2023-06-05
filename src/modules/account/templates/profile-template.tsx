@@ -14,11 +14,6 @@ const ProfileTemplate = () => {
     <div className="w-full">
       <div className="mb-6 flex flex-col gap-y-1">
         <Heading>Thông tin tài khoản</Heading>
-        {/* <Text size="sm">
-          Xem và cập nhật thông tin hồ sơ của bạn, bao gồm tên, email và số điện
-          thoại. Bạn cũng có thể cập nhật địa chỉ thanh toán hoặc thay đổi mật
-          khẩu của mình.
-        </Text> */}
       </div>
 
       <ProfileInfo customer={customer} />

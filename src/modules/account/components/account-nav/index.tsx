@@ -40,7 +40,7 @@ const AccountNav: React.FC<AccountNavProps> = ({ items }) => {
           </Link>
         )}
       </div>
-      <nav className="hidden flex-col space-y-1 md:flex">
+      <nav className="hidden flex-col space-y-1 lg:flex">
         {items.map((item) => (
           <Link
             key={item.href}

@@ -56,7 +56,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
   form,
 }) => {
   return (
-    <Dialog open={state}>
+    <Dialog open={state} modal={false}>
       <DialogTrigger asChild>
         {isEdit ? (
           <Button variant="link" onClick={open}>

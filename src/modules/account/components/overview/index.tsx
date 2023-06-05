@@ -25,35 +25,28 @@ type OverviewProps = {
 const Overview = ({ orders, customer }: OverviewProps) => {
   return (
     <div>
-      <div className="md:hidden">
-        <div className="text-large-semi mb-3 px-6">
-          Xin chào {customer?.first_name}
-        </div>
-        <ul>
-          {accountNavItems.map((item) => {
-            // const Icon = item.icon;
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="flex items-center justify-between border-b border-border px-6 py-4"
-                >
-                  <div className="flex items-center gap-x-1.5">
-                    <User size={18} />
-                    <Text variant="dark" span>
-                      {item.title}
-                    </Text>
-                  </div>
-                  <ChevronDown className="-rotate-90 transform text-foreground/90" />
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div className="hidden md:block">
+      <ul className="lg:hidden">
+        {accountNavItems.slice(1).map((item) => {
+          return (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="flex items-center justify-between border-b border-border py-4"
+              >
+                <div className="flex items-center gap-x-1.5">
+                  <User size={18} />
+                  <Text variant="dark" span>
+                    {item.title}
+                  </Text>
+                </div>
+                <ChevronDown className="-rotate-90 transform text-foreground/90" />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+      <div className="hidden lg:block">
         <Heading className="mb-4">Tổng quan</Heading>
-
         <div className="flex h-full flex-1 flex-col gap-y-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Card>
