@@ -16,23 +16,21 @@ interface sortingListProps {
 const SortingList: React.FC<sortingListProps> = ({ list }) => {
   const router = useRouter();
   const {
-    query: { sort },
-    pathname,
+    query: { sort, handle },
   } = router;
 
-  const { slug: slugQuery } =
+  const { slug: currentSort } =
     list.find((item) => item.slug === sort) || defaultSort;
 
   return (
     <Select
       onValueChange={(itemSlug) =>
-        router.push(
-          itemSlug && itemSlug.length
-            ? createUrl(pathname, new URLSearchParams({ sort: itemSlug }))
-            : pathname
-        )
+        router.push({
+          pathname: handle ? `/shop/${handle}` : '/shop',
+          query: itemSlug ? { sort: itemSlug } : null,
+        })
       }
-      value={slugQuery || ''}
+      value={currentSort || ''}
     >
       <SelectTrigger className="w-[170px]">
         <SelectValue />

@@ -15,10 +15,12 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useCart } from 'medusa-react';
 
 import useQueryParams from '@lib/hooks/use-query-params';
-
+import Container from '@modules/layout/components/container';
 
 const Store: NextPageWithLayout = () => {
   const [params, setParams] = useState<StoreGetProductsParams>({});
+  const queryParams = useQueryParams(params);
+
   const { cart } = useCart();
 
   const router = useRouter();
@@ -26,8 +28,6 @@ const Store: NextPageWithLayout = () => {
 
   const { sortKey, reverse } =
     sorting.find((item) => item.slug === sort) || defaultSort;
-
-  const queryParams = useQueryParams(params);
 
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery(
@@ -45,7 +45,7 @@ const Store: NextPageWithLayout = () => {
   });
 
   return (
-    <>
+    <Container>
       <Head title="Shop" description="Explore all of our products." />
       <RefinementList refinementList={params} setRefinementList={setParams}>
         <InfiniteProducts
@@ -57,7 +57,7 @@ const Store: NextPageWithLayout = () => {
           hasNextPage={hasNextPage}
         />
       </RefinementList>
-    </>
+    </Container>
   );
 };
 

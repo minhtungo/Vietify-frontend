@@ -6,6 +6,7 @@ import usePreviews from '@lib/hooks/use-previews';
 import useQueryParams from '@lib/hooks/use-query-params';
 import { getCategoryHandles } from '@lib/util/get-category-handles';
 import { StoreGetProductsParams } from '@medusajs/medusa';
+import Container from '@modules/layout/components/container';
 import Layout from '@modules/layout/templates';
 import InfiniteProducts from '@modules/products/components/infinite-products';
 import SkeletonCollectionPage from '@modules/skeletons/templates/skeleton-collection-page';
@@ -26,35 +27,18 @@ interface Params extends ParsedUrlQuery {
   handle: string;
 }
 
-const fetchCategoryIdsProducts = async (
-  categoryIds: string[],
-  pageParam = 0
-) => {
-  const { products, count, offset } = await medusaClient.products.list({
-    category_id: categoryIds,
-    limit: 12,
-    offset: pageParam,
-  });
-
-  return {
-    response: { products, count },
-    nextPage: count > offset + 12 ? offset + 12 : null,
-  };
-};
-
 const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
   notFound,
 }) => {
   const [params, setParams] = useState<StoreGetProductsParams>({});
   const queryParams = useQueryParams(params);
 
-  const { cart } = useCart();
-
   const { query, replace } = useRouter();
   const handle = typeof query.handle === 'string' ? query.handle : '';
 
-  const { product_categories: categories } = useProductCategories({ handle });
+  const { cart } = useCart();
 
+  const { product_categories: categories } = useProductCategories({ handle });
   const categoryIds = categories?.map((c) => c.id);
 
   const {
@@ -91,8 +75,11 @@ const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
   }
 
   return (
-    <>
-      <Head title="Shop" description="Explore all of our products." />
+    <Container>
+      <Head
+        title={handle.toUpperCase()}
+        description={`Tổng hợp sách ${handle} tại Vietify.`}
+      />
       <RefinementList refinementList={params} setRefinementList={setParams}>
         <InfiniteProducts
           products={products}
@@ -103,7 +90,7 @@ const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
           hasNextPage={hasNextPage}
         />
       </RefinementList>
-    </>
+    </Container>
   );
 };
 
@@ -112,6 +99,22 @@ CategoryPage.getLayout = (page: ReactElement) => {
 };
 
 export default CategoryPage;
+
+const fetchCategoryIdsProducts = async (
+  categoryIds: string[],
+  pageParam = 0
+) => {
+  const { products, count, offset } = await medusaClient.products.list({
+    category_id: categoryIds,
+    limit: 12,
+    offset: pageParam,
+  });
+
+  return {
+    response: { products, count },
+    nextPage: count > offset + 12 ? offset + 12 : null,
+  };
+};
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const handles = await getCategoryHandles();

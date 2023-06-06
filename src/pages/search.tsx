@@ -1,19 +1,19 @@
 import Head from '@common/head';
 import useGetProducts from '@lib/hooks/use-get-products';
 import Layout from '@modules/layout/templates';
-import { SortFilterItem, defaultSort, sorting } from '@static/sort-options';
+import { sorting } from '@static/sort-options';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'types/global';
 
 import repeat from '@lib/util/repeat';
+import Container from '@modules/layout/components/container';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
 import SortingList from '@modules/store/components/sorting-list';
 import { Separator } from '@modules/ui/separator';
 import Text from '@modules/ui/text';
 import { useCart } from 'medusa-react';
-import Container from '@modules/layout/components/container';
 
 const Search: NextPageWithLayout = () => {
   const router = useRouter();
@@ -21,11 +21,6 @@ const Search: NextPageWithLayout = () => {
   const { sort } = router.query;
 
   const { cart } = useCart();
-  const {
-    sortKey,
-    title: initialOption,
-    reverse,
-  } = sorting.find((item: SortFilterItem) => item.slug === sort) || defaultSort;
 
   const { products, isLoading } = useGetProducts({
     query: searchValue as string,

@@ -122,9 +122,7 @@ type FetchProductListParams = {
 export const fetchProductsList = async ({
   pageParam = 0,
   queryParams,
-  reverse,
   categoryIds,
-  sortKey,
 }: FetchProductListParams) => {
   let { products, count, offset } = await medusaClient.products.list({
     limit: 12,
@@ -132,19 +130,6 @@ export const fetchProductsList = async ({
     category_id: categoryIds,
     ...queryParams,
   });
-
-  sortKey === 'PRICE' &&
-    products.sort(
-      (a, b) => a.variants[0].prices[0].amount - b.variants[0].prices[0].amount
-    );
-
-  sortKey === 'CREATED_AT' &&
-    products.sort(
-      (a, b) =>
-        new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime()
-    );
-
-  reverse && products.reverse();
 
   return {
     response: { products, count },
@@ -155,15 +140,11 @@ export const fetchProductsList = async ({
 type FetchCategoryProductsParams = {
   pageParam?: number;
   queryParams: StoreGetProductsParams;
-  // sortKey?: string;
-  // reverse?: boolean;
 };
 export const fetchCategoryProducts = async ({
   pageParam = 0,
   queryParams,
-}: // reverse,
-// sortKey,
-FetchCategoryProductsParams) => {
+}: FetchCategoryProductsParams) => {
   const { product_categories, count, offset } =
     await medusaClient.productCategories.list({
       limit: 12,
@@ -172,17 +153,6 @@ FetchCategoryProductsParams) => {
     });
 
   let products = product_categories[0].products;
-
-  // sortKey === 'PRICE' &&
-  //   products.sort(
-  //     (a, b) => a.variants[0].prices[0].amount - b.variants[0].prices[0].amount
-  //   );
-
-  // sortKey === 'CREATED_AT' &&
-  //   products.sort(
-  //     (a, b) =>
-  //       new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime()
-  //   );
 
   return {
     response: { products, count },

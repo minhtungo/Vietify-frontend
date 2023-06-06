@@ -45,7 +45,7 @@ const RefinementList = ({
   };
 
   return (
-    <Container>
+    <>
       <div className="flex items-baseline justify-between">
         <Heading>Tất cả sản phẩm</Heading>
         <SortingList list={sorting} />
@@ -71,7 +71,7 @@ const RefinementList = ({
         />
         <div className="lg:col-span-4">{children}</div>
       </section>
-    </Container>
+    </>
   );
 };
 
