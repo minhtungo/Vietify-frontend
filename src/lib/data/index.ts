@@ -1,7 +1,6 @@
 import { medusaClient } from '@lib/config';
 import { StoreGetProductsParams } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
-import { ProductHit } from '@modules/search/components/hit';
 
 const COL_LIMIT = 15;
 
@@ -115,6 +114,7 @@ export const getCollectionData = async (id: string) => {
 type FetchProductListParams = {
   pageParam?: number;
   queryParams: StoreGetProductsParams;
+  categoryIds?: string[];
   sortKey?: string;
   reverse?: boolean;
 };
@@ -123,11 +123,13 @@ export const fetchProductsList = async ({
   pageParam = 0,
   queryParams,
   reverse,
+  categoryIds,
   sortKey,
 }: FetchProductListParams) => {
   let { products, count, offset } = await medusaClient.products.list({
     limit: 12,
     offset: pageParam,
+    category_id: categoryIds,
     ...queryParams,
   });
 
@@ -153,15 +155,15 @@ export const fetchProductsList = async ({
 type FetchCategoryProductsParams = {
   pageParam?: number;
   queryParams: StoreGetProductsParams;
-  sortKey?: string;
-  reverse?: boolean;
+  // sortKey?: string;
+  // reverse?: boolean;
 };
 export const fetchCategoryProducts = async ({
   pageParam = 0,
   queryParams,
-  reverse,
-  sortKey,
-}: FetchCategoryProductsParams) => {
+}: // reverse,
+// sortKey,
+FetchCategoryProductsParams) => {
   const { product_categories, count, offset } =
     await medusaClient.productCategories.list({
       limit: 12,
@@ -171,16 +173,16 @@ export const fetchCategoryProducts = async ({
 
   let products = product_categories[0].products;
 
-  sortKey === 'PRICE' &&
-    products.sort(
-      (a, b) => a.variants[0].prices[0].amount - b.variants[0].prices[0].amount
-    );
+  // sortKey === 'PRICE' &&
+  //   products.sort(
+  //     (a, b) => a.variants[0].prices[0].amount - b.variants[0].prices[0].amount
+  //   );
 
-  sortKey === 'CREATED_AT' &&
-    products.sort(
-      (a, b) =>
-        new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime()
-    );
+  // sortKey === 'CREATED_AT' &&
+  //   products.sort(
+  //     (a, b) =>
+  //       new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime()
+  //   );
 
   return {
     response: { products, count },

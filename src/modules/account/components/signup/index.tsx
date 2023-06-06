@@ -64,9 +64,9 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <>
       <Loader open={form.formState.isSubmitting} />
-      <Card className="w-full border-none shadow-none md:max-w-md md:border md:border-accent md:shadow-sm">
+      <Card className="w-full md:max-w-[480px]">
         <CardHeader className="py-8 pb-5 text-center md:pb-6">
           <CardTitle className="text-xl">Đăng ký</CardTitle>
         </CardHeader>
@@ -184,7 +184,7 @@ const SignUp = () => {
           </Text>
         </CardFooter>
       </Card>
-    </div>
+    </>
   );
 };
 
