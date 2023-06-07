@@ -11,7 +11,7 @@ export const headingVariants = cva('text-foreground font-semibold', {
     },
     size: {
       sm: 'text-sm md:text-base',
-      md: 'text-lg sm:text-xl md:text-2xl',
+      md: 'text-md sm:text-lg md:text-xl',
       lg: 'text-xl md:text-2xl lg:text-3xl xl:leading-7',
       xl: 'text-3xl md:text-4xl xl:text-5xl',
       default: 'text-base lg:text-lg xl:leading-7',

@@ -1,15 +1,15 @@
 const PRODUCT_BREAKPOINTS = {
   '1024': {
     slidesPerView: 5,
-    spaceBetween: 10,
+    spaceBetween: 12,
   },
   '768': {
     slidesPerView: 4,
-    spaceBetween: 10,
+    spaceBetween: 12,
   },
   '640': {
     slidesPerView: 3,
-    spaceBetween: 10,
+    spaceBetween: 12,
   },
   '0': {
     slidesPerView: 2,
@@ -20,7 +20,7 @@ const PRODUCT_BREAKPOINTS = {
 const PUBLISHERS_BREAKPOINTS = {
   '1024': {
     slidesPerView: 8,
-    spaceBetween: 10,
+    spaceBetween: 12,
   },
   '768': {
     slidesPerView: 6,
@@ -81,7 +81,7 @@ const GRID_BREAKPOINTS = {
 const CATEGORY_BREAKPOINTS = {
   '1024': {
     slidesPerView: 8,
-    spaceBetween: 15,
+    spaceBetween: 12,
   },
   '768': {
     slidesPerView: 6,

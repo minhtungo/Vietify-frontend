@@ -28,7 +28,7 @@ export default function ProductsCategory() {
       >
         {categories?.map((category: ProductCategory) => (
           <SwiperSlide key={`category-${category.id}`} className="h-full">
-            <Link href={`/c/${category.handle}`}>
+            <Link href={`/shop/${category.handle}`}>
               <Card>
                 <CardContent className="bg-brand/[0.05] py-2">
                   <Thumbnail

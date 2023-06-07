@@ -46,8 +46,8 @@ const RefinementList = ({
 
   return (
     <>
-      <div className="flex items-baseline justify-between">
-        <Heading>Tất cả sản phẩm</Heading>
+      <div className="flex items-center justify-between">
+        <Heading size="md">Tất cả sản phẩm</Heading>
         <SortingList list={sorting} />
         <MobileFilter>
           <CategoriesFilter
@@ -58,11 +58,11 @@ const RefinementList = ({
         </MobileFilter>
       </div>
 
-      <Separator className="mb-4 mt-3" />
+      <Separator className="mb-6 mt-3" />
 
       <section
         aria-labelledby="products"
-        className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5"
+        className="grid grid-cols-1 gap-x-8 lg:grid-cols-5"
       >
         <Filter
           handleCategoryChange={handleCategoryChange}
