@@ -12,7 +12,7 @@ const FeaturedBooks = () => {
       <Container className="py-12">
         <div className="mb-8 flex items-center justify-center gap-1 sm:gap-2">
           <SlBadge className="h-6 w-6 text-primary sm:h-7 sm:w-7 medium:h-8 medium:w-8" />
-          <Heading size="md">Sách Nổi Bật</Heading>
+          <Heading size="lg">Sách Nổi Bật</Heading>
         </div>
         <ProductCarousel
           products={data}

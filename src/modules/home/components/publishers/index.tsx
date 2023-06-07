@@ -10,7 +10,7 @@ interface publishersProps {}
 
 const Publishers: FC<publishersProps> = ({}) => {
   return (
-    <Container>
+    <Container className="my-12">
       <Carousel
         autoplay={{ delay: 4000 }}
         loop

@@ -40,6 +40,7 @@ const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
 
   const { product_categories: categories } = useProductCategories({ handle });
   const categoryIds = categories?.map((c) => c.id);
+  const categoryName = categories?.[0]?.name;
 
   const {
     data,
@@ -75,12 +76,16 @@ const CategoryPage: NextPageWithLayout<PrefetchedPageProps> = ({
   }
 
   return (
-    <Container>
+    <Container className="my-6">
       <Head
         title={handle.toUpperCase()}
         description={`Tổng hợp sách ${handle} tại Vietify.`}
       />
-      <RefinementList refinementList={params} setRefinementList={setParams}>
+      <RefinementList
+        refinementList={params}
+        setRefinementList={setParams}
+        categoryName={categoryName}
+      >
         <InfiniteProducts
           products={products}
           isLoading={isLoading}

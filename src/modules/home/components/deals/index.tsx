@@ -10,11 +10,11 @@ const Deals = () => {
   const { data, isLoading } = useFeaturedProductsQuery();
 
   return (
-    <Container>
+    <Container className="my-12">
       <div className="mb-5 flex gap-2 md:mb-8">
         <div className="flex items-center gap-1 sm:gap-2">
           <Flash className="h-6 w-6 text-primary sm:h-7 sm:w-7 medium:h-8 medium:w-8" />
-          <Heading size="md">{book.deals}</Heading>
+          <Heading size="lg">{book.deals}</Heading>
         </div>
         <CountDown date={Date.now() + 100000000} />
       </div>

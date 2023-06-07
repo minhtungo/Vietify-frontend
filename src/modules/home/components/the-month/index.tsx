@@ -13,7 +13,7 @@ const TheMonth = () => {
     <Container>
       <div className="mb-8 flex items-center gap-2">
         <AiOutlineFire size={32} className="text-primary" />
-        <Heading size="md">The Month</Heading>
+        <Heading size="lg">The Month</Heading>
       </div>
       <div className="grid-cols-7 gap-3 md:grid lg:gap-7">
         <div className="col-span-3 mb-3 md:sticky md:top-16 md:mb-0 md:h-[600px] lg:top-20 lg:col-span-2 lg:h-[690px]">

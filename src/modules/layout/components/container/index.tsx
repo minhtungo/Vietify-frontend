@@ -7,16 +7,12 @@ interface containerProps {
   main?: boolean;
 }
 
-const Container: FC<containerProps> = ({
-  className,
-  children,
-  main = false,
-}) => {
+const Container: FC<containerProps> = ({ className, children, main }) => {
   if (main) {
     return (
       <main
         className={cn(
-          'container mx-auto my-12 w-full max-w-7xl px-6 xl:px-4',
+          'container mx-auto my-6 w-full max-w-7xl px-6 xl:px-4',
           className
         )}
       >
@@ -27,7 +23,7 @@ const Container: FC<containerProps> = ({
   return (
     <div
       className={cn(
-        'container mx-auto my-12 w-full max-w-7xl px-6 xl:px-4',
+        'container mx-auto my-6 w-full max-w-7xl px-6 xl:px-4',
         className
       )}
     >

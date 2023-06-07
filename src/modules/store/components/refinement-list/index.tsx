@@ -13,12 +13,14 @@ type RefinementListProps = {
   refinementList: StoreGetProductsParams;
   setRefinementList: (refinementList: StoreGetProductsParams) => void;
   children: React.ReactNode;
+  categoryName?: string;
 };
 
 const RefinementList = ({
   refinementList,
   setRefinementList,
   children,
+  categoryName,
 }: RefinementListProps) => {
   const handleCategoryChange = (checked: boolean, id: string) => {
     const categoryIds = refinementList.category_id || [];
@@ -47,23 +49,22 @@ const RefinementList = ({
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading size="md">Tất cả sản phẩm</Heading>
-        <SortingList list={sorting} />
-        <MobileFilter>
-          <CategoriesFilter
-            handleCategoryChange={handleCategoryChange}
-            refinementList={refinementList}
-          />
-          <PriceFilter defaultValue={[0, 100]} />
-        </MobileFilter>
+        <Heading size="md" className="capitalize">
+          {categoryName || 'Tất cả sản phẩm'}
+        </Heading>
+        <div className="flex">
+          <SortingList list={sorting} />
+          <MobileFilter>
+            <CategoriesFilter
+              handleCategoryChange={handleCategoryChange}
+              refinementList={refinementList}
+            />
+            <PriceFilter defaultValue={[0, 100]} />
+          </MobileFilter>
+        </div>
       </div>
-
       <Separator className="mb-6 mt-3" />
-
-      <section
-        aria-labelledby="products"
-        className="grid grid-cols-1 gap-x-8 lg:grid-cols-5"
-      >
+      <section className="grid grid-cols-1 gap-x-8 lg:grid-cols-5">
         <Filter
           handleCategoryChange={handleCategoryChange}
           refinementList={refinementList}
