@@ -107,11 +107,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div className="mb-2 mt-1.5 flex items-center space-x-1">
         <ReviewRating />
-        <Text span className="line-clamp-3 !text-xs">
+        <Text span className="!text-xs">
           (25 reviews)
         </Text>
       </div>
-      <Text size="md">{product.description}</Text>
+      <Text className="line-clamp-3" size="md">
+        {product.description}
+      </Text>
 
       {selectedPrice ? (
         <div className="mt-2 flex items-center gap-2 text-primary">

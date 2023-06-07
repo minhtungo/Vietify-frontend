@@ -1,19 +1,23 @@
 import cn from '@lib/util/cn';
 import * as React from 'react';
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      'bg-card text-card-foreground md:rounded-lg md:border md:border-accent md:shadow',
-      className
-    )}
-    {...props}
-  />
-));
+type CardProps = React.HTMLAttributes<HTMLDivElement> & {
+  form?: boolean;
+};
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, form, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        'rounded-lg bg-card text-card-foreground',
+        form ? 'md:border md:border-accent md:shadow' : 'border shadow-sm',
+        className
+      )}
+      {...props}
+    />
+  )
+);
 Card.displayName = 'Card';
 
 const CardHeader = React.forwardRef<

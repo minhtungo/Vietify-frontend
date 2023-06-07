@@ -52,14 +52,11 @@ const ProductPreview = ({
           </Button>
           <ProductQuickView {...product} />
         </div>
-        <TooltipProvider delayDuration={300}>
+        <TooltipProvider delayDuration={350}>
           <Tooltip>
             <TooltipTrigger>
               <Link href={`/products/${handle}`}>
-                <Heading
-                  size="sm"
-                  className="mt-3 line-clamp-2 !text-[13px] hover:text-primary md:!text-sm"
-                >
+                <Heading className="mt-1 line-clamp-2 !text-sm hover:text-primary md:!text-[15px]">
                   {title}
                 </Heading>
               </Link>

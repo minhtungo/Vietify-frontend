@@ -66,7 +66,7 @@ const SignUp = () => {
   return (
     <>
       <Loader open={form.formState.isSubmitting} />
-      <Card className="w-full md:max-w-[480px]">
+      <Card className="w-full md:max-w-[480px]" form>
         <CardHeader className="py-8 pb-5 text-center md:pb-6">
           <CardTitle className="text-xl">Đăng ký</CardTitle>
         </CardHeader>
