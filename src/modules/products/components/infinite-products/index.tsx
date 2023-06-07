@@ -4,6 +4,7 @@ import repeat from '@lib/util/repeat';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import ProductPreview from '@modules/products/components/product-preview';
 import SkeletonProductPreview from '@modules/skeletons/components/skeleton-product-preview';
+import Text from '@modules/ui/text';
 import { defaultSort, sorting } from '@static/sort-options';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -81,7 +82,7 @@ const InfiniteProducts = ({
 
   return (
     <div className={cn(className)}>
-      <ul className="grid flex-1 grid-cols-2 gap-x-3 gap-y-4 small:grid-cols-3 medium:grid-cols-4">
+      <ul className="grid flex-1 grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {filteredProducts?.map((p) => (
           <li key={p.id}>
             <ProductPreview {...p} />
@@ -94,6 +95,7 @@ const InfiniteProducts = ({
               <SkeletonProductPreview />
             </li>
           ))}
+
         {isFetchingNextPage &&
           repeat(getNumberOfSkeletons(pages)).map((index) => (
             <li key={index}>
@@ -101,6 +103,9 @@ const InfiniteProducts = ({
             </li>
           ))}
       </ul>
+      {filteredProducts && filteredProducts?.length === 0 && !isLoading && (
+        <Text>Hiện tai không có sản phẩm nào với danh mục tương ứng.</Text>
+      )}
     </div>
   );
 };

@@ -25,19 +25,25 @@ export const defaultSort: SortFilterItem = {
 export const sorting: SortFilterItem[] = [
   defaultSort,
   {
-    title: 'Trending',
+    title: 'Bán chạy',
     slug: 'trending-desc',
     sortKey: 'BEST_SELLING',
     reverse: false,
   }, // asc
   {
-    title: 'Price: Low to high',
+    title: 'Mới nhất',
+    slug: 'newest',
+    sortKey: 'CREATED_AT',
+    reverse: false,
+  }, // asc
+  {
+    title: 'Giá thấp đến cao',
     slug: 'price-asc',
     sortKey: 'PRICE',
     reverse: false,
   }, // asc
   {
-    title: 'Price: High to low',
+    title: 'Giá cao đến thấp',
     slug: 'price-desc',
     sortKey: 'PRICE',
     reverse: true,

@@ -1,4 +1,3 @@
-import { createUrl } from '@lib/util/create-url';
 import { SortFilterItem, defaultSort } from '@static/sort-options';
 import {
   Select,

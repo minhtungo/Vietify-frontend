@@ -49,7 +49,6 @@ const RefinementList = ({
       <div className="flex items-baseline justify-between">
         <Heading>Tất cả sản phẩm</Heading>
         <SortingList list={sorting} />
-        {/* Mobile filter dialog */}
         <MobileFilter>
           <CategoriesFilter
             handleCategoryChange={handleCategoryChange}
