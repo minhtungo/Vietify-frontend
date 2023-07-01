@@ -6,7 +6,6 @@ import useProductPrice from '@lib/hooks/use-product-price';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import OptionSelect from '@modules/products/components/option-select';
 import ReviewRating from '@modules/review/components/review-rating';
-import { Separator } from '@modules/ui/separator';
 import { Skeleton } from '@modules/ui/skeleton';
 import Button from '@ui/button';
 import Heading from '@ui/heading';
@@ -17,7 +16,6 @@ import toast from 'react-hot-toast';
 
 import { book } from '@static/book';
 import { ROUTES } from '@static/routes';
-import AddedItem from './added-item';
 
 type ProductActionsProps = {
   product: PricedProduct;
@@ -51,15 +49,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   const addItemToCart = () => {
     addToCart();
-    const item = {
-      thumbnail: product.thumbnail,
-      title: product.title,
-      quantity,
-      unit_price: selectedPrice?.calculated_price,
-    };
-    toast((t) => <AddedItem item={item} t={t} />, {
-      duration: 1600,
-    });
+    toast.success(`${product.title} đã được thêm vào giỏ hàng.`);
     resetQuantity();
   };
 
@@ -135,44 +125,43 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         <Skeleton className="mt-2 h-9 w-16 " />
       )}
 
-      {product?.variants.length > 1 && (
-        <div className="mt-2 flex flex-col gap-y-4">
-          {(product.options || []).map((option) => {
-            return (
-              <div key={option.id}>
+      <div className="flex flex-col gap-y-3">
+        {product?.variants.length > 1 && (
+          <div>
+            {(product.options || []).map((option) => {
+              return (
                 <OptionSelect
                   option={option}
                   current={options[option.id]}
                   updateOption={updateOptions}
                   title={option.title}
+                  key={option.id}
                 />
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        )}
+        <div className="flex gap-3">
+          <Counter
+            value={quantity}
+            onIncrement={increaseQuantity}
+            onDecrement={decreaseQuantity}
+            disabled={!inStock}
+          />
+          <Button variant="outline" className="gap-1">
+            <HeartIcon size={18} />
+            <span className="hidden md:inline">Wishlist</span>
+          </Button>
         </div>
-      )}
-
-      <div className="mt-4 flex gap-3">
-        <Counter
-          value={quantity}
-          onIncrement={increaseQuantity}
-          onDecrement={decreaseQuantity}
-          disabled={!inStock}
-        />
-        <Button onClick={addItemToCart} className="w-full">
+        <Button onClick={addItemToCart} className="w-full max-w-sm">
           {!inStock ? book.outOfStock : book.addToCart}
         </Button>
-        <Button variant="outline" className="gap-1">
-          <HeartIcon size={18} />
-          <span className="hidden md:inline">Wishlist</span>
-        </Button>
-      </div>
-
-      <div className="mt-4 flex items-center gap-2">
-        <Text variant="dark" className="font-semibold" size="md" span>
-          Chia sẻ sản phẩm này:
-        </Text>
-        <SocialShare shareUrl={shareUrl} className="flex gap-2" />
+        <div className="mt-2 flex items-center gap-2">
+          <Text variant="dark" className="font-semibold" size="md" span>
+            Chia sẻ sản phẩm này:
+          </Text>
+          <SocialShare shareUrl={shareUrl} className="flex gap-2" />
+        </div>
       </div>
     </div>
   );

@@ -22,8 +22,8 @@ const CartItem: React.FC<CartItemProps> = React.memo(
         return amount;
       }
       return formatAmount({
-        amount: amount,
-        region: region,
+        amount,
+        region,
         includeTaxes: false,
       });
     };
@@ -32,25 +32,26 @@ const CartItem: React.FC<CartItemProps> = React.memo(
       <div className={cn('flex justify-between', className)}>
         <div className="flex gap-x-2">
           <div className="w-[55px]">
-            <Thumbnail thumbnail={thumbnail} size="full" alt={`${title}`} />
+            <Thumbnail
+              thumbnail={thumbnail}
+              size="full"
+              alt={`${title} thumbnail`}
+            />
           </div>
           <div>
             <Heading
               size="sm"
-              className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm"
+              className="w-[190px] overflow-hidden overflow-ellipsis whitespace-nowrap text-sm md:text-[15px]"
             >
               {title}
             </Heading>
-            <Text size="sm" className="flex items-center">
+            <Text size="sm" className="flex items-center" variant="dark">
+              <XMarkIcon className="text-foreground" />
               {quantity}
-              <XMarkIcon />
-              {getAmount(unit_price)}
-              {/* {variant ? <LineItemOptions variant={variant} /> : ''} */}
             </Text>
           </div>
         </div>
-
-        <Text size="sm" span>
+        <Text size="sm" span variant="dark">
           {getAmount(unit_price * quantity)}
         </Text>
       </div>

@@ -1,4 +1,4 @@
-import DoubleArrow from '@modules/common/icons/double-arrow';
+import ArrowForward from '@modules/common/icons/arrow-forward';
 import Text from '@modules/ui/text';
 import { FC } from 'react';
 
@@ -15,7 +15,7 @@ const Stepper: FC<stepperProps> = ({}) => {
           Thông tin
         </Text>
 
-        <DoubleArrow className="h-5 w-5 " />
+        <ArrowForward className="w- h-4 text-muted-foreground" />
       </li>
       <li className="flex items-center gap-2">
         <span className="mr-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-brand bg-brand text-xs text-primary-foreground">
@@ -24,7 +24,7 @@ const Stepper: FC<stepperProps> = ({}) => {
         <Text span variant="dark">
           Delivery
         </Text>
-        <DoubleArrow className="h-5 w-5" />
+        <ArrowForward className="w- h-4 text-muted-foreground" />
       </li>
       <li className="flex items-center gap-2">
         <span className="mr-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-brand bg-brand text-xs text-primary-foreground">

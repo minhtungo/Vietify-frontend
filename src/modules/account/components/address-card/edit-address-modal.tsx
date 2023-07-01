@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { medusaClient } from '@lib/config';
 import { useAccount } from '@lib/context/account-context';
+import useEditAddress from '@lib/hooks/use-edit-address';
 import useToggleState from '@lib/hooks/use-toggle-state';
 import { phoneRegex, postalCodeRegex } from '@lib/util/regex';
 import { Address } from '@medusajs/medusa';
@@ -28,11 +29,8 @@ type EditAddressProps = {
 };
 
 const EditAddress: React.FC<EditAddressProps> = ({ address }) => {
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
-  const { state, open, close } = useToggleState(false);
-
-  const { refetchCustomer } = useAccount();
+  const { close, error, onEditAddress, open, state, submitting } =
+    useEditAddress();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,41 +48,9 @@ const EditAddress: React.FC<EditAddressProps> = ({ address }) => {
     },
   });
 
-  const onEditAddress = async (data: z.infer<typeof formSchema>) => {
-    setSubmitting(true);
-    setError(undefined);
-
-    const payload = {
-      first_name: data.first_name,
-      last_name: data.last_name,
-      company: data.company || 'Personal',
-      address_1: data.address_1,
-      address_2: data.address_2 || '',
-      city: data.city,
-      country_code: data.country_code,
-      province: data.province || '',
-      postal_code: data.postal_code,
-      phone: data.phone || 'None',
-      metadata: {},
-    };
-
-    medusaClient.customers.addresses
-      .updateAddress(address.id, payload)
-      .then(() => {
-        setSubmitting(false);
-        close();
-        toast.success('Thay đổi địa chỉ thành công!');
-        refetchCustomer();
-      })
-      .catch(() => {
-        setSubmitting(false);
-        setError('Failed to update address, please try again.');
-      });
-  };
-
   return (
     <ShippingAddressModal
-      onSubmit={onEditAddress}
+      onSubmit={(data) => onEditAddress(data, address)}
       state={state}
       close={close}
       error={error}

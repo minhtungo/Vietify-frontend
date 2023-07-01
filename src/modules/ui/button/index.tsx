@@ -49,7 +49,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {isLoading ? <Spinner /> : children}
+        {isLoading ? (
+          <div className="w-full">
+            <Spinner />
+          </div>
+        ) : (
+          children
+        )}
       </button>
     );
   }

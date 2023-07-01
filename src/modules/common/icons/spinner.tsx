@@ -10,9 +10,12 @@ const Spinner: React.FC<IconProps> = ({
     <div role="status">
       <svg
         aria-hidden="true"
-        className="mr-2 h-8 w-8 animate-spin fill-brand text-gray-200 "
+        className="animate-spin fill-brand"
         viewBox="0 0 100 101"
+        width={size}
+        height={size}
         fill="none"
+        {...attributes}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

@@ -11,7 +11,7 @@ type ItemsTemplateProps = {
 
 const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
   return (
-    <div className="grid grid-cols-1 gap-y-4">
+    <div>
       {items && region
         ? items
             .sort((a, b) => {
@@ -19,12 +19,10 @@ const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
             })
             .map((item, i) => {
               return (
-                <>
-                  <Item key={item.id} item={item} region={region} />
-                  {i !== items.length - 1 && (
-                    <Separator className="last:hidden" />
-                  )}
-                </>
+                <div key={item.id}>
+                  <Item item={item} region={region} />
+                  {i !== items.length - 1 && <Separator className="my-4" />}
+                </div>
               );
             })
         : repeat(5).map((i) => {

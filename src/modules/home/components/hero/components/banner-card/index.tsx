@@ -19,7 +19,6 @@ const BannerCard: FC<BannerCardProps> = ({ className, banner }) => {
       className={cn(
         'flex h-full w-full items-center bg-cover bg-center bg-no-repeat',
         'min-h-[420px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[550px]',
-        '',
         className
       )}
       style={{

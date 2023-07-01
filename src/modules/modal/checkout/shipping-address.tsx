@@ -21,27 +21,30 @@ import {
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { shippingAddressSchema } from '@lib/schemas/shipping-address';
+import { useCheckout } from '@lib/context/checkout-context';
+import { shippingAddressFormSchema } from '@lib/schemas/checkout';
 import cn from '@lib/util/cn';
 import ChevronDownIcon from '@modules/common/icons/chevron-down';
-import Plus from '@modules/common/icons/plus';
-import Text from '@modules/ui/text';
+import Edit from '@modules/common/icons/edit';
+import { textVariants } from '@modules/ui/text';
 import * as z from 'zod';
+import useEditAddress from '@lib/hooks/use-edit-address';
+import { Address } from '@medusajs/medusa';
 
 interface ShippingAddressProps {
-  onSubmit: (data: z.infer<typeof shippingAddressSchema>) => void;
+  // onSubmit: (data: z.infer<typeof shippingAddressFormSchema>) => void;
   state: boolean;
-  error: string | undefined;
+  error?: string | undefined;
   open: () => void;
   close: () => void;
   submitting: boolean;
   isEdit?: boolean;
-  form: UseFormReturn<z.infer<typeof shippingAddressSchema>>;
-  horizontal?: boolean;
+  form: UseFormReturn<z.infer<typeof shippingAddressFormSchema>>;
+  address: Address;
 }
 
-const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
-  onSubmit,
+const CheckoutShippingAddressModal: React.FC<ShippingAddressProps> = ({
+  // onSubmit,
   state,
   error,
   open,
@@ -49,30 +52,30 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
   submitting,
   isEdit,
   form,
-  horizontal,
+  address,
 }) => {
+  const { setAddresses, handleSubmit } = useCheckout();
+  const { onEditAddress } = useEditAddress();
+
+  const onSubmit = async (data: z.infer<typeof shippingAddressFormSchema>) => {
+    handleSubmit(setAddresses);
+    onEditAddress(data.shipping_address, address);
+  };
+
   return (
     <Dialog open={state}>
       <DialogTrigger asChild>
-        {isEdit ? (
-          <Button variant="link" onClick={open}>
-            Thay đổi
-          </Button>
-        ) : (
-          <Button
-            variant="outline"
-            className={cn(
-              'flex h-full w-full  gap-y-1',
-              horizontal ? 'flex-row gap-x-2' : 'flex-col'
-            )}
-            onClick={open}
-          >
-            <Plus className="h-6 w-6 text-muted-foreground" />
-            <Text variant="dark" span className="font-medium">
-              Thêm địa chỉ
-            </Text>
-          </Button>
-        )}
+        <button
+          onClick={open}
+          className={textVariants({
+            size: 'sm',
+            variant: 'brand',
+            className: 'block font-semibold hover:underline',
+          })}
+        >
+          <span className="hidden md:inline">Thay đổi</span>
+          <Edit className="block md:hidden" size={16} />
+        </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl" customClose={close}>
         <Form {...form}>
@@ -88,7 +91,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
               <div className="grid grid-cols-2 gap-x-4">
                 <FormField
                   control={form.control}
-                  name="first_name"
+                  name="shipping_address.first_name"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Tên</FormLabel>
@@ -101,7 +104,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                 />
                 <FormField
                   control={form.control}
-                  name="last_name"
+                  name="shipping_address.last_name"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Họ</FormLabel>
@@ -115,7 +118,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
               </div>
               <FormField
                 control={form.control}
-                name="phone"
+                name="shipping_address.phone"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Số điện thoại</FormLabel>
@@ -128,7 +131,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
               />
               <FormField
                 control={form.control}
-                name="address_1"
+                name="shipping_address.address_1"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Địa chỉ</FormLabel>
@@ -141,7 +144,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
               />
               <FormField
                 control={form.control}
-                name="address_2"
+                name="shipping_address.address_2"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Apartment, suite, etc.</FormLabel>
@@ -155,7 +158,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
               <div className="grid grid-cols-[1fr_150px] gap-x-4">
                 <FormField
                   control={form.control}
-                  name="city"
+                  name="shipping_address.city"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Thành phố</FormLabel>
@@ -168,7 +171,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                 />
                 <FormField
                   control={form.control}
-                  name="province"
+                  name="shipping_address.province"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>State</FormLabel>
@@ -199,7 +202,7 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
               </div>
               <FormField
                 control={form.control}
-                name="postal_code"
+                name="shipping_address.postal_code"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Postal Code</FormLabel>
@@ -210,7 +213,6 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                   </FormItem>
                 )}
               />
-
               {error && (
                 <div className="text-small-regular py-2 text-destructive">
                   {error}
@@ -232,4 +234,4 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
   );
 };
 
-export default ShippingAddressModal;
+export default CheckoutShippingAddressModal;

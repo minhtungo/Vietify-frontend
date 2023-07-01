@@ -20,7 +20,7 @@ const CartTemplate = () => {
 
   return (
     <Container>
-      <div className="mb-6 flex items-center gap-1">
+      <div className="mb-5 flex items-center gap-1 md:mb-8">
         <Heading size="md">Giỏ Hàng</Heading>
         <Text variant="dark" size="lg" span>
           ({totalItems} sản phẩm)

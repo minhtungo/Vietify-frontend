@@ -111,20 +111,23 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
         render={({ field: { value, onChange } }) => {
           return (
             <>
-              <RadioGroup
-                value={value}
-                defaultValue={value}
-                onValueChange={(value: string) => handleChange(value, onChange)}
-              >
-                {shippingMethods && shippingMethods.length ? (
-                  shippingMethods.map((option) => {
-                    return (
+              {shippingMethods && shippingMethods.length ? (
+                shippingMethods.map((option) => {
+                  return (
+                    <RadioGroup
+                      value={value}
+                      defaultValue={value}
+                      key={option.value}
+                      onValueChange={(value: string) => {
+                        console.log(value);
+                        handleChange(value, onChange);
+                      }}
+                    >
                       <div
                         className={cn(
                           'flex w-full cursor-pointer items-center justify-between space-x-2 border-b border-border px-8 py-4 last:border-b-0',
                           option.value === value && 'bg-accent/30'
                         )}
-                        key={option.value}
                       >
                         <div>
                           <RadioGroupItem
@@ -140,14 +143,15 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                         </div>
                         <Text size="md">{option.price}</Text>
                       </div>
-                    );
-                  })
-                ) : (
-                  <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
-                    <Spinner />
-                  </div>
-                )}
-              </RadioGroup>
+                    </RadioGroup>
+                  );
+                })
+              ) : (
+                <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
+                  <Spinner />
+                </div>
+              )}
+
               <ErrorMessage
                 errors={errors}
                 name="soId"

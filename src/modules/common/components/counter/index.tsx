@@ -14,7 +14,7 @@ const Counter: React.FC<CounterProps> = ({
   return (
     <div
       className={cn(
-        'relative flex h-10 rounded-md border border-border bg-transparent',
+        'relative flex h-8 rounded-md border border-border bg-transparent',
         className
       )}
     >
@@ -23,12 +23,12 @@ const Counter: React.FC<CounterProps> = ({
         className="h-full rounded-l-md px-2 outline-none transition duration-200 ease-in-out hover:bg-accent"
       >
         <span className="sr-only">Minus Button</span>
-        <MinusIcon className="m-auto h-5 w-5" />
+        <MinusIcon className="m-auto h-4 w-4" />
       </button>
       <Text
-        size="md"
+        size="sm"
         variant="dark"
-        className="flex w-12 items-center justify-center border-x border-border font-semibold"
+        className="flex w-10 items-center justify-center border-x border-border font-medium"
       >
         {value}
       </Text>
@@ -36,10 +36,10 @@ const Counter: React.FC<CounterProps> = ({
         onClick={onIncrement}
         disabled={disabled}
         className="h-full rounded-r-md px-2 outline-none transition duration-200 ease-in-out hover:bg-accent"
-        title={disabled ? 'Out of Stock' : ''}
+        title={disabled ? 'Hết hàng' : ''}
       >
         <span className="sr-only">Plus button</span>
-        <PlusIcon className="m-auto h-5 w-5" />
+        <PlusIcon className="m-auto h-4 w-4" />
       </button>
     </div>
   );

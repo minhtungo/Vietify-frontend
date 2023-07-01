@@ -10,7 +10,11 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const AddAddress: React.FC = () => {
+interface AddAddressProps {
+  horizontal?: boolean;
+}
+
+const AddAddress: React.FC<AddAddressProps> = ({ horizontal }) => {
   const [submitting, setSubmitting] = useState(false);
   const { state, open, close } = useToggleState(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -74,6 +78,7 @@ const AddAddress: React.FC = () => {
       error={error}
       open={open}
       submitting={submitting}
+      horizontal={horizontal}
       form={form}
     />
   );
