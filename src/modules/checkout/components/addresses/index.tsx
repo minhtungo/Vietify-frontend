@@ -20,56 +20,65 @@ const Addresses = () => {
 
   return (
     <Card>
-      <CardHeader className="mb-2">
+      <CardHeader className="mb-2 flex-row gap-x-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm text-white">
+          1
+        </div>
         <CardTitle>Địa Chỉ Giao Hàng</CardTitle>
       </CardHeader>
       <CardContent className="pb-6">
-        <div className="mb-4 bg-accent/30 px-6 py-4">
-          {cart && cart.shipping_address ? (
-            <SavedAddress
-              address={cart.shipping_address}
-              email={cart.email}
-              title="Giao tới"
-            />
-          ) : (
-            <Spinner />
-          )}
-        </div>
-        <AddAddress horizontal />
-        <div className="mt-6 flex items-center space-x-2">
-          <Checkbox
-            id="same-billing"
-            checked={checked}
-            onCheckedChange={onChange}
-          />
-          <Label htmlFor="same-billing">Same as billing address</Label>
-        </div>
-        {!checked && (
-          <div className="mt-4 bg-accent/30 px-6 py-4">
-            {cart && cart.billing_address ? (
-              <SavedAddress
-                address={cart.billing_address}
-                email={cart.email}
-                title="Địa chỉ thanh toán"
-              />
-            ) : (
-              <Spinner />
-            )}
-          </div>
-        )}
-        {!checked && (
+        {isEdit ? (
           <>
-            <CardTitle className="pb-6 pt-8">Địa chỉ Thanh Toán</CardTitle>
-            <BillingAddress />
+            <ShippingAddress />
+            <div className="mt-6 flex items-center space-x-2">
+              <Checkbox
+                id="same-billing"
+                checked={checked}
+                onCheckedChange={onChange}
+              />
+              <Label htmlFor="same-billing">Same as billing address</Label>
+            </div>
+            {!checked && (
+              <>
+                <CardTitle className="pb-6 pt-8">Địa chỉ Thanh Toán</CardTitle>
+                <BillingAddress />
+              </>
+            )}
+            <Button
+              className="mt-6 max-w-[200px]"
+              onClick={handleSubmit(setAddresses)}
+            >
+              Continue to delivery
+            </Button>
+          </>
+        ) : (
+          <>
+            <div className="bg-accent/30 px-6 py-4">
+              {cart && cart.shipping_address ? (
+                <SavedAddress
+                  address={cart.shipping_address}
+                  email={cart.email}
+                  title="Giao tới"
+                />
+              ) : (
+                <Spinner />
+              )}
+            </div>
+            {!checked && (
+              <div className="mt-4 bg-accent/30 px-6 py-4">
+                {cart && cart.billing_address ? (
+                  <SavedAddress
+                    address={cart.billing_address}
+                    email={cart.email}
+                    title="Địa chỉ thanh toán"
+                  />
+                ) : (
+                  <Spinner />
+                )}
+              </div>
+            )}
           </>
         )}
-        {isEdit && <ShippingAddress email={cart?.email!} />}
-        <Button
-          className="mt-6 max-w-[200px]"
-          onClick={handleSubmit(setAddresses)}
-        >
-          Continue to delivery
-        </Button>
       </CardContent>
     </Card>
   );

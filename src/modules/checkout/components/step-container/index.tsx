@@ -29,13 +29,11 @@ const StepContainer = ({
       )}
       {...props}
     >
-      <CardHeader>
-        <CardTitle>
-          {/* <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-sm text-white">
-            {index}
-          </div> */}
-          {title}
-        </CardTitle>
+      <CardHeader className="mb-2 flex-row gap-x-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm text-white">
+          {index}
+        </div>
+        <CardTitle>{title}</CardTitle>
       </CardHeader>
 
       <CardContent>

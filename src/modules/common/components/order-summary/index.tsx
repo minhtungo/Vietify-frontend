@@ -1,16 +1,16 @@
 import CartTotals from '@common/cart-totals';
 import { type Cart } from '@medusajs/medusa';
 import PaymentButton from '@modules/checkout/components/payment-button';
-import Button, { buttonVariants } from '@ui/button';
+import { buttonVariants } from '@ui/button';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import cn from '@lib/util/cn';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
-import { useRouter } from 'next/router';
 import Text from '@modules/ui/text';
 import { PAYMENTS } from '@static/payment,';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@ui/card';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface OrderSummaryProps {
   cart: Omit<Cart, 'refundable_amount' | 'refunded_total'>;
@@ -23,6 +23,7 @@ const OrderSummary = ({ cart }: OrderSummaryProps) => {
   useEffect(() => {
     setIsCheckout(pathname === '/checkout' ? true : false);
   }, [pathname]);
+
   return (
     <Card>
       <CardHeader>

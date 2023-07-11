@@ -16,6 +16,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     tax_total,
     shipping_total,
     total,
+    items,
   } = cart;
 
   const getAmount = (amount: number | null | undefined) => {
@@ -30,20 +31,23 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     <div className="text-small-regular flex flex-col gap-y-2">
       <div className="flex items-center justify-between">
         <Text variant="dark" size="md" span>
-          Tạm tính
+          {items.length} sản phẩm
         </Text>
         <Text variant="dark" size="md" span>
           {getAmount(subtotal)}
         </Text>
       </div>
-      <div className="flex items-center justify-between">
-        <Text variant="dark" size="md" span>
-          Thuế
-        </Text>
-        <Text variant="dark" size="md" span>
-          {getAmount(tax_total)}
-        </Text>
-      </div>
+
+      {!!tax_total && (
+        <div className="flex items-center justify-between">
+          <Text variant="dark" size="md" span>
+            Thuế
+          </Text>
+          <Text variant="dark" size="md" span>
+            {getAmount(tax_total)}
+          </Text>
+        </div>
+      )}
 
       {!!discount_total && (
         <div className="flex items-center justify-between">
@@ -65,14 +69,17 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
           </Text>
         </div>
       )}
-      <div className="flex items-center justify-between">
-        <Text size="md" variant="dark" span>
-          Shipping
-        </Text>
-        <Text size="md" variant="dark" span>
-          {getAmount(shipping_total)}
-        </Text>
-      </div>
+      {!!shipping_total && (
+        <div className="flex items-center justify-between">
+          <Text size="md" variant="dark" span>
+            Shipping
+          </Text>
+          <Text size="md" variant="dark" span>
+            {getAmount(shipping_total)}
+          </Text>
+        </div>
+      )}
+
       <Separator className="my-1" />
       <div className="flex items-center justify-between">
         <Text size="md" variant="dark" span className="font-semibold">

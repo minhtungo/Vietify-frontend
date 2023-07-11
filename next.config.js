@@ -17,6 +17,8 @@ module.exports = withStoreConfig({
       'demo2.pavothemes.com',
       'cdn0.fahasa.com',
       'images-us.bookshop.org',
+      '20.12.70.127',
+      '127.0.0.1',
     ],
   },
 });

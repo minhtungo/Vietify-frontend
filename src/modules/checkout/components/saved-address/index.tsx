@@ -66,7 +66,7 @@ const SavedAddress: FC<savedAddressProps> = ({
             {email}
           </Text>
         </div>
-        <CheckoutShippingAddressModal
+        {/* <CheckoutShippingAddressModal
           state={state}
           close={close}
           address={address}
@@ -74,7 +74,18 @@ const SavedAddress: FC<savedAddressProps> = ({
           open={open}
           submitting={false}
           form={form}
-        />
+        /> */}
+        <button
+          onClick={setEdit}
+          className={textVariants({
+            size: 'sm',
+            variant: 'brand',
+            className: 'block font-semibold hover:underline',
+          })}
+        >
+          <span className="hidden md:inline">Thay đổi</span>
+          <Edit className="block md:hidden" size={16} />
+        </button>
       </div>
       <Text size="sm" variant="dark">{`${address_1} ${address_2}`}</Text>
       <Text

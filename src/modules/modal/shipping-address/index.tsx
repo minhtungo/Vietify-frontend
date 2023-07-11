@@ -84,8 +84,8 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
             <DialogHeader>
               <DialogTitle>Thay đổi địa chỉ</DialogTitle>
             </DialogHeader>
-            <div className="grid gap-4 py-5">
-              <div className="grid grid-cols-2 gap-x-4">
+            <div className="grid gap-3 py-5">
+              <div className="grid gap-3 md:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="first_name"
@@ -182,12 +182,10 @@ const ShippingAddressModal: React.FC<ShippingAddressProps> = ({
                             {...field}
                           >
                             {states.map((state) => (
-                              <option value={state.name} key={state.code}>
+                              <option value={state.code} key={state.code}>
                                 {state.name}
                               </option>
                             ))}
-                            <option value="manrope">Manrope</option>
-                            <option value="system">System</option>
                           </select>
                         </FormControl>
                         <ChevronDownIcon className="absolute right-3 top-3 h-4 w-4 opacity-50" />
