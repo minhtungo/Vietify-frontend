@@ -1,10 +1,10 @@
-import Input from '@common/form-input';
+import { Input } from '@modules/ui/input';
 import Trash from '@icons/trash';
 import { medusaClient } from '@lib/config';
 import { Cart } from '@medusajs/medusa';
 import { useMutation } from '@tanstack/react-query';
 import Button from '@ui/button';
-import { Card, CardContent, CardDescription, CardHeader } from '@ui/card';
+import { Card, CardContent } from '@ui/card';
 import { formatAmount, useCart, useUpdateCart } from 'medusa-react';
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
@@ -109,9 +109,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit(onApply)} className="w-full">
-            <div className="grid grid-cols-[1fr_85px] gap-x-2">
+            <div className="grid grid-cols-[1fr_90px] gap-x-2">
               <Input
-                label="Nhập mã khuyến mãi/Quà tặng"
+                placeholder="Nhập mã khuyến mãi"
                 {...register('discount_code', {
                   required: 'Code is required',
                 })}

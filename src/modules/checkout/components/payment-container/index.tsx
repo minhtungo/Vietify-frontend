@@ -1,10 +1,18 @@
 import cn from '@lib/util/cn';
 import { PaymentSession } from '@medusajs/medusa';
-import { Label } from '@modules/ui/label';
-import { RadioGroup, RadioGroupItem } from '@ui/radio-group';
 import React from 'react';
 import PaymentStripe from '../payment-stripe';
 import PaymentTest from '../payment-test';
+import { Card, CardContent } from '@modules/ui/card';
+import Heading from '@modules/ui/heading';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@modules/ui/accordion';
+import Delivery from '@modules/common/icons/delivery';
+import Text from '@modules/ui/text';
 
 type PaymentContainerProps = {
   paymentSession: PaymentSession;
@@ -39,34 +47,28 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
   disabled = false,
 }) => {
   return (
-    <div
-      className={cn(
-        'flex flex-col gap-y-4 border-b border-border last:border-b-0',
-        selected && 'bg-accent/50'
-      )}
-    >
-      <RadioGroup
-        defaultValue="option-one"
-        className="grid grid-cols-[12px_1fr] gap-x-4 px-8 py-4"
-        disabled={disabled}
-        onClick={setSelected}
+    <button onClick={setSelected} disabled={disabled}>
+      <Card
+        className={cn('hover:border-primary/40', selected && 'border-primary')}
       >
-        <RadioGroupItem value="option-one" id="option-one" />
-        <div className="flex flex-col">
-          <Label htmlFor="option-one" className="cursor-pointer font-semibold">
-            {PaymentInfoMap[paymentSession.provider_id].title}
-          </Label>
-          <span className="text-small-regular mt-2 text-gray-700">
+        <CardContent className="flex flex-col items-start gap-1 px-6 py-4">
+          <div className="flex w-full items-start justify-between">
+            <Heading size="sm">
+              {PaymentInfoMap[paymentSession.provider_id].title}
+            </Heading>
+            <Delivery className="h-6 w-6 text-secondary-foreground" />
+          </div>
+          <Text variant="dark" size="sm">
             {PaymentInfoMap[paymentSession.provider_id].description}
-          </span>
+          </Text>
           {selected && (
-            <div className="mt-4 w-full">
+            <div className="w-full">
               <PaymentElement paymentSession={paymentSession} />
             </div>
           )}
-        </div>
-      </RadioGroup>
-    </div>
+        </CardContent>
+      </Card>
+    </button>
   );
 };
 
@@ -78,7 +80,7 @@ const PaymentElement = ({
   switch (paymentSession.provider_id) {
     case 'stripe':
       return (
-        <div className="pr-7 pt-8">
+        <div className="pt-2">
           <PaymentStripe />
         </div>
       );

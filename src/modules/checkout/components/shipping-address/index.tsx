@@ -3,22 +3,13 @@ import { emailRegex } from '@lib/util/regex';
 import { Input } from '@modules/ui/input';
 import { Label } from '@modules/ui/label';
 import Text from '@modules/ui/text';
-import { useMeCustomer } from 'medusa-react';
 import { states } from '@static/content';
+import { useMeCustomer } from 'medusa-react';
 
-import AddressSelect from '../address-select';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@modules/ui/select';
-import ChevronDownIcon from '@modules/common/icons/chevron-down';
 import cn from '@lib/util/cn';
+import ChevronDownIcon from '@modules/common/icons/chevron-down';
 import { buttonVariants } from '@modules/ui/button';
+import AddressSelect from '../address-select';
 
 const ShippingAddress = () => {
   const { customer } = useMeCustomer();
@@ -26,7 +17,7 @@ const ShippingAddress = () => {
   return (
     <div>
       {customer && customer.shipping_addresses?.length > 0 && (
-        <div className="mb-6 flex flex-col gap-y-4 bg-primary/10 p-4">
+        <div className="mb-4 flex flex-col gap-y-4 bg-accent/50 p-4">
           <Text variant="dark" size="sm">
             {`Hi ${customer?.first_name}, do you want to use one of your saved addresses?`}
           </Text>

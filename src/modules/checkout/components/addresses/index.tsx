@@ -20,11 +20,11 @@ const Addresses = () => {
 
   return (
     <Card>
-      <CardHeader className="mb-2 flex-row gap-x-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm text-white">
+      <CardHeader className="flex-row items-center gap-x-3 space-y-0">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm text-primary-foreground">
           1
         </div>
-        <CardTitle>Địa Chỉ Giao Hàng</CardTitle>
+        <CardTitle className="md:text-xl">Địa Chỉ Giao Hàng</CardTitle>
       </CardHeader>
       <CardContent className="pb-6">
         {isEdit ? (

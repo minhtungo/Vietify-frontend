@@ -3,6 +3,7 @@ import { Separator } from '@modules/ui/separator';
 import Text from '@modules/ui/text';
 import { formatAmount } from 'medusa-react';
 import React from 'react';
+import OrderAccordion from '../order-accordion';
 
 type CartTotalsProps = {
   cart: Omit<Cart, 'refundable_amount' | 'refunded_total'>;
@@ -81,6 +82,11 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
       )}
 
       <Separator className="my-1" />
+
+      <OrderAccordion />
+
+      <Separator className="my-1" />
+
       <div className="flex items-center justify-between">
         <Text size="md" variant="dark" span className="font-semibold">
           Tổng số tiền

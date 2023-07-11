@@ -14,7 +14,7 @@ const CheckoutSummary = () => {
   return (
     <div className="sticky top-0 flex flex-col-reverse gap-y-5 small:flex-col">
       <OrderSummary cart={cart} />
-      <OrderDetails cart={cart} />
+
       <DiscountCode cart={cart} />
       <GiftCard cart={cart} />
     </div>

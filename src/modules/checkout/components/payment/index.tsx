@@ -3,6 +3,7 @@ import Spinner from '@icons/spinner';
 import { useEffect } from 'react';
 import PaymentContainer from '../payment-container';
 import StepContainer from '../step-container';
+import Text from '@modules/ui/text';
 
 const Payment = () => {
   const {
@@ -38,12 +39,14 @@ const Payment = () => {
       title="Payment"
       index={isSame ? 3 : 4}
       closedState={
-        <div className="text-small-regular px-8 pb-8">
-          <p>Enter your address to see available payment options.</p>
+        <div className="px-6 pb-2">
+          <Text size="sm">
+            Enter your address to see available payment options.
+          </Text>
         </div>
       }
     >
-      <div>
+      <div className="grid grid-cols-1 gap-3">
         {cart?.payment_sessions?.length ? (
           cart.payment_sessions
             .sort((a, b) => {

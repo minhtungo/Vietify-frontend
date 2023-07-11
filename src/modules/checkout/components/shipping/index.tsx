@@ -3,24 +3,14 @@ import Spinner from '@icons/spinner';
 import { useCheckout } from '@lib/context/checkout-context';
 import cn from '@lib/util/cn';
 import { Cart } from '@medusajs/medusa';
+import Delivery from '@modules/common/icons/delivery';
+import { Card, CardContent } from '@modules/ui/card';
+import Heading from '@modules/ui/heading';
+import Text from '@modules/ui/text';
 import { formatAmount, useCart, useCartShippingOptions } from 'medusa-react';
 import React, { useEffect, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import StepContainer from '../step-container';
-import { RadioGroup, RadioGroupItem } from '@ui/radio-group';
-import { Label } from '@ui/label';
-import Text from '@modules/ui/text';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@modules/ui/card';
-import Heading from '@modules/ui/heading';
-import FastDelivery from '@modules/common/icons/fast-delivery';
-import Delivery from '@modules/common/icons/delivery';
 
 type ShippingOption = {
   value?: string;
@@ -108,11 +98,13 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
 
   return (
     <StepContainer
-      index={sameBilling ? 2 : 3}
       title="Delivery"
+      index={sameBilling ? 2 : 3}
       closedState={
-        <div className="text-small-regular px-8 pb-8">
-          <p>Enter your address to see available delivery options.</p>
+        <div className="px-6 pb-2">
+          <Text size="sm">
+            Enter your address to see available delivery options.
+          </Text>
         </div>
       }
     >
@@ -151,40 +143,6 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                   })}
                 </div>
               ) : (
-                // <RadioGroup
-                //   value={value}
-                //   defaultValue={value}
-                //   onValueChange={(value: string) => {
-                //     console.log(value);
-                //     handleChange(value, onChange);
-                //   }}
-                // >
-                //   {shippingMethods.map((option) => {
-                //     return (
-                //       <div
-                //         className={cn(
-                //           'flex w-full cursor-pointer items-center justify-between space-x-2 border-b border-border px-8 py-4 last:border-b-0',
-                //           option.value === value && 'bg-accent/30'
-                //         )}
-                //         key={option.value}
-                //       >
-                //         <div>
-                //           <RadioGroupItem
-                //             value={option.value!}
-                //             id={option.value}
-                //           />
-                //           <Label
-                //             htmlFor={option.value}
-                //             className="ml-2 cursor-pointer"
-                //           >
-                //             {option.label}
-                //           </Label>
-                //         </div>
-                //         <Text size="md">{option.price}</Text>
-                //       </div>
-                //     );
-                //   })}
-                // </RadioGroup>
                 <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
                   <Spinner />
                 </div>

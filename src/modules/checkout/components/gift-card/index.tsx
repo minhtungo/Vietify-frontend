@@ -1,4 +1,4 @@
-import Input from '@common/form-input';
+import { Input } from '@modules/ui/input';
 import Trash from '@icons/trash';
 import { Cart } from '@medusajs/medusa';
 import Button from '@ui/button';
@@ -89,9 +89,9 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-            <div className="grid grid-cols-[1fr_80px] gap-x-2">
+            <div className="grid grid-cols-[1fr_90px] gap-x-2">
               <Input
-                label="Enter your gift card"
+                placeholder="Nhập mã quà tặng"
                 {...register('gift_card_code', {
                   required: 'Code is required',
                 })}
@@ -99,11 +99,11 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
                 touched={touchedFields}
               />
               <Button
-                className="h-full w-full"
+                className="h-full w-full text-xs"
                 disabled={isLoading}
                 isLoading={isLoading}
               >
-                Apply
+                Áp dụng
               </Button>
             </div>
           </form>

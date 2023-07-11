@@ -1,3 +1,4 @@
+import { Label } from '@modules/ui/label';
 import {
   CardCvcElement,
   CardExpiryElement,
@@ -31,9 +32,9 @@ const PaymentStripe: React.FC = () => {
 
   return (
     <div>
-      <div className="flex flex-col relative w-full pb-6">
+      <div className="relative flex w-full flex-col text-left">
         <CardNumber options={useOptions as StripeCardNumberElementOptions} />
-        <div className="flex items-center mt-12 relative gap-x-4">
+        <div className="relative mt-3 grid grid-cols-2 gap-x-3">
           <CardExpiry options={useOptions as StripeCardExpiryElementOptions} />
           <CardCVC options={useOptions as StripeCardCvcElementOptions} />
         </div>
@@ -48,11 +49,11 @@ const CardNumber = ({
   options: StripeCardNumberElementOptions;
 }) => {
   return (
-    <div className="border-b border-gray-200 py-2 relative">
-      <span className="absolute -top-6 text-gray-700 text-base-regular">
-        Card number
-      </span>
-      <CardNumberElement options={options} />
+    <div className="flex flex-col gap-2">
+      <Label>Card number</Label>
+      <div className="w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background">
+        <CardNumberElement options={options} />
+      </div>
     </div>
   );
 };
@@ -63,22 +64,22 @@ const CardExpiry = ({
   options: StripeCardExpiryElementOptions;
 }) => {
   return (
-    <div className="border-b border-gray-200 w-full py-2 relative">
-      <span className="absolute -top-6 text-gray-700 text-base-regular">
-        Expiration date
-      </span>
-      <CardExpiryElement options={options} />
+    <div className="flex flex-col gap-2">
+      <Label>Expiration date</Label>
+      <div className="w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background">
+        <CardExpiryElement options={options} />
+      </div>
     </div>
   );
 };
 
 const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
   return (
-    <div className="border-b border-gray-200 w-full py-2 relative">
-      <span className="absolute -top-6 text-gray-700 text-base-regular">
-        CVC
-      </span>
-      <CardCvcElement options={{ ...options, placeholder: '123' }} />
+    <div className="flex flex-col gap-2">
+      <Label>CVC</Label>
+      <div className="w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background">
+        <CardCvcElement options={{ ...options, placeholder: '123' }} />
+      </div>
     </div>
   );
 };

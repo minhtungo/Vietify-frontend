@@ -3,7 +3,6 @@
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import * as React from 'react';
 
-import CircleIcon from '@icons/circle';
 import cn from '@lib/util/cn';
 import { BsFillCircleFill } from 'react-icons/bs';
 
